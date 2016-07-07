@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EH.Android", "EH\EH.Android.csproj", "{FAA91B4B-2B73-4D11-ADF2-E5079CC3C148}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EH.Android", "Android\EH.Android.csproj", "{FAA91B4B-2B73-4D11-ADF2-E5079CC3C148}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EH.Common", "Common\EH.Common.csproj", "{67F9D3A8-F71E-4428-913F-C37AE82CDB24}"
 EndProject
