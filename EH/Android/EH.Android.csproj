@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressListAdapter.cs" />
+    <Compile Include="LocationActivity.cs" />
     <Compile Include="PumpListAdapter.cs" />
     <Compile Include="SharedData.cs" />
     <Compile Include="LoginFragment.cs" />

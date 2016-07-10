@@ -11,10 +11,12 @@ using System.Text;
 using Android.Support.V4.Content;
 using Android.Support.V4.App;
 using EH.Common;
+using Android.Views.InputMethods;
+using Android.Content;
 
 namespace EH.Android
 {
-    [Activity(Theme = "@android:style/Theme.DeviceDefault.Light")]
+    [Activity(Label = "@string/ApplicationName", Theme = "@android:style/Theme.DeviceDefault.Light")]
     public class SearchActivity : Activity,
         GoogleApiClient.IConnectionCallbacks,
         GoogleApiClient.IOnConnectionFailedListener,
@@ -94,9 +96,10 @@ namespace EH.Android
             var addresses = new List<Address>(geocoder.GetFromLocation(location.Latitude, location.Longitude, 1)).ToArray();
 
             if (addresses.Length > 0)
-            {
-                text.SetText(new Java.Lang.String(DescribeAddress(addresses[0])), false);
-            }
+                text.Hint = DescribeAddress(addresses[0]);
+
+            InputMethodManager input = (InputMethodManager)GetSystemService(Context.InputMethodService);
+            input.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
 
             SharedData.lastLocation = new LatLon() { Lat = location.Latitude, Lon = location.Longitude };
             UpdatePumpList();
@@ -128,12 +131,22 @@ namespace EH.Android
             {
                 var pumps = await eh.getPumpListAsync(SharedData.lastLocation.Lat, SharedData.lastLocation.Lon, SharedData.vehicle);
                 view.Adapter = new PumpListAdapter(this, pumps);
+                view.ItemClick += (sender, args) => { OnItemClick((PumpListAdapter)view.Adapter, args.Position); };
             }
             catch (EHApi.EHApiException e)
             {
                 System.Diagnostics.Debug.WriteLine("Couldn't get pump list: "+e.reason);
             }
             view.EmptyView = null;
+        }
+
+        private void OnItemClick(PumpListAdapter adapter, int position)
+        {
+            var pump = adapter.GetItem(position);
+
+            Intent i = new Intent(this, typeof(LocationActivity));
+            i.PutExtra("locationId", pump.locationId);
+            StartActivity(i);
         }
 
         private string DescribeAddress(Address addr)

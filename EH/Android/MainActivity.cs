@@ -9,7 +9,7 @@ using Android.Content;
 
 namespace EH.Android
 {
-    [Activity(Label = "Clockwork Highway", MainLauncher = true, Icon = "@drawable/icon", Theme = "@android:style/Theme.DeviceDefault.Light")]
+    [Activity(Label = "@string/ApplicationName", MainLauncher = true, Icon = "@drawable/icon", Theme = "@android:style/Theme.DeviceDefault.Light")]
     public class MainActivity : Activity, ILoginResult
     {
         protected override void OnCreate(Bundle bundle)
