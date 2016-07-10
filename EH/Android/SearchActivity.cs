@@ -124,9 +124,15 @@ namespace EH.Android
 
             var eh = new EHApi();
 
-            var pumps = await eh.getPumpListAsync(SharedData.lastLocation.Lat, SharedData.lastLocation.Lon, SharedData.vehicle);
-
-            view.Adapter = new PumpListAdapter(this, pumps);
+            try
+            {
+                var pumps = await eh.getPumpListAsync(SharedData.lastLocation.Lat, SharedData.lastLocation.Lon, SharedData.vehicle);
+                view.Adapter = new PumpListAdapter(this, pumps);
+            }
+            catch (EHApi.EHApiException e)
+            {
+                System.Diagnostics.Debug.WriteLine("Couldn't get pump list: "+e.reason);
+            }
             view.EmptyView = null;
         }
 

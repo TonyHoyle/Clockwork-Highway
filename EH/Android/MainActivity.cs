@@ -84,7 +84,7 @@ namespace EH.Android
             }
             catch (EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                System.Diagnostics.Debug.WriteLine(e.reason);
             }
         }
 
