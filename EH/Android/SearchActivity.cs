@@ -95,7 +95,7 @@ namespace EH.Android
 
             if (addresses.Length > 0)
             {
-                text.Text = DescribeAddress(addresses[0]);
+                text.SetText(new Java.Lang.String(DescribeAddress(addresses[0])), false);
             }
 
             SharedData.lastLocation = new LatLon() { Lat = location.Latitude, Lon = location.Longitude };
