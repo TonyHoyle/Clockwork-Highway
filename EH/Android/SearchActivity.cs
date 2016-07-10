@@ -102,7 +102,7 @@ namespace EH.Android
             input.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
 
             SharedData.lastLocation = new LatLon() { Lat = location.Latitude, Lon = location.Longitude };
-            UpdatePumpList();
+            UpdatePumpList(location.Latitude, location.Longitude);
         }
 
         private void AddressChanged(AddressListAdapter adapter, int position)
@@ -112,11 +112,10 @@ namespace EH.Android
 
             text.Text = DescribeAddress(address);
 
-            SharedData.lastLocation = new LatLon() { Lat = address.Latitude, Lon = address.Longitude };
-            UpdatePumpList();
+            UpdatePumpList(address.Latitude, address.Longitude);
         }
 
-        private async void UpdatePumpList()
+        private async void UpdatePumpList(double latitude, double longitude)
         {
             var view = FindViewById<ListView>(Resource.Id.listPumps);
             var progress = FindViewById<ProgressBar>(Resource.Id.progressBar);
@@ -129,7 +128,7 @@ namespace EH.Android
 
             try
             {
-                var pumps = await eh.getPumpListAsync(SharedData.lastLocation.Lat, SharedData.lastLocation.Lon, SharedData.vehicle);
+                var pumps = await eh.getPumpListAsync(latitude, longitude, SharedData.vehicle);
                 view.Adapter = new PumpListAdapter(this, pumps);
                 view.ItemClick += (sender, args) => { OnItemClick((PumpListAdapter)view.Adapter, args.Position); };
             }
