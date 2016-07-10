@@ -20,6 +20,8 @@ namespace EH.Android
         GoogleApiClient.IOnConnectionFailedListener,
         global::Android.Gms.Location.ILocationListener
     {
+        private GoogleApiClient _googleApiClient;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -36,9 +38,9 @@ namespace EH.Android
             if (ContextCompat.CheckSelfPermission(this, Permission.AccessFineLocation) != global::Android.Content.PM.Permission.Granted)
                 ActivityCompat.RequestPermissions(this, new string[] { Permission.AccessFineLocation }, 0);
 
-            if (SharedData.googleApiClient == null)
+            if (_googleApiClient == null)
             {
-                SharedData.googleApiClient = new GoogleApiClient.Builder(this)
+                _googleApiClient = new GoogleApiClient.Builder(this)
                     .AddConnectionCallbacks(this)
                     .AddOnConnectionFailedListener(this)
                     .AddApi(LocationServices.API)
@@ -49,18 +51,18 @@ namespace EH.Android
         protected override void OnStart()
         {
             base.OnStart();
-            SharedData.googleApiClient.Connect();
+            _googleApiClient.Connect();
         }
 
         protected override void OnStop()
         {
             base.OnStop();
-            SharedData.googleApiClient.Disconnect();
+            _googleApiClient.Disconnect();
         }
 
         public void OnConnected(Bundle connectionHint)
         {
-            var location = LocationServices.FusedLocationApi.GetLastLocation(SharedData.googleApiClient);
+            var location = LocationServices.FusedLocationApi.GetLastLocation(_googleApiClient);
             if (location != null)
             {
                 OnLocationChanged(location);
@@ -70,7 +72,7 @@ namespace EH.Android
                 LocationRequest request = new LocationRequest();
                 request.SetNumUpdates(1);
                 request.SetPriority(LocationRequest.PriorityHighAccuracy);
-                LocationServices.FusedLocationApi.RequestLocationUpdates(SharedData.googleApiClient, request, this);
+                LocationServices.FusedLocationApi.RequestLocationUpdates(_googleApiClient, request, this);
             }
         }
 
@@ -86,7 +88,7 @@ namespace EH.Android
         {
             var text = FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
 
-            LocationServices.FusedLocationApi.RemoveLocationUpdates(SharedData.googleApiClient, this);
+            LocationServices.FusedLocationApi.RemoveLocationUpdates(_googleApiClient, this);
 
             var geocoder = new Geocoder(this);
             var addresses = new List<Address>(geocoder.GetFromLocation(location.Latitude, location.Longitude, 1)).ToArray();
@@ -96,8 +98,7 @@ namespace EH.Android
                 text.Text = DescribeAddress(addresses[0]);
             }
 
-            SharedData.lastLocation.Lat = location.Latitude;
-            SharedData.lastLocation.Lon = location.Longitude;
+            SharedData.lastLocation = new LatLon() { Lat = location.Latitude, Lon = location.Longitude };
             UpdatePumpList();
         }
 

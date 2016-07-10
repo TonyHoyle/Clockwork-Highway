@@ -11,7 +11,6 @@ namespace EH.Android
 
     static class SharedData
     {
-        public static GoogleApiClient googleApiClient { get; set; }
         public static LatLon lastLocation { get; set; }
         public static EHApi.AccountData accountData { get; set; }
         public static EHApi.Vehicle vehicle { get; set; }
