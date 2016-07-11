@@ -73,6 +73,8 @@
   <ItemGroup>
     <Compile Include="AddressListAdapter.cs" />
     <Compile Include="LocationActivity.cs" />
+    <Compile Include="LocationPumpAdapter.cs" />
+    <Compile Include="LocationAdapter.cs" />
     <Compile Include="PumpListAdapter.cs" />
     <Compile Include="SharedData.cs" />
     <Compile Include="LoginFragment.cs" />
@@ -82,9 +84,7 @@
     <Compile Include="SearchActivity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config" />
-    <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\LoginDialog.axml">
       <SubType>Designer</SubType>
@@ -93,6 +93,15 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\PumpLine.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Location.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\LocationLine.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\LocationPumpLine.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

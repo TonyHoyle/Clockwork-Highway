@@ -13,6 +13,7 @@ using Android.Support.V4.App;
 using EH.Common;
 using Android.Views.InputMethods;
 using Android.Content;
+using System;
 
 namespace EH.Android
 {
@@ -134,7 +135,7 @@ namespace EH.Android
             }
             catch (EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine("Couldn't get pump list: "+e.reason);
+                System.Diagnostics.Debug.WriteLine("Couldn't get pump list: "+e.Message);
             }
             view.EmptyView = null;
         }
@@ -144,7 +145,10 @@ namespace EH.Android
             var pump = adapter.GetItem(position);
 
             Intent i = new Intent(this, typeof(LocationActivity));
-            i.PutExtra("locationId", pump.locationId);
+            i.PutExtra("locationId", Convert.ToInt32(pump.locationId));
+            i.PutExtra("latitude", Convert.ToDouble(pump.latitude));
+            i.PutExtra("longitude", Convert.ToDouble(pump.longitude));
+            i.PutExtra("name", pump.name);
             StartActivity(i);
         }
 

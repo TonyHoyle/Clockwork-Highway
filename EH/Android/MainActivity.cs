@@ -20,9 +20,9 @@ namespace EH.Android
             SetContentView(Resource.Layout.Main);
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-            var username = prefs.GetString("username","");
-            var password = prefs.GetString("password","");
-            OnLogin(username, password);
+            SharedData.username = prefs.GetString("username","");
+            SharedData.password = prefs.GetString("password","");
+            OnLogin(SharedData.username, SharedData.password);
         }
 
         protected override void OnStart()
@@ -84,7 +84,7 @@ namespace EH.Android
             }
             catch (EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine(e.reason);
+                System.Diagnostics.Debug.WriteLine(e.Message);
             }
         }
 

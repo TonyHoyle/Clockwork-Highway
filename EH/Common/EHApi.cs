@@ -13,11 +13,10 @@ namespace EH.Common
 
         public class EHApiException : Exception
         {
-            private string _reason;
+            public EHApiException(string reason) : base(reason)
+            {
 
-            public EHApiException(String reason) { _reason = reason; }
-
-            public string reason { get; }
+            }
         }
 
 #pragma warning disable 0649
@@ -128,9 +127,14 @@ namespace EH.Common
             public List<Connector> connector { get; set; }
         }
 
-        private class LocationDetailsResult
+        private class LocationDetailsPump
         {
             public List<LocationDetails> pump { get; set; }
+        }
+
+        private class LocationDetailsResult
+        {
+            public LocationDetailsPump result { get; set; }
         }
 
         public class Pump
@@ -279,10 +283,18 @@ namespace EH.Common
                 { "locationId", locationId.ToString() },
                 { "vehicleMake", vehicle.make }
             });
-            LocationDetailsResult Result = JsonConvert.DeserializeObject<LocationDetailsResult>(apiResult);
-            return Result.pump;
+            try
+            {
+                LocationDetailsResult Result = JsonConvert.DeserializeObject<LocationDetailsResult>(apiResult);
+                return Result.result.pump;
+            }
+            catch (JsonSerializationException e)
+            {
+                Debug.WriteLine(e.Message);
+                return null;
+            }
         }
-
+        
         public async Task<List<Pump>> getPumpListAsync(double latitude, double longitude, Vehicle vehicle)
         {
             string apiResult = await ApiCallAsync("getPumpList", new Dictionary<string, string>

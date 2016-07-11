@@ -413,20 +413,29 @@ namespace EH.Android
 			// aapt resource value: 0x7f08000a
 			public const int auto = 2131230730;
 			
-			// aapt resource value: 0x7f08001c
-			public const int available = 2131230748;
+			// aapt resource value: 0x7f080026
+			public const int available = 2131230758;
+			
+			// aapt resource value: 0x7f080015
+			public const int compatible = 2131230741;
+			
+			// aapt resource value: 0x7f08000f
+			public const int connectors = 2131230735;
+			
+			// aapt resource value: 0x7f080016
+			public const int cost = 2131230742;
 			
 			// aapt resource value: 0x7f08000b
 			public const int dark = 2131230731;
 			
-			// aapt resource value: 0x7f080019
-			public const int description = 2131230745;
+			// aapt resource value: 0x7f080023
+			public const int description = 2131230755;
 			
-			// aapt resource value: 0x7f08001b
-			public const int distance = 2131230747;
+			// aapt resource value: 0x7f080025
+			public const int distance = 2131230757;
 			
-			// aapt resource value: 0x7f08001e
-			public const int editLocation = 2131230750;
+			// aapt resource value: 0x7f080028
+			public const int editLocation = 2131230760;
 			
 			// aapt resource value: 0x7f080000
 			public const int hybrid = 2131230720;
@@ -437,17 +446,23 @@ namespace EH.Android
 			// aapt resource value: 0x7f08000c
 			public const int light = 2131230732;
 			
-			// aapt resource value: 0x7f08001f
-			public const int listPumps = 2131230751;
-			
-			// aapt resource value: 0x7f080010
-			public const int loadingProgress = 2131230736;
-			
-			// aapt resource value: 0x7f08000f
-			public const int loadingText = 2131230735;
+			// aapt resource value: 0x7f080029
+			public const int listPumps = 2131230761;
 			
 			// aapt resource value: 0x7f08001a
-			public const int model = 2131230746;
+			public const int loadingProgress = 2131230746;
+			
+			// aapt resource value: 0x7f080019
+			public const int loadingText = 2131230745;
+			
+			// aapt resource value: 0x7f08000e
+			public const int map = 2131230734;
+			
+			// aapt resource value: 0x7f080024
+			public const int model = 2131230756;
+			
+			// aapt resource value: 0x7f080014
+			public const int name = 2131230740;
 			
 			// aapt resource value: 0x7f080001
 			public const int none = 2131230721;
@@ -455,35 +470,41 @@ namespace EH.Android
 			// aapt resource value: 0x7f080002
 			public const int normal = 2131230722;
 			
-			// aapt resource value: 0x7f08000e
-			public const int password = 2131230734;
-			
-			// aapt resource value: 0x7f080013
-			public const int place_autocomplete_clear_button = 2131230739;
-			
-			// aapt resource value: 0x7f080015
-			public const int place_autocomplete_powered_by_google = 2131230741;
-			
-			// aapt resource value: 0x7f080017
-			public const int place_autocomplete_prediction_primary_text = 2131230743;
-			
 			// aapt resource value: 0x7f080018
-			public const int place_autocomplete_prediction_secondary_text = 2131230744;
+			public const int password = 2131230744;
 			
-			// aapt resource value: 0x7f080016
-			public const int place_autocomplete_progress = 2131230742;
+			// aapt resource value: 0x7f08001d
+			public const int place_autocomplete_clear_button = 2131230749;
 			
-			// aapt resource value: 0x7f080011
-			public const int place_autocomplete_search_button = 2131230737;
+			// aapt resource value: 0x7f08001f
+			public const int place_autocomplete_powered_by_google = 2131230751;
 			
-			// aapt resource value: 0x7f080012
-			public const int place_autocomplete_search_input = 2131230738;
+			// aapt resource value: 0x7f080021
+			public const int place_autocomplete_prediction_primary_text = 2131230753;
 			
-			// aapt resource value: 0x7f080014
-			public const int place_autocomplete_separator = 2131230740;
+			// aapt resource value: 0x7f080022
+			public const int place_autocomplete_prediction_secondary_text = 2131230754;
 			
 			// aapt resource value: 0x7f080020
-			public const int progressBar = 2131230752;
+			public const int place_autocomplete_progress = 2131230752;
+			
+			// aapt resource value: 0x7f08001b
+			public const int place_autocomplete_search_button = 2131230747;
+			
+			// aapt resource value: 0x7f08001c
+			public const int place_autocomplete_search_input = 2131230748;
+			
+			// aapt resource value: 0x7f08001e
+			public const int place_autocomplete_separator = 2131230750;
+			
+			// aapt resource value: 0x7f080010
+			public const int progressBar = 2131230736;
+			
+			// aapt resource value: 0x7f080011
+			public const int pumpid = 2131230737;
+			
+			// aapt resource value: 0x7f080013
+			public const int pumplist = 2131230739;
 			
 			// aapt resource value: 0x7f080003
 			public const int satellite = 2131230723;
@@ -491,14 +512,20 @@ namespace EH.Android
 			// aapt resource value: 0x7f080008
 			public const int standard = 2131230728;
 			
-			// aapt resource value: 0x7f08001d
-			public const int swipeonly = 2131230749;
+			// aapt resource value: 0x7f080012
+			public const int status = 2131230738;
+			
+			// aapt resource value: 0x7f080027
+			public const int swipeonly = 2131230759;
 			
 			// aapt resource value: 0x7f080004
 			public const int terrain = 2131230724;
 			
 			// aapt resource value: 0x7f08000d
-			public const int username = 2131230733;
+			public const int title = 2131230733;
+			
+			// aapt resource value: 0x7f080017
+			public const int username = 2131230743;
 			
 			// aapt resource value: 0x7f080009
 			public const int wide = 2131230729;
@@ -533,28 +560,37 @@ namespace EH.Android
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int LoginDialog = 2130903040;
+			public const int Location = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Main = 2130903041;
+			public const int LocationLine = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int place_autocomplete_fragment = 2130903042;
+			public const int LocationPumpLine = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int place_autocomplete_item_powered_by_google = 2130903043;
+			public const int LoginDialog = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int place_autocomplete_item_prediction = 2130903044;
+			public const int Main = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int place_autocomplete_progress = 2130903045;
+			public const int place_autocomplete_fragment = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int PumpLine = 2130903046;
+			public const int place_autocomplete_item_powered_by_google = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int Search = 2130903047;
+			public const int place_autocomplete_item_prediction = 2130903047;
+			
+			// aapt resource value: 0x7f030008
+			public const int place_autocomplete_progress = 2130903048;
+			
+			// aapt resource value: 0x7f030009
+			public const int PumpLine = 2130903049;
+			
+			// aapt resource value: 0x7f03000a
+			public const int Search = 2130903050;
 			
 			static Layout()
 			{

@@ -14,5 +14,7 @@ namespace EH.Android
         public static LatLon lastLocation { get; set; }
         public static EHApi.AccountData accountData { get; set; }
         public static EHApi.Vehicle vehicle { get; set; }
+        public static string username { get; set; }
+        public static string password { get; set; }
     }
 }
