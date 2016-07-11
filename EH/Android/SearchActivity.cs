@@ -1,7 +1,8 @@
+using Android;
 using Android.App;
 using Android.Widget;
 using Android.OS;
-using static Android.Manifest;
+using Android.Content.PM;
 using Android.Gms.Common.Apis;
 using Android.Gms.Location;
 using Android.Gms.Common;
@@ -38,29 +39,26 @@ namespace EH.Android
             text.Adapter = new AddressListAdapter(this);
             text.ItemClick += (sender, args) => { AddressChanged((AddressListAdapter)text.Adapter, args.Position); };
 
-            if (ContextCompat.CheckSelfPermission(this, Permission.AccessFineLocation) != global::Android.Content.PM.Permission.Granted)
-                ActivityCompat.RequestPermissions(this, new string[] { Permission.AccessFineLocation }, 0);
-
-            if (_googleApiClient == null)
+            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) != Permission.Granted)
             {
-                _googleApiClient = new GoogleApiClient.Builder(this)
-                    .AddConnectionCallbacks(this)
-                    .AddOnConnectionFailedListener(this)
-                    .AddApi(LocationServices.API)
-                    .Build();
+                ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.AccessFineLocation }, 0);
             }
+            else
+                InitGoogleApi();
         }
 
         protected override void OnStart()
         {
             base.OnStart();
-            _googleApiClient.Connect();
+            if(_googleApiClient != null)
+                _googleApiClient.Connect();
         }
 
         protected override void OnStop()
         {
             base.OnStop();
-            _googleApiClient.Disconnect();
+            if(_googleApiClient != null)
+                _googleApiClient.Disconnect();
         }
 
         public void OnConnected(Bundle connectionHint)
@@ -161,6 +159,29 @@ namespace EH.Android
                 sb.Append(addr.GetAddressLine(i));
             }
             return sb.ToString();
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            if (requestCode != 0)
+                return;
+
+            if (grantResults.Length > 0 && grantResults[0] == Permission.Granted)
+                InitGoogleApi();
+         
+        }
+
+        private void InitGoogleApi()
+        {
+            if (_googleApiClient == null)
+            {
+                _googleApiClient = new GoogleApiClient.Builder(this)
+                    .AddConnectionCallbacks(this)
+                    .AddOnConnectionFailedListener(this)
+                    .AddApi(LocationServices.API)
+                    .Build();
+                _googleApiClient.Connect();
+            }
         }
     }
 
