@@ -4,10 +4,50 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
+    <ImageView
+        android:src="@drawable/clockwork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:id="@+id/imageClockwork" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/username"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_below="@id/imageClockwork"
+        android:id="@+id/username" />
+    <EditText
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="0dp"
+        android:layout_below="@id/username"
+        android:fontFamily="sans-serif"
+        android:id="@+id/password" />
+    <TextView
+        android:textColor="#0000FF"
+        android:text="@string/forgotPassword"
+        android:layout_below="@id/password"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/forgotPassword" />
     <TextView
         android:text="@string/loading"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_centerVertical="true"
+        android:layout_below="@id/forgotPassword"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,5 +58,13 @@
         android:layout_below="@id/loadingText"
         android:layout_centerHorizontal="true"
         android:indeterminate="true"
+        android:visibility="gone"
         android:id="@+id/loadingProgress" />
+    <Button
+        android:text="@string/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loadingText"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/login" />
 </RelativeLayout>

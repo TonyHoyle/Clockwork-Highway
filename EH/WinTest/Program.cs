@@ -20,7 +20,7 @@ namespace WinTest
             StreamWriter file = new StreamWriter("locations.csv");
             file.AutoFlush = true;
 
-            for (int locationId = 1; locationId < 1000; locationId++)
+            for (int locationId = 1; locationId < 200; locationId++)
             {
                 try
                 {

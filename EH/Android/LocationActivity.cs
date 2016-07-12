@@ -11,7 +11,7 @@ using Android.Gms.Maps.Model;
 
 namespace EH.Android
 {
-    [Activity(Label = "@string/ApplicationName", Theme = "@android:style/Theme.DeviceDefault.Light")]
+    [Activity(Label = "@string/ApplicationName")]
     public class LocationActivity : FragmentActivity, IOnMapReadyCallback
     {
         private double _locationLat;

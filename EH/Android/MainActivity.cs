@@ -1,16 +1,17 @@
 ﻿using Android.App;
 using Android.OS;
-using static Android.Manifest;
 using Android.Gms.Common.Apis;
-using Android.Support.V4.App;
 using EH.Common;
 using Android.Preferences;
 using Android.Content;
+using Android.Widget;
+
+// 'Car with cog' logo by Benjamin STAWARZ licensed under CC BY 3.0
 
 namespace EH.Android
 {
-    [Activity(Label = "@string/ApplicationName", MainLauncher = true, Icon = "@drawable/icon", Theme = "@android:style/Theme.DeviceDefault.Light")]
-    public class MainActivity : Activity, ILoginResult
+    [Activity(Label = "@string/ApplicationName", MainLauncher = true)]
+    public class MainActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)
         {
@@ -19,10 +20,29 @@ namespace EH.Android
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
+            var login = FindViewById<Button>(Resource.Id.login);
+            var forgotPassword = FindViewById<TextView>(Resource.Id.forgotPassword);
+
+            login.Click += OnLoginClick;
+            forgotPassword.Click += OnPasswordClick;
+
             var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
             SharedData.username = prefs.GetString("username","");
             SharedData.password = prefs.GetString("password","");
-            OnLogin(SharedData.username, SharedData.password);
+            DoLogin(SharedData.username, SharedData.password);
+        }
+
+        private void OnPasswordClick(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void OnLoginClick(object sender, System.EventArgs e)
+        {
+            var username = FindViewById<EditText>(Resource.Id.username);
+            var password = FindViewById<EditText>(Resource.Id.password);
+
+            DoLogin(username.Text, password.Text);
         }
 
         protected override void OnStart()
@@ -35,14 +55,21 @@ namespace EH.Android
             base.OnStop();
         }
 
-        private void ShowLoginDialog()
+        public void ShowProgress(bool visible, string message = "", bool isError = false)
         {
-            var transaction = FragmentManager.BeginTransaction();
-            var dialogFragment = new LoginFragment(this);
-            dialogFragment.Show(transaction, "login");
+            var progress = FindViewById<ProgressBar>(Resource.Id.loadingProgress);
+            var loading = FindViewById<TextView>(Resource.Id.loadingText);
+            var button = FindViewById<Button>(Resource.Id.login);
+
+            loading.Text = message;
+            if (isError) loading.SetTextColor(global::Android.Graphics.Color.Red);
+            else loading.SetTextColor(global::Android.Graphics.Color.Black);
+      
+            progress.Visibility = visible?global::Android.Views.ViewStates.Visible: global::Android.Views.ViewStates.Gone;
+            button.Visibility = visible ? global::Android.Views.ViewStates.Gone : global::Android.Views.ViewStates.Visible;
         }
 
-        public async void OnLogin(string username, string password)
+        public async void DoLogin(string username, string password)
         {
             EHApi.AccountData account;
             var eh = new EHApi();
@@ -53,15 +80,19 @@ namespace EH.Android
                 SharedData.accountData = null;
                 SharedData.vehicle = null;
 
+                ShowProgress(false);
                 if (username == "" || password == "")
                     account = null;
                 else
-                    account = await eh.loginAsync(username, password);
-                if (account == null)
                 {
-                    ShowLoginDialog();
+                    ShowProgress(true, "Logging in..");
+                    account = await eh.loginAsync(username, password);
+                    if(account == null)
+                    {
+                        ShowProgress(false, "Unknown username or password", true);
+                    }
                 }
-                else
+                if (account != null)
                 {
                     SharedData.accountData = account;
                     var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
@@ -85,12 +116,8 @@ namespace EH.Android
             catch (EHApi.EHApiException e)
             {
                 System.Diagnostics.Debug.WriteLine(e.Message);
+                ShowProgress(false, e.Message, true);
             }
-        }
-
-        public void OnLoginCancelled()
-        {
-            Finish();
         }
     }
 

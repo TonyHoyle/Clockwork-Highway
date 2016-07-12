@@ -18,7 +18,7 @@ using System;
 
 namespace EH.Android
 {
-    [Activity(Label = "@string/ApplicationName", Theme = "@android:style/Theme.DeviceDefault.Light")]
+    [Activity(Label = "@string/ApplicationName")]
     public class SearchActivity : Activity,
         GoogleApiClient.IConnectionCallbacks,
         GoogleApiClient.IOnConnectionFailedListener,
