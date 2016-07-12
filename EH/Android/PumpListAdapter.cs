@@ -21,7 +21,7 @@ namespace EH.Android
             public TextView model;
             public TextView distance;
             public CheckedTextView available;
-            public CheckedTextView swipeonly;
+            public TextView swipeonly;
         }
 
         public PumpListAdapter(Context context, List<EHApi.Pump> pumps) : base(context, 0, pumps.ToArray())
@@ -42,7 +42,7 @@ namespace EH.Android
                 tags.model = view.FindViewById<TextView>(Resource.Id.model);
                 tags.distance = view.FindViewById<TextView>(Resource.Id.distance);
                 tags.available = view.FindViewById<CheckedTextView>(Resource.Id.available);
-                tags.swipeonly = view.FindViewById<CheckedTextView>(Resource.Id.swipeonly);
+                tags.swipeonly = view.FindViewById<TextView>(Resource.Id.swipeonly);
                 view.Tag = tags;
             }
 
@@ -52,8 +52,17 @@ namespace EH.Android
 
             tags.description.Text = item.name + ", " + item.location + ", " + item.postcode;
             tags.model.Text = item.pumpModel;
-            tags.distance.Text =    Math.Round(item.distance, 2).ToString() + " Miles";
-            tags.swipeonly.Checked = item.swipeOnly;
+            tags.distance.Text =  Math.Round(item.distance, 2).ToString() + " Miles";
+            if (!item.swipeOnly)
+            {
+                tags.swipeonly.Visibility = ViewStates.Gone;
+                tags.available.Visibility = ViewStates.Visible;
+            }
+            else
+            {
+                tags.swipeonly.Visibility = ViewStates.Visible;
+                tags.available.Visibility = ViewStates.Gone;
+            }
             tags.available.Checked = item.available;
 
             return view;

@@ -28,7 +28,17 @@ namespace WinTest
                     var details = eh.getLocationDetailsAsync(locationId, Vehicle).Result;
                     if (details != null)
                     {
-                        string line = locationId.ToString() + ", \"" + details[0].name + "\", \"" + details[0].postcode + "\", " + details[0].latitude + ", " + details[0].longitude + ", \"" + details[0].status + "\"";
+                        string status = "";
+                        int count = 0;
+
+                        foreach(var pump in details)
+                        {
+                            if (pump.status != "Swipe card only")
+                                count++;
+                        }
+                        if (count > 0)
+                            status = count.ToString() + "/"+details.Count.ToString()+" pumps live";
+                        string line = locationId.ToString() + ", \"" + details[0].name + "\", \"" + details[0].postcode + "\", " + details[0].latitude + ", " + details[0].longitude + ", \"" + status + "\"";
                         Console.WriteLine(line);
                         file.WriteLine(line);
                     }

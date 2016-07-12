@@ -12,5 +12,6 @@ namespace EH.Android
     {
         public static LatLon lastLocation { get; set; }
         public static EHLogin login { get; set; }
+        public static string deviceId;
     }
 }

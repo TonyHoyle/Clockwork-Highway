@@ -73,10 +73,11 @@
   <ItemGroup>
     <Compile Include="AddressListAdapter.cs" />
     <Compile Include="LocationActivity.cs" />
-    <Compile Include="LocationPumpAdapter.cs" />
     <Compile Include="LocationAdapter.cs" />
+    <Compile Include="MainFragment.cs" />
     <Compile Include="PumpListAdapter.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="SearchFragment.cs" />
     <Compile Include="SharedData.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,9 +97,7 @@
     <AndroidResource Include="Resources\layout\LocationLine.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\LocationPumpLine.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
+    <AndroidResource Include="Resources\layout\LocationPumpLine.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Search.axml">

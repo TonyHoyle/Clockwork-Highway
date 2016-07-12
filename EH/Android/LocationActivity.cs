@@ -35,22 +35,15 @@ namespace EH.Android
 
             var list = FindViewById<ListView>(Resource.Id.connectors);
             var progress = FindViewById<ProgressBar>(Resource.Id.progressBar);
-            var title = FindViewById<TextView>(Resource.Id.title);
 
-            title.Text = _locationName;
+            this.Title = _locationName;
 
             list.EmptyView = progress;
 
             EHApi eh = new EHApi();
             var location = await eh.getLocationDetailsAsync(locationId, SharedData.login.Vehicle);
             var details = new List<EHApi.ConnectorDetails>();
-            string deviceId = Settings.Secure.GetString(ContentResolver, Settings.Secure.AndroidId);
-            foreach (var loc in location)
-            {
-                var connector = await eh.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, System.Convert.ToInt32(loc.pumpId), deviceId, SharedData.login.Vehicle);
-                details.Add(connector);
-            }
-            list.Adapter = new LocationAdapter(this, details);
+            list.Adapter = new LocationAdapter(this, location);
         }
 
         public void OnMapReady(GoogleMap googleMap)

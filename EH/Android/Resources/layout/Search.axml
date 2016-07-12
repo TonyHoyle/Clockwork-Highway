@@ -2,11 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
     android:minWidth="25px"
     android:minHeight="25px">
     <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:imeOptions="flagNoExtractUi|actionDone"
+        android:inputType="text"
+        android:selectAllOnFocus="true"
         android:id="@+id/editLocation" />
     <ListView
         android:minWidth="25px"
