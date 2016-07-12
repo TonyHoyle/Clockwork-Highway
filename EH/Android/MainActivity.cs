@@ -26,10 +26,12 @@ namespace EH.Android
             login.Click += OnLoginClick;
             forgotPassword.Click += OnPasswordClick;
 
+            SharedData.login = new EHLogin();
+
             var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-            SharedData.username = prefs.GetString("username","");
-            SharedData.password = prefs.GetString("password","");
-            DoLogin(SharedData.username, SharedData.password);
+            var username = prefs.GetString("username","");
+            var password = prefs.GetString("password","");
+            DoLogin(username, password);
         }
 
         private void OnPasswordClick(object sender, System.EventArgs e)
@@ -71,41 +73,29 @@ namespace EH.Android
 
         public async void DoLogin(string username, string password)
         {
-            EHApi.AccountData account;
-            var eh = new EHApi();
-
             try
             {
 
-                SharedData.accountData = null;
-                SharedData.vehicle = null;
+                SharedData.login.Logout();
 
-                ShowProgress(false);
-                if (username == "" || password == "")
-                    account = null;
-                else
+                if(username == "" || password == "")
                 {
-                    ShowProgress(true, "Logging in..");
-                    account = await eh.loginAsync(username, password);
-                    if(account == null)
-                    {
-                        ShowProgress(false, "Unknown username or password", true);
-                    }
+                    ShowProgress(false);
+                    return;
                 }
-                if (account != null)
+
+                ShowProgress(true, "Logging in..");
+                if(!await SharedData.login.Login(username, password))
                 {
-                    SharedData.accountData = account;
+                    ShowProgress(false, "Unknown username or password", true);
+                }
+                if (SharedData.login.IsLoggedIn)
+                {
                     var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
                     var editor = prefs.Edit();
                     editor.PutString("username", username);
                     editor.PutString("password", password);
                     editor.Apply();
-
-                    var vehicles = await eh.getUserVehicleListAsync(username, password);
-                    if (vehicles == null || vehicles.Count < 1)
-                        SharedData.vehicle = new EHApi.Vehicle();
-                    else
-                        SharedData.vehicle = vehicles[0];
 
                     Intent intent = new Intent(this, typeof(SearchActivity));
                     intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.TaskOnHome);

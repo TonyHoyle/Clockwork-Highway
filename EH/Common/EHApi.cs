@@ -188,6 +188,19 @@ namespace EH.Common
         {
             public ConnectorDetails result { get; set; }
         }
+
+        public class Card
+        {
+            public string lastDigits { get; set; }
+            public string cardType { get; set; }
+            public string cardId { get; set; }
+            public string cardIcon { get; set; }
+        }
+
+        public class GetCardListResult
+        {
+            public List<Card> result { get; set; }
+        }
 #pragma warning restore 0649
 
         private async Task<string> ApiCallAsync(string command, Dictionary<string, string> args)
@@ -322,6 +335,17 @@ namespace EH.Common
                 { "pumpId", pumpId.ToString() }
             });
             PumpConnectorsResult Result = JsonConvert.DeserializeObject<PumpConnectorsResult>(apiResult);
+            return Result.result;
+        }
+
+        public async Task<List<Card>> getCardListAsync(string username, string password)
+        {
+            string apiResult = await ApiCallAsync("getCardList", new Dictionary<string, string>
+            {
+                { "password", password },
+                { "identifier", username }
+            });
+            GetCardListResult Result = JsonConvert.DeserializeObject<GetCardListResult>(apiResult);
             return Result.result;
         }
     }

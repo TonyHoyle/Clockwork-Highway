@@ -127,7 +127,7 @@ namespace EH.Android
 
             try
             {
-                var pumps = await eh.getPumpListAsync(latitude, longitude, SharedData.vehicle);
+                var pumps = await eh.getPumpListAsync(latitude, longitude, SharedData.login.Vehicle);
                 view.Adapter = new PumpListAdapter(this, pumps);
                 view.ItemClick += (sender, args) => { OnItemClick((PumpListAdapter)view.Adapter, args.Position); };
             }

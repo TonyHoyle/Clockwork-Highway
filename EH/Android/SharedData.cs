@@ -1,4 +1,3 @@
-using Android.Gms.Common.Apis;
 using EH.Common;
 
 namespace EH.Android
@@ -12,9 +11,6 @@ namespace EH.Android
     static class SharedData
     {
         public static LatLon lastLocation { get; set; }
-        public static EHApi.AccountData accountData { get; set; }
-        public static EHApi.Vehicle vehicle { get; set; }
-        public static string username { get; set; }
-        public static string password { get; set; }
+        public static EHLogin login { get; set; }
     }
 }

@@ -42,12 +42,12 @@ namespace EH.Android
             list.EmptyView = progress;
 
             EHApi eh = new EHApi();
-            var location = await eh.getLocationDetailsAsync(locationId, SharedData.vehicle);
+            var location = await eh.getLocationDetailsAsync(locationId, SharedData.login.Vehicle);
             var details = new List<EHApi.ConnectorDetails>();
             string deviceId = Settings.Secure.GetString(ContentResolver, Settings.Secure.AndroidId);
             foreach (var loc in location)
             {
-                var connector = await eh.getPumpConnectorsAsync(SharedData.username, SharedData.password, System.Convert.ToInt32(loc.pumpId), deviceId, SharedData.vehicle);
+                var connector = await eh.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, System.Convert.ToInt32(loc.pumpId), deviceId, SharedData.login.Vehicle);
                 details.Add(connector);
             }
             list.Adapter = new LocationAdapter(this, details);
