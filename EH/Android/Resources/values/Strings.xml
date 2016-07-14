@@ -11,4 +11,7 @@
   <string name="available">Available</string>
   <string name="swipeonly">Swipe card only</string>
   <string name="forgotPassword"><u>Forgotten Password?</u></string>
+  <string name="logout">Logout</string>
+  <string name="open">Open</string>
+  <string name="close">Close</string>
 </resources>

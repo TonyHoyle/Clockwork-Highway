@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
 using Android;
 using Android.Widget;
 using Android.OS;
@@ -6,15 +9,11 @@ using Android.Gms.Common.Apis;
 using Android.Gms.Location;
 using Android.Gms.Common;
 using Android.Locations;
-using System.Collections.Generic;
-using System.Text;
-using Android.Support.V4.Content;
-using Android.Support.V4.App;
-using EH.Common;
 using Android.Views.InputMethods;
 using Android.Content;
-using System;
 using Android.Views;
+using Android.Support.V4.App;
+using EH.Common;
 
 namespace EH.Android
 {
@@ -53,7 +52,7 @@ namespace EH.Android
             var pumps = View.FindViewById<ListView>(Resource.Id.listPumps);
             pumps.ItemClick += (sender, args) => { OnItemClick((PumpListAdapter)pumps.Adapter, args.Position); };
 
-            if (ContextCompat.CheckSelfPermission(Context, Manifest.Permission.AccessFineLocation) != Permission.Granted)
+            if (ActivityCompat.CheckSelfPermission(Context, Manifest.Permission.AccessFineLocation) != Permission.Granted)
                 ActivityCompat.RequestPermissions(Activity, new string[] { Manifest.Permission.AccessFineLocation }, 0);
             else
                 Initialise();

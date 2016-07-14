@@ -1,13 +1,12 @@
-using Android.Support.V4.App;
 using Android.OS;
 using Android.Gms.Common.Apis;
 using Android.Provider;
-using EH.Common;
 using Android.Preferences;
 using Android.Content;
 using Android.Widget;
-
 using Android.Views;
+using Android.Support.V4.App;
+using EH.Common;
 
 namespace EH.Android
 {
