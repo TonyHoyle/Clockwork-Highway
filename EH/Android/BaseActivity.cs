@@ -36,6 +36,7 @@ namespace EH.Android
                 var navigationView = FindViewById<NavigationView>(Resource.Id.navigationView);
 
                 navigationView.InflateMenu(Resource.Menu.drawerMenu);
+                navigationView.InflateHeaderView(Resource.Layout.Header);
 
                 _drawerToggle = new global::Android.Support.V7.App.ActionBarDrawerToggle(this, drawerLayout, Resource.String.open, Resource.String.close);
 
