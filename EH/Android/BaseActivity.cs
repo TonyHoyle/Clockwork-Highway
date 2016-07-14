@@ -42,6 +42,8 @@ namespace EH.Android
 
                 drawerLayout.AddDrawerListener(_drawerToggle);
 
+                Fragment.Arguments = Intent.Extras;
+
                 SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, Fragment).Commit();       
             }
         }
