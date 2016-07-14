@@ -112,6 +112,7 @@
     <Compile Include="MainFragment.cs" />
     <Compile Include="PumpListAdapter.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="BaseActivity.cs" />
     <Compile Include="SearchFragment.cs" />
     <Compile Include="SharedData.cs" />
     <Compile Include="MainActivity.cs" />
