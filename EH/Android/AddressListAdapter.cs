@@ -1,25 +1,40 @@
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Android.Content;
 using Android.Widget;
-using Android.Locations;
 using Android.Views;
-using Java.Util;
+using EH.Common;
 
 namespace EH.Android
 {
+    class FoundAddress : Java.Lang.Object
+    {
+        public FoundAddress()
+        {
+        }
+
+        public FoundAddress(GoogleApi.Address addr)
+        {
+            Title = addr.formatted_address;
+            Location = new GoogleApi.LatLong() { lat = addr.geometry.location.lat, lng = addr.geometry.location.lng };
+            PlaceId = addr.place_id;
+        }
+
+        public string Title { get; set; }
+        public GoogleApi.LatLong Location { get; set; }
+        public string PlaceId { get; set; }
+    }
+
     class AddressFilter : Filter
     {
-        private ArrayAdapter<Address> _adapter;
+        private ArrayAdapter<FoundAddress> _adapter;
         private Context _context;
-        private List<Address> _lastResult;
+        private List<FoundAddress> _lastResult;
 
-        public AddressFilter(Context context, ArrayAdapter<Address> adapter)
+        public AddressFilter(Context context, ArrayAdapter<FoundAddress> adapter)
         {
             _context = context;
             _adapter = adapter;
-            _lastResult = new List<Address>();
+            _lastResult = new List<FoundAddress>();
         }
 
         protected override FilterResults PerformFiltering(Java.Lang.ICharSequence constraint)
@@ -27,26 +42,25 @@ namespace EH.Android
             if (constraint == null)
                 return null;
 
-            if (!Geocoder.IsPresent)
-                return null;
-
             var address = constraint.ToString();
             var result = new FilterResults();
 
-            var geocoder = new Geocoder(_context, Locale.Uk);
-            var addresses = geocoder.GetFromLocationName(address, 50);
-            var resultList = new Java.Util.ArrayList();
-
-
-            foreach(var A in addresses)
+            try
             {
-                if (A.CountryCode != "GB")
-                    continue;
+                var addresses = SharedData.googleApi.autocompleteAsync(address,"uk", SharedData.lastLocation).Result;
+                var resultList = new Java.Util.ArrayList();
 
-                resultList.Add(A);
+                foreach (var A in addresses)
+                {
+                    resultList.Add(new FoundAddress() { Title = A.description, PlaceId = A.place_id });
+                }
+
+                result.Values = resultList;
             }
-
-            result.Values = resultList;
+            catch(GoogleApi.GoogleApiException e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
             return result;
         }
 
@@ -64,36 +78,43 @@ namespace EH.Android
         }
     }
 
-    class AddressListAdapter : ArrayAdapter<Address>
+    class AddressListAdapter : ArrayAdapter<FoundAddress>
     {
+        private class AddressTags : Java.Lang.Object
+        {
+            public TextView text;
+        }
+
         private AddressFilter _filter;
 
-        public AddressListAdapter(Context context) : base(context, global::Android.Resource.Layout.SimpleDropDownItem1Line)
+        public AddressListAdapter(Context context) : base(context, 0)
         {
             _filter = new AddressFilter(context, this);
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-           View view = base.GetView(position, convertView, parent);
+            View view = convertView;
+            AddressTags tags;
+
+            if (convertView == null)
+            {
+                LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
+                view = inflater.Inflate(Resource.Layout.DropdownLine, parent, false);
+                tags = new AddressTags();
+                tags.text = view.FindViewById<TextView>(Resource.Id.text);
+                view.Tag = tags;
+            }
+
+            tags = (AddressTags)view.Tag;
 
             var item = GetItem(position);
-            view.FindViewById<TextView>(global::Android.Resource.Id.Text1).Text = DescribeAddress(item);
+
+            tags.text.Text = item.Title;
 
             return view;
         }
 
         public override Filter Filter { get { return _filter; } }
-
-        private string DescribeAddress(Address addr)
-        {
-            StringBuilder sb = new StringBuilder();
-            for(int i=0; i<addr.MaxAddressLineIndex; i++)
-            {
-                if (i > 0) sb.Append(", ");
-                sb.Append(addr.GetAddressLine(i));
-            }
-            return sb.ToString();
-        }
     }
 }

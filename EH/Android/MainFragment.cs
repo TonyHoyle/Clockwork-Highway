@@ -29,6 +29,7 @@ namespace EH.Android
 
             SharedData.login = new EHLogin();
             SharedData.deviceId = Settings.Secure.GetString(Context.ContentResolver, Settings.Secure.AndroidId);
+            SharedData.googleApi = new GoogleApi(Context.GetString(Resource.String.google_maps_key));
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
             var username = prefs.GetString("username", "");

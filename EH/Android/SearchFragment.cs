@@ -1,6 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+
 using Android;
 using Android.Widget;
 using Android.OS;
@@ -14,6 +13,7 @@ using Android.Content;
 using Android.Views;
 using Android.Support.V4.App;
 using EH.Common;
+using Newtonsoft.Json;
 
 namespace EH.Android
 {
@@ -23,7 +23,7 @@ namespace EH.Android
         global::Android.Gms.Location.ILocationListener
     {
         private GoogleApiClient _googleApiClient;
-        private Address _lastAddress;
+        private FoundAddress _lastAddress;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -40,7 +40,7 @@ namespace EH.Android
             base.OnActivityCreated(savedInstanceState);
 
             if(savedInstanceState != null)
-                _lastAddress = (Address)savedInstanceState.GetParcelable("lastAddress");
+                _lastAddress = JsonConvert.DeserializeObject<FoundAddress>(savedInstanceState.GetString("lastAddress"));
 
             var text = View.FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
 
@@ -48,6 +48,27 @@ namespace EH.Android
             text.Adapter = new AddressListAdapter(Context);
             text.ItemClick += (sender, args) => { AddressChanged((AddressListAdapter)text.Adapter, args.Position); };
             text.ClearFocus();
+            text.Touch += (sender, args) =>
+            {
+                bool handled = false;
+                if (args.Event.Action == MotionEventActions.Up)
+                {
+                    if (args.Event.GetX() >= (text.Width - text.TotalPaddingRight))
+                    {
+                        if (_googleApiClient != null)
+                        {
+                            LocationRequest request = new LocationRequest();
+                            request.SetNumUpdates(1);
+                            request.SetPriority(LocationRequest.PriorityHighAccuracy);
+                            _lastAddress = null;
+                            LocationServices.FusedLocationApi.RequestLocationUpdates(_googleApiClient, request, this);
+                            handled = true;
+                        }
+                    }
+                }
+
+                args.Handled = handled;
+            };
 
             var pumps = View.FindViewById<ListView>(Resource.Id.listPumps);
             pumps.ItemClick += (sender, args) => { OnItemClick((PumpListAdapter)pumps.Adapter, args.Position); };
@@ -96,21 +117,28 @@ namespace EH.Android
         {
         }
 
-        public void OnLocationChanged(Location location)
+        public async void OnLocationChanged(Location location)
         {
             var text = View.FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
 
-            LocationServices.FusedLocationApi.RemoveLocationUpdates(_googleApiClient, this);
-
-            SharedData.lastLocation = new LatLon() { Lat = location.Latitude, Lon = location.Longitude };
+            SharedData.lastLocation = new GoogleApi.LatLong() { lat = location.Latitude, lng = location.Longitude };
 
             if (_lastAddress == null)
             {
-                var geocoder = new Geocoder(Context);
-                var addresses = new List<Address>(geocoder.GetFromLocation(location.Latitude, location.Longitude, 1)).ToArray();
+                try
+                {
+                    var addresses = await SharedData.googleApi.lookupLocationAsync(location.Latitude, location.Longitude);
 
-                if (addresses.Length > 0)
-                    SetToAddress(addresses[0]);
+                    if (addresses.Count > 0)
+                    {
+                        var addr = new FoundAddress(addresses[0]);
+                        SetToAddress(addr);
+                    }
+                }
+                catch(GoogleApi.GoogleApiException e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+                }
             }
         }
 
@@ -121,11 +149,11 @@ namespace EH.Android
             SetToAddress(address);
         }
 
-        private void SetToAddress(Address address)
+        private async void SetToAddress(FoundAddress address)
         {
             var text = View.FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
 
-            text.SetText(new Java.Lang.String(DescribeAddress(address)), false);
+            text.SetText(new Java.Lang.String(address.Title), false);
             text.ClearFocus();
             _lastAddress = address;
 
@@ -133,7 +161,22 @@ namespace EH.Android
             if(input != null)
                 input.HideSoftInputFromWindow(Activity.CurrentFocus.WindowToken, 0);
 
-            UpdatePumpList(address.Latitude, address.Longitude);
+            if(address.Location == null)
+            {
+                try
+                {
+                    var addr = await SharedData.googleApi.lookupPlaceIdAsync(address.PlaceId);
+                    if (addr.Count >= 0)
+                        address.Location = addr[0].geometry.location;
+                }
+                catch(GoogleApi.GoogleApiException e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+                }
+            }
+
+            if(address.Location != null)
+                UpdatePumpList(address.Location.lat, address.Location.lng);
         }
 
         private async void UpdatePumpList(double latitude, double longitude)
@@ -174,17 +217,6 @@ namespace EH.Android
             StartActivity(i);
         }
 
-        private string DescribeAddress(Address addr)
-        {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < addr.MaxAddressLineIndex; i++)
-            {
-                if (i > 0) sb.Append(", ");
-                sb.Append(addr.GetAddressLine(i));
-            }
-            return sb.ToString();
-        }
-
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             if (requestCode != 0)
@@ -215,7 +247,7 @@ namespace EH.Android
         {
             base.OnSaveInstanceState(outState);
 
-            outState.PutParcelable("lastAddress", _lastAddress);
+            outState.PutString("lastAddress", JsonConvert.SerializeObject(_lastAddress));
         }
     }
 

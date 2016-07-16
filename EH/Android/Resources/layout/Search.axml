@@ -13,6 +13,7 @@
         android:paddingRight="16dp"
         android:inputType="text"
         android:selectAllOnFocus="true"
+        android:drawableRight="@drawable/location"
         android:id="@+id/editLocation" />
     <ListView
         android:minWidth="25px"
