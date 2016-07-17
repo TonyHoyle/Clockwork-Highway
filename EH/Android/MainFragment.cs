@@ -98,8 +98,8 @@ namespace EH.Android
                 intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.TaskOnHome);
                 StartActivity(intent);
                 Activity.Finish();
+                }
             }
-        }
         catch (EHApi.EHApiException e)
         {
             System.Diagnostics.Debug.WriteLine(e.Message);

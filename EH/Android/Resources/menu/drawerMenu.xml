@@ -1,9 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+  <group>
+    <item
+      android:id="@+id/account"
+      android:icon="@drawable/ic_account"
+      android:title="@string/account" />
+  </group>
+  <group>
+    <item
+      android:id="@+id/preferences"
+      android:icon="@drawable/ic_settings"
+      android:title="@string/preferences" />
+    <item
+      android:id="@+id/about"
+      android:icon="@drawable/ic_about"
+      android:title="@string/about" />
+  </group>
+  <group>
   <item
       android:id="@+id/logout"
       android:icon="@drawable/ic_logout"
       android:title="@string/logout" />
+  </group>
 
 </menu>

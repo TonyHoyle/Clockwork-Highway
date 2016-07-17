@@ -5,6 +5,8 @@ using Android.Support.V7.Widget;
 using Android.Support.V4.Widget;
 using Android.Support.Design.Widget;
 using Android.Views;
+using Android.Support.V7.Preferences;
+using Android.Content;
 
 namespace EH.Android
 {
@@ -60,9 +62,42 @@ namespace EH.Android
             if (_drawerToggle.OnOptionsItemSelected(item))
                 return true;
 
+            switch(item.ItemId)
+            {
+                case Resource.Id.about:  // About
+                    About();
+                    break;
+                case Resource.Id.preferences: // Preferences
+                    break;
+                case Resource.Id.account: // Account
+                    break;
+                case Resource.Id.logout:
+                    Logout();
+                    return true;
+            }
             return base.OnOptionsItemSelected(item);
         }
-    }
 
+        private void Logout()
+        {
+            SharedData.login.Logout();
+
+            var prefs = PreferenceManager.GetDefaultSharedPreferences(this)
+                .Edit()
+                .Remove("password")
+                .Commit();
+
+            Intent intent = new Intent(this, typeof(MainActivity));
+            intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.TaskOnHome | ActivityFlags.ClearTask);
+            StartActivity(intent);
+            Finish();
+        }
+
+        private void About()
+        {
+            DialogFragment about = new AboutFragment();
+            about.Show(SupportFragmentManager, "AboutFragment");
+        }
+    }
 }
 

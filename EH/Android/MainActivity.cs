@@ -4,8 +4,6 @@ using Android.Content.PM;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 
-// 'Car with cog' logo by Benjamin STAWARZ licensed under CC BY 3.0
-
 namespace EH.Android
 {
     [Activity(Label = "@string/ApplicationName", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]

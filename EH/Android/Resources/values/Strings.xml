@@ -14,4 +14,12 @@
   <string name="logout">Logout</string>
   <string name="open">Open</string>
   <string name="close">Close</string>
+  <string name="about">About</string>
+  <string name="preferences">Preferences</string>
+  <string name="account">Account details</string>
+  <string name="ok">OK</string>
+  <string name="copyright1">Written by Tony Hoyle, July 2016.</string>
+  <string name="copyright2">Thanks to Scott Helme for documenting the Ecotricity API</string>
+  <string name="copyright3">..and to Ecotricity for creating it</string>
+  <string name="copyright4">\'Car with cog\' logo by Benjamin STAWARZ licensed under CC BY 3.0</string>
 </resources>
