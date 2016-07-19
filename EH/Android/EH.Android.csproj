@@ -110,6 +110,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutFragment.cs" />
+    <Compile Include="AccountDetailsActivity.cs" />
+    <Compile Include="AccountDetailsFragment.cs" />
     <Compile Include="AddressListAdapter.cs" />
     <Compile Include="LocationFragment.cs" />
     <Compile Include="LocationActivity.cs" />
@@ -149,6 +151,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\AboutDialog.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\AccountDetails.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

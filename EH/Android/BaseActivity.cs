@@ -8,6 +8,7 @@ using Android.Views;
 using Android.Support.V7.Preferences;
 using Android.Content;
 using System;
+using Android.Widget;
 
 namespace EH.Android
 {
@@ -29,7 +30,7 @@ namespace EH.Android
 
             if(bundle == null)
             {
-                Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+                global::Android.Support.V7.Widget.Toolbar toolbar = FindViewById<global::Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
                 SetSupportActionBar(toolbar);
 
                 SupportActionBar.SetDisplayHomeAsUpEnabled (true);
@@ -41,6 +42,11 @@ namespace EH.Android
                 navigationView.InflateMenu(Resource.Menu.drawerMenu);
                 navigationView.InflateHeaderView(Resource.Layout.Header);
                 navigationView.SetNavigationItemSelectedListener(this);
+
+                var headerView = navigationView.GetHeaderView(0);
+                var headerText = headerView.FindViewById<TextView>(Resource.Id.drawerHeaderTitle);
+
+                headerText.Text = SharedData.login.Account.firstname + " " + SharedData.login.Account.lastname;
 
                 _drawerToggle = new global::Android.Support.V7.App.ActionBarDrawerToggle(this, drawerLayout, Resource.String.open, Resource.String.close);
 
@@ -88,6 +94,12 @@ namespace EH.Android
             about.Show(SupportFragmentManager, "AboutFragment");
         }
 
+        private void AccountDetails()
+        {
+            Intent i = new Intent(this, typeof(AccountDetailsActivity));
+            StartActivity(i);
+        }
+
         public bool OnNavigationItemSelected(IMenuItem menuItem)
         {
             switch (menuItem.ItemId)
@@ -100,6 +112,7 @@ namespace EH.Android
                 case Resource.Id.transactions: // Transactions
                     break;
                 case Resource.Id.account: // Account
+                    AccountDetails();
                     break;
                 case Resource.Id.logout:
                     Logout();
