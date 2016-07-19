@@ -57,11 +57,7 @@ namespace EH.Android
                     {
                         if (_googleApiClient != null)
                         {
-                            LocationRequest request = new LocationRequest();
-                            request.SetNumUpdates(1);
-                            request.SetPriority(LocationRequest.PriorityHighAccuracy);
-                            _lastAddress = null;
-                            LocationServices.FusedLocationApi.RequestLocationUpdates(_googleApiClient, request, this);
+                            RequestLocation();
                             handled = true;
                         }
                     }
@@ -74,7 +70,7 @@ namespace EH.Android
             pumps.ItemClick += (sender, args) => { OnItemClick((PumpListAdapter)pumps.Adapter, args.Position); };
 
             if (ActivityCompat.CheckSelfPermission(Context, Manifest.Permission.AccessFineLocation) != Permission.Granted)
-                ActivityCompat.RequestPermissions(Activity, new string[] { Manifest.Permission.AccessFineLocation }, 0);
+                RequestPermissions(new string[] { Manifest.Permission.AccessFineLocation }, 0);
             else
                 Initialise();
         }
@@ -97,16 +93,9 @@ namespace EH.Android
         {
             var location = LocationServices.FusedLocationApi.GetLastLocation(_googleApiClient);
             if (location != null)
-            {
                 OnLocationChanged(location);
-            }
             else
-            {
-                LocationRequest request = new LocationRequest();
-                request.SetNumUpdates(1);
-                request.SetPriority(LocationRequest.PriorityHighAccuracy);
-                LocationServices.FusedLocationApi.RequestLocationUpdates(_googleApiClient, request, this);
-            }
+                RequestLocation();
         }
 
         public void OnConnectionFailed(ConnectionResult result)
@@ -248,6 +237,15 @@ namespace EH.Android
             base.OnSaveInstanceState(outState);
 
             outState.PutString("lastAddress", JsonConvert.SerializeObject(_lastAddress));
+        }
+
+        private void RequestLocation()
+        {
+            LocationRequest request = new LocationRequest();
+            request.SetNumUpdates(1);
+            request.SetPriority(LocationRequest.PriorityHighAccuracy);
+            _lastAddress = null;
+            LocationServices.FusedLocationApi.RequestLocationUpdates(_googleApiClient, request, this);
         }
     }
 

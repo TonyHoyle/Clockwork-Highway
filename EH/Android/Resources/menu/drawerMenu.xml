@@ -5,6 +5,10 @@
       android:id="@+id/account"
       android:icon="@drawable/ic_account"
       android:title="@string/account" />
+    <item
+      android:id="@+id/transactions"
+      android:icon="@drawable/ic_transactions"
+      android:title="@string/transactions" />
   </group>
   <group>
     <item

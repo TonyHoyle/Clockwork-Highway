@@ -18,6 +18,7 @@
   <string name="preferences">Preferences</string>
   <string name="account">Account details</string>
   <string name="ok">OK</string>
+  <string name="transactions">Transaction History</string>
   <string name="copyright1">Written by Tony Hoyle, July 2016.</string>
   <string name="copyright2">Thanks to Scott Helme for documenting the Ecotricity API</string>
   <string name="copyright3">..and to Ecotricity for creating it</string>

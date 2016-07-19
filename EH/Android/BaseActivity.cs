@@ -7,10 +7,11 @@ using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Support.V7.Preferences;
 using Android.Content;
+using System;
 
 namespace EH.Android
 {
-    public class BaseActivity : AppCompatActivity
+    public class BaseActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
         private global::Android.Support.V7.App.ActionBarDrawerToggle _drawerToggle;
         public Fragment Fragment { get; private set; }
@@ -39,6 +40,7 @@ namespace EH.Android
 
                 navigationView.InflateMenu(Resource.Menu.drawerMenu);
                 navigationView.InflateHeaderView(Resource.Layout.Header);
+                navigationView.SetNavigationItemSelectedListener(this);
 
                 _drawerToggle = new global::Android.Support.V7.App.ActionBarDrawerToggle(this, drawerLayout, Resource.String.open, Resource.String.close);
 
@@ -62,19 +64,6 @@ namespace EH.Android
             if (_drawerToggle.OnOptionsItemSelected(item))
                 return true;
 
-            switch(item.ItemId)
-            {
-                case Resource.Id.about:  // About
-                    About();
-                    break;
-                case Resource.Id.preferences: // Preferences
-                    break;
-                case Resource.Id.account: // Account
-                    break;
-                case Resource.Id.logout:
-                    Logout();
-                    return true;
-            }
             return base.OnOptionsItemSelected(item);
         }
 
@@ -97,6 +86,26 @@ namespace EH.Android
         {
             DialogFragment about = new AboutFragment();
             about.Show(SupportFragmentManager, "AboutFragment");
+        }
+
+        public bool OnNavigationItemSelected(IMenuItem menuItem)
+        {
+            switch (menuItem.ItemId)
+            {
+                case Resource.Id.about:  // About
+                    About();
+                    break;
+                case Resource.Id.preferences: // Preferences
+                    break;
+                case Resource.Id.transactions: // Transactions
+                    break;
+                case Resource.Id.account: // Account
+                    break;
+                case Resource.Id.logout:
+                    Logout();
+                    return true;
+            }
+            return false;
         }
     }
 }

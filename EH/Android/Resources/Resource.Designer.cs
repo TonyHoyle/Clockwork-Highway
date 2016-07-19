@@ -2299,25 +2299,28 @@ namespace EH.Android
 			public const int ic_settings = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int location = 2130837628;
-			
-			// aapt resource value: 0x7f020082
-			public const int notification_template_icon_bg = 2130837634;
+			public const int ic_transactions = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int oldcar = 2130837629;
+			public const int location = 2130837629;
+			
+			// aapt resource value: 0x7f020083
+			public const int notification_template_icon_bg = 2130837635;
 			
 			// aapt resource value: 0x7f02007e
-			public const int places_ic_clear = 2130837630;
+			public const int oldcar = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int places_ic_search = 2130837631;
+			public const int places_ic_clear = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int powered_by_google_dark = 2130837632;
+			public const int places_ic_search = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int powered_by_google_light = 2130837633;
+			public const int powered_by_google_dark = 2130837633;
+			
+			// aapt resource value: 0x7f020082
+			public const int powered_by_google_light = 2130837634;
 			
 			static Drawable()
 			{
@@ -2332,8 +2335,8 @@ namespace EH.Android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0a00b3
-			public const int about = 2131361971;
+			// aapt resource value: 0x7f0a00b4
+			public const int about = 2131361972;
 			
 			// aapt resource value: 0x7f0a00b1
 			public const int account = 2131361969;
@@ -2602,8 +2605,8 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a008d
 			public const int login = 2131361933;
 			
-			// aapt resource value: 0x7f0a00b4
-			public const int logout = 2131361972;
+			// aapt resource value: 0x7f0a00b5
+			public const int logout = 2131361973;
 			
 			// aapt resource value: 0x7f0a0080
 			public const int map = 2131361920;
@@ -2680,8 +2683,8 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a00a1
 			public const int place_autocomplete_separator = 2131361953;
 			
-			// aapt resource value: 0x7f0a00b2
-			public const int preferences = 2131361970;
+			// aapt resource value: 0x7f0a00b3
+			public const int preferences = 2131361971;
 			
 			// aapt resource value: 0x7f0a0082
 			public const int progressBar = 2131361922;
@@ -2850,6 +2853,9 @@ namespace EH.Android
 			
 			// aapt resource value: 0x7f0a0075
 			public const int touch_outside = 2131361909;
+			
+			// aapt resource value: 0x7f0a00b2
+			public const int transactions = 2131361970;
 			
 			// aapt resource value: 0x7f0a0009
 			public const int up = 2131361801;
@@ -3360,17 +3366,17 @@ namespace EH.Android
 			// aapt resource value: 0x7f080020
 			public const int common_signin_button_text_long = 2131230752;
 			
-			// aapt resource value: 0x7f08004c
-			public const int copyright1 = 2131230796;
-			
 			// aapt resource value: 0x7f08004d
-			public const int copyright2 = 2131230797;
+			public const int copyright1 = 2131230797;
 			
 			// aapt resource value: 0x7f08004e
-			public const int copyright3 = 2131230798;
+			public const int copyright2 = 2131230798;
 			
 			// aapt resource value: 0x7f08004f
-			public const int copyright4 = 2131230799;
+			public const int copyright3 = 2131230799;
+			
+			// aapt resource value: 0x7f080050
+			public const int copyright4 = 2131230800;
 			
 			// aapt resource value: 0x7f080044
 			public const int forgotPassword = 2131230788;
@@ -3413,6 +3419,9 @@ namespace EH.Android
 			
 			// aapt resource value: 0x7f080043
 			public const int swipeonly = 2131230787;
+			
+			// aapt resource value: 0x7f08004c
+			public const int transactions = 2131230796;
 			
 			// aapt resource value: 0x7f08003c
 			public const int username = 2131230780;
