@@ -2335,14 +2335,17 @@ namespace EH.Android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0a00bb
-			public const int about = 2131361979;
+			// aapt resource value: 0x7f0a00bf
+			public const int about = 2131361983;
 			
-			// aapt resource value: 0x7f0a00b8
-			public const int account = 2131361976;
+			// aapt resource value: 0x7f0a00bc
+			public const int account = 2131361980;
 			
-			// aapt resource value: 0x7f0a0099
-			public const int action0 = 2131361945;
+			// aapt resource value: 0x7f0a0075
+			public const int accountDetails = 2131361909;
+			
+			// aapt resource value: 0x7f0a009d
+			public const int action0 = 2131361949;
 			
 			// aapt resource value: 0x7f0a0065
 			public const int action_bar = 2131361893;
@@ -2368,8 +2371,8 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a0066
 			public const int action_context_bar = 2131361894;
 			
-			// aapt resource value: 0x7f0a009d
-			public const int action_divider = 2131361949;
+			// aapt resource value: 0x7f0a00a1
+			public const int action_divider = 2131361953;
 			
 			// aapt resource value: 0x7f0a0003
 			public const int action_menu_divider = 2131361795;
@@ -2389,21 +2392,6 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a0048
 			public const int activity_chooser_view_content = 2131361864;
 			
-			// aapt resource value: 0x7f0a0078
-			public const int address1 = 2131361912;
-			
-			// aapt resource value: 0x7f0a0079
-			public const int address2 = 2131361913;
-			
-			// aapt resource value: 0x7f0a007a
-			public const int address3 = 2131361914;
-			
-			// aapt resource value: 0x7f0a007b
-			public const int address4 = 2131361915;
-			
-			// aapt resource value: 0x7f0a0077
-			public const int addressTitle = 2131361911;
-			
 			// aapt resource value: 0x7f0a0010
 			public const int adjust_height = 2131361808;
 			
@@ -2419,8 +2407,8 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a0015
 			public const int auto = 2131361813;
 			
-			// aapt resource value: 0x7f0a00b4
-			public const int available = 2131361972;
+			// aapt resource value: 0x7f0a00b8
+			public const int available = 2131361976;
 			
 			// aapt resource value: 0x7f0a0026
 			public const int beginning = 2131361830;
@@ -2431,8 +2419,8 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a004f
 			public const int buttonPanel = 2131361871;
 			
-			// aapt resource value: 0x7f0a009a
-			public const int cancel_action = 2131361946;
+			// aapt resource value: 0x7f0a009e
+			public const int cancel_action = 2131361950;
 			
 			// aapt resource value: 0x7f0a0036
 			public const int center = 2131361846;
@@ -2443,11 +2431,14 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a0038
 			public const int center_vertical = 2131361848;
 			
+			// aapt resource value: 0x7f0a0076
+			public const int changePassword = 2131361910;
+			
 			// aapt resource value: 0x7f0a005d
 			public const int checkbox = 2131361885;
 			
-			// aapt resource value: 0x7f0a00a0
-			public const int chronometer = 2131361952;
+			// aapt resource value: 0x7f0a00a4
+			public const int chronometer = 2131361956;
 			
 			// aapt resource value: 0x7f0a003e
 			public const int clip_horizontal = 2131361854;
@@ -2458,14 +2449,14 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a002a
 			public const int collapseActionView = 2131361834;
 			
-			// aapt resource value: 0x7f0a0089
-			public const int connectors = 2131361929;
+			// aapt resource value: 0x7f0a008c
+			public const int connectors = 2131361932;
 			
 			// aapt resource value: 0x7f0a0055
 			public const int contentPanel = 2131361877;
 			
-			// aapt resource value: 0x7f0a0097
-			public const int content_frame = 2131361943;
+			// aapt resource value: 0x7f0a009b
+			public const int content_frame = 2131361947;
 			
 			// aapt resource value: 0x7f0a005b
 			public const int custom = 2131361883;
@@ -2482,8 +2473,8 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a004b
 			public const int default_activity_button = 2131361867;
 			
-			// aapt resource value: 0x7f0a00b1
-			public const int description = 2131361969;
+			// aapt resource value: 0x7f0a00b5
+			public const int description = 2131361973;
 			
 			// aapt resource value: 0x7f0a007d
 			public const int design_bottom_sheet = 2131361917;
@@ -2503,26 +2494,29 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a001a
 			public const int disableHome = 2131361818;
 			
-			// aapt resource value: 0x7f0a00b3
-			public const int distance = 2131361971;
+			// aapt resource value: 0x7f0a00b7
+			public const int distance = 2131361975;
 			
-			// aapt resource value: 0x7f0a0087
-			public const int drawerHeaderTitle = 2131361927;
+			// aapt resource value: 0x7f0a008a
+			public const int drawerHeaderTitle = 2131361930;
 			
-			// aapt resource value: 0x7f0a0095
-			public const int drawerLayout = 2131361941;
+			// aapt resource value: 0x7f0a0099
+			public const int drawerLayout = 2131361945;
 			
-			// aapt resource value: 0x7f0a00b6
-			public const int editLocation = 2131361974;
+			// aapt resource value: 0x7f0a00ba
+			public const int editLocation = 2131361978;
 			
 			// aapt resource value: 0x7f0a0067
 			public const int edit_query = 2131361895;
 			
+			// aapt resource value: 0x7f0a0086
+			public const int email = 2131361926;
+			
 			// aapt resource value: 0x7f0a0027
 			public const int end = 2131361831;
 			
-			// aapt resource value: 0x7f0a00a4
-			public const int end_padder = 2131361956;
+			// aapt resource value: 0x7f0a00a8
+			public const int end_padder = 2131361960;
 			
 			// aapt resource value: 0x7f0a002e
 			public const int enterAlways = 2131361838;
@@ -2551,8 +2545,17 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a0043
 			public const int @fixed = 2131361859;
 			
-			// aapt resource value: 0x7f0a0091
-			public const int forgotPassword = 2131361937;
+			// aapt resource value: 0x7f0a0095
+			public const int forgotPassword = 2131361941;
+			
+			// aapt resource value: 0x7f0a0085
+			public const int forgotPasswordText = 2131361925;
+			
+			// aapt resource value: 0x7f0a0088
+			public const int forgotUserText = 2131361928;
+			
+			// aapt resource value: 0x7f0a0093
+			public const int forgotUsername = 2131361939;
 			
 			// aapt resource value: 0x7f0a0005
 			public const int home = 2131361797;
@@ -2566,8 +2569,8 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a004d
 			public const int icon = 2131361869;
 			
-			// aapt resource value: 0x7f0a00ad
-			public const int icon_frame = 2131361965;
+			// aapt resource value: 0x7f0a00b1
+			public const int icon_frame = 2131361969;
 			
 			// aapt resource value: 0x7f0a0012
 			public const int icon_only = 2131361810;
@@ -2581,8 +2584,8 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a0074
 			public const int imageClockwork = 2131361908;
 			
-			// aapt resource value: 0x7f0a00a3
-			public const int info = 2131361955;
+			// aapt resource value: 0x7f0a00a7
+			public const int info = 2131361959;
 			
 			// aapt resource value: 0x7f0a0000
 			public const int item_touch_helper_previous_elevation = 2131361792;
@@ -2593,44 +2596,44 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a0017
 			public const int light = 2131361815;
 			
-			// aapt resource value: 0x7f0a009e
-			public const int line1 = 2131361950;
-			
 			// aapt resource value: 0x7f0a00a2
-			public const int line3 = 2131361954;
+			public const int line1 = 2131361954;
 			
-			// aapt resource value: 0x7f0a00af
-			public const int list = 2131361967;
+			// aapt resource value: 0x7f0a00a6
+			public const int line3 = 2131361958;
+			
+			// aapt resource value: 0x7f0a00b3
+			public const int list = 2131361971;
 			
 			// aapt resource value: 0x7f0a0018
 			public const int listMode = 2131361816;
 			
-			// aapt resource value: 0x7f0a00b7
-			public const int listPumps = 2131361975;
+			// aapt resource value: 0x7f0a00bb
+			public const int listPumps = 2131361979;
 			
-			// aapt resource value: 0x7f0a00ae
-			public const int list_container = 2131361966;
+			// aapt resource value: 0x7f0a00b2
+			public const int list_container = 2131361970;
 			
 			// aapt resource value: 0x7f0a004c
 			public const int list_item = 2131361868;
 			
-			// aapt resource value: 0x7f0a0093
-			public const int loadingProgress = 2131361939;
+			// aapt resource value: 0x7f0a0097
+			public const int loadingProgress = 2131361943;
 			
-			// aapt resource value: 0x7f0a0092
-			public const int loadingText = 2131361938;
+			// aapt resource value: 0x7f0a0096
+			public const int loadingText = 2131361942;
 			
-			// aapt resource value: 0x7f0a0094
-			public const int login = 2131361940;
+			// aapt resource value: 0x7f0a0098
+			public const int login = 2131361944;
 			
-			// aapt resource value: 0x7f0a00bc
-			public const int logout = 2131361980;
+			// aapt resource value: 0x7f0a00c0
+			public const int logout = 2131361984;
 			
-			// aapt resource value: 0x7f0a0088
-			public const int map = 2131361928;
+			// aapt resource value: 0x7f0a008b
+			public const int map = 2131361931;
 			
-			// aapt resource value: 0x7f0a009c
-			public const int media_actions = 2131361948;
+			// aapt resource value: 0x7f0a00a0
+			public const int media_actions = 2131361952;
 			
 			// aapt resource value: 0x7f0a0028
 			public const int middle = 2131361832;
@@ -2638,20 +2641,17 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a0042
 			public const int mini = 2131361858;
 			
-			// aapt resource value: 0x7f0a00b2
-			public const int model = 2131361970;
+			// aapt resource value: 0x7f0a00b6
+			public const int model = 2131361974;
 			
 			// aapt resource value: 0x7f0a0021
 			public const int multiply = 2131361825;
 			
-			// aapt resource value: 0x7f0a0076
-			public const int name = 2131361910;
+			// aapt resource value: 0x7f0a0091
+			public const int name = 2131361937;
 			
-			// aapt resource value: 0x7f0a0075
-			public const int nameTitle = 2131361909;
-			
-			// aapt resource value: 0x7f0a0098
-			public const int navigationView = 2131361944;
+			// aapt resource value: 0x7f0a009c
+			public const int navigationView = 2131361948;
 			
 			// aapt resource value: 0x7f0a0080
 			public const int navigation_header_container = 2131361920;
@@ -2659,14 +2659,23 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a002c
 			public const int never = 2131361836;
 			
+			// aapt resource value: 0x7f0a007a
+			public const int newPassword = 2131361914;
+			
+			// aapt resource value: 0x7f0a007b
+			public const int newPassword2 = 2131361915;
+			
 			// aapt resource value: 0x7f0a000c
 			public const int none = 2131361804;
 			
 			// aapt resource value: 0x7f0a000d
 			public const int normal = 2131361805;
 			
-			// aapt resource value: 0x7f0a0086
-			public const int oldcar = 2131361926;
+			// aapt resource value: 0x7f0a0079
+			public const int oldPassword = 2131361913;
+			
+			// aapt resource value: 0x7f0a0089
+			public const int oldcar = 2131361929;
 			
 			// aapt resource value: 0x7f0a0033
 			public const int parallax = 2131361843;
@@ -2674,41 +2683,44 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a0051
 			public const int parentPanel = 2131361873;
 			
-			// aapt resource value: 0x7f0a0090
-			public const int password = 2131361936;
+			// aapt resource value: 0x7f0a0094
+			public const int password = 2131361940;
+			
+			// aapt resource value: 0x7f0a0087
+			public const int password3prompt = 2131361927;
 			
 			// aapt resource value: 0x7f0a0034
 			public const int pin = 2131361844;
 			
-			// aapt resource value: 0x7f0a00a7
-			public const int place_autocomplete_clear_button = 2131361959;
+			// aapt resource value: 0x7f0a00ab
+			public const int place_autocomplete_clear_button = 2131361963;
+			
+			// aapt resource value: 0x7f0a00ad
+			public const int place_autocomplete_powered_by_google = 2131361965;
+			
+			// aapt resource value: 0x7f0a00af
+			public const int place_autocomplete_prediction_primary_text = 2131361967;
+			
+			// aapt resource value: 0x7f0a00b0
+			public const int place_autocomplete_prediction_secondary_text = 2131361968;
+			
+			// aapt resource value: 0x7f0a00ae
+			public const int place_autocomplete_progress = 2131361966;
 			
 			// aapt resource value: 0x7f0a00a9
-			public const int place_autocomplete_powered_by_google = 2131361961;
-			
-			// aapt resource value: 0x7f0a00ab
-			public const int place_autocomplete_prediction_primary_text = 2131361963;
-			
-			// aapt resource value: 0x7f0a00ac
-			public const int place_autocomplete_prediction_secondary_text = 2131361964;
+			public const int place_autocomplete_search_button = 2131361961;
 			
 			// aapt resource value: 0x7f0a00aa
-			public const int place_autocomplete_progress = 2131361962;
+			public const int place_autocomplete_search_input = 2131361962;
 			
-			// aapt resource value: 0x7f0a00a5
-			public const int place_autocomplete_search_button = 2131361957;
+			// aapt resource value: 0x7f0a00ac
+			public const int place_autocomplete_separator = 2131361964;
 			
-			// aapt resource value: 0x7f0a00a6
-			public const int place_autocomplete_search_input = 2131361958;
+			// aapt resource value: 0x7f0a00be
+			public const int preferences = 2131361982;
 			
-			// aapt resource value: 0x7f0a00a8
-			public const int place_autocomplete_separator = 2131361960;
-			
-			// aapt resource value: 0x7f0a00ba
-			public const int preferences = 2131361978;
-			
-			// aapt resource value: 0x7f0a008a
-			public const int progressBar = 2131361930;
+			// aapt resource value: 0x7f0a008d
+			public const int progressBar = 2131361933;
 			
 			// aapt resource value: 0x7f0a0006
 			public const int progress_circular = 2131361798;
@@ -2716,11 +2728,11 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a0007
 			public const int progress_horizontal = 2131361799;
 			
-			// aapt resource value: 0x7f0a008b
-			public const int pumpid = 2131361931;
+			// aapt resource value: 0x7f0a008e
+			public const int pumpid = 2131361934;
 			
-			// aapt resource value: 0x7f0a008d
-			public const int pumplist = 2131361933;
+			// aapt resource value: 0x7f0a0090
+			public const int pumplist = 2131361936;
 			
 			// aapt resource value: 0x7f0a005f
 			public const int radio = 2131361887;
@@ -2824,20 +2836,20 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a003c
 			public const int start = 2131361852;
 			
-			// aapt resource value: 0x7f0a008c
-			public const int status = 2131361932;
+			// aapt resource value: 0x7f0a008f
+			public const int status = 2131361935;
 			
-			// aapt resource value: 0x7f0a009b
-			public const int status_bar_latest_event_content = 2131361947;
+			// aapt resource value: 0x7f0a009f
+			public const int status_bar_latest_event_content = 2131361951;
 			
 			// aapt resource value: 0x7f0a0070
 			public const int submit_area = 2131361904;
 			
-			// aapt resource value: 0x7f0a00b5
-			public const int swipeonly = 2131361973;
+			// aapt resource value: 0x7f0a00b9
+			public const int swipeonly = 2131361977;
 			
-			// aapt resource value: 0x7f0a00b0
-			public const int switchWidget = 2131361968;
+			// aapt resource value: 0x7f0a00b4
+			public const int switchWidget = 2131361972;
 			
 			// aapt resource value: 0x7f0a0019
 			public const int tabMode = 2131361817;
@@ -2845,17 +2857,17 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a000f
 			public const int terrain = 2131361807;
 			
-			// aapt resource value: 0x7f0a0085
-			public const int text = 2131361925;
+			// aapt resource value: 0x7f0a0077
+			public const int text = 2131361911;
 			
-			// aapt resource value: 0x7f0a00a1
-			public const int text2 = 2131361953;
+			// aapt resource value: 0x7f0a00a5
+			public const int text2 = 2131361957;
 			
 			// aapt resource value: 0x7f0a0058
 			public const int textSpacerNoButtons = 2131361880;
 			
-			// aapt resource value: 0x7f0a009f
-			public const int time = 2131361951;
+			// aapt resource value: 0x7f0a00a3
+			public const int time = 2131361955;
 			
 			// aapt resource value: 0x7f0a004e
 			public const int title = 2131361870;
@@ -2863,8 +2875,8 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a0053
 			public const int title_template = 2131361875;
 			
-			// aapt resource value: 0x7f0a0096
-			public const int toolbar = 2131361942;
+			// aapt resource value: 0x7f0a009a
+			public const int toolbar = 2131361946;
 			
 			// aapt resource value: 0x7f0a003d
 			public const int top = 2131361853;
@@ -2875,8 +2887,8 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a007c
 			public const int touch_outside = 2131361916;
 			
-			// aapt resource value: 0x7f0a00b9
-			public const int transactions = 2131361977;
+			// aapt resource value: 0x7f0a00bd
+			public const int transactions = 2131361981;
 			
 			// aapt resource value: 0x7f0a0009
 			public const int up = 2131361801;
@@ -2884,11 +2896,11 @@ namespace EH.Android
 			// aapt resource value: 0x7f0a001f
 			public const int useLogo = 2131361823;
 			
-			// aapt resource value: 0x7f0a008f
-			public const int username = 2131361935;
+			// aapt resource value: 0x7f0a0078
+			public const int username = 2131361912;
 			
-			// aapt resource value: 0x7f0a008e
-			public const int usernamePrompt = 2131361934;
+			// aapt resource value: 0x7f0a0092
+			public const int usernamePrompt = 2131361938;
 			
 			// aapt resource value: 0x7f0a000a
 			public const int view_offset_helper = 2131361802;
@@ -3034,139 +3046,154 @@ namespace EH.Android
 			public const int AccountDetails = 2130968602;
 			
 			// aapt resource value: 0x7f04001b
-			public const int design_bottom_sheet_dialog = 2130968603;
+			public const int AccountDetailsLine = 2130968603;
 			
 			// aapt resource value: 0x7f04001c
-			public const int design_layout_snackbar = 2130968604;
+			public const int ChangePassword = 2130968604;
 			
 			// aapt resource value: 0x7f04001d
-			public const int design_layout_snackbar_include = 2130968605;
+			public const int design_bottom_sheet_dialog = 2130968605;
 			
 			// aapt resource value: 0x7f04001e
-			public const int design_layout_tab_icon = 2130968606;
+			public const int design_layout_snackbar = 2130968606;
 			
 			// aapt resource value: 0x7f04001f
-			public const int design_layout_tab_text = 2130968607;
+			public const int design_layout_snackbar_include = 2130968607;
 			
 			// aapt resource value: 0x7f040020
-			public const int design_menu_item_action_area = 2130968608;
+			public const int design_layout_tab_icon = 2130968608;
 			
 			// aapt resource value: 0x7f040021
-			public const int design_navigation_item = 2130968609;
+			public const int design_layout_tab_text = 2130968609;
 			
 			// aapt resource value: 0x7f040022
-			public const int design_navigation_item_header = 2130968610;
+			public const int design_menu_item_action_area = 2130968610;
 			
 			// aapt resource value: 0x7f040023
-			public const int design_navigation_item_separator = 2130968611;
+			public const int design_navigation_item = 2130968611;
 			
 			// aapt resource value: 0x7f040024
-			public const int design_navigation_item_subheader = 2130968612;
+			public const int design_navigation_item_header = 2130968612;
 			
 			// aapt resource value: 0x7f040025
-			public const int design_navigation_menu = 2130968613;
+			public const int design_navigation_item_separator = 2130968613;
 			
 			// aapt resource value: 0x7f040026
-			public const int design_navigation_menu_item = 2130968614;
+			public const int design_navigation_item_subheader = 2130968614;
 			
 			// aapt resource value: 0x7f040027
-			public const int DropdownLine = 2130968615;
+			public const int design_navigation_menu = 2130968615;
 			
 			// aapt resource value: 0x7f040028
-			public const int Header = 2130968616;
+			public const int design_navigation_menu_item = 2130968616;
 			
 			// aapt resource value: 0x7f040029
-			public const int Location = 2130968617;
+			public const int DropdownLine = 2130968617;
 			
 			// aapt resource value: 0x7f04002a
-			public const int LocationLine = 2130968618;
+			public const int ForgotPassword = 2130968618;
 			
 			// aapt resource value: 0x7f04002b
-			public const int LocationPumpLine = 2130968619;
+			public const int ForgotPassword3 = 2130968619;
 			
 			// aapt resource value: 0x7f04002c
-			public const int Main = 2130968620;
+			public const int ForgotUsername = 2130968620;
 			
 			// aapt resource value: 0x7f04002d
-			public const int MainMenu = 2130968621;
+			public const int Header = 2130968621;
 			
 			// aapt resource value: 0x7f04002e
-			public const int notification_media_action = 2130968622;
+			public const int Location = 2130968622;
 			
 			// aapt resource value: 0x7f04002f
-			public const int notification_media_cancel_action = 2130968623;
+			public const int LocationLine = 2130968623;
 			
 			// aapt resource value: 0x7f040030
-			public const int notification_template_big_media = 2130968624;
+			public const int LocationPumpLine = 2130968624;
 			
 			// aapt resource value: 0x7f040031
-			public const int notification_template_big_media_narrow = 2130968625;
+			public const int Main = 2130968625;
 			
 			// aapt resource value: 0x7f040032
-			public const int notification_template_lines = 2130968626;
+			public const int MainMenu = 2130968626;
 			
 			// aapt resource value: 0x7f040033
-			public const int notification_template_media = 2130968627;
+			public const int notification_media_action = 2130968627;
 			
 			// aapt resource value: 0x7f040034
-			public const int notification_template_part_chronometer = 2130968628;
+			public const int notification_media_cancel_action = 2130968628;
 			
 			// aapt resource value: 0x7f040035
-			public const int notification_template_part_time = 2130968629;
+			public const int notification_template_big_media = 2130968629;
 			
 			// aapt resource value: 0x7f040036
-			public const int place_autocomplete_fragment = 2130968630;
+			public const int notification_template_big_media_narrow = 2130968630;
 			
 			// aapt resource value: 0x7f040037
-			public const int place_autocomplete_item_powered_by_google = 2130968631;
+			public const int notification_template_lines = 2130968631;
 			
 			// aapt resource value: 0x7f040038
-			public const int place_autocomplete_item_prediction = 2130968632;
+			public const int notification_template_media = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int place_autocomplete_progress = 2130968633;
+			public const int notification_template_part_chronometer = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int preference = 2130968634;
+			public const int notification_template_part_time = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int preference_category = 2130968635;
+			public const int place_autocomplete_fragment = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int preference_dialog_edittext = 2130968636;
+			public const int place_autocomplete_item_powered_by_google = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int preference_information = 2130968637;
+			public const int place_autocomplete_item_prediction = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int preference_list_fragment = 2130968638;
+			public const int place_autocomplete_progress = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int preference_recyclerview = 2130968639;
+			public const int preference = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int preference_widget_checkbox = 2130968640;
+			public const int preference_category = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int preference_widget_switch_compat = 2130968641;
+			public const int preference_dialog_edittext = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int PumpLine = 2130968642;
+			public const int preference_information = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int Search = 2130968643;
+			public const int preference_list_fragment = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int select_dialog_item_material = 2130968644;
+			public const int preference_recyclerview = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int select_dialog_multichoice_material = 2130968645;
+			public const int preference_widget_checkbox = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int select_dialog_singlechoice_material = 2130968646;
+			public const int preference_widget_switch_compat = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int support_simple_spinner_dropdown_item = 2130968647;
+			public const int PumpLine = 2130968647;
+			
+			// aapt resource value: 0x7f040048
+			public const int Search = 2130968648;
+			
+			// aapt resource value: 0x7f040049
+			public const int select_dialog_item_material = 2130968649;
+			
+			// aapt resource value: 0x7f04004a
+			public const int select_dialog_multichoice_material = 2130968650;
+			
+			// aapt resource value: 0x7f04004b
+			public const int select_dialog_singlechoice_material = 2130968651;
+			
+			// aapt resource value: 0x7f04004c
+			public const int support_simple_spinner_dropdown_item = 2130968652;
 			
 			static Layout()
 			{
@@ -3273,14 +3300,14 @@ namespace EH.Android
 			// aapt resource value: 0x7f080035
 			public const int abc_toolbar_collapse_description = 2131230773;
 			
-			// aapt resource value: 0x7f080048
-			public const int about = 2131230792;
+			// aapt resource value: 0x7f08004b
+			public const int about = 2131230795;
 			
-			// aapt resource value: 0x7f08004a
-			public const int account = 2131230794;
+			// aapt resource value: 0x7f08004d
+			public const int account = 2131230797;
 			
-			// aapt resource value: 0x7f08004e
-			public const int address = 2131230798;
+			// aapt resource value: 0x7f080052
+			public const int address = 2131230802;
 			
 			// aapt resource value: 0x7f080037
 			public const int appbar_scrolling_view_behavior = 2131230775;
@@ -3294,17 +3321,29 @@ namespace EH.Android
 			// aapt resource value: 0x7f080042
 			public const int available = 2131230786;
 			
+			// aapt resource value: 0x7f08005b
+			public const int badpassword = 2131230811;
+			
 			// aapt resource value: 0x7f080038
 			public const int bottom_sheet_behavior = 2131230776;
 			
 			// aapt resource value: 0x7f08003f
 			public const int cancel = 2131230783;
 			
+			// aapt resource value: 0x7f080053
+			public const int car = 2131230803;
+			
+			// aapt resource value: 0x7f080054
+			public const int card = 2131230804;
+			
+			// aapt resource value: 0x7f080057
+			public const int changePassword = 2131230807;
+			
 			// aapt resource value: 0x7f080039
 			public const int character_counter_pattern = 2131230777;
 			
-			// aapt resource value: 0x7f080047
-			public const int close = 2131230791;
+			// aapt resource value: 0x7f08004a
+			public const int close = 2131230794;
 			
 			// aapt resource value: 0x7f08001a
 			public const int common_google_play_services_api_unavailable_text = 2131230746;
@@ -3394,22 +3433,52 @@ namespace EH.Android
 			public const int common_signin_button_text_long = 2131230752;
 			
 			// aapt resource value: 0x7f08004f
-			public const int copyright1 = 2131230799;
+			public const int continu = 2131230799;
 			
-			// aapt resource value: 0x7f080050
-			public const int copyright2 = 2131230800;
+			// aapt resource value: 0x7f08005e
+			public const int copyright1 = 2131230814;
 			
-			// aapt resource value: 0x7f080051
-			public const int copyright3 = 2131230801;
+			// aapt resource value: 0x7f08005f
+			public const int copyright2 = 2131230815;
 			
-			// aapt resource value: 0x7f080052
-			public const int copyright4 = 2131230802;
+			// aapt resource value: 0x7f080060
+			public const int copyright3 = 2131230816;
+			
+			// aapt resource value: 0x7f080061
+			public const int copyright4 = 2131230817;
+			
+			// aapt resource value: 0x7f080055
+			public const int email = 2131230805;
+			
+			// aapt resource value: 0x7f080066
+			public const int enterNewPassword = 2131230822;
 			
 			// aapt resource value: 0x7f080044
 			public const int forgotPassword = 2131230788;
 			
+			// aapt resource value: 0x7f080063
+			public const int forgotPassword1 = 2131230819;
+			
+			// aapt resource value: 0x7f080064
+			public const int forgotPassword2 = 2131230820;
+			
+			// aapt resource value: 0x7f080047
+			public const int forgotPasswordTitle = 2131230791;
+			
+			// aapt resource value: 0x7f080062
+			public const int forgotUser = 2131230818;
+			
+			// aapt resource value: 0x7f080045
+			public const int forgotUsername = 2131230789;
+			
+			// aapt resource value: 0x7f080046
+			public const int forgotUsernameTitle = 2131230790;
+			
 			// aapt resource value: 0x7f08003b
 			public const int google_maps_key = 2131230779;
+			
+			// aapt resource value: 0x7f08005d
+			public const int invalidEmail = 2131230813;
 			
 			// aapt resource value: 0x7f080041
 			public const int loading = 2131230785;
@@ -3417,23 +3486,38 @@ namespace EH.Android
 			// aapt resource value: 0x7f08003e
 			public const int login = 2131230782;
 			
-			// aapt resource value: 0x7f080045
-			public const int logout = 2131230789;
+			// aapt resource value: 0x7f080048
+			public const int logout = 2131230792;
 			
-			// aapt resource value: 0x7f08004d
-			public const int name = 2131230797;
+			// aapt resource value: 0x7f080051
+			public const int name = 2131230801;
+			
+			// aapt resource value: 0x7f080059
+			public const int newPassword = 2131230809;
+			
+			// aapt resource value: 0x7f08005a
+			public const int newPassword2 = 2131230810;
 			
 			// aapt resource value: 0x7f080040
 			public const int nothing = 2131230784;
 			
-			// aapt resource value: 0x7f08004b
-			public const int ok = 2131230795;
+			// aapt resource value: 0x7f08004e
+			public const int ok = 2131230798;
 			
-			// aapt resource value: 0x7f080046
-			public const int open = 2131230790;
+			// aapt resource value: 0x7f080058
+			public const int oldPassword = 2131230808;
+			
+			// aapt resource value: 0x7f080049
+			public const int open = 2131230793;
 			
 			// aapt resource value: 0x7f08003d
 			public const int password = 2131230781;
+			
+			// aapt resource value: 0x7f08005c
+			public const int passwordsnomatch = 2131230812;
+			
+			// aapt resource value: 0x7f080056
+			public const int phone = 2131230806;
 			
 			// aapt resource value: 0x7f080001
 			public const int place_autocomplete_clear_button = 2131230721;
@@ -3441,8 +3525,8 @@ namespace EH.Android
 			// aapt resource value: 0x7f080000
 			public const int place_autocomplete_search_hint = 2131230720;
 			
-			// aapt resource value: 0x7f080049
-			public const int preferences = 2131230793;
+			// aapt resource value: 0x7f08004c
+			public const int preferences = 2131230796;
 			
 			// aapt resource value: 0x7f080036
 			public const int status_bar_notification_info_overflow = 2131230774;
@@ -3450,8 +3534,11 @@ namespace EH.Android
 			// aapt resource value: 0x7f080043
 			public const int swipeonly = 2131230787;
 			
-			// aapt resource value: 0x7f08004c
-			public const int transactions = 2131230796;
+			// aapt resource value: 0x7f080065
+			public const int tokenNotReady = 2131230821;
+			
+			// aapt resource value: 0x7f080050
+			public const int transactions = 2131230800;
 			
 			// aapt resource value: 0x7f08003c
 			public const int username = 2131230780;

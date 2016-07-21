@@ -63,7 +63,7 @@ namespace EH.Common
             public string village { get; set; }
             public string city { get; set; }
             public string postcode { get; set; }
-            public object telephoneNumbers { get; set; }
+            public List<String> telephoneNumbers { get; set; }
         }
 
         public class AccountData
@@ -197,9 +197,47 @@ namespace EH.Common
             public string cardIcon { get; set; }
         }
 
-        public class GetCardListResult
+        private class GetCardListResult
         {
             public List<Card> result { get; set; }
+        }
+
+        private class ChangePasswordResult
+        {
+            public bool result { get; set; }
+        }
+
+        private class ForgottenUsernameResult
+        {
+            public bool result { get; set; }
+        }
+
+        public class ForgottenPasswordHash
+        {
+            public string hashkey { get; set; }
+            public string error { get; set; }
+        }
+
+        private class ForgottenPasswordResult
+        {
+            public ForgottenPasswordHash result { get; set; }
+        }
+
+        public class PasswordToken
+        {
+            public bool success { get; set; }
+            public string error { get; set; }
+            public string hashkey { get; set; }
+        }
+
+        private class GetPasswordTokenResult
+        {
+            public PasswordToken result { get; set;  }
+        }
+
+        private class UsePasswordTokenResult
+        {
+            public bool result { get; set; }
         }
 #pragma warning restore 0649
 
@@ -347,6 +385,87 @@ namespace EH.Common
             });
             GetCardListResult Result = JsonConvert.DeserializeObject<GetCardListResult>(apiResult);
             return Result.result;
+        }
+
+        public async Task<bool> changePasswordAsync(string username, string oldPassword, string newPassword)
+        {
+            string apiResult = await ApiCallAsync("changePassword", new Dictionary<string, string>
+            {
+                { "newPassword", newPassword },
+                { "identifier", username },
+                { "password", oldPassword }
+            });
+            ChangePasswordResult Result = JsonConvert.DeserializeObject<ChangePasswordResult>(apiResult);
+            return Result.result;
+        }
+
+        public async Task<bool> forgottenUsernameAsync(string email)
+        {
+            string apiResult = await ApiCallAsync("forgottenUsername", new Dictionary<string, string>
+            {
+                { "email", email }
+            });
+            ForgottenUsernameResult Result = JsonConvert.DeserializeObject<ForgottenUsernameResult>(apiResult);
+            return Result.result;
+        }
+
+        public async Task<ForgottenPasswordHash> forgottenPasswordAsync(string email)
+        {
+            string apiResult = await ApiCallAsync("forgottenPassword", new Dictionary<string, string>
+            {
+                { "email", email }
+            });
+            try
+            {
+                ForgottenPasswordResult Result = JsonConvert.DeserializeObject<ForgottenPasswordResult>(apiResult);
+                return Result.result;
+            }
+            catch (JsonSerializationException e)
+            {
+                Debug.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        public async Task<PasswordToken> getPasswordTokenAsync(string platform, string hashkey)
+        {
+            string apiResult = await ApiCallAsync("getPasswordToken", new Dictionary<string, string>
+            {
+                { "platform", platform },
+                { "hashkey", hashkey }
+            });
+            try
+            {
+                GetPasswordTokenResult Result = JsonConvert.DeserializeObject<GetPasswordTokenResult>(apiResult);
+                return Result.result;
+            }
+            catch (JsonSerializationException e)
+            {
+                Debug.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        public async Task<bool> usePasswordTokenAsync(string platform, string hashkey1, string hashkey2, string password)
+        {
+            string apiResult = await ApiCallAsync("usePasswordToken", new Dictionary<string, string>
+            {
+                { "platform", platform },
+                { "hashkey", hashkey1 },
+                { "password", password },
+                { "forgotpassword_hash_key", hashkey2 },
+                { "confirm_password", password }
+            });
+            try
+            {
+                UsePasswordTokenResult Result = JsonConvert.DeserializeObject<UsePasswordTokenResult>(apiResult);
+                return Result.result;
+            }
+            catch (JsonSerializationException e)
+            {
+                Debug.WriteLine(e.Message);
+                return false;
+            }
         }
     }
 }

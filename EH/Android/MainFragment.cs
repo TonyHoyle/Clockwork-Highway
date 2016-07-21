@@ -7,6 +7,7 @@ using Android.Widget;
 using Android.Views;
 using Android.Support.V4.App;
 using EH.Common;
+using Android.Support.Design.Widget;
 
 namespace EH.Android
 {
@@ -22,9 +23,11 @@ namespace EH.Android
             base.OnActivityCreated(savedInstanceState);
 
             var login = View.FindViewById<Button>(Resource.Id.login);
+            var forgotUsername = View.FindViewById<TextView>(Resource.Id.forgotUsername);
             var forgotPassword = View.FindViewById<TextView>(Resource.Id.forgotPassword);
 
             login.Click += OnLoginClick;
+            forgotUsername.Click += OnUsernameClick;
             forgotPassword.Click += OnPasswordClick;
 
             SharedData.login = new EHLogin();
@@ -34,77 +37,104 @@ namespace EH.Android
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
             var username = prefs.GetString("username", "");
             var password = prefs.GetString("password", "");
-            var usernamePrompt = View.FindViewById<EditText>(Resource.Id.username);
-            var passwordPrompt = View.FindViewById<EditText>(Resource.Id.password);
+            var usernamePrompt = View.FindViewById<TextInputEditText>(Resource.Id.username);
+            var passwordPrompt = View.FindViewById<TextInputEditText>(Resource.Id.password);
             usernamePrompt.Text = username;
             passwordPrompt.Text = password;
 
             DoLogin(username, password);
-    }
+        }
 
-    private void OnPasswordClick(object sender, System.EventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    private void OnLoginClick(object sender, System.EventArgs e)
-    {
-        var username = View.FindViewById<EditText>(Resource.Id.username);
-        var password = View.FindViewById<EditText>(Resource.Id.password);
-
-        DoLogin(username.Text, password.Text);
-    }
-
-    public void ShowProgress(bool visible, string message = "", bool isError = false)
-    {
-        var progress = View.FindViewById<ProgressBar>(Resource.Id.loadingProgress);
-        var loading = View.FindViewById<TextView>(Resource.Id.loadingText);
-        var button = View.FindViewById<Button>(Resource.Id.login);
-
-        loading.Text = message;
-        if (isError) loading.SetTextColor(global::Android.Graphics.Color.Red);
-        else loading.SetTextColor(global::Android.Graphics.Color.Black);
-
-        progress.Visibility = visible ? global::Android.Views.ViewStates.Visible : global::Android.Views.ViewStates.Gone;
-        button.Visibility = visible ? global::Android.Views.ViewStates.Gone : global::Android.Views.ViewStates.Visible;
-    }
-
-    public async void DoLogin(string username, string password)
-    {
-        try
+        private void OnUsernameClick(object sender, System.EventArgs e)
         {
-            SharedData.login.Logout();
+            ForgotUsername();
+        }
 
-            if (username == "" || password == "")
-            {
-                ShowProgress(false);
-                return;
-            }
+        private void OnPasswordClick(object sender, System.EventArgs e)
+        {
+            ForgotPassword();
+        }
 
-            ShowProgress(true, "Logging in..");
-            if (!await SharedData.login.Login(username, password))
-            {
-                ShowProgress(false, "Unknown username or password", true);
-            }
-            if (SharedData.login.IsLoggedIn)
-            {
-                var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
-                var editor = prefs.Edit();
-                editor.PutString("username", username);
-                editor.PutString("password", password);
-                editor.Apply();
+        private void OnLoginClick(object sender, System.EventArgs e)
+        {
+            var username = View.FindViewById<TextInputEditText>(Resource.Id.username);
+            var password = View.FindViewById<TextInputEditText>(Resource.Id.password);
 
-                Intent intent = new Intent(Context, typeof(SearchActivity));
-                intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.TaskOnHome);
-                StartActivity(intent);
-                Activity.Finish();
+            DoLogin(username.Text, password.Text);
+        }
+
+        public void ShowProgress(bool visible, string message = "", bool isError = false)
+        {
+            var progress = View.FindViewById<ProgressBar>(Resource.Id.loadingProgress);
+            var loading = View.FindViewById<TextView>(Resource.Id.loadingText);
+            var button = View.FindViewById<Button>(Resource.Id.login);
+
+            loading.Text = message;
+            if (isError) loading.SetTextColor(global::Android.Graphics.Color.Red);
+            else loading.SetTextColor(global::Android.Graphics.Color.Black);
+
+            progress.Visibility = visible ? global::Android.Views.ViewStates.Visible : global::Android.Views.ViewStates.Gone;
+            button.Visibility = visible ? global::Android.Views.ViewStates.Gone : global::Android.Views.ViewStates.Visible;
+        }
+
+        public async void DoLogin(string username, string password)
+        {
+            try
+            {
+                SharedData.login.Logout();
+
+                if (username == "" || password == "")
+                {
+                    ShowProgress(false);
+                    return;
+                }
+
+                ShowProgress(true, "Logging in..");
+                if (!await SharedData.login.Login(username, password))
+                {
+                    ShowProgress(false, "Unknown username or password", true);
+                }
+                if (SharedData.login.IsLoggedIn)
+                {
+                    var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
+                    var editor = prefs.Edit();
+                    editor.PutString("username", username);
+                    editor.PutString("password", password);
+                    editor.Apply();
+
+                    Intent intent = new Intent(Context, typeof(SearchActivity));
+                    intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.TaskOnHome);
+                    StartActivity(intent);
+                    Activity.Finish();
                 }
             }
-        catch (EHApi.EHApiException e)
+            catch (EHApi.EHApiException e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+                ShowProgress(false, e.Message, true);
+            }
+        }
+
+        private void ForgotUsername()
         {
-            System.Diagnostics.Debug.WriteLine(e.Message);
-            ShowProgress(false, e.Message, true);
+            DialogFragment dlg = new ForgotUsernameFragment();
+            dlg.Show(FragmentManager, "ForgotUsernameFragment");
+
+            var usernamePrompt = View.FindViewById<TextInputEditText>(Resource.Id.username);
+            var passwordPrompt = View.FindViewById<TextInputEditText>(Resource.Id.password);
+            usernamePrompt.Text = "";
+            passwordPrompt.Text = "";
+            ShowProgress(false);
+        }
+
+        private void ForgotPassword()
+        {
+            DialogFragment dlg = new ForgotPasswordFragment();
+            dlg.Show(FragmentManager, "ForgotPasswordFragment");
+
+            var passwordPrompt = View.FindViewById<TextInputEditText>(Resource.Id.password);
+            passwordPrompt.Text = "";
+            ShowProgress(false);
         }
     }
-}
 }

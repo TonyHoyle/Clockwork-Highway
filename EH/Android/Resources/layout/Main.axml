@@ -29,7 +29,7 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/username"
@@ -39,10 +39,19 @@
                 android:layout_marginBottom="4dp"
                 android:id="@+id/username" />
         </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
+        <TextView
+            android:textColor="#0000FF"
+            android:text="@string/forgotUsername"
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="16dp"
+            android:id="@+id/forgotUsername" />
+      <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

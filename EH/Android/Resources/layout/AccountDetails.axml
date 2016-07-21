@@ -6,41 +6,15 @@
     android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:text="@string/name"
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/accountDetails" />
+    <Button
+        android:text="@string/changePassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:id="@+id/nameTitle" />
-    <TextView
-        android:text="Joe Bloggs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/name" />
-    <TextView
-        android:text="@string/address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:id="@+id/addressTitle" />
-    <TextView
-        android:text="123 Main Street"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/address1" />
-    <TextView
-        android:text="Somewhere"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/address2" />
-    <TextView
-        android:text="Somewhere else"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/address3" />
-    <TextView
-        android:text="Region"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/address4" />
+        android:layout_weight="0"
+        android:id="@+id/changePassword" />
 </LinearLayout>

@@ -78,15 +78,5 @@ namespace EH.Common
             Cards = null;
             IsLoggedIn = false;
         }
-
-        public bool ForgotPassword(string username)
-        {
-            return false;
-        }
-
-        public bool ChangePassword(string newpassword)
-        {
-            return false;
-        }
     }
 }

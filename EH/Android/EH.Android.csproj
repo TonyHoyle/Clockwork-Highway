@@ -109,10 +109,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ForgotPassword3Fragment.cs" />
+    <Compile Include="ForgotPassword2Fragment.cs" />
+    <Compile Include="ForgotPasswordFragment.cs" />
+    <Compile Include="ForgotUsernameFragment.cs" />
+    <Compile Include="ChangePasswordFragment.cs" />
     <Compile Include="AboutFragment.cs" />
     <Compile Include="AccountDetailsActivity.cs" />
     <Compile Include="AccountDetailsFragment.cs" />
     <Compile Include="AddressListAdapter.cs" />
+    <Compile Include="AccountDetailsAdapter.cs" />
     <Compile Include="LocationFragment.cs" />
     <Compile Include="LocationActivity.cs" />
     <Compile Include="LocationAdapter.cs" />
@@ -154,6 +160,21 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\AccountDetails.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\AccountDetailsLine.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ChangePassword.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ForgotUsername.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ForgotPassword.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ForgotPassword3.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
