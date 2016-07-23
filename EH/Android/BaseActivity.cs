@@ -97,6 +97,7 @@ namespace EH.Android
         private void AccountDetails()
         {
             Intent i = new Intent(this, typeof(AccountDetailsActivity));
+            i.SetFlags(ActivityFlags.SingleTop);
             StartActivity(i);
         }
 

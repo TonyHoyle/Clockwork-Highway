@@ -51,10 +51,18 @@ namespace EH.Android
 
         private void OnAccountDetailsClicked(AccountDetailsLine line)
         {
-            if (line.Id == Resource.String.car)
-                SelectCar();
-            else if (line.Id == Resource.String.card)
-                SelectCard();
+            switch(line.Id)
+            {
+                case Resource.String.car:
+                    SelectCar();
+                    break;
+                case Resource.String.card:
+                    SelectCard();
+                    break;
+                case Resource.String.email:
+                    ChangeEmail();
+                    break;
+            }
         }
 
         private void OnChangePassword(object sender, EventArgs e)
@@ -75,10 +83,16 @@ namespace EH.Android
         {
         }
 
+        private void ChangeEmail()
+        {
+            var frag = new ChangeEmailFragment();
+            frag.Show(FragmentManager, "ChangeEmailFragment");
+        }
+
         private void ChangePassword()
         {
-            DialogFragment about = new ChangePasswordFragment();
-            about.Show(FragmentManager, "AboutFragment");
+            var frag = new ChangePasswordFragment();
+            frag.Show(FragmentManager, "ChangePasswordFragment");
         }
     }
 }

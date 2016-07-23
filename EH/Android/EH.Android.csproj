@@ -109,6 +109,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangeEmailFragment.cs" />
     <Compile Include="ForgotPassword3Fragment.cs" />
     <Compile Include="ForgotPassword2Fragment.cs" />
     <Compile Include="ForgotPasswordFragment.cs" />
@@ -175,6 +176,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\ForgotPassword3.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ChangeEmail.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -239,6 +239,11 @@ namespace EH.Common
         {
             public bool result { get; set; }
         }
+
+        private class ChangeEmailResult
+        {
+            public bool result { get; set; }
+        }
 #pragma warning restore 0649
 
         private async Task<string> ApiCallAsync(string command, Dictionary<string, string> args)
@@ -459,6 +464,26 @@ namespace EH.Common
             try
             {
                 UsePasswordTokenResult Result = JsonConvert.DeserializeObject<UsePasswordTokenResult>(apiResult);
+                return Result.result;
+            }
+            catch (JsonSerializationException e)
+            {
+                Debug.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+        public async Task<bool> changeEmailAsync(string username, string password, string email)
+        {
+            string apiResult = await ApiCallAsync("changeEmail", new Dictionary<string, string>
+            {
+                { "newEmail", email },
+                { "identifier", username },
+                { "password", password }
+            });
+            try
+            {
+                ChangeEmailResult Result = JsonConvert.DeserializeObject<ChangeEmailResult>(apiResult);
                 return Result.result;
             }
             catch (JsonSerializationException e)
