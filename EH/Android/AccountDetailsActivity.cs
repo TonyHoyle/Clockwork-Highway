@@ -6,10 +6,24 @@ using Android.Support.V7.Widget;
 namespace EH.Android
 {
     [Activity(Label = "@string/account")]
-    public class AccountDetailsActivity : BaseActivity
+    public class AccountDetailsActivity : AppCompatActivity
     {
-        public AccountDetailsActivity() : base(new AccountDetailsFragment())
+        protected override void OnCreate(Bundle bundle)
         {
+            base.OnCreate(bundle);
+
+            SetContentView(Resource.Layout.EmptyLayout);
+
+            if (bundle == null)
+            {
+                Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+                SetSupportActionBar(toolbar);
+
+                var fragment = new AccountDetailsFragment();
+                fragment.Arguments = Intent.Extras;
+
+                SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, fragment).Commit();
+            }
         }
     }
 }

@@ -11,10 +11,10 @@
       android:title="@string/transactions" />
   </group>
   <group android:checkableBehavior="single">
-    <item
+<!--    <item
       android:id="@+id/preferences"
       android:icon="@drawable/ic_settings"
-      android:title="@string/preferences" />
+      android:title="@string/preferences" /> -->
     <item
       android:id="@+id/about"
       android:icon="@drawable/ic_about"

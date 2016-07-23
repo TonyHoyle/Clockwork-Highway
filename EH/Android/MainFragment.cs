@@ -42,6 +42,9 @@ namespace EH.Android
             usernamePrompt.Text = username;
             passwordPrompt.Text = password;
 
+            SharedData.login.DefaultCardIndex = prefs.GetInt("CardIndex", 0);
+            SharedData.login.DefaultVehicleIndex = prefs.GetInt("VehicleIndex", 0);
+
             DoLogin(username, password);
         }
 

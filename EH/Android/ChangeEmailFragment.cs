@@ -5,7 +5,6 @@ using Android.Widget;
 using Android.Support.Design.Widget;
 using EH.Common;
 using Android.Content;
-using Android.Support.V7.Preferences;
 
 namespace EH.Android
 {
@@ -24,7 +23,7 @@ namespace EH.Android
             username.Text = "Changing email for " + SharedData.login.Account.firstname + " " + SharedData.login.Account.lastname;
 
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity)
-                .SetTitle(Resource.String.changePassword)
+                .SetTitle(Resource.String.changeEmail)
                 .SetView(view)
                 .SetPositiveButton(Resource.String.ok, (sender, args) => { })
                 .SetNegativeButton(Resource.String.cancel, (sender, args) => { Dismiss(); });

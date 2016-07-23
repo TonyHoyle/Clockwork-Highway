@@ -15,6 +15,7 @@ namespace EH.Android
     public class BaseActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
         private global::Android.Support.V7.App.ActionBarDrawerToggle _drawerToggle;
+        private DrawerLayout _drawerLayout;
         public Fragment Fragment { get; private set; }
 
         public BaseActivity(Fragment fragment)
@@ -36,7 +37,7 @@ namespace EH.Android
                 SupportActionBar.SetDisplayHomeAsUpEnabled (true);
                 SupportActionBar.SetHomeButtonEnabled(true);
 
-                var drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
+                _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
                 var navigationView = FindViewById<NavigationView>(Resource.Id.navigationView);
 
                 navigationView.InflateMenu(Resource.Menu.drawerMenu);
@@ -48,9 +49,9 @@ namespace EH.Android
 
                 headerText.Text = SharedData.login.Account.firstname + " " + SharedData.login.Account.lastname;
 
-                _drawerToggle = new global::Android.Support.V7.App.ActionBarDrawerToggle(this, drawerLayout, Resource.String.open, Resource.String.close);
+                _drawerToggle = new global::Android.Support.V7.App.ActionBarDrawerToggle(this, _drawerLayout, Resource.String.open, Resource.String.close);
 
-                drawerLayout.AddDrawerListener(_drawerToggle);
+                _drawerLayout.AddDrawerListener(_drawerToggle);
 
                 Fragment.Arguments = Intent.Extras;
 
@@ -97,19 +98,19 @@ namespace EH.Android
         private void AccountDetails()
         {
             Intent i = new Intent(this, typeof(AccountDetailsActivity));
-            i.SetFlags(ActivityFlags.SingleTop);
             StartActivity(i);
         }
 
         public bool OnNavigationItemSelected(IMenuItem menuItem)
         {
+            _drawerLayout.CloseDrawers();
             switch (menuItem.ItemId)
             {
                 case Resource.Id.about:  // About
                     About();
                     break;
-                case Resource.Id.preferences: // Preferences
-                    break;
+//                case Resource.Id.preferences: // Preferences
+//                    break;
                 case Resource.Id.transactions: // Transactions
                     break;
                 case Resource.Id.account: // Account

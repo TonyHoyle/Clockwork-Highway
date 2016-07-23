@@ -77,10 +77,14 @@ namespace EH.Android
 
         private void SelectCar()
         {
+            var frag = new SelectVehicleFragment();
+            frag.Show(FragmentManager, "SelectVehicleFragment");
         }
 
         private void SelectCard()
         {
+            var frag = new SelectCardFragment();
+            frag.Show(FragmentManager, "SelectCardFragment");
         }
 
         private void ChangeEmail()
