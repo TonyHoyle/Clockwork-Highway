@@ -3212,7 +3212,10 @@ namespace EH.Android
 		{
 			
 			// aapt resource value: 0x7f0d0000
-			public const int drawerMenu = 2131558400;
+			public const int accountMenu = 2131558400;
+			
+			// aapt resource value: 0x7f0d0001
+			public const int drawerMenu = 2131558401;
 			
 			static Menu()
 			{
