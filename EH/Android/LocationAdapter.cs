@@ -62,7 +62,7 @@ namespace EH.Android
             Color colour;
 
             if (connector.compatible.Length > 0) colour = Color.Black;
-            else colour = Color.Gray;
+            else colour = Color.LightGray;
 
             name.SetTextColor(colour);
             status.SetTextColor(colour);

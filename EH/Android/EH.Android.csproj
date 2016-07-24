@@ -109,6 +109,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StartChargeFragment.cs" />
     <Compile Include="SelectCardFragment.cs" />
     <Compile Include="SelectVehicleFragment.cs" />
     <Compile Include="ChangeEmailFragment.cs" />
@@ -184,6 +185,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\EmptyLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\StartCharge.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -333,11 +337,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_transactions.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\menu\accountMenu.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets')" />

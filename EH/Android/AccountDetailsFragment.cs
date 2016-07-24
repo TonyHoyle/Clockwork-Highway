@@ -11,7 +11,6 @@ namespace EH.Android
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            HasOptionsMenu = true;
             return inflater.Inflate(Resource.Layout.AccountDetails, container, false);
         }
 
@@ -98,11 +97,6 @@ namespace EH.Android
         {
             var frag = new ChangePasswordFragment();
             frag.Show(FragmentManager, "ChangePasswordFragment");
-        }
-
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
-        {
-            inflater.Inflate(Resource.Menu.accountMenu, menu);
         }
     }
 }

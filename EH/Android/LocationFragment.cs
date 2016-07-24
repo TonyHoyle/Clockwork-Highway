@@ -7,6 +7,8 @@ using Android.Gms.Maps.Model;
 using Android.Views;
 using Android.Support.V7.App;
 using EH.Common;
+using Android.Content;
+using System;
 
 namespace EH.Android
 {
@@ -42,8 +44,17 @@ namespace EH.Android
 
             EHApi eh = new EHApi();
             var location = await eh.getLocationDetailsAsync(locationId, SharedData.login.Vehicle);
-            var details = new List<EHApi.ConnectorDetails>();
             list.Adapter = new LocationAdapter(Context, location);
+
+            list.ItemClick += (sender, args) => { PumpClicked(((LocationAdapter)list.Adapter).GetItem(args.Position)); } ;
+        }
+
+        private void PumpClicked(EHApi.LocationDetails location)
+        {
+            var frag = new StartChargeFragment();
+            frag.Arguments = new Bundle();
+            frag.Arguments.PutString("location", Newtonsoft.Json.JsonConvert.SerializeObject(location));
+            frag.Show(FragmentManager, "StartChargeFragment");
         }
 
         public void OnMapReady(GoogleMap googleMap)

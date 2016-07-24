@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Diagnostics;
+using Newtonsoft.Json.Linq;
 
 namespace EH.Common
 {
@@ -16,6 +17,34 @@ namespace EH.Common
             public EHApiException(string reason) : base(reason)
             {
 
+            }
+        }
+
+        private class SingleOrArrayConverter<T> : JsonConverter
+        {
+            public override bool CanConvert(Type objectType)
+            {
+                return (objectType == typeof(List<T>));
+            }
+
+            public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+            {
+                JToken token = JToken.Load(reader);
+                if (token.Type == JTokenType.Array)
+                {
+                    return token.ToObject<List<T>>();
+                }
+                return new List<T> { token.ToObject<T>() };
+            }
+
+            public override bool CanWrite
+            {
+                get { return false; }
+            }
+
+            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+            {
+                throw new NotImplementedException();
             }
         }
 
@@ -180,7 +209,9 @@ namespace EH.Common
             public string postcode { get; set; }
             public string location { get; set; }
             public string pumpId { get; set; }
+            [JsonConverter(typeof(SingleOrArrayConverter<Connector>))]
             public List<Connector> connector { get; set; }
+            [JsonConverter(typeof(SingleOrArrayConverter<ConnectorCost>))]
             public List<ConnectorCost> connectorCost { get; set; }
         }
 
@@ -243,6 +274,27 @@ namespace EH.Common
         private class ChangeEmailResult
         {
             public bool result { get; set; }
+        }
+
+        private class StartChargeSessionResult
+        {
+            public bool result { get; set; }
+        }
+
+        public class ChargeStatus
+        {
+            public string status { get; set; }
+            public string message { get; set; }
+            public bool completed { get; set; }
+            public string cost { get; set; }
+            public string sessionId { get; set; }
+            public string pumpId { get; set; }
+            public string pumpConnector { get; set; }
+        }
+
+        private class GetChargeStatusResult
+        {
+            public ChargeStatus result { get; set; }
         }
 #pragma warning restore 0649
 
@@ -492,5 +544,54 @@ namespace EH.Common
                 return false;
             }
         }
+
+        public async Task<bool> startChargeSessionAsync(string username, string password, string deviceId, string pumpId, string connectorId, string cvv, string cardId, string sessionId)
+        {
+            string apiResult = await ApiCallAsync("startChargeSession", new Dictionary<string, string>
+            {
+                { "password", password },
+                { "deviceId", deviceId },
+                { "identifier", username },
+                { "pumpConnector", connectorId },
+                { "pumpId", pumpId },
+                { "cv2", cvv },
+                { "cardid", cardId },
+                { "sessionId", sessionId }
+            });
+            try
+            {
+                StartChargeSessionResult Result = JsonConvert.DeserializeObject<StartChargeSessionResult>(apiResult);
+                return Result.result;
+            }
+            catch (JsonSerializationException e)
+            {
+                Debug.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+        public async Task<ChargeStatus> getChargeStatusAsync(string deviceId, string sessionId, string pumpId, string connectorId, Vehicle vehicle)
+        {
+            string apiResult = await ApiCallAsync("getChargeStatus", new Dictionary<string, string>
+            {
+                { "deviceId", deviceId },
+                { "vehicleMake", vehicle.make },
+                { "sessionId", sessionId },
+                { "vehicleModel", vehicle.model },
+                { "pumpConnector", connectorId },
+                { "pumpId", pumpId }
+            });
+            try
+            {
+                GetChargeStatusResult Result = JsonConvert.DeserializeObject<GetChargeStatusResult>(apiResult);
+                return Result.result;
+            }
+            catch (JsonSerializationException e)
+            {
+                Debug.WriteLine(e.Message);
+                return null;
+            }
+        }
+
     }
 }
