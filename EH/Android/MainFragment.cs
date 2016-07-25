@@ -41,7 +41,7 @@ namespace EH.Android
             var usernamePrompt = View.FindViewById<TextInputEditText>(Resource.Id.username);
             var passwordPrompt = View.FindViewById<TextInputEditText>(Resource.Id.password);
             usernamePrompt.Text = username;
-            passwordPrompt.Text = password;
+            passwordPrompt.Text = "******";
 
             passwordPrompt.EditorAction += (obj, e) => { if (e.ActionId == ImeAction.Done) OnLoginClick(obj, e); };
 
