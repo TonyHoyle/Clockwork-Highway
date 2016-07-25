@@ -37,6 +37,8 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
                 android:id="@+id/username" />
         </android.support.design.widget.TextInputLayout>
         <TextView
@@ -61,6 +63,8 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
                 android:id="@+id/password" />
         </android.support.design.widget.TextInputLayout>
         <TextView

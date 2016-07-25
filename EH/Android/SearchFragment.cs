@@ -78,15 +78,11 @@ namespace EH.Android
         public override void OnStart()
         {
             base.OnStart();
-            if(_googleApiClient != null)
-                _googleApiClient.Connect();
         }
 
         public override void OnStop()
         {
             base.OnStop();
-            if(_googleApiClient != null)
-                _googleApiClient.Disconnect();
         }
 
         public void OnConnected(Bundle connectionHint)
@@ -223,6 +219,7 @@ namespace EH.Android
                 _googleApiClient = new GoogleApiClient.Builder(Context)
                     .AddConnectionCallbacks(this)
                     .AddOnConnectionFailedListener(this)
+                    .EnableAutoManage(Activity, this)
                     .AddApi(LocationServices.API)
                     .Build();
                 _googleApiClient.Connect();

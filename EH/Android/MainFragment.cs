@@ -8,6 +8,7 @@ using Android.Views;
 using Android.Support.V4.App;
 using EH.Common;
 using Android.Support.Design.Widget;
+using Android.Views.InputMethods;
 
 namespace EH.Android
 {
@@ -41,6 +42,8 @@ namespace EH.Android
             var passwordPrompt = View.FindViewById<TextInputEditText>(Resource.Id.password);
             usernamePrompt.Text = username;
             passwordPrompt.Text = password;
+
+            passwordPrompt.EditorAction += (obj, e) => { if (e.ActionId == ImeAction.Done) OnLoginClick(obj, e); };
 
             SharedData.login.DefaultCardIndex = prefs.GetInt("CardIndex", 0);
             SharedData.login.DefaultVehicleIndex = prefs.GetInt("VehicleIndex", 0);
