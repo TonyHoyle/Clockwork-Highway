@@ -2,8 +2,6 @@ using Android.Support.V4.App;
 using Android.OS;
 using Android.Support.V7.App;
 using EH.Common;
-using Android.Support.Design.Widget;
-using Android.Views;
 using Android.Content;
 using Android.Widget;
 
@@ -30,7 +28,7 @@ namespace EH.Android
 
         private async void DoForgot2()
         {
-            var eh = new EHApi();
+            var eh = new EHApi(SharedData.httpClient);
 
             try
             {

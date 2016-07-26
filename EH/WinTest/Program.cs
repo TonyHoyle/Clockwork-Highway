@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Net.Http;
 
 namespace WinTest
 {
@@ -10,7 +11,7 @@ namespace WinTest
     {
         static void Main(string[] args)
         {
-            EHApi eh = new EHApi();
+            EHApi eh = new EHApi(new HttpClient());
 
             var Vehicle = new EHApi.Vehicle()
             {

@@ -3,7 +3,6 @@ using Android.OS;
 using Android.Support.V7.App;
 using EH.Common;
 using Android.Support.Design.Widget;
-using Android.Views;
 using Android.Widget;
 using Android.Content;
 using Android.Support.V7.Preferences;
@@ -41,7 +40,7 @@ namespace EH.Android
 
         private async void ChangePassword(string newPassword, string newPassword2)
         {
-            var eh = new EHApi();
+            var eh = new EHApi(SharedData.httpClient);
 
             if (newPassword != newPassword2)
             {

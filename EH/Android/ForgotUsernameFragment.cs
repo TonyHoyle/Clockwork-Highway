@@ -26,7 +26,7 @@ namespace EH.Android
 
         private async void DoForgot()
         {
-            var eh = new EHApi();
+            var eh = new EHApi(SharedData.httpClient);
             try
             {
                 await eh.forgottenUsernameAsync(_email.Text);

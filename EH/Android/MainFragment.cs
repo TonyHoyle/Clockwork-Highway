@@ -9,6 +9,7 @@ using Android.Support.V4.App;
 using EH.Common;
 using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
+using System.Net.Http;
 
 namespace EH.Android
 {
@@ -31,7 +32,8 @@ namespace EH.Android
             forgotUsername.Click += OnUsernameClick;
             forgotPassword.Click += OnPasswordClick;
 
-            SharedData.login = new EHLogin();
+            SharedData.httpClient = new HttpClient(new Xamarin.Android.Net.AndroidClientHandler());
+            SharedData.login = new EHLogin(SharedData.httpClient);
             SharedData.deviceId = Settings.Secure.GetString(Context.ContentResolver, Settings.Secure.AndroidId);
             SharedData.googleApi = new GoogleApi(Context.GetString(Resource.String.google_maps_key));
             SharedData.settings = await SharedData.login.Api.getSettingsAsync();

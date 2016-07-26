@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,9 +41,9 @@ namespace EH.Common
             }
         }
 
-        public EHLogin()
+        public EHLogin(HttpClient client)
         {
-            Api = new EHApi();
+            Api = new EHApi(client);
             IsLoggedIn = false;
             DefaultVehicleIndex = 0;
             DefaultCardIndex = 0;
