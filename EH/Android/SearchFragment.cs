@@ -173,7 +173,7 @@ namespace EH.Android
 
             view.Adapter = null;
 
-            var eh = new EHApi();
+            var eh = SharedData.login.Api;
 
             try
             {

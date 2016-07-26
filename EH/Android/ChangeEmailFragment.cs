@@ -34,7 +34,7 @@ namespace EH.Android
 
         private async void ChangeEmail(string newEmail)
         {
-            var eh = new EHApi();
+            var eh = SharedData.login.Api;
 
             try
             {

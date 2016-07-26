@@ -8,5 +8,6 @@ namespace EH.Android
         public static EHLogin login { get; set; }
         public static string deviceId;
         public static GoogleApi googleApi { get; set; }
+        public static EHApi.Settings settings { get; set; }
     }
 }

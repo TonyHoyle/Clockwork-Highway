@@ -83,7 +83,7 @@ namespace EH.Android
                 {
                     try
                     {
-                        var eh = new EHApi();
+                        var eh = SharedData.login.Api;
                         var connectorDetails = await eh.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, Convert.ToInt32(location.pumpId), SharedData.deviceId, SharedData.login.Vehicle);
                         pp = (float)Convert.ToDouble(connectorDetails.connectorCost[0].baseCost);
                         pm = Convert.ToInt32(connectorDetails.connectorCost[0].sessionDuration);
@@ -91,6 +91,7 @@ namespace EH.Android
                     }
                     catch (EHApi.EHApiException e)
                     {
+                        System.Diagnostics.Debug.WriteLine(e.Message);
                         pp = 5;
                         pm = 30;
                     }
@@ -123,7 +124,7 @@ namespace EH.Android
             if (_connectorCost == null)
                 return;
 
-            var eh = new EHApi();
+            var eh = SharedData.login.Api;
             string sessionId = null;
 
             foreach(var c in _connectorCost)

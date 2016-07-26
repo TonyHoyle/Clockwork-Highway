@@ -5,12 +5,13 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Diagnostics;
 using Newtonsoft.Json.Linq;
-using Xamarin.Forms;
 
 namespace EH.Common
 {
     public class EHApi
     {
+        private HttpClient _httpClient;
+
         private const string ehWeb = "https://www.ecotricity.co.uk/api/ezx/v1/";
 
         public class EHApiException : Exception
@@ -49,6 +50,17 @@ namespace EH.Common
             }
         }
 
+        public EHApi()
+        {
+            _httpClient = new HttpClient();
+            _httpClient.BaseAddress = new Uri(ehWeb);
+        }
+
+        public class Terms
+        {
+            public string title { get; set; }
+            public string terms { get; set; }
+        }
 #pragma warning disable 0649
         private class BoolResult
         {
@@ -297,24 +309,33 @@ namespace EH.Common
         {
             public ChargeStatus result { get; set; }
         }
+
+        public class Settings
+        {
+            public bool result { get; set; }
+            public string autocomplete { get; set; }
+            public string amplitude { get; set; }
+            public string google_maps_key { get; set; }
+            public string amplitude_key { get; set; }
+            public string defaultChargeCopy { get; set; }
+            public string defaultGuestChargeCopy { get; set; }
+        }
 #pragma warning restore 0649
 
         private async Task<string> ApiCallAsync(string command, Dictionary<string, string> args)
         {
-            var client = new HttpClient();
-            client.BaseAddress = new Uri(ehWeb);
             var request = new HttpRequestMessage(HttpMethod.Post, command);
 
             request.Headers.Add("Accept-Encoding", new string[] { "identity" });
             request.Headers.Add("X-Titanium-Id", new string[] { "17ac4711-fa0b-4786-9666-8e33a1b3d1ed" });
-            request.Headers.Add("Platform", new string[] { Device.OS.ToString() });
+            request.Headers.Add("Platform", new string[] { "android" });
             request.Headers.Add("X-Requested-With", new string[] { "XmlHttpRequest" });
             request.Headers.Add("User-Agent", new string[] { "Appcelerator Titanium/5.3.1 (Nexus 6P; Android API Level: 23; en-GB;)" });
             request.Headers.Add("Version", new string[] { "1.0.6" });
             request.Headers.Add("Connection", new string[] { "Keep-Alive" });
 
             request.Content = new FormUrlEncodedContent(args);
-            var response = await client.SendAsync(request);
+            var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
                 throw new EHApiException("Unable to call "+command+" - "+response.ReasonPhrase);
@@ -602,5 +623,39 @@ namespace EH.Common
             }
         }
 
+        public async Task<Settings> getSettingsAsync()
+        {
+            string apiResult = await ApiCallAsync("getSettings", new Dictionary<string, string>
+            {
+            });
+            try
+            {
+                Settings Result = JsonConvert.DeserializeObject<Settings>(apiResult);
+                return Result;
+            }
+            catch (JsonSerializationException e)
+            {
+                Debug.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        public async Task<Terms> getTermsAsync()
+        {
+            string apiResult = await ApiCallAsync("terms", new Dictionary<string, string>
+            {
+                { "eh", "true" }
+            });
+            try
+            {
+                Terms Result = JsonConvert.DeserializeObject<Terms>(apiResult);
+                return Result;
+            }
+            catch (JsonSerializationException e)
+            {
+                Debug.WriteLine(e.Message);
+                return null;
+            }
+        }
     }
 }

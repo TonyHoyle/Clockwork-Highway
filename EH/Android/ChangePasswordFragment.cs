@@ -39,7 +39,7 @@ namespace EH.Android
 
         private async void ChangePassword(string oldPassword, string newPassword, string newPassword2)
         {
-            var eh = new EHApi();
+            var eh = SharedData.login.Api;
 
             if(newPassword != newPassword2)
             {

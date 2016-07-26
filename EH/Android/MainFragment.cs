@@ -19,7 +19,7 @@ namespace EH.Android
             return inflater.Inflate(Resource.Layout.Main, container, false);
         }
 
-        public override void OnActivityCreated(Bundle savedInstanceState)
+        public override async void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
 
@@ -34,6 +34,7 @@ namespace EH.Android
             SharedData.login = new EHLogin();
             SharedData.deviceId = Settings.Secure.GetString(Context.ContentResolver, Settings.Secure.AndroidId);
             SharedData.googleApi = new GoogleApi(Context.GetString(Resource.String.google_maps_key));
+            SharedData.settings = await SharedData.login.Api.getSettingsAsync();
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
             var username = prefs.GetString("username", "");

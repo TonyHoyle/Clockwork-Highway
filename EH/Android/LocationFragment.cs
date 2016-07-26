@@ -42,7 +42,7 @@ namespace EH.Android
 
             list.EmptyView = progress;
 
-            EHApi eh = new EHApi();
+            var eh = SharedData.login.Api;
             var location = await eh.getLocationDetailsAsync(locationId, SharedData.login.Vehicle);
             list.Adapter = new LocationAdapter(Context, location);
 

@@ -134,7 +134,7 @@ namespace EH.Common
                 extra = "&location=" + location.lat.ToString() + "," + location.lng.ToString()+"&radius=5000";
             string apiResult = await ApiCallAsync(cAutocompleteApi, address, region, _apiKey, extra);
             AutocompleteResult Result = JsonConvert.DeserializeObject<AutocompleteResult>(apiResult);
-            if (Result.status != "OK")
+            if (Result.predictions == null)
                 throw new GoogleApiException("Autocomplete failed - " + Result.status);
             return Result.predictions;
         }

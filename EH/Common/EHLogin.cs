@@ -8,8 +8,6 @@ namespace EH.Common
 {
     public class EHLogin
     {
-        private EHApi _api;
-
         public bool IsLoggedIn { get; private set; }
         public List<EHApi.Vehicle> Vehicles { get; private set; }
         public List<EHApi.Card> Cards { get; private set; }
@@ -18,6 +16,8 @@ namespace EH.Common
         public EHApi.AccountData Account { get; private set; }
         public int DefaultVehicleIndex { get; set; }
         public int DefaultCardIndex { get; set; }
+        public EHApi Api { get; private set; }
+        public EHApi.Terms Terms { get; private set; }
 
         public EHApi.Vehicle Vehicle {
             get
@@ -42,7 +42,7 @@ namespace EH.Common
 
         public EHLogin()
         {
-            _api = new EHApi();
+            Api = new EHApi();
             IsLoggedIn = false;
             DefaultVehicleIndex = 0;
             DefaultCardIndex = 0;
@@ -50,7 +50,7 @@ namespace EH.Common
 
         public async Task<bool> Login(string username, string password)
         {
-            var account = await _api.loginAsync(username, password);
+            var account = await Api.loginAsync(username, password);
 
             if(account == null)
             {
@@ -63,8 +63,9 @@ namespace EH.Common
             Password = password;
             IsLoggedIn = true;
 
-            Vehicles = await _api.getUserVehicleListAsync(username, password);
-            Cards = await _api.getCardListAsync(username, password);
+            Terms = await Api.getTermsAsync();
+            Vehicles = await Api.getUserVehicleListAsync(username, password);
+            Cards = await Api.getCardListAsync(username, password);
 
             return true;
         }
