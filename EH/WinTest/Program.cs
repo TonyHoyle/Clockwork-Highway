@@ -41,6 +41,8 @@ namespace WinTest
                         }
                         if (count > 0)
                             status = count.ToString() + "/"+details.Count.ToString()+" pumps live";
+
+                        pumpData.Sort();
                         string line = locationId.ToString() + ", \"" + details[0].name + "\", \""+ details[0].location + "\", \"" + details[0].postcode + "\", " + details[0].latitude + ", " + details[0].longitude + ", \"" + status + "\", \""+ string.Join(", ", pumpData) + "\"";
                         Console.WriteLine(line);
                         file.WriteLine(line);
