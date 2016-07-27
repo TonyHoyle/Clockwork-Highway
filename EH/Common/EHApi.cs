@@ -329,13 +329,16 @@ namespace EH.Common
         {
             var request = new HttpRequestMessage(HttpMethod.Post, command);
 
-//            request.Headers.Add("X-Titanium-Id", new string[] { "17ac4711-fa0b-4786-9666-8e33a1b3d1ed" });
-//            request.Headers.Add("Platform", new string[] { "android" });
-//            request.Headers.Add("X-Requested-With", new string[] { "XMLHttpRequest" });
-//            request.Headers.Add("User-Agent", new string[] { "Appcelerator Titanium/5.3.1 (Nexus 6P; Android API Level: 23; en-GB;)" });
-//            request.Headers.Add("Version", new string[] { "1.0.6" });
+            //            request.Headers.Add("X-Titanium-Id", new string[] { "17ac4711-fa0b-4786-9666-8e33a1b3d1ed" });
+            //            request.Headers.Add("Platform", new string[] { "android" });
+            //            request.Headers.Add("X-Requested-With", new string[] { "XMLHttpRequest" });
+            //            request.Headers.Add("User-Agent", new string[] { "Appcelerator Titanium/5.3.1 (Nexus 6P; Android API Level: 23; en-GB;)" });
+            //            request.Headers.Add("Version", new string[] { "1.0.6" });
 
             request.Content = new FormUrlEncodedContent(args);
+            Debug.WriteLine(request.ToString());
+            Debug.WriteLine(request.Content.ReadAsStringAsync().Result);
+
             var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
