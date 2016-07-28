@@ -38,13 +38,17 @@ namespace EH.Android
 
             try
             {
-                if (await eh.changeEmailAsync(SharedData.login.Username, SharedData.login.Password, newEmail))
+                var result = await eh.changeEmailAsync(SharedData.login.Username, SharedData.login.Password, newEmail);
+                if (result.result)
                 {
                     Dismiss();
                 }
                 else
                 {
-                    _newEmail.Error = Context.Resources.GetString(Resource.String.invalidEmail);
+                    if (string.IsNullOrEmpty(result.message))
+                        _newEmail.Error = Context.Resources.GetString(Resource.String.invalidEmail);
+                    else
+                        _newEmail.Error = result.message;
                 }
             }
             catch (EHApi.EHApiException e)

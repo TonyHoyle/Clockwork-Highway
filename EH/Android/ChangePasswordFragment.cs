@@ -49,7 +49,8 @@ namespace EH.Android
             }
             try
             {
-                if (await eh.changePasswordAsync(SharedData.login.Username, oldPassword, newPassword))
+                var result = await eh.changePasswordAsync(SharedData.login.Username, oldPassword, newPassword);
+                if (result.result)
                 {
                     // Store the new password for next time we login
                     var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
@@ -61,7 +62,10 @@ namespace EH.Android
                 }
                 else
                 {
-                    _oldPassword.Error = Context.Resources.GetString(Resource.String.badpassword);
+                    if(string.IsNullOrEmpty(result.message))
+                        _oldPassword.Error = Context.Resources.GetString(Resource.String.badpassword);
+                    else
+                        _oldPassword.Error = result.message;
                     _newPassword2.Error = null;
                 }
             }

@@ -10,6 +10,8 @@ using EH.Common;
 using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net;
 
 namespace EH.Android
 {
@@ -32,10 +34,15 @@ namespace EH.Android
             forgotUsername.Click += OnUsernameClick;
             forgotPassword.Click += OnPasswordClick;
 
-            SharedData.httpClient = new HttpClient(new Xamarin.Android.Net.AndroidClientHandler());
+            SharedData.httpClient = new HttpClient(new Xamarin.Android.Net.AndroidClientHandler() { AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip });
+            SharedData.httpClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
+            SharedData.httpClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
+            SharedData.httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("ClockworkHighway", "1.0alpha"));
+            SharedData.httpClient.DefaultRequestHeaders.Add("Connection", "Keep-Alive");
+
             SharedData.login = new EHLogin(SharedData.httpClient);
             SharedData.deviceId = Settings.Secure.GetString(Context.ContentResolver, Settings.Secure.AndroidId);
-            SharedData.googleApi = new GoogleApi(Context.GetString(Resource.String.google_maps_key));
+            SharedData.googleApi = new GoogleApi(SharedData.httpClient, Context.GetString(Resource.String.google_maps_key));
             SharedData.settings = await SharedData.login.Api.getSettingsAsync();
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);

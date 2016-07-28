@@ -110,6 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TermsFragment.cs" />
     <Compile Include="StartChargeFragment.cs" />
     <Compile Include="SelectCardFragment.cs" />
     <Compile Include="SelectVehicleFragment.cs" />

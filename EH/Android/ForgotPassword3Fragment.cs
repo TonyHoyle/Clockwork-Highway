@@ -49,7 +49,8 @@ namespace EH.Android
             }
             try
             {
-                if (await eh.usePasswordTokenAsync("android", HashKey, HashKey2, newPassword))
+                var result = await eh.usePasswordTokenAsync("android", HashKey, HashKey2, newPassword);
+                if (result.result)
                 {
                     // Store the new password for next time we login
                     var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
@@ -58,6 +59,18 @@ namespace EH.Android
                         .PutString("password", newPassword)
                         .Apply();
                     Dismiss();
+                }
+                else
+                {
+                    string text;
+
+                    if (string.IsNullOrEmpty(result.message))
+                        text = "Unable to set new password";
+                    else
+                        text = result.message;
+
+                    var t = Toast.MakeText(Context, text, ToastLength.Long);
+                    t.Show();
                 }
             }
             catch (EHApi.EHApiException e)

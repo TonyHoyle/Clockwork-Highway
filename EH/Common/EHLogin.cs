@@ -18,7 +18,6 @@ namespace EH.Common
         public int DefaultVehicleIndex { get; set; }
         public int DefaultCardIndex { get; set; }
         public EHApi Api { get; private set; }
-        public EHApi.Terms Terms { get; private set; }
 
         public EHApi.Vehicle Vehicle {
             get
@@ -64,7 +63,6 @@ namespace EH.Common
             Password = password;
             IsLoggedIn = true;
 
-            Terms = await Api.getTermsAsync();
             Vehicles = await Api.getUserVehicleListAsync(username, password);
             Cards = await Api.getCardListAsync(username, password);
 

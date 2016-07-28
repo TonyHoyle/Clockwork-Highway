@@ -15,12 +15,14 @@
   <string name="usingconnector">Using connector</string>
   <string name="paymentdetails">Payment details</string>
   <string name="startchargeat">Start charge at</string>
+  <string name="terms">Ecotricity T&amp;C</string>
   <string name="entercvv">Enter the 3 digit verification number from the back of the card</string>
   <string name="forgotPassword"><u>Forgotten password?</u></string>
   <string name="forgotUsername"><u>Forgotten username?</u></string>
   <string name="forgotUsernameTitle">Forgotten username</string>
   <string name="forgotPasswordTitle">Forgotten password</string>
   <string name="startCharge">Start charge</string>
+  <string name="requestingCharge">Sending Charge Request</string>
   <string name="logout">Logout</string>
   <string name="open">Open</string>
   <string name="close">Close</string>

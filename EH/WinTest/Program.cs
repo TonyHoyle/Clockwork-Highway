@@ -3,20 +3,49 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
 using System.Net.Http;
+using System.Net.Sockets;
 
 namespace WinTest
 {
     class Program
     {
+        static public string getLocalIPV4()
+        {
+            // Returns ipv4 IP used to make an external connection, so is somewhat resilient to
+            // multihoming.
+            using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+            {
+                socket.Connect("54.214.245.161", 65530);
+                IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                return endPoint.Address.ToString();
+            }
+        }
+
+        static public int Secs(DateTime dt)
+        {
+            var delta = dt - new DateTime(1970, 1, 1);
+            return Convert.ToInt32(delta.TotalSeconds);
+        }
+
         static void Main(string[] args)
         {
-            EHApi eh = new EHApi(new HttpClient());
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+            var httpClientHandler = new HttpClientHandler
+            {
+//                Proxy = new WebProxy("http://localhost:8888", false),
+//                UseProxy = true
+            };
+            var httpClient = new HttpClient(httpClientHandler);
+
+            EHApi eh = new EHApi(httpClient);
 
             var Vehicle = new EHApi.Vehicle()
             {
                 make = "Nissan",
-                model = "Leaf"
+                model = "Leaf",
             };
 
             StreamWriter file = new StreamWriter("locations.csv");

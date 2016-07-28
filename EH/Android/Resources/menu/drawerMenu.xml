@@ -19,6 +19,10 @@
       android:id="@+id/about"
       android:icon="@drawable/ic_about"
       android:title="@string/about" />
+    <item
+      android:id="@+id/terms"
+      android:icon="@drawable/ic_about"
+      android:title="@string/terms" />
   </group>
   <group android:checkableBehavior="single">
   <item

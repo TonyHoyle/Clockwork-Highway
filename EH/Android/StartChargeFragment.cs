@@ -122,7 +122,11 @@ namespace EH.Android
             }
 
             if (_connectorCost == null)
+            {
+                var t = Toast.MakeText(Context, "No connector price available", ToastLength.Long);
+                t.Show();
                 return;
+            }
 
             var eh = SharedData.login.Api;
             string sessionId = null;
@@ -137,14 +141,27 @@ namespace EH.Android
             }
 
             if (sessionId == null)
+            {
+                var t = Toast.MakeText(Context, "No session id", ToastLength.Long);
+                t.Show();
                 return;
+            }
 
+            var progressDialog = global::Android.App.ProgressDialog.Show(Context, Context.GetString(Resource.String.startCharge), Context.GetString(Resource.String.requestingCharge));
             var result = await eh.startChargeSessionAsync(SharedData.login.Username, SharedData.login.Password, SharedData.deviceId, _pumpId, _connectorId, cvv, _cardId, sessionId);
-            if(result)
+            progressDialog.Dismiss();
+            if (result.result)
                 Dismiss();
             else
             {
-                var t = Toast.MakeText(Context, "Unable to initiate charge", ToastLength.Long);
+                string text;
+
+                if (string.IsNullOrEmpty(result.message))
+                    text = "Unable to initiate charge";
+                else
+                    text = result.message;
+
+                var t = Toast.MakeText(Context, text, ToastLength.Long);
                 t.Show();
             }
         }

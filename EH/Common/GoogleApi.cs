@@ -2,9 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace EH.Common
@@ -15,7 +14,9 @@ namespace EH.Common
         private const string cReverseGeocodeApi = "https://maps.googleapis.com/maps/api/geocode/json?latlng={0},{1}&key={2}";
         private const string cPlaceGeocodeApi = "https://maps.googleapis.com/maps/api/geocode/json?place_id={0}&key={1}";
         private const string cAutocompleteApi = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input={0}&components=country:{1}&key={2}{3}";
+
         private string _apiKey;
+        private HttpClient _httpClient;
 
 #pragma warning disable 0649
         public class AddressComponent
@@ -98,23 +99,23 @@ namespace EH.Common
             }
         }
 
-        public GoogleApi(string ApiKey)
+        public GoogleApi(HttpClient client, string ApiKey)
         {
             _apiKey = ApiKey;
+            _httpClient = client;
         }
 
         private async Task<string> ApiCallAsync(string url, params object[] args)
         {
-            var client = new HttpClient();
             var request = new HttpRequestMessage(HttpMethod.Get, String.Format(url, args));
 
-            var response = await client.SendAsync(request);
+            var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
                 throw new GoogleApiException("Unable to call google API - " + response.ReasonPhrase);
 
             string responseString = await response.Content.ReadAsStringAsync();
-            Debug.WriteLine(responseString);
+//            Debug.WriteLine(responseString);
             return responseString;
         }
 

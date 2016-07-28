@@ -54,9 +54,6 @@ namespace EH.Common
         public EHApi(HttpClient client)
         {
             _httpClient = client;
-            _httpClient.BaseAddress = new Uri(ehWeb);
-            _httpClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("identity"));
-            _httpClient.DefaultRequestHeaders.Add("Connection", "Keep-Alive");
         }
 
         public class Terms
@@ -65,9 +62,10 @@ namespace EH.Common
             public string terms { get; set; }
         }
 #pragma warning disable 0649
-        private class BoolResult
+        public class BoolResult
         {
-            public bool Result { get; set; }
+            public string message { get; set; }
+            public bool result { get; set; }
         }
 
         public class Address
@@ -129,6 +127,7 @@ namespace EH.Common
 
         private class LoginResult
         {
+            public string message { get; set; }
             public bool result { get; set; }
             public AccountData data { get; set; }
         }
@@ -249,16 +248,6 @@ namespace EH.Common
             public List<Card> result { get; set; }
         }
 
-        private class ChangePasswordResult
-        {
-            public bool result { get; set; }
-        }
-
-        private class ForgottenUsernameResult
-        {
-            public bool result { get; set; }
-        }
-
         public class ForgottenPasswordHash
         {
             public string hashkey { get; set; }
@@ -280,21 +269,6 @@ namespace EH.Common
         private class GetPasswordTokenResult
         {
             public PasswordToken result { get; set;  }
-        }
-
-        private class UsePasswordTokenResult
-        {
-            public bool result { get; set; }
-        }
-
-        private class ChangeEmailResult
-        {
-            public bool result { get; set; }
-        }
-
-        private class StartChargeSessionResult
-        {
-            public bool result { get; set; }
         }
 
         public class ChargeStatus
@@ -327,17 +301,9 @@ namespace EH.Common
 
         private async Task<string> ApiCallAsync(string command, Dictionary<string, string> args)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, command);
-
-            //            request.Headers.Add("X-Titanium-Id", new string[] { "17ac4711-fa0b-4786-9666-8e33a1b3d1ed" });
-            //            request.Headers.Add("Platform", new string[] { "android" });
-            //            request.Headers.Add("X-Requested-With", new string[] { "XMLHttpRequest" });
-            //            request.Headers.Add("User-Agent", new string[] { "Appcelerator Titanium/5.3.1 (Nexus 6P; Android API Level: 23; en-GB;)" });
-            //            request.Headers.Add("Version", new string[] { "1.0.6" });
+            var request = new HttpRequestMessage(HttpMethod.Post, ehWeb+command);
 
             request.Content = new FormUrlEncodedContent(args);
-            Debug.WriteLine(request.ToString());
-            Debug.WriteLine(request.Content.ReadAsStringAsync().Result);
 
             var response = await _httpClient.SendAsync(request);
 
@@ -345,28 +311,29 @@ namespace EH.Common
                 throw new EHApiException("Unable to call "+command+" - "+response.ReasonPhrase);
 
             string responseString = await response.Content.ReadAsStringAsync();
+
             Debug.WriteLine(responseString);
             return responseString;
         }
 
-        public async Task<bool> checkDuplicateEmailAsync(string email)
+        public async Task<BoolResult> checkDuplicateEmailAsync(string email)
         {
             string apiResult = await ApiCallAsync("checkDuplicateEmail", new Dictionary<string, string>
             {
                 { "email", email }
             });
             BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
-            return Result.Result;
+            return Result;
         }
 
-        public async Task<bool> validateUsernameAsync(string name)
+        public async Task<BoolResult> validateUsernameAsync(string name)
         {
             string apiResult = await ApiCallAsync("validateUsername", new Dictionary<string, string>
             {
                 { "name", name }
             });
             BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
-            return Result.Result;
+            return Result;
         }
 
         public async Task<List<Address>> getAddressesAsync(string postcode)
@@ -379,7 +346,7 @@ namespace EH.Common
             return Result.result;
         }
 
-        public async Task<bool> verifyEmailAsync(string email, string username)
+        public async Task<BoolResult> verifyEmailAsync(string email, string username)
         {
             string apiResult = await ApiCallAsync("verifyEmail", new Dictionary<string, string>
             {
@@ -387,7 +354,7 @@ namespace EH.Common
                 { "username", username }
             });
             BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
-            return Result.Result;
+            return Result;
         }
 
         public async Task<AccountData> loginAsync(string username, string password)
@@ -478,7 +445,7 @@ namespace EH.Common
             return Result.result;
         }
 
-        public async Task<bool> changePasswordAsync(string username, string oldPassword, string newPassword)
+        public async Task<BoolResult> changePasswordAsync(string username, string oldPassword, string newPassword)
         {
             string apiResult = await ApiCallAsync("changePassword", new Dictionary<string, string>
             {
@@ -486,18 +453,18 @@ namespace EH.Common
                 { "identifier", username },
                 { "password", oldPassword }
             });
-            ChangePasswordResult Result = JsonConvert.DeserializeObject<ChangePasswordResult>(apiResult);
-            return Result.result;
+            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+            return Result;
         }
 
-        public async Task<bool> forgottenUsernameAsync(string email)
+        public async Task<BoolResult> forgottenUsernameAsync(string email)
         {
             string apiResult = await ApiCallAsync("forgottenUsername", new Dictionary<string, string>
             {
                 { "email", email }
             });
-            ForgottenUsernameResult Result = JsonConvert.DeserializeObject<ForgottenUsernameResult>(apiResult);
-            return Result.result;
+            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+            return Result;
         }
 
         public async Task<ForgottenPasswordHash> forgottenPasswordAsync(string email)
@@ -537,7 +504,7 @@ namespace EH.Common
             }
         }
 
-        public async Task<bool> usePasswordTokenAsync(string platform, string hashkey1, string hashkey2, string password)
+        public async Task<BoolResult> usePasswordTokenAsync(string platform, string hashkey1, string hashkey2, string password)
         {
             string apiResult = await ApiCallAsync("usePasswordToken", new Dictionary<string, string>
             {
@@ -549,17 +516,17 @@ namespace EH.Common
             });
             try
             {
-                UsePasswordTokenResult Result = JsonConvert.DeserializeObject<UsePasswordTokenResult>(apiResult);
-                return Result.result;
+                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+                return Result;
             }
             catch (JsonSerializationException e)
             {
                 Debug.WriteLine(e.Message);
-                return false;
+                return new BoolResult() { result = false, message = e.Message };
             }
         }
 
-        public async Task<bool> changeEmailAsync(string username, string password, string email)
+        public async Task<BoolResult> changeEmailAsync(string username, string password, string email)
         {
             string apiResult = await ApiCallAsync("changeEmail", new Dictionary<string, string>
             {
@@ -569,17 +536,17 @@ namespace EH.Common
             });
             try
             {
-                ChangeEmailResult Result = JsonConvert.DeserializeObject<ChangeEmailResult>(apiResult);
-                return Result.result;
+                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+                return Result;
             }
             catch (JsonSerializationException e)
             {
                 Debug.WriteLine(e.Message);
-                return false;
+                return new BoolResult() { result = false, message = e.Message };
             }
         }
 
-        public async Task<bool> startChargeSessionAsync(string username, string password, string deviceId, string pumpId, string connectorId, string cvv, string cardId, string sessionId)
+        public async Task<BoolResult> startChargeSessionAsync(string username, string password, string deviceId, string pumpId, string connectorId, string cvv, string cardId, string sessionId)
         {
             string apiResult = await ApiCallAsync("startChargeSession", new Dictionary<string, string>
             {
@@ -589,18 +556,18 @@ namespace EH.Common
                 { "pumpConnector", connectorId },
                 { "pumpId", pumpId },
                 { "cv2", cvv },
-                { "cardid", cardId },
+                { "cardId", cardId },
                 { "sessionId", sessionId }
             });
             try
             {
-                StartChargeSessionResult Result = JsonConvert.DeserializeObject<StartChargeSessionResult>(apiResult);
-                return Result.result;
+                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+                return Result;
             }
             catch (JsonSerializationException e)
             {
                 Debug.WriteLine(e.Message);
-                return false;
+                return new BoolResult() { result = false, message = e.Message };
             }
         }
 
