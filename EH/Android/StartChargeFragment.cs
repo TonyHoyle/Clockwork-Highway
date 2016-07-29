@@ -14,9 +14,9 @@ namespace EH.Android
 {
     public class StartChargeFragment : DialogFragment
     {
-        private string _connectorId;
+        private int _connectorId;
         private string _cardId;
-        private string _pumpId;
+        private int _pumpId;
         private TextView _cvv;
         private List<EHApi.ConnectorCost> _connectorCost;
 
@@ -72,7 +72,7 @@ namespace EH.Android
             _cardId = SharedData.login.Card.cardId;
             _pumpId = location.pumpId;
 
-            pumpId.Text = location.pumpId;
+            pumpId.Text = location.pumpId.ToString();
             locationName.Text = location.name;
             float pp;
             float pm;

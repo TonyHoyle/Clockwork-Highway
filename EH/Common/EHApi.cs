@@ -152,20 +152,20 @@ namespace EH.Common
             public string type { get; set; }
             public string status { get; set; }
             public string name { get; set; }
-            public string connectorId { get; set; }
+            public int connectorId { get; set; }
             public string sessionDuration { get; set; }
         }
 
         public class LocationDetails
         {
             public string status { get; set; }
-            public string latitude { get; set; }
-            public string longitude { get; set; }
+            public double latitude { get; set; }
+            public double longitude { get; set; }
             public string name { get; set; }
             public string postcode { get; set; }
             public string location { get; set; }
-            public string locationId { get; set; }
-            public string pumpId { get; set; }
+            public int locationId { get; set; }
+            public int pumpId { get; set; }
             public string lastHeartbeat { get; set; }
             public string pumpModel { get; set; }
             public List<Connector> connector { get; set; }
@@ -183,13 +183,13 @@ namespace EH.Common
 
         public class Pump
         {
-            public string latitude { get; set; }
-            public string longitude { get; set; }
+            public double latitude { get; set; }
+            public double longitude { get; set; }
             public string name { get; set; }
             public string postcode { get; set; }
             public string location { get; set; }
-            public string locationId { get; set; }
-            public List<string> pumpId { get; set; }
+            public int locationId { get; set; }
+            public List<int> pumpId { get; set; }
             public string pumpModel { get; set; }
             public bool available { get; set; }
             public bool swipeOnly { get; set; }
@@ -203,27 +203,27 @@ namespace EH.Common
 
         public class ConnectorCost
         {
-            public string connectorId { get; set; }
-            public string totalCost { get; set; }
-            public string baseCost { get; set; }
-            public string discountEcoGrp { get; set; }
-            public string discountMultiChg { get; set; }
-            public string surcharge { get; set; }
-            public string freecost { get; set; }
+            public int connectorId { get; set; }
+            public double totalCost { get; set; }
+            public double baseCost { get; set; }
+            public double discountEcoGrp { get; set; }
+            public double discountMultiChg { get; set; }
+            public double surcharge { get; set; }
+            public double freecost { get; set; }
             public string currency { get; set; }
             public string sessionId { get; set; }
-            public string sessionDuration { get; set; }
+            public int sessionDuration { get; set; }
         }
 
         public class ConnectorDetails
         {
             public string status { get; set; }
-            public string latitude { get; set; }
-            public string longitude { get; set; }
+            public double latitude { get; set; }
+            public double longitude { get; set; }
             public string name { get; set; }
             public string postcode { get; set; }
             public string location { get; set; }
-            public string pumpId { get; set; }
+            public int pumpId { get; set; }
             [JsonConverter(typeof(SingleOrArrayConverter<Connector>))]
             public List<Connector> connector { get; set; }
             [JsonConverter(typeof(SingleOrArrayConverter<ConnectorCost>))]
@@ -278,8 +278,13 @@ namespace EH.Common
             public bool completed { get; set; }
             public string cost { get; set; }
             public string sessionId { get; set; }
-            public string pumpId { get; set; }
-            public string pumpConnector { get; set; }
+            public int energyConsumption { get; set; }
+            public long started { get; set; }
+            public long finished { get; set; }
+            public int pumpId { get; set; }
+            public int pumpConnector { get; set; }
+            public string createdDate { get; set; }
+            public string createdTime { get; set; }
         }
 
         private class GetChargeStatusResult
@@ -296,6 +301,39 @@ namespace EH.Common
             public string amplitude_key { get; set; }
             public string defaultChargeCopy { get; set; }
             public string defaultGuestChargeCopy { get; set; }
+        }
+
+        public class ContractAccount
+        {
+            public string documentNo { get; set; }
+            public string sessionId { get; set; }
+            public double totalCost { get; set; }
+            public string currency { get; set; }
+            public string date { get; set; }
+            public int pumpId { get; set; }
+            public int pumpConnector { get; set; }
+            public double baseCost { get; set; }
+            public double discountEcoGrp { get; set; }
+            public double discountMultiChg { get; set; }
+            public double surcharge { get; set; }
+            public double freeCost { get; set; }
+        }
+
+        public class ContractTransaction
+        {
+            public string contractAccountId { get; set; }
+            public List<ContractAccount> contractAccount { get; set; }
+        }
+
+        // FIXME: Why the extra indirection.. can this be a list?
+        private class Transaction
+        {
+            public ContractTransaction transaction { get; set; }
+        }
+
+        private class GetTransactionListResult
+        {
+            public Transaction result { get; set; }
         }
 #pragma warning restore 0649
 
@@ -546,15 +584,15 @@ namespace EH.Common
             }
         }
 
-        public async Task<BoolResult> startChargeSessionAsync(string username, string password, string deviceId, string pumpId, string connectorId, string cvv, string cardId, string sessionId)
+        public async Task<BoolResult> startChargeSessionAsync(string username, string password, string deviceId, int pumpId, int connectorId, string cvv, string cardId, string sessionId)
         {
             string apiResult = await ApiCallAsync("startChargeSession", new Dictionary<string, string>
             {
                 { "password", password },
                 { "deviceId", deviceId },
                 { "identifier", username },
-                { "pumpConnector", connectorId },
-                { "pumpId", pumpId },
+                { "pumpConnector", connectorId.ToString() },
+                { "pumpId", pumpId.ToString() },
                 { "cv2", cvv },
                 { "cardId", cardId },
                 { "sessionId", sessionId }
@@ -571,7 +609,30 @@ namespace EH.Common
             }
         }
 
-        public async Task<ChargeStatus> getChargeStatusAsync(string deviceId, string sessionId, string pumpId, string connectorId, Vehicle vehicle)
+        public async Task<BoolResult> stopChargeSessionAsync(string username, string password, string deviceId, int pumpId, int connectorId, string sessionId)
+        {
+            string apiResult = await ApiCallAsync("stopChargeSession", new Dictionary<string, string>
+            {
+                { "password", password },
+                { "deviceId", deviceId },
+                { "sessionId", sessionId },
+                { "identifier", username },
+                { "pumpConnector", connectorId.ToString() },
+                { "pumpId", pumpId.ToString() },
+            });
+            try
+            {
+                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+                return Result;
+            }
+            catch (JsonSerializationException e)
+            {
+                Debug.WriteLine(e.Message);
+                return new BoolResult() { result = false, message = e.Message };
+            }
+        }
+
+        public async Task<ChargeStatus> getChargeStatusAsync(string deviceId, string sessionId, int pumpId, string connectorId, Vehicle vehicle)
         {
             string apiResult = await ApiCallAsync("getChargeStatus", new Dictionary<string, string>
             {
@@ -579,8 +640,8 @@ namespace EH.Common
                 { "vehicleMake", vehicle.make },
                 { "sessionId", sessionId },
                 { "vehicleModel", vehicle.model },
-                { "pumpConnector", connectorId },
-                { "pumpId", pumpId }
+                { "pumpConnector", connectorId.ToString() },
+                { "pumpId", pumpId.ToString() }
             });
             try
             {
@@ -621,6 +682,25 @@ namespace EH.Common
             {
                 Terms Result = JsonConvert.DeserializeObject<Terms>(apiResult);
                 return Result;
+            }
+            catch (JsonSerializationException e)
+            {
+                Debug.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        public async Task<ContractTransaction> getTransactionListAsync(string username, string password)
+        {
+            string apiResult = await ApiCallAsync("getTransactionList", new Dictionary<string, string>
+            {
+                { "identifier", username },
+                { "password", password }
+            });
+            try
+            {
+                GetTransactionListResult Result = JsonConvert.DeserializeObject<GetTransactionListResult>(apiResult);
+                return Result.result.transaction;
             }
             catch (JsonSerializationException e)
             {
