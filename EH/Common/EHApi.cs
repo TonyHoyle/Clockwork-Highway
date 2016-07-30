@@ -12,6 +12,7 @@ namespace EH.Common
     public class EHApi
     {
         private HttpClient _httpClient;
+        private Dictionary<int, ConnectorDetails> _pumpCache = new Dictionary<int, ConnectorDetails>();
 
         private const string ehWeb = "https://www.ecotricity.co.uk/api/ezx/v1/";
 
@@ -489,8 +490,17 @@ namespace EH.Common
             return Result.result;
         }
 
-        public async Task<ConnectorDetails> getPumpConnectorsAsync(string username, string password, int pumpId, string deviceId, Vehicle vehicle)
+        // Because it's possible to want lots of information about connectors, we cache them to avoid hitting the server constantly
+        public bool pumpConnectorsAreCached(int pumpId)
         {
+            return _pumpCache.ContainsKey(pumpId);
+        }
+
+        public async Task<ConnectorDetails> getPumpConnectorsAsync(string username, string password, int pumpId, string deviceId, Vehicle vehicle, bool useCache = true)
+        {
+            if (useCache && _pumpCache.ContainsKey(pumpId))
+                return _pumpCache[pumpId];
+
             string apiResult = await ApiCallAsync("getPumpConnectors", new Dictionary<string, string>
             {
                 { "password", password },
@@ -502,6 +512,8 @@ namespace EH.Common
                 { "pumpId", pumpId.ToString() }
             });
             PumpConnectorsResult Result = JsonConvert.DeserializeObject<PumpConnectorsResult>(apiResult);
+
+            _pumpCache.Add(pumpId, Result.result);
             return Result.result;
         }
 

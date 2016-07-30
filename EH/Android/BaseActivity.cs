@@ -101,6 +101,12 @@ namespace EH.Android
             terms.Show(SupportFragmentManager, "TermsFragment");
         }
 
+        private void Transactions()
+        {
+            DialogFragment transactions = new TransactionsFragment();
+            transactions.Show(SupportFragmentManager, "TransactionsFragment");
+        }
+
         private void AccountDetails()
         {
             Intent i = new Intent(this, typeof(AccountDetailsActivity));
@@ -121,6 +127,7 @@ namespace EH.Android
                 //                case Resource.Id.preferences: // Preferences
                 //                    break;
                 case Resource.Id.transactions: // Transactions
+                    Transactions();
                     break;
                 case Resource.Id.account: // Account
                     AccountDetails();

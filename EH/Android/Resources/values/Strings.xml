@@ -17,6 +17,8 @@
   <string name="startchargeat">Start charge at</string>
   <string name="terms">Ecotricity T&amp;C</string>
   <string name="termsLong">Ecotricity Terms and Conditions</string>
+  <string name="session">Transaction ID</string>
+  <string name="date">Date</string>
   <string name="entercvv">Enter the 3 digit verification number from the back of the card</string>
   <string name="forgotPassword"><u>Forgotten password?</u></string>
   <string name="forgotUsername"><u>Forgotten username?</u></string>
