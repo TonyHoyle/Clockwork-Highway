@@ -122,6 +122,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChargingFragment.cs" />
+    <Compile Include="ChargingActivity.cs" />
     <Compile Include="TransactionItemAdapter.cs" />
     <Compile Include="TransactionsFragment.cs" />
     <Compile Include="TermsFragment.cs" />
@@ -213,6 +215,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\TransactionLine.axml" />
+    <AndroidResource Include="Resources\layout\Charging.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Search.axml">

@@ -677,7 +677,7 @@ namespace EH.Common
             }
         }
 
-        public async Task<ChargeStatus> getChargeStatusAsync(string deviceId, string sessionId, int pumpId, string connectorId, Vehicle vehicle)
+        public async Task<ChargeStatus> getChargeStatusAsync(string deviceId, string sessionId, int pumpId, int connectorId, Vehicle vehicle)
         {
             string apiResult = await ApiCallAsync("getChargeStatus", new Dictionary<string, string>
             {

@@ -15,6 +15,7 @@
   <string name="usingconnector">Using connector</string>
   <string name="paymentdetails">Payment details</string>
   <string name="startchargeat">Start charge at</string>
+  <string name="charging">Charging</string>
   <string name="terms">Ecotricity T&amp;C</string>
   <string name="termsLong">Ecotricity Terms and Conditions</string>
   <string name="session">Transaction ID</string>
@@ -61,4 +62,8 @@
   <string name="forgotPassword2">An email has been sent to your email address.  Click on the link within the email, then click Continue to reset your password</string>
   <string name="tokenNotReady">Click on the link within the email you have been sent before pressing continue</string>
   <string name="enterNewPassword">Enter the new password and again for confirmation</string>
+  <string name="stopCharge">Stop charge?</string>
+  <string name="areYouSureStop">Are you sure you want to stop the charge early?  Ecotricity will charge you the full 30 minute session.</string>
+  <string name="powerSupplied">The pump reports supplying {0}kW of power</string>
+  <string name="chargingMinutes">You have been charging for {0} minutes</string>
 </resources>

@@ -151,7 +151,14 @@ namespace EH.Android
             var result = await eh.startChargeSessionAsync(SharedData.login.Username, SharedData.login.Password, SharedData.deviceId, _pumpId, _connectorId, cvv, _cardId, sessionId);
             progressDialog.Dismiss();
             if (result.result)
+            {
+                Intent i = new Intent(Context, typeof(ChargingActivity));
+                i.PutExtra("sessionId", sessionId);
+                i.PutExtra("pumpId", _pumpId);
+                i.PutExtra("connectorId", _connectorId);
+                StartActivity(i);
                 Dismiss();
+            }
             else
             {
                 string text;
