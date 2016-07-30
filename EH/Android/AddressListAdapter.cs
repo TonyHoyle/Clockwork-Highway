@@ -47,7 +47,7 @@ namespace EH.Android
 
             try
             {
-                var addresses = SharedData.googleApi.autocompleteAsync(address,"uk", SharedData.lastLocation).Result;
+                var addresses = SharedData.googleApi.autocompleteAsync(address,"uk", SharedData.lastLocation).GetAwaiter().GetResult();
                 var resultList = new Java.Util.ArrayList();
 
                 foreach (var A in addresses)
@@ -67,7 +67,7 @@ namespace EH.Android
         protected override void PublishResults(Java.Lang.ICharSequence constraint, FilterResults results)
         {
             _adapter.Clear();
-            if(results != null)
+            if(results != null && results.Values != null)
             {
                 var list = (Java.Util.ArrayList)results.Values;
                 for(int i=0; i<list.Size(); i++)

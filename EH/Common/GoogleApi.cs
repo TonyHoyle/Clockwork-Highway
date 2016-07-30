@@ -109,19 +109,21 @@ namespace EH.Common
         {
             var request = new HttpRequestMessage(HttpMethod.Get, String.Format(url, args));
 
+            Debug.WriteLine(request.RequestUri.AbsoluteUri);
+
             var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
                 throw new GoogleApiException("Unable to call google API - " + response.ReasonPhrase);
 
             string responseString = await response.Content.ReadAsStringAsync();
-//            Debug.WriteLine(responseString);
+            Debug.WriteLine(responseString);
             return responseString;
         }
 
         public async Task<List<Address>> lookupAddressAsync(string address, string region = "uk")
         {
-            string apiResult = await ApiCallAsync(cGeocodeApi, address, region, _apiKey);
+            string apiResult = await ApiCallAsync(cGeocodeApi, address.Replace(' ','+'), region, _apiKey);
             LookupAddressResult Result = JsonConvert.DeserializeObject<LookupAddressResult>(apiResult);
             if (Result.status != "OK")
                 throw new GoogleApiException("Geocode failed - "+Result.status);
@@ -133,7 +135,7 @@ namespace EH.Common
             string extra = "";
             if(location != null)
                 extra = "&location=" + location.lat.ToString() + "," + location.lng.ToString()+"&radius=5000";
-            string apiResult = await ApiCallAsync(cAutocompleteApi, address, region, _apiKey, extra);
+            string apiResult = await ApiCallAsync(cAutocompleteApi, address.Replace(' ','+'), region, _apiKey, extra);
             AutocompleteResult Result = JsonConvert.DeserializeObject<AutocompleteResult>(apiResult);
             if (Result.predictions == null)
                 throw new GoogleApiException("Autocomplete failed - " + Result.status);
