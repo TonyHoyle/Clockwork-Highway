@@ -367,12 +367,15 @@ namespace EH.Common
         }
 #pragma warning restore 0649
 
-        private async Task<string> ApiCallAsync(string command, Dictionary<string, string> args)
+        private async Task<string> ApiCallAsync(string command, Dictionary<string, string> args, bool post = true)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, ehWeb+command);
+            HttpRequestMessage request;
 
-            request.Content = new FormUrlEncodedContent(args);
+            request = new HttpRequestMessage(post?HttpMethod.Post:HttpMethod.Get, ehWeb + command);
 
+            if (args != null)
+                request.Content = new FormUrlEncodedContent(args);
+ 
             var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
@@ -704,10 +707,7 @@ namespace EH.Common
 
         public async Task<Terms> getTermsAsync()
         {
-            string apiResult = await ApiCallAsync("terms", new Dictionary<string, string>
-            {
-                { "eh", "true" }
-            });
+            string apiResult = await ApiCallAsync("terms?eh=true", null, false);
             try
             {
                 Terms Result = JsonConvert.DeserializeObject<Terms>(apiResult);
