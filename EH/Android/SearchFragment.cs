@@ -32,7 +32,7 @@ namespace EH.Android
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            return inflater.Inflate(Resource.Layout.Search, container, false);
+            return inflater.Inflate(Resource.Layout.search, container, false);
         }
 
         public override void OnActivityCreated(Bundle savedInstanceState)
@@ -73,6 +73,9 @@ namespace EH.Android
                 RequestPermissions(new string[] { Manifest.Permission.AccessFineLocation }, 0);
             else
                 Initialise();
+
+            if(savedInstanceState == null)
+                CheckExistingChargeStatus();
         }
 
         public override void OnStart()
@@ -243,6 +246,27 @@ namespace EH.Android
             request.SetPriority(LocationRequest.PriorityHighAccuracy);
             _lastAddress = null;
             LocationServices.FusedLocationApi.RequestLocationUpdates(_googleApiClient, request, this);
+        }
+
+        private async void CheckExistingChargeStatus()
+        {
+            try
+            {
+                var status = await SharedData.login.Api.getChargeStatusAsync(SharedData.login.Username, SharedData.login.Password, SharedData.deviceId);
+
+                if (status!=null && !status.completed)
+                {
+                    Intent i = new Intent(Context, typeof(ChargingActivity));
+                    i.PutExtra("sessionId", status.sessionId);
+                    i.PutExtra("pumpId", status.pumpId);
+                    i.PutExtra("connectorId", status.pumpConnector);
+                    StartActivity(i);
+                }
+            }
+            catch(EHApi.EHApiException e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
         }
     }
 

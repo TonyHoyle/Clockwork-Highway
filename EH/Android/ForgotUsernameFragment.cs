@@ -13,7 +13,7 @@ namespace EH.Android
 
         public override global::Android.App.Dialog OnCreateDialog(Bundle savedInstanceState)
         {
-            View view = Activity.LayoutInflater.Inflate(Resource.Layout.ForgotUsername, null);
+            View view = Activity.LayoutInflater.Inflate(Resource.Layout.forgotusername, null);
             _email = view.FindViewById<TextInputEditText>(Resource.Id.email);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity)

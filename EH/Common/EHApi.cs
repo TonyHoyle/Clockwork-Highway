@@ -700,6 +700,26 @@ namespace EH.Common
             }
         }
 
+        public async Task<ChargeStatus> getChargeStatusAsync(string identifier, string password, string deviceId)
+        {
+            string apiResult = await ApiCallAsync("getChargeStatus", new Dictionary<string, string>
+            {
+                { "identifier", identifier },
+                { "password", password },
+                { "deviceId", deviceId }
+            });
+            try
+            {
+                GetChargeStatusResult Result = JsonConvert.DeserializeObject<GetChargeStatusResult>(apiResult);
+                return Result.result;
+            }
+            catch (JsonSerializationException e)
+            {
+                Debug.WriteLine(e.Message);
+                return null;
+            }
+        }
+
         public async Task<Settings> getSettingsAsync()
         {
             string apiResult = await ApiCallAsync("getSettings", new Dictionary<string, string>

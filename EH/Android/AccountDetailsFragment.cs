@@ -11,7 +11,7 @@ namespace EH.Android
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            return inflater.Inflate(Resource.Layout.AccountDetails, container, false);
+            return inflater.Inflate(Resource.Layout.accountdetails, container, false);
         }
 
         public override void OnActivityCreated(Bundle savedInstanceState)

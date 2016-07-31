@@ -19,7 +19,7 @@ namespace EH.Android
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            return inflater.Inflate(Resource.Layout.Main, container, false);
+            return inflater.Inflate(Resource.Layout.main, container, false);
         }
 
         public override async void OnActivityCreated(Bundle savedInstanceState)
@@ -40,11 +40,6 @@ namespace EH.Android
             SharedData.httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("ClockworkHighway", "1.0alpha"));
             SharedData.httpClient.DefaultRequestHeaders.Add("Connection", "Keep-Alive");
 
-            SharedData.login = new EHLogin(SharedData.httpClient);
-            SharedData.deviceId = Settings.Secure.GetString(Context.ContentResolver, Settings.Secure.AndroidId);
-            SharedData.googleApi = new GoogleApi(SharedData.httpClient, Context.GetString(Resource.String.google_maps_key));
-            SharedData.settings = await SharedData.login.Api.getSettingsAsync();
-
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
             var username = prefs.GetString("username", "");
             var password = prefs.GetString("password", "");
@@ -55,6 +50,11 @@ namespace EH.Android
                 passwordPrompt.Text = "******";
             else
                 passwordPrompt.Text = "";
+
+            SharedData.login = new EHLogin(SharedData.httpClient);
+            SharedData.deviceId = Settings.Secure.GetString(Context.ContentResolver, Settings.Secure.AndroidId);
+            SharedData.googleApi = new GoogleApi(SharedData.httpClient, Context.GetString(Resource.String.google_maps_key));
+            SharedData.settings = await SharedData.login.Api.getSettingsAsync();
 
             passwordPrompt.EditorAction += (obj, e) => { if (e.ActionId == ImeAction.Done) OnLoginClick(obj, e); };
 

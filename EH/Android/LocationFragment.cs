@@ -20,7 +20,7 @@ namespace EH.Android
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            return inflater.Inflate(Resource.Layout.Location, container, false);
+            return inflater.Inflate(Resource.Layout.location, container, false);
         }
 
         public override async void OnActivityCreated(Bundle savedInstanceState)

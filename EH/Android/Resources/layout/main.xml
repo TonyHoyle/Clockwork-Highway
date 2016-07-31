@@ -89,6 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/loadingText"
         android:layout_centerHorizontal="true"
+        style="@style/Widget.AppCompat.ProgressBar"
         android:indeterminate="true"
         android:visibility="gone"
         android:id="@+id/loadingProgress" />

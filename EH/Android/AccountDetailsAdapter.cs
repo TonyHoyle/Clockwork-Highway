@@ -33,7 +33,7 @@ namespace EH.Android
             if (convertView == null)
             {
                 LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
-                view = inflater.Inflate(Resource.Layout.AccountDetailsLine, parent, false);
+                view = inflater.Inflate(Resource.Layout.accountdetailsline, parent, false);
                 tags = new AccountDetailsTags();
                 tags.title = view.FindViewById<TextView>(Resource.Id.title);
                 tags.text = view.FindViewById<TextView>(Resource.Id.text);

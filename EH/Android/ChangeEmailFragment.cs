@@ -16,7 +16,7 @@ namespace EH.Android
         {
             // Calling GetLayoutInflator for the dialog here causes a recursive loop as DialogFragment.GetLayoutInflator
             // contains a call to OnCreateDialog (which seems bogus but unfixed in latest android).
-            var view = Activity.LayoutInflater.Inflate(Resource.Layout.ChangeEmail, null);
+            var view = Activity.LayoutInflater.Inflate(Resource.Layout.changeemail, null);
             var username = view.FindViewById<TextView>(Resource.Id.username);
             _newEmail = view.FindViewById<TextInputEditText>(Resource.Id.email);
 

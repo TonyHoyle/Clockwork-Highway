@@ -15,6 +15,7 @@ namespace EH.Android
         private string _sessionId;
         private int _pumpId;
         private int _connectorId;
+        private bool _charging;
 
         private TextView _chargeStatus;
         private TextView _chargeTime;
@@ -22,10 +23,11 @@ namespace EH.Android
         private ProgressBar _progressBar;
         private Button _chargeStop;
         private Timer _timer;
+        private TextView _messageStop;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            return inflater.Inflate(Resource.Layout.Charging, container, false);
+            return inflater.Inflate(Resource.Layout.charging, container, false);
         }
 
         public override void OnActivityCreated(Bundle savedInstanceState)
@@ -41,8 +43,12 @@ namespace EH.Android
             _chargePower = View.FindViewById<TextView>(Resource.Id.chargePower);
             _progressBar = View.FindViewById<ProgressBar>(Resource.Id.progressBar);
             _chargeStop = View.FindViewById<Button>(Resource.Id.chargeStop);
+            _messageStop = View.FindViewById<TextView>(Resource.Id.messageStop);
 
             _chargeStop.Click += OnStopCharge;
+            _chargeStop.LongClick += OnTerminateCharge;
+
+            _messageStop.Visibility = ViewStates.Gone;
 
             _timer = new Timer();
             _timer.Interval = 5000;
@@ -55,9 +61,27 @@ namespace EH.Android
 
         private void OnStopCharge(object sender, EventArgs e)
         {
+            if (!_charging)
+            {
+                Activity.Finish();
+                return;
+            }
+
+            OnTerminateCharge(sender, e);
+        }
+
+        private void OnTerminateCharge(object sender, EventArgs e)
+        {
+            int msg;
+
+            if (_charging)
+                msg = Resource.String.areYouSureStop;
+            else
+                msg = Resource.String.areYouSureStop2;
+
             var dlg = new AlertDialog.Builder(Context)
                 .SetTitle(Resource.String.stopCharge)
-                .SetMessage(Resource.String.areYouSureStop)
+                .SetMessage(msg)
                 .SetPositiveButton("Yes", (obj, args) => { OnStopChargeYes(); })
                 .SetNegativeButton("No", (obj, args) => { })
                 .Create();
@@ -79,19 +103,31 @@ namespace EH.Android
         {
             var status = await SharedData.login.Api.getChargeStatusAsync(SharedData.deviceId, _sessionId, _pumpId, _connectorId, SharedData.login.Vehicle);
 
-            _chargeStatus.Text = status.message;
-            _chargePower.Text = String.Format(Context.GetString(Resource.String.powerSupplied), ((double)status.energyConsumption) / 100);
-            long mins = (UnixNow() - status.started) / 60;
-            _chargeTime.Text = String.Format(Context.GetString(Resource.String.chargingMinutes), mins);
-            _progressBar.Max = 30;
-            _progressBar.Progress = (int)Math.Max(30, mins);
+            Activity.RunOnUiThread(() =>
+            {
+                _chargeStatus.Text = status.message;
+                _chargePower.Text = String.Format(Context.GetString(Resource.String.powerSupplied), ((double)status.energyConsumption) / 100);
+                long mins;
+
+                if (status.started < UnixNow())
+                    mins = 0;
+                else
+                    mins = (UnixNow() - status.started) / 60;
+                _chargeTime.Text = String.Format(Context.GetString(Resource.String.chargingMinutes), mins);
+                _progressBar.Max = 30;
+                _progressBar.Progress = (int)Math.Max(30, mins);
+
+                if (status.completed)
+                {
+                    Activity.SetTitle(Resource.String.lastCharge);
+                    _messageStop.Visibility = ViewStates.Visible;
+                    _chargeStop.SetText(Resource.String.chargeFinished);
+                }
+                _charging = !status.completed;
+            });
 
             if (!status.completed)
                 _timer.Start();
-            else
-            {
-                _chargeStop.Visibility = ViewStates.Gone;
-            }
         }
 
         private static readonly DateTime _reference = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);

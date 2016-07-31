@@ -12,7 +12,7 @@ namespace EH.Android
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.EmptyLayout);
+            SetContentView(Resource.Layout.emptylayout);
 
             if (bundle == null)
             {

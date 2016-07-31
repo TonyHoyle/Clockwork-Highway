@@ -12,7 +12,7 @@ namespace EH.Android
         {
             // Calling GetLayoutInflator for the dialog here causes a recursive loop as DialogFragment.GetLayoutInflator
             // contains a call to OnCreateDialog (which seems bogus but unfixed in latest android).
-            var view = Activity.LayoutInflater.Inflate(Resource.Layout.TermsAndConditions, null);
+            var view = Activity.LayoutInflater.Inflate(Resource.Layout.termsandconditions, null);
             var terms = view.FindViewById<TextView>(Resource.Id.termsAndConditions);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity)

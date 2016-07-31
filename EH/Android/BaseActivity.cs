@@ -9,6 +9,7 @@ using Android.Support.V7.Preferences;
 using Android.Content;
 using System;
 using Android.Widget;
+using EH.Common;
 
 namespace EH.Android
 {
@@ -27,7 +28,7 @@ namespace EH.Android
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.MainMenu);
+            SetContentView(Resource.Layout.mainmenu);
 
             if(bundle == null)
             {
@@ -40,8 +41,8 @@ namespace EH.Android
                 _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
                 var navigationView = FindViewById<NavigationView>(Resource.Id.navigationView);
 
-                navigationView.InflateMenu(Resource.Menu.drawerMenu);
-                navigationView.InflateHeaderView(Resource.Layout.Header);
+                navigationView.InflateMenu(Resource.Menu.drawermenu);
+                navigationView.InflateHeaderView(Resource.Layout.header);
                 navigationView.SetNavigationItemSelectedListener(this);
 
                 var headerView = navigationView.GetHeaderView(0);
@@ -113,6 +114,27 @@ namespace EH.Android
             StartActivity(i);
         }
 
+        private async void LastCharge()
+        {
+            try
+            {
+                var status = await SharedData.login.Api.getChargeStatusAsync(SharedData.login.Username, SharedData.login.Password, SharedData.deviceId);
+
+                if (status != null)
+                {
+                    Intent i = new Intent(this, typeof(ChargingActivity));
+                    i.PutExtra("sessionId", status.sessionId);
+                    i.PutExtra("pumpId", status.pumpId);
+                    i.PutExtra("connectorId", status.pumpConnector);
+                    StartActivity(i);
+                }
+            }
+            catch (EHApi.EHApiException e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+        }
+
         public bool OnNavigationItemSelected(IMenuItem menuItem)
         {
             _drawerLayout.CloseDrawers();
@@ -128,6 +150,9 @@ namespace EH.Android
                 //                    break;
                 case Resource.Id.transactions: // Transactions
                     Transactions();
+                    break;
+                case Resource.Id.lastCharge:
+                    LastCharge();
                     break;
                 case Resource.Id.account: // Account
                     AccountDetails();

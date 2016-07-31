@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-  <group android:checkableBehavior="single">
+  <group android:id="@+id/menuGroup1" android:checkableBehavior="single">
     <item
       android:id="@+id/account"
       android:icon="@drawable/ic_account"
@@ -9,8 +9,12 @@
       android:id="@+id/transactions"
       android:icon="@drawable/ic_transactions"
       android:title="@string/transactions" />
+    <item
+        android:id="@+id/lastCharge"
+        android:icon="@drawable/ic_charge"
+        android:title="@string/lastCharge" />
   </group>
-  <group android:checkableBehavior="single">
+  <group android:id="@+id/menuGroup2" android:checkableBehavior="single">
 <!--    <item
       android:id="@+id/preferences"
       android:icon="@drawable/ic_settings"
@@ -24,7 +28,7 @@
       android:icon="@drawable/ic_terms"
       android:title="@string/terms" />
   </group>
-  <group android:checkableBehavior="single">
+  <group android:id="@+id/menuGroup3" android:checkableBehavior="single">
   <item
       android:id="@+id/logout"
       android:icon="@drawable/ic_logout"

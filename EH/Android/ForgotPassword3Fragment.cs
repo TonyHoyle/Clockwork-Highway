@@ -25,7 +25,7 @@ namespace EH.Android
                 HashKey2 = savedInstanceState.GetString("HashKey2");
             }
 
-            var view = Activity.LayoutInflater.Inflate(Resource.Layout.ForgotPassword3, null);
+            var view = Activity.LayoutInflater.Inflate(Resource.Layout.forgotpassword3, null);
             _newPassword = view.FindViewById<TextInputEditText>(Resource.Id.newPassword);
             _newPassword2 = view.FindViewById<TextInputEditText>(Resource.Id.newPassword2);
 

@@ -29,7 +29,7 @@ namespace EH.Android
             if (convertView == null)
             {
                 LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
-                view = inflater.Inflate(Resource.Layout.LocationLine, parent, false);
+                view = inflater.Inflate(Resource.Layout.locationline, parent, false);
                 tags = new LocationTags();
                 tags.pumpId = view.FindViewById<TextView>(Resource.Id.pumpid);
                 tags.status = view.FindViewById<TextView>(Resource.Id.status);
@@ -54,7 +54,7 @@ namespace EH.Android
         private void AddConnector(LinearLayout list, EHApi.Connector connector)
         {
             LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
-            var view = inflater.Inflate(Resource.Layout.LocationPumpLine, list, false);
+            var view = inflater.Inflate(Resource.Layout.locationpumpline, list, false);
 
             var name = view.FindViewById<TextView>(Resource.Id.name);
             var status = view.FindViewById<TextView>(Resource.Id.status);

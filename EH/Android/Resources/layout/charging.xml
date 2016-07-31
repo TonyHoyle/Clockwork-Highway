@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="16dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chargeStatus"
+        android:gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:textSize="16sp"
+        android:text="starting.." />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chargeTimePrompt"
+        android:gravity="center"
+        android:text="Charge time" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chargeTime"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:textColor="@color/primary_dark"
+        android:text="10 minutes" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:id="@+id/chargePowerPrompt"
+        android:text="Power drawn" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:gravity="center"
+        android:textColor="@color/primary_dark"
+        android:id="@+id/chargePower"
+        android:text="1Kw" />
+    </LinearLayout>
+    <ProgressBar
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:indeterminate="false"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/circular"
+        android:layout_centerInParent="true"
+        android:max="100"
+        android:progress="50"
+        android:id="@+id/progressBar" />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/chargeStop"
+        android:text="Stop Charge" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/messageStop"
+        android:gravity="center_horizontal"
+        android:layout_above="@id/chargeStop"
+        android:layout_marginBottom="8dp"
+        android:textSize="16sp"
+        android:text="@string/tidy" />
+</RelativeLayout>

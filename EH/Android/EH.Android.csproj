@@ -156,71 +156,71 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <AndroidResource Include="Resources\layout\Main.axml">
+    <AndroidResource Include="Resources\layout\main.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\PumpLine.axml">
+    <AndroidResource Include="Resources\layout\pumpline.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\Location.axml">
+    <AndroidResource Include="Resources\layout\location.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\LocationLine.axml">
+    <AndroidResource Include="Resources\layout\locationline.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\LocationPumpLine.axml" />
-    <AndroidResource Include="Resources\layout\MainMenu.axml">
+    <AndroidResource Include="Resources\layout\locationpumpline.xml" />
+    <AndroidResource Include="Resources\layout\mainmenu.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\Header.axml">
+    <AndroidResource Include="Resources\layout\header.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\DropdownLine.axml">
+    <AndroidResource Include="Resources\layout\dropdownline.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\AboutDialog.axml">
+    <AndroidResource Include="Resources\layout\aboutdialog.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\AccountDetails.axml">
+    <AndroidResource Include="Resources\layout\accountdetails.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\AccountDetailsLine.axml">
+    <AndroidResource Include="Resources\layout\accountdetailsline.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\ChangePassword.axml">
+    <AndroidResource Include="Resources\layout\changepassword.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\ForgotUsername.axml">
+    <AndroidResource Include="Resources\layout\forgotusername.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\ForgotPassword.axml">
+    <AndroidResource Include="Resources\layout\forgotpassword.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\ForgotPassword3.axml">
+    <AndroidResource Include="Resources\layout\forgotpassword3.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\ChangeEmail.axml">
+    <AndroidResource Include="Resources\layout\changeemail.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\EmptyLayout.axml">
+    <AndroidResource Include="Resources\layout\emptylayout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\StartCharge.axml">
+    <AndroidResource Include="Resources\layout\startcharge.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\TermsAndConditions.axml">
+    <AndroidResource Include="Resources\layout\termsandconditions.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\Transactions.axml">
+    <AndroidResource Include="Resources\layout\transactions.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\TransactionLine.axml" />
-    <AndroidResource Include="Resources\layout\Charging.axml">
+    <AndroidResource Include="Resources\layout\transactionline.xml" />
+    <AndroidResource Include="Resources\layout\charging.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Search.axml">
+    <AndroidResource Include="Resources\layout\search.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -269,7 +269,7 @@
     <AndroidResource Include="Resources\values-v21\style.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\menu\drawerMenu.xml">
+    <AndroidResource Include="Resources\menu\drawermenu.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -380,6 +380,24 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_terms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\circular.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_charge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_charge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_charge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ic_charge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_charge.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets')" />

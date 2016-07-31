@@ -10,7 +10,7 @@ namespace EH.Android
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity)
                 .SetTitle(Resource.String.ApplicationName)
-                .SetView(Resource.Layout.AboutDialog)
+                .SetView(Resource.Layout.aboutdialog)
                 .SetPositiveButton(Resource.String.ok, (sender, args) => { Dismiss(); });
             return builder.Create();
         }

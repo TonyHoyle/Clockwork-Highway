@@ -100,7 +100,7 @@ namespace EH.Android
             if (convertView == null)
             {
                 LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
-                view = inflater.Inflate(Resource.Layout.DropdownLine, parent, false);
+                view = inflater.Inflate(Resource.Layout.dropdownline, parent, false);
                 tags = new AddressTags();
                 tags.text = view.FindViewById<TextView>(Resource.Id.text);
                 view.Tag = tags;

@@ -24,7 +24,7 @@ namespace EH.Android
         {
             // Calling GetLayoutInflator for the dialog here causes a recursive loop as DialogFragment.GetLayoutInflator
             // contains a call to OnCreateDialog (which seems bogus but unfixed in latest android).
-            var view = Activity.LayoutInflater.Inflate(Resource.Layout.StartCharge, null);
+            var view = Activity.LayoutInflater.Inflate(Resource.Layout.startcharge, null);
 
             var location = JsonConvert.DeserializeObject<EHApi.LocationDetails>(Arguments.GetString("location"));
             var connectors = new List<string>();

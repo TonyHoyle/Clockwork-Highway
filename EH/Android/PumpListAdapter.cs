@@ -36,7 +36,7 @@ namespace EH.Android
             if (convertView == null)
             {
                 LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
-                view = inflater.Inflate(Resource.Layout.PumpLine, parent, false);
+                view = inflater.Inflate(Resource.Layout.pumpline, parent, false);
                 tags = new PumpTags();
                 tags.description = view.FindViewById<TextView>(Resource.Id.description);
                 tags.model = view.FindViewById<TextView>(Resource.Id.model);

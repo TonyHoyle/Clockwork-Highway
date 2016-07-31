@@ -40,7 +40,7 @@ namespace EH.Android
             if (convertView == null)
             {
                 LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
-                view = inflater.Inflate(Resource.Layout.TransactionLine, parent, false);
+                view = inflater.Inflate(Resource.Layout.transactionline, parent, false);
                 tags = new TransactionTags();
                 tags.date = view.FindViewById<TextView>(Resource.Id.date);
                 tags.session = view.FindViewById<TextView>(Resource.Id.session);
