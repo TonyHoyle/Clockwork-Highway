@@ -109,9 +109,9 @@ namespace EH.Common
         {
             var request = new HttpRequestMessage(HttpMethod.Get, String.Format(url, args));
 
-            Debug.WriteLine(request.RequestUri.AbsoluteUri);
-
-            var response = await _httpClient.SendAsync(request);
+            // Under jelly bean SendAsync can throw a NetworkOnMainThreadException, so
+            // we have to do wrap it in a task 
+            var response = await Task.Run(() => _httpClient.SendAsync(request));
 
             if (!response.IsSuccessStatusCode)
                 throw new GoogleApiException("Unable to call google API - " + response.ReasonPhrase);

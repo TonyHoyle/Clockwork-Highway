@@ -103,6 +103,12 @@ namespace EH.Android
         {
             var status = await SharedData.login.Api.getChargeStatusAsync(SharedData.deviceId, _sessionId, _pumpId, _connectorId, SharedData.login.Vehicle);
 
+            if (status == null)
+            {
+                _timer.Start();
+                return;
+            }
+
             Activity.RunOnUiThread(() =>
             {
                 _chargeStatus.Text = status.message;
@@ -116,6 +122,9 @@ namespace EH.Android
                 _chargeTime.Text = String.Format(Context.GetString(Resource.String.chargingMinutes), mins);
                 _progressBar.Max = 30;
                 _progressBar.Progress = (int)Math.Max(30, mins);
+
+                if (status.started == 0)
+                    status.completed = true;
 
                 if (status.completed)
                 {
@@ -135,6 +144,14 @@ namespace EH.Android
         private long UnixNow()
         {
             return (long)(DateTime.Now - _reference).TotalSeconds;
+        }
+
+        public override void OnStop()
+        {
+            base.OnStop();
+
+            if(_timer != null)
+                _timer.Stop();
         }
     }
 }

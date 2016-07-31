@@ -376,8 +376,10 @@ namespace EH.Common
 
             if (args != null)
                 request.Content = new FormUrlEncodedContent(args);
- 
-            var response = await _httpClient.SendAsync(request);
+
+            // Under jelly bean SendAsync can throw a NetworkOnMainThreadException, so
+            // we have to do wrap it in a task 
+            var response = await Task.Run(() => _httpClient.SendAsync(request));
 
             if (!response.IsSuccessStatusCode)
                 throw new EHApiException("Unable to call "+command+" - "+response.ReasonPhrase);
