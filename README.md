@@ -21,4 +21,4 @@ Everything can be compiled just with the free visual studio community edition.  
 
 * Ecotricity, for creating the API
 * Scott Helme, for doing the work of documenting it so thoroughly
-* Benjamin STAWARZ for creating the \'Car with cog\' icon - used under license CC BY 3.0 - https://creativecommons.org/licenses/by/3.0/
+* Benjamin STAWARZ for creating the 'Car with cog' icon - used under license CC BY 3.0 - https://creativecommons.org/licenses/by/3.0/
