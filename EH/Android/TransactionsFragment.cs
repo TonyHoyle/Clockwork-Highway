@@ -2,11 +2,10 @@ using Android.Support.V4.App;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Widget;
-using EH.Common;
-using System.Collections.Generic;
+using TonyHoyle.EH;
 using System.Linq;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     public class TransactionsFragment : DialogFragment
     {

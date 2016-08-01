@@ -5,7 +5,7 @@ using Android.Content;
 using System.Collections.Generic;
 using Android.Support.V7.Preferences;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     public class SelectVehicleFragment : DialogFragment
     {

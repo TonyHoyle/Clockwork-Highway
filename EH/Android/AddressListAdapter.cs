@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using Android.Content;
 using Android.Widget;
 using Android.Views;
-using EH.Common;
+using TonyHoyle.EH;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     class FoundAddress : Java.Lang.Object
     {

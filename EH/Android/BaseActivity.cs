@@ -1,17 +1,15 @@
 using Android.Support.V7.App;
 using Android.Support.V4.App;
 using Android.OS;
-using Android.Support.V7.Widget;
 using Android.Support.V4.Widget;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Support.V7.Preferences;
 using Android.Content;
-using System;
 using Android.Widget;
-using EH.Common;
+using TonyHoyle.EH;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     public class BaseActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {

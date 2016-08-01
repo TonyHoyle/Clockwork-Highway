@@ -2,13 +2,12 @@ using Android.OS;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
-using System.Collections.Generic;
 using System;
 using System.Timers;
-using EH.Common;
+using TonyHoyle.EH;
 using Android.Support.V7.App;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     public class ChargingFragment : Fragment
     {

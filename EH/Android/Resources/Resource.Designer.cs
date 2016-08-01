@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("EH.Android.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("ClockworkHighway.Android.Resource", IsApplication=true)]
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
 	
 	

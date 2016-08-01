@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using Android.App;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -13,6 +14,12 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
+
+#if DEBUG
+[assembly: Application(Debuggable=true, Icon = "@mipmap/ic_launcher")]
+#else
+[assembly: Application(Debuggable = false, Icon = "@mipmap/ic_launcher")]
+#endif
 
 // Version information for an assembly consists of the following four values:
 //

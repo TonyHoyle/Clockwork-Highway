@@ -4,7 +4,7 @@ using Android.Content.PM;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     [Activity(Label = "@string/ApplicationName", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : AppCompatActivity

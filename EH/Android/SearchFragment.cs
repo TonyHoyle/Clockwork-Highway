@@ -12,10 +12,10 @@ using Android.Views.InputMethods;
 using Android.Content;
 using Android.Views;
 using Android.Support.V4.App;
-using EH.Common;
+using TonyHoyle.EH;
 using Newtonsoft.Json;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     public class SearchFragment : Fragment,
         GoogleApiClient.IConnectionCallbacks,

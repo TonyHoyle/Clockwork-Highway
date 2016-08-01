@@ -6,14 +6,14 @@ using Android.Content;
 using Android.Widget;
 using Android.Views;
 using Android.Support.V4.App;
-using EH.Common;
+using TonyHoyle.EH;
 using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     public class MainFragment : Fragment
     {

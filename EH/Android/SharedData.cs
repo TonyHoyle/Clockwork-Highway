@@ -1,7 +1,7 @@
-using EH.Common;
+using TonyHoyle.EH;
 using System.Net.Http;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     static class SharedData
     {

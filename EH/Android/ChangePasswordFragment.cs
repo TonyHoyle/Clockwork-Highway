@@ -3,11 +3,11 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Widget;
 using Android.Support.Design.Widget;
-using EH.Common;
+using TonyHoyle.EH;
 using Android.Content;
 using Android.Support.V7.Preferences;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     public class ChangePasswordFragment : DialogFragment
     {

@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     class AccountDetailsLine
     {

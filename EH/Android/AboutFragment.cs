@@ -2,7 +2,7 @@ using Android.Support.V4.App;
 using Android.OS;
 using Android.Support.V7.App;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     public class AboutFragment : DialogFragment
     {

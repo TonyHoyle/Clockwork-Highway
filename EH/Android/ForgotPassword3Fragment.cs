@@ -1,13 +1,13 @@
 using Android.Support.V4.App;
 using Android.OS;
 using Android.Support.V7.App;
-using EH.Common;
+using TonyHoyle.EH;
 using Android.Support.Design.Widget;
 using Android.Widget;
 using Android.Content;
 using Android.Support.V7.Preferences;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     public class ForgotPassword3Fragment : DialogFragment
     {

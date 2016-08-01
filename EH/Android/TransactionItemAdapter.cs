@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
-using EH.Common;
+using TonyHoyle.EH;
 using Nito.AsyncEx;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     class TransactionItemAdapter : ArrayAdapter<EHApi.ContractAccount>
     {

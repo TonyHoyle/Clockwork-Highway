@@ -1,11 +1,11 @@
 using Android.Support.V4.App;
 using Android.OS;
 using Android.Support.V7.App;
-using EH.Common;
+using TonyHoyle.EH;
 using Android.Content;
 using Android.Widget;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     public class ForgotPassword2Fragment : DialogFragment
     {

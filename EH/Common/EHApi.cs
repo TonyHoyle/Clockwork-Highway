@@ -5,9 +5,8 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Diagnostics;
 using Newtonsoft.Json.Linq;
-using System.Net.Http.Headers;
 
-namespace EH.Common
+namespace TonyHoyle.EH
 {
     public class EHApi
     {

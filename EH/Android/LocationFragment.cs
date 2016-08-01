@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Android.Support.V4.App;
 using Android.OS;
 using Android.Widget;
@@ -6,11 +5,9 @@ using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Views;
 using Android.Support.V7.App;
-using EH.Common;
-using Android.Content;
-using System;
+using TonyHoyle.EH;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     public class LocationFragment : Fragment, IOnMapReadyCallback
     {

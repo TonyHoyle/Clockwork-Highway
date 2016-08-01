@@ -5,7 +5,7 @@ using Android.Widget;
 using System.Collections.Generic;
 using System;
 
-namespace EH.Android
+namespace ClockworkHighway.Android
 {
     public class AccountDetailsFragment : Fragment
     {
