@@ -15,18 +15,26 @@ namespace ClockworkHighway.Android
     {
         private global::Android.Support.V7.App.ActionBarDrawerToggle _drawerToggle;
         private DrawerLayout _drawerLayout;
+        private int _layoutId;
         public Fragment Fragment { get; private set; }
 
         public BaseActivity(Fragment fragment)
         {
             this.Fragment = fragment;
+            _layoutId = Resource.Layout.mainmenu;
+        }
+
+        public BaseActivity(Fragment fragment, int layout)
+        {
+            this.Fragment = fragment;
+            _layoutId = layout;
         }
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.mainmenu);
+            SetContentView(_layoutId);
 
             if(bundle == null)
             {

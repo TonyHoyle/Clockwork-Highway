@@ -14,6 +14,7 @@ using Android.Views;
 using Android.Support.V4.App;
 using TonyHoyle.EH;
 using Newtonsoft.Json;
+using Android.Support.V4.View;
 
 namespace ClockworkHighway.Android
 {
@@ -42,12 +43,14 @@ namespace ClockworkHighway.Android
             if(savedInstanceState != null)
                 _lastAddress = JsonConvert.DeserializeObject<FoundAddress>(savedInstanceState.GetString("lastAddress"));
 
-            var text = View.FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
+            // This is a child of the coordinator layout in the toolbar
+            var text = Activity.FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
+            var scr = View.FindViewById<RelativeLayout>(Resource.Id.scroller);
 
             text.Threshold = 1;
             text.Adapter = new AddressListAdapter(Context);
             text.ItemClick += (sender, args) => { AddressChanged((AddressListAdapter)text.Adapter, args.Position); };
-            text.ClearFocus();
+            scr.RequestFocus();
             text.Touch += (sender, args) =>
             {
                 bool handled = false;
@@ -68,6 +71,8 @@ namespace ClockworkHighway.Android
 
             var pumps = View.FindViewById<ListView>(Resource.Id.listPumps);
             pumps.ItemClick += (sender, args) => { OnItemClick((PumpListAdapter)pumps.Adapter, args.Position); };
+
+            ViewCompat.SetNestedScrollingEnabled(pumps, true);
 
             if (ActivityCompat.CheckSelfPermission(Context, Manifest.Permission.AccessFineLocation) != Permission.Granted)
                 RequestPermissions(new string[] { Manifest.Permission.AccessFineLocation }, 0);
@@ -107,7 +112,7 @@ namespace ClockworkHighway.Android
 
         public async void OnLocationChanged(Location location)
         {
-            var text = View.FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
+            var text = Activity.FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
 
             SharedData.lastLocation = new GoogleApi.LatLong() { lat = location.Latitude, lng = location.Longitude };
 
@@ -139,10 +144,11 @@ namespace ClockworkHighway.Android
 
         private async void SetToAddress(FoundAddress address)
         {
-            var text = View.FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
+            var text = Activity.FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
+            var scr = View.FindViewById<RelativeLayout>(Resource.Id.scroller);
 
             text.SetText(new Java.Lang.String(address.Title), false);
-            text.ClearFocus();
+            scr.RequestFocus();
             _lastAddress = address;
 
             InputMethodManager input = (InputMethodManager)Context.GetSystemService(Context.InputMethodService);
@@ -194,8 +200,8 @@ namespace ClockworkHighway.Android
         {
             var pump = adapter.GetItem(position);
 
-            var text = View.FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
-            text.ClearFocus();
+            var scr = View.FindViewById<RelativeLayout>(Resource.Id.scroller);
+            scr.RequestFocus();
 
             Intent i = new Intent(Context, typeof(LocationActivity));
             i.PutExtra("locationId", Convert.ToInt32(pump.locationId));

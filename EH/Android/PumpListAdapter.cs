@@ -13,6 +13,7 @@ namespace ClockworkHighway.Android
         private class PumpTags : Java.Lang.Object
         {
             public TextView description;
+            public TextView location;
             public TextView model;
             public TextView distance;
             public CheckedTextView available;
@@ -34,6 +35,7 @@ namespace ClockworkHighway.Android
                 view = inflater.Inflate(Resource.Layout.pumpline, parent, false);
                 tags = new PumpTags();
                 tags.description = view.FindViewById<TextView>(Resource.Id.description);
+                tags.location = view.FindViewById<TextView>(Resource.Id.location);
                 tags.model = view.FindViewById<TextView>(Resource.Id.model);
                 tags.distance = view.FindViewById<TextView>(Resource.Id.distance);
                 tags.available = view.FindViewById<CheckedTextView>(Resource.Id.available);
@@ -45,7 +47,8 @@ namespace ClockworkHighway.Android
 
             var item = GetItem(position);
 
-            tags.description.Text = item.name + ", " + item.location + ", " + item.postcode;
+            tags.description.Text = item.name;
+            tags.location.Text = item.location + ", " + item.postcode;
             tags.model.Text = item.pumpModel;
             tags.distance.Text =  Math.Round(item.distance, 2).ToString() + " Miles";
             if (!item.swipeOnly)

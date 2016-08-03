@@ -1,47 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="8dp"
-    android:paddingBottom="8dp"
-    android:minWidth="25px"
-    android:minHeight="25px">
+    android:paddingBottom="8dp">
     <TextView
         android:text="Description"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="16sp"
         android:id="@+id/description" />
     <TextView
-        android:text="Model"
-        android:layout_width="match_parent"
+        android:text="Location"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/description"
+        android:textSize="14sp"
+        android:id="@+id/location" />
+    <TextView
+        android:text="Model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_below="@id/location"
         android:id="@+id/model" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="Distance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:id="@+id/distance" />
-        <CheckedTextView
-            android:text="@string/available"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-            android:id="@+id/available" />
-        <TextView
-            android:text="@string/swipeonly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:id="@+id/swipeonly" />
-    </RelativeLayout>
-</LinearLayout>
+    <TextView
+        android:text="Distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/model"
+        android:textSize="14sp"
+        android:id="@+id/distance" />
+    <CheckedTextView
+        android:text="@string/available"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/distance"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:id="@+id/available" />
+    <TextView
+        android:text="@string/swipeonly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/distance"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:id="@+id/swipeonly" />
+</RelativeLayout>

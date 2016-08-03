@@ -12,7 +12,7 @@ namespace ClockworkHighway.Android
     {
         private class LocationTags : Java.Lang.Object
         {
-            public TextView status;
+//            public TextView status;
             public TextView pumpId;
             public LinearLayout pumpList;
         }
@@ -32,7 +32,7 @@ namespace ClockworkHighway.Android
                 view = inflater.Inflate(Resource.Layout.locationline, parent, false);
                 tags = new LocationTags();
                 tags.pumpId = view.FindViewById<TextView>(Resource.Id.pumpid);
-                tags.status = view.FindViewById<TextView>(Resource.Id.status);
+//                tags.status = view.FindViewById<TextView>(Resource.Id.status);
                 tags.pumpList = view.FindViewById<LinearLayout>(Resource.Id.pumplist);
                 view.Tag = tags;
             }
@@ -42,7 +42,7 @@ namespace ClockworkHighway.Android
             var item = GetItem(position);
 
             tags.pumpId.Text = "Pump "+item.pumpId;
-            tags.status.Text = item.status;
+//            tags.status.Text = item.status;
 
             tags.pumpList.RemoveAllViews();
             foreach(var c in item.connector)
@@ -59,13 +59,8 @@ namespace ClockworkHighway.Android
             var name = view.FindViewById<TextView>(Resource.Id.name);
             var status = view.FindViewById<TextView>(Resource.Id.status);
 
-            Color colour;
-
-            if (connector.compatible.Length > 0) colour = Color.Black;
-            else colour = Color.LightGray;
-
-            name.SetTextColor(colour);
-            status.SetTextColor(colour);
+            name.Enabled = connector.compatible.Length > 0;
+            status.Enabled = connector.compatible.Length > 0;
 
             name.Text = connector.name;
             status.Text = connector.status;
