@@ -4,32 +4,33 @@ using Android.Support.V7.App;
 using Android.Widget;
 using TonyHoyle.EH;
 using System.Linq;
+using Android.Views;
 
 namespace ClockworkHighway.Android
 {
-    public class TransactionsFragment : DialogFragment
+    public class TransactionsFragment : Fragment
     {
-        public override global::Android.App.Dialog OnCreateDialog(Bundle savedInstanceState)
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            return inflater.Inflate(Resource.Layout.transactions, container, false);
+        }
+
+        public override void OnActivityCreated(Bundle savedInstanceState)
+        {
+            base.OnActivityCreated(savedInstanceState);
+
             // Calling GetLayoutInflator for the dialog here causes a recursive loop as DialogFragment.GetLayoutInflator
             // contains a call to OnCreateDialog (which seems bogus but unfixed in latest android).
-            var view = Activity.LayoutInflater.Inflate(Resource.Layout.transactions, null);
-            var list = view.FindViewById<ListView>(Resource.Id.transactions);
-            var progress = view.FindViewById<ProgressBar>(Resource.Id.loadingProgress);
+            var list = View.FindViewById<ListView>(Resource.Id.transactions);
+            var progress = View.FindViewById<ProgressBar>(Resource.Id.loadingProgress);
 
             var adapter = new TransactionItemAdapter(Context);
             list.Adapter = adapter;
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(Activity)
-                .SetTitle(Resource.String.transactions)
-                .SetView(view)
-                .SetPositiveButton(Resource.String.ok, (sender, args) => { });
-            var dlg = builder.Create();
-            loadTransactions(dlg, list, adapter, progress);
-            return dlg;
+            loadTransactions(list, adapter, progress);
         }
 
-        private async void loadTransactions(AlertDialog dlg, ListView list, TransactionItemAdapter adapter, ProgressBar progress)
+        private async void loadTransactions(ListView list, TransactionItemAdapter adapter, ProgressBar progress)
         {
             try
             {

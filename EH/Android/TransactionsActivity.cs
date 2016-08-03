@@ -6,8 +6,8 @@ using Android.Views;
 
 namespace ClockworkHighway.Android
 {
-    [Activity(Label = "@string/account")]
-    public class AccountDetailsActivity : AppCompatActivity
+    [Activity(Label = "@string/transactions")]
+    public class TransactionsActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
@@ -22,7 +22,7 @@ namespace ClockworkHighway.Android
 
                 SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-                var fragment = new AccountDetailsFragment();
+                var fragment = new TransactionsFragment();
                 fragment.Arguments = Intent.Extras;
 
                 SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, fragment).Commit();
@@ -31,7 +31,7 @@ namespace ClockworkHighway.Android
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            switch(item.ItemId)
+            switch (item.ItemId)
             {
                 case global::Android.Resource.Id.Home:
                     Finish();

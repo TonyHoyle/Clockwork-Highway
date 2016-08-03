@@ -136,6 +136,7 @@
   <ItemGroup>
     <Compile Include="ChargingFragment.cs" />
     <Compile Include="ChargingActivity.cs" />
+    <Compile Include="TransactionsActivity.cs" />
     <Compile Include="TransactionItemAdapter.cs" />
     <Compile Include="TransactionsFragment.cs" />
     <Compile Include="TermsFragment.cs" />
@@ -413,6 +414,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\mainmenusearch.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\childactivity.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets')" />

@@ -110,8 +110,8 @@ namespace ClockworkHighway.Android
 
         private void Transactions()
         {
-            DialogFragment transactions = new TransactionsFragment();
-            transactions.Show(SupportFragmentManager, "TransactionsFragment");
+            Intent i = new Intent(this, typeof(TransactionsActivity));
+            StartActivity(i);
         }
 
         private void AccountDetails()
