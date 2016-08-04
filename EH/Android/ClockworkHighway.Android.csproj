@@ -58,7 +58,7 @@
     <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
     <EnableProguard>False</EnableProguard>
     <DebugSymbols>False</DebugSymbols>
-    <AndroidSupportedAbis>armeabi-v7a,x86</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
