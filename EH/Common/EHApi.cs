@@ -51,7 +51,7 @@ namespace TonyHoyle.EH
             }
         }
 
-        private class EmptyStringIsZeroConverter<T> : JsonConverter where T:IComparable
+/*        private class EmptyStringIsZeroConverter<T> : JsonConverter where T:IComparable
         {
             public override bool CanConvert(Type objectType)
             {
@@ -78,7 +78,7 @@ namespace TonyHoyle.EH
             {
                 throw new NotImplementedException();
             }
-        }
+        } */
 
         public EHApi(HttpClient client)
         {
@@ -233,13 +233,12 @@ namespace TonyHoyle.EH
         public class ConnectorCost
         {
             public int connectorId { get; set; }
-            public double totalCost { get; set; }
-            public double baseCost { get; set; }
-            public double discountEcoGrp { get; set; }
-            public double discountMultiChg { get; set; }
-            public double surcharge { get; set; }
-            [JsonConverter(typeof(EmptyStringIsZeroConverter<double>))]
-            public double freecost { get; set; }
+            public decimal totalCost { get; set; }
+            public decimal baseCost { get; set; }
+            public decimal discountEcoGrp { get; set; }
+            public decimal discountMultiChg { get; set; }
+            public decimal surcharge { get; set; }
+            public string freecost { get; set; } // boolean?
             public string currency { get; set; }
             public string sessionId { get; set; }
             public int sessionDuration { get; set; }
@@ -337,16 +336,16 @@ namespace TonyHoyle.EH
         {
             public string documentNo { get; set; }
             public string sessionId { get; set; }
-            public double totalCost { get; set; }
+            public decimal totalCost { get; set; }
             public string currency { get; set; }
             public string date { get; set; }
             public int pumpId { get; set; }
             public int pumpConnector { get; set; }
-            public double baseCost { get; set; }
-            public double discountEcoGrp { get; set; }
-            public double discountMultiChg { get; set; }
-            public double surcharge { get; set; }
-            public double freeCost { get; set; }
+            public decimal baseCost { get; set; }
+            public decimal discountEcoGrp { get; set; }
+            public decimal discountMultiChg { get; set; }
+            public decimal surcharge { get; set; }
+            public string freeCost { get; set; } // boolean?
         }
 
         public class ContractTransaction

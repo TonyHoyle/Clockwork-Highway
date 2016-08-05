@@ -55,7 +55,7 @@ namespace ClockworkHighway.Android
 
             tags.session.Text = item.sessionId;
             tags.date.Text = DateTime.ParseExact(item.date, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture).ToLongDateString();
-            tags.cost.Text = Convert.ToDecimal(item.totalCost).ToString("C2");
+            tags.cost.Text = item.totalCost.ToString("C2");
 
             if (SharedData.login.Api.pumpConnectorsAreCached(item.pumpId))
                 tags.pump.Text = SharedData.login.Api.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, item.pumpId, SharedData.deviceId, SharedData.login.Vehicle).Result.name;

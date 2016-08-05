@@ -73,8 +73,8 @@ namespace ClockworkHighway.Android
 
             pumpId.Text = location.pumpId.ToString();
             locationName.Text = location.name;
-            float pp;
-            float pm;
+            decimal pp;
+            int pm;
 
             // This is all because async is a bloody virus.. there's no way of calling the API on a non-void function.
             using (var h = new Handler(Looper.MainLooper))
@@ -84,8 +84,8 @@ namespace ClockworkHighway.Android
                     {
                         var eh = SharedData.login.Api;
                         var connectorDetails = await eh.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, Convert.ToInt32(location.pumpId), SharedData.deviceId, SharedData.login.Vehicle);
-                        pp = (float)Convert.ToDouble(connectorDetails.connectorCost[0].baseCost);
-                        pm = Convert.ToInt32(connectorDetails.connectorCost[0].sessionDuration);
+                        pp = connectorDetails.connectorCost[0].baseCost;
+                        pm = connectorDetails.connectorCost[0].sessionDuration;
                         _connectorCost = connectorDetails.connectorCost;
                     }
                     catch (EHApi.EHApiException e)
