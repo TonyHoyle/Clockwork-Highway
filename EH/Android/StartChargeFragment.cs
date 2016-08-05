@@ -75,6 +75,7 @@ namespace ClockworkHighway.Android
             locationName.Text = location.name;
             decimal pp;
             int pm;
+            bool free;
 
             // This is all because async is a bloody virus.. there's no way of calling the API on a non-void function.
             using (var h = new Handler(Looper.MainLooper))
@@ -84,8 +85,9 @@ namespace ClockworkHighway.Android
                     {
                         var eh = SharedData.login.Api;
                         var connectorDetails = await eh.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, Convert.ToInt32(location.pumpId), SharedData.deviceId, SharedData.login.Vehicle);
-                        pp = connectorDetails.connectorCost[0].baseCost;
+                        pp = connectorDetails.connectorCost[0].baseCost - connectorDetails.connectorCost[0].discountEcoGrp;
                         pm = connectorDetails.connectorCost[0].sessionDuration;
+                        free = connectorDetails.connectorCost[0].freecost.Length > 0;
                         _connectorCost = connectorDetails.connectorCost;
                     }
                     catch (EHApi.EHApiException e)
@@ -93,9 +95,13 @@ namespace ClockworkHighway.Android
                         System.Diagnostics.Debug.WriteLine(e.Message);
                         pp = 5;
                         pm = 30;
+                        free = false;
                     }
 
-                    price.Text = "Ecotricity charge £" + pp.ToString() + " per " + pm.ToString() + " minute charge session.  All transactions are strictly between Ecotricity and the Car Owner.";
+                    if(!free)
+                        price.Text = "Ecotricity will charge £" + pp.ToString() + " per " + pm.ToString() + " minute charge session.  All transactions are strictly between Ecotricity and the Car Owner.";
+                    else
+                        price.Text = "This pump is free for up to " + pm.ToString() + " minutes";
                 });
 
 
