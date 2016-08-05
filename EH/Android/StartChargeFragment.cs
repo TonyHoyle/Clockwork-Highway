@@ -85,7 +85,7 @@ namespace ClockworkHighway.Android
                     {
                         var eh = SharedData.login.Api;
                         var connectorDetails = await eh.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, Convert.ToInt32(location.pumpId), SharedData.deviceId, SharedData.login.Vehicle);
-                        pp = connectorDetails.connectorCost[0].baseCost - connectorDetails.connectorCost[0].discountEcoGrp;
+                        pp = connectorDetails.connectorCost[0].baseCost + connectorDetails.connectorCost[0].discountEcoGrp;
                         pm = connectorDetails.connectorCost[0].sessionDuration;
                         free = connectorDetails.connectorCost[0].freecost.Length > 0;
                         _connectorCost = connectorDetails.connectorCost;

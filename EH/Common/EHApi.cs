@@ -308,8 +308,8 @@ namespace TonyHoyle.EH
             public string cost { get; set; }
             public string sessionId { get; set; }
             public int energyConsumption { get; set; }
-            public long started { get; set; }
-            public long finished { get; set; }
+            public string started { get; set; }
+            public string finished { get; set; }
             public int pumpId { get; set; }
             public int pumpConnector { get; set; }
             public string createdDate { get; set; }

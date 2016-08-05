@@ -6,6 +6,7 @@ using System;
 using System.Timers;
 using TonyHoyle.EH;
 using Android.Support.V7.App;
+using System.Globalization;
 
 namespace ClockworkHighway.Android
 {
@@ -47,12 +48,10 @@ namespace ClockworkHighway.Android
             _chargeStop.Click += OnStopCharge;
             _chargeStop.LongClick += OnTerminateCharge;
 
-            _messageStop.Visibility = ViewStates.Gone;
-
             _timer = new Timer();
             _timer.Interval = 5000;
             _timer.Elapsed += new ElapsedEventHandler(OnTimer);
-            _timer.AutoReset = false;
+            _timer.AutoReset = true;
             _timer.Enabled = true;
 
             OnTimer(this, null);
@@ -62,6 +61,7 @@ namespace ClockworkHighway.Android
         {
             if (!_charging)
             {
+                _timer.Enabled = false;
                 Activity.Finish();
                 return;
             }
@@ -103,46 +103,39 @@ namespace ClockworkHighway.Android
             var status = await SharedData.login.Api.getChargeStatusAsync(SharedData.deviceId, _sessionId, _pumpId, _connectorId, SharedData.login.Vehicle);
 
             if (status == null)
-            {
-                _timer.Start();
                 return;
-            }
 
             Activity.RunOnUiThread(() =>
             {
                 _chargeStatus.Text = status.message;
-                _chargePower.Text = String.Format(Context.GetString(Resource.String.powerSupplied), ((double)status.energyConsumption) / 100);
+                _chargePower.Text = String.Format(Context.GetString(Resource.String.powerSupplied), ((double)status.energyConsumption) / 1000);
                 long mins;
+                TimeSpan diff;
+                DateTime started = DateTime.ParseExact(status.started, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
 
-                if (status.started < UnixNow())
-                    mins = 0;
+                if(string.IsNullOrEmpty(status.finished))
+                    diff = DateTime.Now - started;
                 else
-                    mins = (UnixNow() - status.started) / 60;
+                {
+                    DateTime finished = DateTime.ParseExact(status.finished, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+                    diff = finished - started;
+                };
+ 
+                mins = (long)diff.TotalMinutes;
                 _chargeTime.Text = String.Format(Context.GetString(Resource.String.chargingMinutes), mins);
                 _progressBar.Max = 30;
                 _progressBar.Progress = (int)Math.Max(30, mins);
 
-                if (status.started == 0)
-                    status.completed = true;
-
                 if (status.completed)
                 {
                     Activity.SetTitle(Resource.String.lastCharge);
-                    _messageStop.Visibility = ViewStates.Visible;
-                    _chargeStop.SetText(Resource.String.chargeFinished);
+                    _chargeStop.SetText(Resource.String.chargeFinished);                    
                 }
                 _charging = !status.completed;
             });
 
-            if (!status.completed)
-                _timer.Start();
-        }
-
-        private static readonly DateTime _reference = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-
-        private long UnixNow()
-        {
-            return (long)(DateTime.Now - _reference).TotalSeconds;
+            if (status.completed)
+                _timer.Enabled = false;
         }
 
         public override void OnStop()

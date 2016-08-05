@@ -260,7 +260,7 @@ namespace ClockworkHighway.Android
             {
                 var status = await SharedData.login.Api.getChargeStatusAsync(SharedData.login.Username, SharedData.login.Password, SharedData.deviceId);
 
-                if (status!=null && status.started > 0 && !status.completed)
+                if (status!=null && status.started != "" && !status.completed)
                 {
                     Intent i = new Intent(Context, typeof(ChargingActivity));
                     i.PutExtra("sessionId", status.sessionId);
