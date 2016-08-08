@@ -215,9 +215,6 @@
     <AndroidResource Include="Resources\layout\changeemail.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\emptylayout.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\startcharge.xml">
       <SubType>Designer</SubType>
     </AndroidResource>

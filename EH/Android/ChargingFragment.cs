@@ -45,6 +45,8 @@ namespace ClockworkHighway.Android
             _chargeStop = View.FindViewById<Button>(Resource.Id.chargeStop);
             _messageStop = View.FindViewById<TextView>(Resource.Id.messageStop);
 
+            _messageStop.Visibility = ViewStates.Gone;
+
             _chargeStop.Click += OnStopCharge;
             _chargeStop.LongClick += OnTerminateCharge;
 
@@ -111,7 +113,12 @@ namespace ClockworkHighway.Android
                 _chargePower.Text = String.Format(Context.GetString(Resource.String.powerSupplied), ((double)status.energyConsumption) / 1000);
                 long mins;
                 TimeSpan diff;
-                DateTime started = DateTime.ParseExact(status.started, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+                DateTime started;
+
+                if (string.IsNullOrEmpty(status.started))
+                    started = DateTime.Now;
+                else
+                    started = DateTime.ParseExact(status.started, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
 
                 if(string.IsNullOrEmpty(status.finished))
                     diff = DateTime.Now - started;
@@ -124,12 +131,13 @@ namespace ClockworkHighway.Android
                 mins = (long)diff.TotalMinutes;
                 _chargeTime.Text = String.Format(Context.GetString(Resource.String.chargingMinutes), mins);
                 _progressBar.Max = 30;
-                _progressBar.Progress = (int)Math.Max(30, mins);
+                _progressBar.Progress = (int)Math.Min(30, mins);
 
                 if (status.completed)
                 {
                     Activity.SetTitle(Resource.String.lastCharge);
-                    _chargeStop.SetText(Resource.String.chargeFinished);                    
+                    _chargeStop.SetText(Resource.String.chargeFinished);
+                    _messageStop.Visibility = ViewStates.Visible;                   
                 }
                 _charging = !status.completed;
             });
@@ -138,12 +146,23 @@ namespace ClockworkHighway.Android
                 _timer.Enabled = false;
         }
 
-        public override void OnStop()
+        public override void OnPause()
         {
-            base.OnStop();
+            base.OnPause();
 
-            if(_timer != null)
+            if (_timer != null)
                 _timer.Stop();
+        }
+
+        public override void OnResume()
+        {
+            base.OnResume();
+
+            if (_timer != null && _timer.Enabled)
+            {
+                _timer.Start();
+                OnTimer(this,null);
+            }
         }
     }
 }

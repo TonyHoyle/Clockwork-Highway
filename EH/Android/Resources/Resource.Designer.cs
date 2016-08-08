@@ -3190,127 +3190,124 @@ namespace ClockworkHighway.Android
 			public const int dropdownline = 2130968620;
 			
 			// aapt resource value: 0x7f04002d
-			public const int emptylayout = 2130968621;
+			public const int forgotpassword = 2130968621;
 			
 			// aapt resource value: 0x7f04002e
-			public const int forgotpassword = 2130968622;
+			public const int forgotpassword3 = 2130968622;
 			
 			// aapt resource value: 0x7f04002f
-			public const int forgotpassword3 = 2130968623;
+			public const int forgotusername = 2130968623;
 			
 			// aapt resource value: 0x7f040030
-			public const int forgotusername = 2130968624;
+			public const int header = 2130968624;
 			
 			// aapt resource value: 0x7f040031
-			public const int header = 2130968625;
+			public const int location = 2130968625;
 			
 			// aapt resource value: 0x7f040032
-			public const int location = 2130968626;
+			public const int locationline = 2130968626;
 			
 			// aapt resource value: 0x7f040033
-			public const int locationline = 2130968627;
+			public const int locationpumpline = 2130968627;
 			
 			// aapt resource value: 0x7f040034
-			public const int locationpumpline = 2130968628;
+			public const int main = 2130968628;
 			
 			// aapt resource value: 0x7f040035
-			public const int main = 2130968629;
+			public const int mainmenu = 2130968629;
 			
 			// aapt resource value: 0x7f040036
-			public const int mainmenu = 2130968630;
+			public const int mainmenusearch = 2130968630;
 			
 			// aapt resource value: 0x7f040037
-			public const int mainmenusearch = 2130968631;
+			public const int notification_media_action = 2130968631;
 			
 			// aapt resource value: 0x7f040038
-			public const int notification_media_action = 2130968632;
+			public const int notification_media_cancel_action = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int notification_media_cancel_action = 2130968633;
+			public const int notification_template_big_media = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int notification_template_big_media = 2130968634;
+			public const int notification_template_big_media_narrow = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int notification_template_big_media_narrow = 2130968635;
+			public const int notification_template_lines = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int notification_template_lines = 2130968636;
+			public const int notification_template_media = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int notification_template_media = 2130968637;
+			public const int notification_template_part_chronometer = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int notification_template_part_chronometer = 2130968638;
+			public const int notification_template_part_time = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int notification_template_part_time = 2130968639;
+			public const int place_autocomplete_fragment = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int place_autocomplete_fragment = 2130968640;
+			public const int place_autocomplete_item_powered_by_google = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int place_autocomplete_item_powered_by_google = 2130968641;
+			public const int place_autocomplete_item_prediction = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int place_autocomplete_item_prediction = 2130968642;
+			public const int place_autocomplete_progress = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int place_autocomplete_progress = 2130968643;
+			public const int preference = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int preference = 2130968644;
+			public const int preference_category = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int preference_category = 2130968645;
+			public const int preference_dialog_edittext = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int preference_dialog_edittext = 2130968646;
+			public const int preference_information = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int preference_information = 2130968647;
+			public const int preference_list_fragment = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int preference_list_fragment = 2130968648;
+			public const int preference_recyclerview = 2130968648;
 			
 			// aapt resource value: 0x7f040049
-			public const int preference_recyclerview = 2130968649;
+			public const int preference_widget_checkbox = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int preference_widget_checkbox = 2130968650;
+			public const int preference_widget_switch_compat = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int preference_widget_switch_compat = 2130968651;
+			public const int pumpline = 2130968651;
 			
 			// aapt resource value: 0x7f04004c
-			public const int pumpline = 2130968652;
+			public const int search = 2130968652;
 			
 			// aapt resource value: 0x7f04004d
-			public const int search = 2130968653;
+			public const int select_dialog_item_material = 2130968653;
 			
 			// aapt resource value: 0x7f04004e
-			public const int select_dialog_item_material = 2130968654;
+			public const int select_dialog_multichoice_material = 2130968654;
 			
 			// aapt resource value: 0x7f04004f
-			public const int select_dialog_multichoice_material = 2130968655;
+			public const int select_dialog_singlechoice_material = 2130968655;
 			
 			// aapt resource value: 0x7f040050
-			public const int select_dialog_singlechoice_material = 2130968656;
+			public const int startcharge = 2130968656;
 			
 			// aapt resource value: 0x7f040051
-			public const int startcharge = 2130968657;
+			public const int support_simple_spinner_dropdown_item = 2130968657;
 			
 			// aapt resource value: 0x7f040052
-			public const int support_simple_spinner_dropdown_item = 2130968658;
+			public const int termsandconditions = 2130968658;
 			
 			// aapt resource value: 0x7f040053
-			public const int termsandconditions = 2130968659;
+			public const int transactionline = 2130968659;
 			
 			// aapt resource value: 0x7f040054
-			public const int transactionline = 2130968660;
-			
-			// aapt resource value: 0x7f040055
-			public const int transactions = 2130968661;
+			public const int transactions = 2130968660;
 			
 			static Layout()
 			{
