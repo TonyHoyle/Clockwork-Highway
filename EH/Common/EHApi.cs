@@ -511,10 +511,18 @@ namespace TonyHoyle.EH
                 { "vehicleModel", vehicle.model },
                 { "pumpId", pumpId.ToString() }
             });
-            PumpConnectorsResult Result = JsonConvert.DeserializeObject<PumpConnectorsResult>(apiResult);
+            try
+            {
+                PumpConnectorsResult Result = JsonConvert.DeserializeObject<PumpConnectorsResult>(apiResult);
 
-            _pumpCache.Add(pumpId, Result.result);
-            return Result.result;
+                _pumpCache.Add(pumpId, Result.result);
+                return Result.result;
+            }
+            catch (JsonSerializationException e)
+            {
+                Debug.WriteLine(e.Message);
+                return null;
+            }
         }
 
         public async Task<List<Card>> getCardListAsync(string username, string password)

@@ -107,6 +107,14 @@ namespace ClockworkHighway.Android
             if (status == null)
                 return;
 
+            /* We are sometimes called with a null activity - this should be impossible as the
+             * timer should be stopped by OnPause(), so seems to be an android bug. */
+            if (Activity == null)
+            {
+                _timer.Stop();
+                return;
+            }
+
             Activity.RunOnUiThread(() =>
             {
                 _chargeStatus.Text = status.message;
