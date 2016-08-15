@@ -123,6 +123,9 @@ namespace ClockworkHighway.Android
                 TimeSpan diff;
                 DateTime started;
 
+                if (status.status == "Retry")
+                    status.completed = true;
+
                 if (string.IsNullOrEmpty(status.started))
                     started = DateTime.Now;
                 else
