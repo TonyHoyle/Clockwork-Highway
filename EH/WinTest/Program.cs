@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -63,6 +61,7 @@ namespace WinTest
                     {
                         string status = "";
                         int count = 0;
+                        var sessions = new List<String>();
 
                         var pumpData = new List<string>();
                         foreach(var pump in details)
@@ -70,12 +69,20 @@ namespace WinTest
                             if (pump.status != "Swipe card only")
                                 count++;
                             pumpData.Add(pump.pumpId.ToString() + " " + pump.pumpModel);
+
+                            var connectors = eh.getPumpConnectorsAsync("tonyhoyle", "aardvark99", pump.pumpId, "00000000000", Vehicle).Result;
+
+                            foreach(var cost in connectors.connectorCost)
+                                sessions.Add(cost.sessionId);
                         }
                         if (count > 0)
                             status = count.ToString() + "/"+details.Count.ToString()+" pumps live";
 
+                        sessions.Sort();
+                        var sessionId = string.Join(",", sessions);
+
                         pumpData.Sort();
-                        string line = locationId.ToString() + ", \"" + details[0].name + "\", \""+ details[0].location + "\", \"" + details[0].postcode + "\", " + details[0].latitude + ", " + details[0].longitude + ", \"" + status + "\", \""+ string.Join(", ", pumpData) + "\"";
+                        string line = locationId.ToString() + ", \"" + details[0].name + "\", \""+ details[0].location + "\", \"" + details[0].postcode + "\", " + details[0].latitude + ", " + details[0].longitude + ", \"" + status + "\", \""+ string.Join(", ", pumpData) + "\", \"" + sessionId + "\"";
                         Console.WriteLine(line);
                         file.WriteLine(line);
                     }
