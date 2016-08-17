@@ -9,6 +9,8 @@ It also contains wrappers for interfacing with the google maps API and Zendesk A
 
 This is an example app which uses the common library and can be used as a replacement for the Ecotricity App.  It has been tested to work on Jelly Bean and above.
 
+The app is in beta testing on the app store - https://play.google.com/apps/testing/uk.me.hoyle.clockworkhighway
+
 ###Missing features:
 * Add/Remove car
 * Add/Remove payment (may never be added as it means interfacing with the payment processor, who might object to a third party doing this)
