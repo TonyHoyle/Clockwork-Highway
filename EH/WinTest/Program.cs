@@ -70,7 +70,7 @@ namespace WinTest
                                 count++;
                             pumpData.Add(pump.pumpId.ToString() + " " + pump.pumpModel);
 
-                            var connectors = eh.getPumpConnectorsAsync("tonyhoyle", "aardvark99", pump.pumpId, "00000000000", Vehicle).Result;
+                            var connectors = eh.getPumpConnectorsAsync("tonyhoyle", "", pump.pumpId, "00000000000", Vehicle).Result;
 
                             foreach(var cost in connectors.connectorCost)
                                 sessions.Add(cost.sessionId);
