@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 <!-- Ideally it'd be nice if the toolbar stayed where it was
      and the text view scrolled out of place, but bugs in
      the support library means this doesn't work - it only
@@ -13,7 +14,8 @@
   <android.support.design.widget.CoordinatorLayout
       android:id="@+id/main_content"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+      android:layout_height="wrap_content"
+      android:fitsSystemWindows="true">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
