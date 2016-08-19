@@ -35,6 +35,8 @@ namespace ClockworkHighway.Android
             var locationName = view.FindViewById<TextView>(Resource.Id.locationName);
             var pumpId = view.FindViewById<TextView>(Resource.Id.pumpId);
             var price = view.FindViewById<TextView>(Resource.Id.price);
+            var payment = view.FindViewById<LinearLayout>(Resource.Id.payment);
+
             _cvv = view.FindViewById<TextView>(Resource.Id.cvv);
 
             foreach (var c in SharedData.login.Cards)
@@ -55,7 +57,6 @@ namespace ClockworkHighway.Android
                     connectors.Add(c.name);
                     compatibleConnectors.Add(c);
                 }
-
             }
 
             connectorList.Adapter = new ArrayAdapter<string>(Context, global::Android.Resource.Layout.SimpleListItemSingleChoice, connectors.ToArray());
@@ -84,7 +85,7 @@ namespace ClockworkHighway.Android
                     try
                     {
                         var eh = SharedData.login.Api;
-                        var connectorDetails = await eh.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, Convert.ToInt32(location.pumpId), SharedData.deviceId, SharedData.login.Vehicle);
+                        var connectorDetails = await eh.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, Convert.ToInt32(location.pumpId), SharedData.deviceId, SharedData.login.Vehicle, false);
                         pp = connectorDetails.connectorCost[0].baseCost + connectorDetails.connectorCost[0].discountEcoGrp;
                         pm = connectorDetails.connectorCost[0].sessionDuration;
                         free = connectorDetails.connectorCost[0].freecost.Length > 0;
@@ -98,10 +99,16 @@ namespace ClockworkHighway.Android
                         free = false;
                     }
 
-                    if(!free)
+                    if (!free)
+                    {
+                        payment.Visibility = ViewStates.Visible;
                         price.Text = "Ecotricity will charge £" + pp.ToString() + " per " + pm.ToString() + " minute charge session.  All transactions are strictly between Ecotricity and the Car Owner.";
+                    }
                     else
+                    {
+                        payment.Visibility = ViewStates.Gone;
                         price.Text = "This pump is free for up to " + pm.ToString() + " minutes";
+                    }
                 });
 
 
@@ -120,16 +127,18 @@ namespace ClockworkHighway.Android
         {
             var cvv = _cvv.Text;
 
-            if (cvv.Length != 3)
-            {
-                _cvv.Error = Context.Resources.GetString(Resource.String.entercvv);
-                return;
-            }
-
             if (_connectorCost == null)
             {
                 var t = Toast.MakeText(Context, "No connector price available", ToastLength.Long);
                 t.Show();
+                return;
+            }
+
+            bool free = _connectorCost[0].freecost.Length > 0;
+
+            if (!free && cvv.Length != 3)
+            {
+                _cvv.Error = Context.Resources.GetString(Resource.String.entercvv);
                 return;
             }
 
@@ -153,7 +162,7 @@ namespace ClockworkHighway.Android
             }
 
             var progressDialog = global::Android.App.ProgressDialog.Show(Context, Context.GetString(Resource.String.startCharge), Context.GetString(Resource.String.requestingCharge));
-            var result = await eh.startChargeSessionAsync(SharedData.login.Username, SharedData.login.Password, SharedData.deviceId, _pumpId, _connectorId, cvv, _cardId, sessionId);
+            var result = await eh.startChargeSessionAsync(SharedData.login.Username, SharedData.login.Password, SharedData.deviceId, _pumpId, _connectorId, free?"":cvv, free?"0":_cardId, sessionId);
             progressDialog.Dismiss();
             if (result.result)
             {

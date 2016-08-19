@@ -53,6 +53,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/paymentdetails" />
         <LinearLayout
+            android:id="@+id/payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
