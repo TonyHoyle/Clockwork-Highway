@@ -36,6 +36,10 @@ namespace ClockworkHighway.Android
             var pumpId = view.FindViewById<TextView>(Resource.Id.pumpId);
             var price = view.FindViewById<TextView>(Resource.Id.price);
             var payment = view.FindViewById<LinearLayout>(Resource.Id.payment);
+            var progressBar = view.FindViewById<ProgressBar>(Resource.Id.progressBar);
+
+            payment.Visibility = ViewStates.Gone;
+            progressBar.Visibility = ViewStates.Visible;
 
             _cvv = view.FindViewById<TextView>(Resource.Id.cvv);
 
@@ -102,11 +106,13 @@ namespace ClockworkHighway.Android
                     if (!free)
                     {
                         payment.Visibility = ViewStates.Visible;
+                        progressBar.Visibility = ViewStates.Gone;
                         price.Text = "Ecotricity will charge £" + pp.ToString() + " per " + pm.ToString() + " minute charge session.  All transactions are strictly between Ecotricity and the Car Owner.";
                     }
                     else
                     {
                         payment.Visibility = ViewStates.Gone;
+                        progressBar.Visibility = ViewStates.Gone;
                         price.Text = "This pump is free for up to " + pm.ToString() + " minutes";
                     }
                 });
