@@ -5,7 +5,7 @@ namespace ClockworkHighway.Android
     [Activity(Label = "@string/ApplicationName")]
     public class SearchActivity : BaseActivity
     {
-        public SearchActivity() : base(new SearchFragment(), Resource.Layout.mainmenusearch)
+        public SearchActivity() : base(typeof(SearchFragment), Resource.Layout.mainmenusearch)
         { 
         }
     }

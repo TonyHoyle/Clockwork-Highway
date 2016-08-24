@@ -15,13 +15,13 @@ namespace ClockworkHighway.Android
 
             SetContentView(Resource.Layout.childactivity);
 
+            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
             if (bundle == null)
             {
-                Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-                SetSupportActionBar(toolbar);
-
-                SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-
                 var fragment = new AccountDetailsFragment();
                 fragment.Arguments = Intent.Extras;
 

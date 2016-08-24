@@ -13,12 +13,12 @@ namespace ClockworkHighway.Android
         {
             base.OnCreate(bundle);
 
+            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            if (toolbar != null)
+                SetSupportActionBar(toolbar);
+
             if (bundle == null)
             {
-                Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-                if (toolbar != null)
-                    SetSupportActionBar(toolbar);
-
                 var fragment = new MainFragment();
                 SupportFragmentManager.BeginTransaction().Add(global::Android.Resource.Id.Content, fragment).Commit();
             }

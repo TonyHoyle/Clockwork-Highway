@@ -16,17 +16,17 @@ namespace ClockworkHighway.Android
         private global::Android.Support.V7.App.ActionBarDrawerToggle _drawerToggle;
         private DrawerLayout _drawerLayout;
         private int _layoutId;
-        public Fragment Fragment { get; private set; }
+        private System.Type _fragmentClass;
 
-        public BaseActivity(Fragment fragment)
+        public BaseActivity(System.Type fragment)
         {
-            this.Fragment = fragment;
+            _fragmentClass = fragment;
             _layoutId = Resource.Layout.mainmenu;
         }
 
-        public BaseActivity(Fragment fragment, int layout)
+        public BaseActivity(System.Type fragment, int layout)
         {
-            this.Fragment = fragment;
+            _fragmentClass = fragment;
             _layoutId = layout;
         }
 
@@ -36,33 +36,34 @@ namespace ClockworkHighway.Android
 
             SetContentView(_layoutId);
 
-            if(bundle == null)
+            global::Android.Support.V7.Widget.Toolbar toolbar = FindViewById<global::Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+
+            SupportActionBar.SetDisplayHomeAsUpEnabled (true);
+            SupportActionBar.SetHomeButtonEnabled(true);
+
+            _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
+            var navigationView = FindViewById<NavigationView>(Resource.Id.navigationView);
+
+            navigationView.InflateMenu(Resource.Menu.drawermenu);
+            navigationView.InflateHeaderView(Resource.Layout.header);
+            navigationView.SetNavigationItemSelectedListener(this);
+
+            var headerView = navigationView.GetHeaderView(0);
+            var headerText = headerView.FindViewById<TextView>(Resource.Id.drawerHeaderTitle);
+
+            headerText.Text = SharedData.login.Account.firstname + " " + SharedData.login.Account.lastname;
+
+            _drawerToggle = new global::Android.Support.V7.App.ActionBarDrawerToggle(this, _drawerLayout, Resource.String.open, Resource.String.close);
+
+            _drawerLayout.AddDrawerListener(_drawerToggle);
+
+
+            if (bundle == null)
             {
-                global::Android.Support.V7.Widget.Toolbar toolbar = FindViewById<global::Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-                SetSupportActionBar(toolbar);
-
-                SupportActionBar.SetDisplayHomeAsUpEnabled (true);
-                SupportActionBar.SetHomeButtonEnabled(true);
-
-                _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
-                var navigationView = FindViewById<NavigationView>(Resource.Id.navigationView);
-
-                navigationView.InflateMenu(Resource.Menu.drawermenu);
-                navigationView.InflateHeaderView(Resource.Layout.header);
-                navigationView.SetNavigationItemSelectedListener(this);
-
-                var headerView = navigationView.GetHeaderView(0);
-                var headerText = headerView.FindViewById<TextView>(Resource.Id.drawerHeaderTitle);
-
-                headerText.Text = SharedData.login.Account.firstname + " " + SharedData.login.Account.lastname;
-
-                _drawerToggle = new global::Android.Support.V7.App.ActionBarDrawerToggle(this, _drawerLayout, Resource.String.open, Resource.String.close);
-
-                _drawerLayout.AddDrawerListener(_drawerToggle);
-
-                Fragment.Arguments = Intent.Extras;
-
-                SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, Fragment).Commit();       
+                var fragment = (Fragment)System.Activator.CreateInstance(_fragmentClass);
+                fragment.Arguments = Intent.Extras;
+                SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, fragment).Commit();       
             }
         }
 

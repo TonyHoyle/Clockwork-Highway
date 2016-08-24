@@ -515,6 +515,7 @@ namespace TonyHoyle.EH
             {
                 PumpConnectorsResult Result = JsonConvert.DeserializeObject<PumpConnectorsResult>(apiResult);
 
+                _pumpCache.Remove(pumpId);
                 _pumpCache.Add(pumpId, Result.result);
                 return Result.result;
             }

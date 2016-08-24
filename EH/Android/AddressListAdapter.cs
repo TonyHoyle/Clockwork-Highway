@@ -6,7 +6,7 @@ using TonyHoyle.EH;
 
 namespace ClockworkHighway.Android
 {
-    class FoundAddress : Java.Lang.Object
+    class FoundAddress
     {
         public FoundAddress()
         {
@@ -23,6 +23,16 @@ namespace ClockworkHighway.Android
         public GoogleApi.LatLong Location { get; set; }
         public string PlaceId { get; set; }
     }
+
+    class FoundAddressJava : Java.Lang.Object
+    {
+        public FoundAddress Addr { get; private set; }
+        public FoundAddressJava(FoundAddress addr)
+        {
+            Addr = addr;
+        }
+    }
+
 
     class AddressFilter : Filter
     {
@@ -52,7 +62,7 @@ namespace ClockworkHighway.Android
 
                 foreach (var A in addresses)
                 {
-                    resultList.Add(new FoundAddress() { Title = A.description, PlaceId = A.place_id });
+                    resultList.Add(new FoundAddressJava(new FoundAddress() { Title = A.description, PlaceId = A.place_id }));
                 }
 
                 result.Values = resultList;
@@ -71,7 +81,7 @@ namespace ClockworkHighway.Android
             {
                 var list = (Java.Util.ArrayList)results.Values;
                 for(int i=0; i<list.Size(); i++)
-                    _adapter.Add(list.Get(i));
+                    _adapter.Add(((FoundAddressJava)list.Get(i)).Addr);
 
             }
             _adapter.NotifyDataSetChanged();  // notifies the data with new filtered values

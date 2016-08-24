@@ -40,8 +40,11 @@ namespace ClockworkHighway.Android
         {
             base.OnActivityCreated(savedInstanceState);
 
-            if(savedInstanceState != null)
-                _lastAddress = JsonConvert.DeserializeObject<FoundAddress>(savedInstanceState.GetString("lastAddress"));
+            if (savedInstanceState != null)
+            {
+                if(savedInstanceState.ContainsKey("lastAddress"))
+                   _lastAddress = JsonConvert.DeserializeObject<FoundAddress>(savedInstanceState.GetString("lastAddress"));
+            }
 
             // This is a child of the coordinator layout in the toolbar
             var text = Activity.FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
@@ -242,7 +245,8 @@ namespace ClockworkHighway.Android
         {
             base.OnSaveInstanceState(outState);
 
-            outState.PutString("lastAddress", JsonConvert.SerializeObject(_lastAddress));
+            if (_lastAddress != null)
+                outState.PutString("lastAddress", JsonConvert.SerializeObject(_lastAddress));
         }
 
         private void RequestLocation()
