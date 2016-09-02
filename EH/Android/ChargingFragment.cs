@@ -22,7 +22,7 @@ namespace ClockworkHighway.Android
         private TextView _chargePower;
         private ProgressBar _progressBar;
         private Button _chargeStop;
-        private Timer _timer;
+        private Handler _handler = new Handler();
         private TextView _messageStop;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -50,20 +50,14 @@ namespace ClockworkHighway.Android
             _chargeStop.Click += OnStopCharge;
             _chargeStop.LongClick += OnTerminateCharge;
 
-            _timer = new Timer();
-            _timer.Interval = 5000;
-            _timer.Elapsed += new ElapsedEventHandler(OnTimer);
-            _timer.AutoReset = true;
-            _timer.Enabled = true;
-
-            OnTimer(this, null);
+            OnTimer();
         }
 
         private void OnStopCharge(object sender, EventArgs e)
         {
             if (!_charging)
             {
-                _timer.Enabled = false;
+                _handler.RemoveCallbacks(OnTimer);
                 Activity.Finish();
                 return;
             }
@@ -100,7 +94,7 @@ namespace ClockworkHighway.Android
             }
         }
 
-        private async void OnTimer(object source, ElapsedEventArgs e)
+        private async void OnTimer()
         {
             var status = await SharedData.login.Api.getChargeStatusAsync(SharedData.deviceId, _sessionId, _pumpId, _connectorId, SharedData.login.Vehicle);
 
@@ -110,10 +104,7 @@ namespace ClockworkHighway.Android
             /* We are sometimes called with a null activity - this should be impossible as the
              * timer should be stopped by OnPause(), so seems to be an android bug. */
             if (Activity == null)
-            {
-                _timer.Stop();
                 return;
-            }
 
             Activity.RunOnUiThread(() =>
             {
@@ -153,27 +144,22 @@ namespace ClockworkHighway.Android
                 _charging = !status.completed;
             });
 
-            if (status.completed)
-                _timer.Enabled = false;
+            if (!status.completed)
+                _handler.PostDelayed(OnTimer, 5000);
         }
 
         public override void OnPause()
         {
             base.OnPause();
 
-            if (_timer != null)
-                _timer.Stop();
+            _handler.RemoveCallbacks(OnTimer);
         }
 
         public override void OnResume()
         {
             base.OnResume();
 
-            if (_timer != null && _timer.Enabled)
-            {
-                _timer.Start();
-                OnTimer(this,null);
-            }
+            OnTimer();
         }
     }
 }
