@@ -6,7 +6,7 @@ using Android.Views;
 
 namespace ClockworkHighway.Android
 {
-    [Activity(Label = "@string/charging")]
+    [Activity(Label = "@string/charging", ParentActivity = typeof(SearchActivity))]
     public class ChargingActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)

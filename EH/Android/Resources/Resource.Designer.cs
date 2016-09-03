@@ -2299,37 +2299,40 @@ namespace ClockworkHighway.Android
 			public const int ic_charge = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int ic_logout = 2130837628;
+			public const int ic_directions_car_white_24dp = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int ic_settings = 2130837629;
+			public const int ic_logout = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int ic_terms = 2130837630;
+			public const int ic_settings = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int ic_transactions = 2130837631;
+			public const int ic_terms = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int location = 2130837632;
-			
-			// aapt resource value: 0x7f020086
-			public const int notification_template_icon_bg = 2130837638;
+			public const int ic_transactions = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int oldcar = 2130837633;
+			public const int location = 2130837633;
+			
+			// aapt resource value: 0x7f020087
+			public const int notification_template_icon_bg = 2130837639;
 			
 			// aapt resource value: 0x7f020082
-			public const int places_ic_clear = 2130837634;
+			public const int oldcar = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int places_ic_search = 2130837635;
+			public const int places_ic_clear = 2130837635;
 			
 			// aapt resource value: 0x7f020084
-			public const int powered_by_google_dark = 2130837636;
+			public const int places_ic_search = 2130837636;
 			
 			// aapt resource value: 0x7f020085
-			public const int powered_by_google_light = 2130837637;
+			public const int powered_by_google_dark = 2130837637;
+			
+			// aapt resource value: 0x7f020086
+			public const int powered_by_google_light = 2130837638;
 			
 			static Drawable()
 			{
@@ -3470,6 +3473,9 @@ namespace ClockworkHighway.Android
 			
 			// aapt resource value: 0x7f08007d
 			public const int chargeFinished = 2131230845;
+			
+			// aapt resource value: 0x7f080081
+			public const int chargeFinishedNotification = 2131230849;
 			
 			// aapt resource value: 0x7f080049
 			public const int charging = 2131230793;

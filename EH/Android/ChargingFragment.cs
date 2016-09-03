@@ -3,10 +3,15 @@ using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
 using System;
-using System.Timers;
 using TonyHoyle.EH;
 using Android.Support.V7.App;
 using System.Globalization;
+using Android.Content;
+
+using NotificationCompat = Android.Support.V7.App.NotificationCompat;
+using PendingIntent = Android.App.PendingIntent;
+using PendingIntentFlags = Android.App.PendingIntentFlags;
+using NotificationManager = Android.App.NotificationManager;
 
 namespace ClockworkHighway.Android
 {
@@ -15,7 +20,6 @@ namespace ClockworkHighway.Android
         private string _sessionId;
         private int _pumpId;
         private int _connectorId;
-        private bool _charging;
 
         private TextView _chargeStatus;
         private TextView _chargeTime;
@@ -24,6 +28,7 @@ namespace ClockworkHighway.Android
         private Button _chargeStop;
         private Handler _handler = new Handler();
         private TextView _messageStop;
+        private bool _completed;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -50,12 +55,14 @@ namespace ClockworkHighway.Android
             _chargeStop.Click += OnStopCharge;
             _chargeStop.LongClick += OnTerminateCharge;
 
-            OnTimer();
+            _completed = false;
+
+            UpdateDisplay(true);
         }
 
         private void OnStopCharge(object sender, EventArgs e)
         {
-            if (!_charging)
+            if (_completed)
             {
                 _handler.RemoveCallbacks(OnTimer);
                 Activity.Finish();
@@ -69,7 +76,7 @@ namespace ClockworkHighway.Android
         {
             int msg;
 
-            if (_charging)
+            if (!_completed)
                 msg = Resource.String.areYouSureStop;
             else
                 msg = Resource.String.areYouSureStop2;
@@ -94,17 +101,27 @@ namespace ClockworkHighway.Android
             }
         }
 
-        private async void OnTimer()
+        private void OnTimer()
         {
+            UpdateDisplay(false);
+            if(!_completed)
+                _handler.PostDelayed(OnTimer, 5000);
+        }
+
+        private async void UpdateDisplay(bool updateOnly)
+        { 
             var status = await SharedData.login.Api.getChargeStatusAsync(SharedData.deviceId, _sessionId, _pumpId, _connectorId, SharedData.login.Vehicle);
 
+            System.Diagnostics.Debug.WriteLine("UpdateDisplay status=" + (status == null ? "N" : "Y") + " Activity=" + (Activity == null ? "N" : "Y"));
             if (status == null)
                 return;
 
-            /* We are sometimes called with a null activity - this should be impossible as the
-             * timer should be stopped by OnPause(), so seems to be an android bug. */
+            /* We are sometimes called with a null activity */
             if (Activity == null)
+            {
+                _completed = status.completed;
                 return;
+            }
 
             Activity.RunOnUiThread(() =>
             {
@@ -141,25 +158,65 @@ namespace ClockworkHighway.Android
                     _chargeStop.SetText(Resource.String.chargeFinished);
                     _messageStop.Visibility = ViewStates.Visible;                   
                 }
-                _charging = !status.completed;
-            });
 
-            if (!status.completed)
-                _handler.PostDelayed(OnTimer, 5000);
+                if(!updateOnly)
+                {
+                    if (!_completed && status.completed)
+                        SendUpdateNotification();
+                }
+
+                _completed = status.completed;
+            });
         }
 
         public override void OnPause()
         {
             base.OnPause();
-
-            _handler.RemoveCallbacks(OnTimer);
         }
 
         public override void OnResume()
         {
             base.OnResume();
 
+            // Force an update just in case
             OnTimer();
+        }
+
+        private void SendUpdateNotification()
+        {
+            // Creates an explicit intent for an Activity in your app
+            var resultIntent = new Intent(Context, typeof(ChargingActivity));
+
+            var bundle = new Bundle();
+            bundle.PutString("sessionId", _sessionId);
+            bundle.PutInt("pumpId", _pumpId);
+            bundle.PutInt("connectorId", _connectorId);
+
+            resultIntent.PutExtras(bundle);
+
+            // The stack builder object will contain an artificial back stack for the
+            // started Activity.
+            // This ensures that navigating backward from the Activity leads out of
+            // your application to the Home screen.
+            TaskStackBuilder stackBuilder = TaskStackBuilder.Create(Context);
+            // Adds the back stack for the Intent (but not the Intent itself)
+            stackBuilder.AddParentStack(Java.Lang.Class.FromType(typeof(ChargingActivity)));
+
+            // Adds the Intent that starts the Activity to the top of the stack
+            stackBuilder.AddNextIntent(resultIntent);
+
+            var resultPendingIntent = stackBuilder.GetPendingIntent(0, (int)PendingIntentFlags.UpdateCurrent);
+
+            var builder =
+                    new NotificationCompat.Builder(Context)
+                    .SetSmallIcon(Resource.Drawable.ic_directions_car_white_24dp)
+                    .SetContentTitle(Context.GetString(Resource.String.ApplicationName))
+                    .SetContentText(Context.GetString(Resource.String.chargeFinishedNotification))
+                    .SetContentIntent(resultPendingIntent);
+            NotificationManager notificationManager =
+                (NotificationManager)Context.GetSystemService(Context.NotificationService);
+            // mId allows you to update the notification later on.
+            notificationManager.Notify(1, builder.Build());
         }
     }
 }

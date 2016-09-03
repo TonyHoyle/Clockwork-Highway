@@ -36,10 +36,10 @@ namespace ClockworkHighway.Android
             {
                 var transactions = await SharedData.login.Api.getTransactionListAsync(SharedData.login.Username, SharedData.login.Password);
 
+                progress.Visibility = global::Android.Views.ViewStates.Gone;
+
                 if (transactions != null)
                 {
-                    progress.Visibility = global::Android.Views.ViewStates.Gone;
-
                     var trans = transactions.contractAccount.OrderByDescending(o => o.date).ThenByDescending(o => o.sessionId).ToList();
                     trans.RemoveAll(item => item.date == null); // Bogus transactions
                     adapter.Transactions = trans;

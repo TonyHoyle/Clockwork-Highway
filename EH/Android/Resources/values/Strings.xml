@@ -71,4 +71,5 @@
   <string name="lastCharge">Last charge session</string>
   <string name="tidy">Please return the connector to the pump, remembering to keep cables tidy</string>
   <string name="searchHint">Search...</string>
+  <string name="chargeFinishedNotification">Charging has finished.  Please return to your car.</string>
 </resources>
