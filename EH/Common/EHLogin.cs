@@ -21,8 +21,10 @@ namespace TonyHoyle.EH
             {
                 if (DefaultVehicleIndex >= 0 && DefaultVehicleIndex < Vehicles.Count)
                     return Vehicles[DefaultVehicleIndex];
-                else
+                else if (Vehicles.Count > 0)
                     return Vehicles[0];
+                else
+                    return new EHApi.Vehicle();
             }
         }
 
@@ -32,8 +34,10 @@ namespace TonyHoyle.EH
             {
                 if (DefaultCardIndex >= 0 && DefaultCardIndex < Cards.Count)
                     return Cards[DefaultCardIndex];
-                else
+                else if (Cards.Count > 0)
                     return Cards[0];
+                else 
+                    return null;
             }
         }
 

@@ -63,6 +63,9 @@ namespace ClockworkHighway.Android
                 }
             }
 
+            if (compatibleConnectors.Count == 0)
+                compatibleConnectors.AddRange(location.connector);
+
             connectorList.Adapter = new ArrayAdapter<string>(Context, global::Android.Resource.Layout.SimpleListItemSingleChoice, connectors.ToArray());
             connectorList.SetItemChecked(0, true);
             connectorList.ItemSelected += (obj, e) => { _connectorId = compatibleConnectors[e.Position].connectorId; };
@@ -72,8 +75,14 @@ namespace ClockworkHighway.Android
                 connectorList.Visibility = ViewStates.Gone;
                 connectorPrompt.Visibility = ViewStates.Gone;
             }
-            _connectorId = compatibleConnectors[0].connectorId;
-            _cardId = SharedData.login.Card.cardId;
+            if(compatibleConnectors.Count > 0)
+                _connectorId = compatibleConnectors[0].connectorId;
+            else
+                _connectorId = 0;
+            if (SharedData.login.Card != null)
+                _cardId = SharedData.login.Card.cardId;
+            else
+                _cardId = "0";
             _pumpId = location.pumpId;
 
             pumpId.Text = location.pumpId.ToString();
@@ -90,10 +99,19 @@ namespace ClockworkHighway.Android
                     {
                         var eh = SharedData.login.Api;
                         var connectorDetails = await eh.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, Convert.ToInt32(location.pumpId), SharedData.deviceId, SharedData.login.Vehicle, false);
-                        pp = connectorDetails.connectorCost[0].baseCost + connectorDetails.connectorCost[0].discountEcoGrp;
-                        pm = connectorDetails.connectorCost[0].sessionDuration;
-                        free = connectorDetails.connectorCost[0].freecost.Length > 0;
-                        _connectorCost = connectorDetails.connectorCost;
+                        if (connectorDetails != null)
+                        {
+                            pp = connectorDetails.connectorCost[0].baseCost + connectorDetails.connectorCost[0].discountEcoGrp;
+                            pm = connectorDetails.connectorCost[0].sessionDuration;
+                            free = connectorDetails.connectorCost[0].freecost.Length > 0;
+                            _connectorCost = connectorDetails.connectorCost;
+                        }
+                        else
+                        {
+                            pp = 0;
+                            pm = 30;
+                            free = true;
+                        }
                     }
                     catch (EHApi.EHApiException e)
                     {

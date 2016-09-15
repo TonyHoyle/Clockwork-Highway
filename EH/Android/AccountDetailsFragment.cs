@@ -35,14 +35,16 @@ namespace ClockworkHighway.Android
                 SharedData.login.Account.email);
             AddDetails(details, Resource.String.phone, " ",
                 SharedData.login.Account.phone);
-            AddDetails(details, Resource.String.car, " ",
-                SharedData.login.Vehicle.registration.ToUpper() + " -",
-                SharedData.login.Vehicle.make,
-                SharedData.login.Vehicle.model,
-                SharedData.login.Vehicle.specification);
-            AddDetails(details, Resource.String.card, " ",
-                SharedData.login.Card.cardType,
-                SharedData.login.Card.lastDigits);
+            if(SharedData.login.Vehicle != null)
+                AddDetails(details, Resource.String.car, " ",
+                    SharedData.login.Vehicle.registration.ToUpper() + " -",
+                    SharedData.login.Vehicle.make,
+                    SharedData.login.Vehicle.model,
+                    SharedData.login.Vehicle.specification);
+            if(SharedData.login.Card != null)
+                AddDetails(details, Resource.String.card, " ",
+                    SharedData.login.Card.cardType,
+                    SharedData.login.Card.lastDigits);
             accountList.Adapter = new AccountDetailsAdapter(Context, details);
             accountList.ItemClick += (sender, args) => { OnAccountDetailsClicked(((AccountDetailsAdapter)accountList.Adapter).GetItem(args.Position)); };
 
