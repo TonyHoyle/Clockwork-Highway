@@ -37,7 +37,7 @@ namespace ClockworkHighway.Android
             SharedData.httpClient = new HttpClient(new Xamarin.Android.Net.AndroidClientHandler() { AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip });
             SharedData.httpClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
             SharedData.httpClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
-            SharedData.httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("ClockworkHighway", "1.0alpha"));
+            SharedData.httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("ClockworkHighway", Activity.PackageManager.GetPackageInfo(Activity.PackageName, 0).VersionName));
             SharedData.httpClient.DefaultRequestHeaders.Add("Connection", "Keep-Alive");
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);

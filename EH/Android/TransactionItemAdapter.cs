@@ -75,7 +75,7 @@ namespace ClockworkHighway.Android
             await _lock.WaitAsync();
             try
             {
-                var pumpDetails = await SharedData.login.Api.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, pumpId, SharedData.deviceId, SharedData.login.Vehicle);
+				/*var pumpDetails =*/ await SharedData.login.Api.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, pumpId, SharedData.deviceId, SharedData.login.Vehicle);
                 NotifyDataSetChanged(); // Do this to refresh the list properly, since items get re-used.  
             }
             catch(EHApi.EHApiException e)

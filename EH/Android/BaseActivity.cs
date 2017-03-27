@@ -86,7 +86,7 @@ namespace ClockworkHighway.Android
         {
             SharedData.login.Logout();
 
-            var prefs = PreferenceManager.GetDefaultSharedPreferences(this)
+            /*var prefs =*/ PreferenceManager.GetDefaultSharedPreferences(this)
                 .Edit()
                 .Remove("password")
                 .Commit();

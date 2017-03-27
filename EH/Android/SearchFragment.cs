@@ -115,8 +115,6 @@ namespace ClockworkHighway.Android
 
         public async void OnLocationChanged(Location location)
         {
-            var text = Activity.FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
-
             SharedData.lastLocation = new GoogleApi.LatLong() { lat = location.Latitude, lng = location.Longitude };
 
             if (_lastAddress == null)

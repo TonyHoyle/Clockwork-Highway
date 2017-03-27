@@ -37,14 +37,10 @@ namespace ClockworkHighway.Android
     class AddressFilter : Filter
     {
         private ArrayAdapter<FoundAddress> _adapter;
-        private Context _context;
-        private List<FoundAddress> _lastResult;
 
         public AddressFilter(Context context, ArrayAdapter<FoundAddress> adapter)
         {
-            _context = context;
             _adapter = adapter;
-            _lastResult = new List<FoundAddress>();
         }
 
         protected override FilterResults PerformFiltering(Java.Lang.ICharSequence constraint)
