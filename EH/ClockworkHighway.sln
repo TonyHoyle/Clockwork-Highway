@@ -12,8 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EHApi", "Common\EHApi.cspro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinTest", "WinTest\WinTest.csproj", "{D438F8B7-8BBD-4757-8FA8-B151483DFD81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClockworkHighway.WP", "ClockworkHighway.WP\ClockworkHighway.WP.csproj", "{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,30 +80,6 @@ Global
 		{D438F8B7-8BBD-4757-8FA8-B151483DFD81}.Release|x64.Build.0 = Release|Any CPU
 		{D438F8B7-8BBD-4757-8FA8-B151483DFD81}.Release|x86.ActiveCfg = Release|Any CPU
 		{D438F8B7-8BBD-4757-8FA8-B151483DFD81}.Release|x86.Build.0 = Release|Any CPU
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Debug|ARM.ActiveCfg = Debug|ARM
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Debug|ARM.Build.0 = Debug|ARM
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Debug|ARM.Deploy.0 = Debug|ARM
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Debug|x64.Build.0 = Debug|Any CPU
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Debug|x64.Deploy.0 = Debug|Any CPU
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Debug|x86.ActiveCfg = Debug|x86
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Debug|x86.Build.0 = Debug|x86
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Debug|x86.Deploy.0 = Debug|x86
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Release|ARM.ActiveCfg = Release|ARM
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Release|ARM.Build.0 = Release|ARM
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Release|ARM.Deploy.0 = Release|ARM
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Release|x64.ActiveCfg = Release|Any CPU
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Release|x64.Build.0 = Release|Any CPU
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Release|x64.Deploy.0 = Release|Any CPU
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Release|x86.ActiveCfg = Release|x86
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Release|x86.Build.0 = Release|x86
-		{74C3DAEA-3ED3-427A-9896-0DD1279AF15D}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

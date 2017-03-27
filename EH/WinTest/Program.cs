@@ -31,7 +31,7 @@ namespace WinTest
 
         static void Main(string[] args)
         {
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+			System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
 
             var httpClientHandler = new HttpClientHandler
             {

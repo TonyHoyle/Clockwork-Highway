@@ -2,7 +2,7 @@
 <resources>
   <style name="ClockworkTheme" parent="ClockworkTheme.Base">
   </style>
-  <style name="ClockworkTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+  <style name="ClockworkTheme.Base" parent="@style/Theme.AppCompat.Light.NoActionBar">
     <item name="colorPrimary">@color/primary</item>
     <item name="colorPrimaryDark">@color/primary_dark</item>
     <item name="colorAccent">@color/accent</item>
