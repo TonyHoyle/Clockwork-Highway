@@ -109,64 +109,75 @@ namespace ClockworkHighway.Android
         }
 
         private async void UpdateDisplay(bool updateOnly)
-        { 
-            var status = await SharedData.login.Api.getChargeStatusAsync(SharedData.deviceId, _sessionId, _pumpId, _connectorId, SharedData.login.Vehicle);
+        {
+			try
+			{
+				// We randonly get a null pointer exception on a *database* operation here.. this is clearly
+				// nuts and points to something really broken within xamarin, but there's no way to get any
+				// kind of trace to work out what might be wrong (since it's async, therefore no call stack..
+				// don't get me started..)
+				var status = await SharedData.login.Api.getChargeStatusAsync(SharedData.deviceId, _sessionId, _pumpId, _connectorId, SharedData.login.Vehicle);
 
-            System.Diagnostics.Debug.WriteLine("UpdateDisplay status=" + (status == null ? "N" : "Y") + " Activity=" + (Activity == null ? "N" : "Y"));
-            if (status == null)
-                return;
+				System.Diagnostics.Debug.WriteLine("UpdateDisplay status=" + (status == null ? "N" : "Y") + " Activity=" + (Activity == null ? "N" : "Y"));
+				if (status == null)
+					return;
 
-            /* We are sometimes called with a null activity */
-            if (Activity == null)
-            {
-                _completed = status.completed;
-                return;
-            }
+				/* We are sometimes called with a null activity */
+				if (Activity == null)
+				{
+					_completed = status.completed;
+					return;
+				}
 
-            Activity.RunOnUiThread(() =>
-            {
-                _chargeStatus.Text = status.message;
-                _chargePower.Text = String.Format(Context.GetString(Resource.String.powerSupplied), ((double)status.energyConsumption) / 1000);
-                long mins;
-                TimeSpan diff;
-                DateTime started;
+				Activity.RunOnUiThread(() =>
+				{
+					_chargeStatus.Text = status.message;
+					_chargePower.Text = String.Format(Context.GetString(Resource.String.powerSupplied), ((double)status.energyConsumption) / 1000);
+					long mins;
+					TimeSpan diff;
+					DateTime started;
 
-                if (status.status == "Retry")
-                    status.completed = true;
+					if (status.status == "Retry")
+						status.completed = true;
 
-                if (string.IsNullOrEmpty(status.started))
-                    started = DateTime.Now;
-                else
-                    started = DateTime.ParseExact(status.started, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+					if (string.IsNullOrEmpty(status.started))
+						started = DateTime.Now;
+					else
+						started = DateTime.ParseExact(status.started, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
 
-                if(string.IsNullOrEmpty(status.finished))
-                    diff = DateTime.Now - started;
-                else
-                {
-                    DateTime finished = DateTime.ParseExact(status.finished, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
-                    diff = finished - started;
-                };
- 
-                mins = (long)diff.TotalMinutes;
-                _chargeTime.Text = String.Format(Context.GetString(Resource.String.chargingMinutes), mins);
-                _progressBar.Max = 30;
-                _progressBar.Progress = (int)Math.Min(30, mins);
+					if (string.IsNullOrEmpty(status.finished))
+						diff = DateTime.Now - started;
+					else
+					{
+						DateTime finished = DateTime.ParseExact(status.finished, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+						diff = finished - started;
+					};
 
-                if (status.completed)
-                {
-                    Activity.SetTitle(Resource.String.lastCharge);
-                    _chargeStop.SetText(Resource.String.chargeFinished);
-                    _messageStop.Visibility = ViewStates.Visible;                   
-                }
+					mins = (long)diff.TotalMinutes;
+					_chargeTime.Text = String.Format(Context.GetString(Resource.String.chargingMinutes), mins);
+					_progressBar.Max = 30;
+					_progressBar.Progress = (int)Math.Min(30, mins);
 
-                if(!updateOnly)
-                {
-                    if (!_completed && status.completed)
-                        SendUpdateNotification();
-                }
+					if (status.completed)
+					{
+						Activity.SetTitle(Resource.String.lastCharge);
+						_chargeStop.SetText(Resource.String.chargeFinished);
+						_messageStop.Visibility = ViewStates.Visible;
+					}
 
-                _completed = status.completed;
-            });
+					if (!updateOnly)
+					{
+						if (!_completed && status.completed)
+							SendUpdateNotification();
+					}
+
+					_completed = status.completed;
+				});
+			}
+			catch (NullReferenceException e)
+			{
+				Console.WriteLine("Trapped xamarin async bug!");
+			}
         }
 
         public override void OnPause()
