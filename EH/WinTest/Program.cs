@@ -40,16 +40,21 @@ namespace WinTest
             };
             var httpClient = new HttpClient(httpClientHandler);
 
-            EHApi eh = new EHApi(httpClient);
+            EHLogin login = new EHLogin(httpClient);
+            EHApi eh = login.Api;
 
             var Vehicle = new EHApi.Vehicle()
             {
                 make = "Nissan",
                 model = "Leaf",
             };
+			string deviceId = "00000000";
 
-            StreamWriter file = new StreamWriter("locations.csv");
+			StreamWriter file = new StreamWriter("locations.csv");
             file.AutoFlush = true;
+
+            if (!login.LoginWithPassword("TonyHoyle", "", deviceId).Result)
+                return;
 
             for (int locationId = 1; locationId < 200; locationId++)
             {
@@ -61,28 +66,19 @@ namespace WinTest
                     {
                         string status = "";
                         int count = 0;
-                        var sessions = new List<String>();
-
+ 
                         var pumpData = new List<string>();
                         foreach(var pump in details)
                         {
                             if (pump.status != "Swipe card only")
                                 count++;
                             pumpData.Add(pump.pumpId.ToString() + " " + pump.pumpModel);
-
-                            var connectors = eh.getPumpConnectorsAsync("tonyhoyle", "", pump.pumpId, "00000000000", Vehicle).Result;
-
-                            foreach(var cost in connectors.connectorCost)
-                                sessions.Add(cost.sessionId);
                         }
                         if (count > 0)
                             status = count.ToString() + "/"+details.Count.ToString()+" pumps live";
 
-                        sessions.Sort();
-                        var sessionId = string.Join(",", sessions);
-
                         pumpData.Sort();
-                        string line = locationId.ToString() + ", \"" + details[0].name + "\", \""+ details[0].location + "\", \"" + details[0].postcode + "\", " + details[0].latitude + ", " + details[0].longitude + ", \"" + status + "\", \""+ string.Join(", ", pumpData) + "\", \"" + sessionId + "\"";
+                        string line = locationId.ToString() + ", \"" + details[0].name + "\", \""+ details[0].location + "\", \"" + details[0].postcode + "\", " + details[0].latitude + ", " + details[0].longitude + ", \"" + status + "\", \""+ string.Join(", ", pumpData) + "\"";
                         Console.WriteLine(line);
                         file.WriteLine(line);
                     }

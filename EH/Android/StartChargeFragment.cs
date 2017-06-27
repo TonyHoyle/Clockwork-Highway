@@ -101,16 +101,26 @@ namespace ClockworkHighway.Android
                         var connectorDetails = await eh.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, Convert.ToInt32(location.pumpId), SharedData.deviceId, SharedData.login.Vehicle, false);
                         if (connectorDetails != null)
                         {
-                            pp = connectorDetails.connectorCost[0].baseCost + connectorDetails.connectorCost[0].discountEcoGrp;
-                            pm = connectorDetails.connectorCost[0].sessionDuration;
-                            free = connectorDetails.connectorCost[0].freecost.Length > 0;
-                            _connectorCost = connectorDetails.connectorCost;
+                            pm = Convert.ToInt32(connectorDetails.connector[0].sessionDuration);
+                            if (connectorDetails.connectorCost == null)
+                            {
+                                free = true;
+                                pp = 0;
+                                _connectorCost = null;
+                            }
+                            else 
+                            { 
+	                            free = connectorDetails.connectorCost[0].freecost.Length > 0;
+								pp = connectorDetails.connectorCost[0].baseCost + connectorDetails.connectorCost[0].discountEcoGrp;
+								_connectorCost = connectorDetails.connectorCost;
+                            }
                         }
                         else
                         {
                             pp = 0;
                             pm = 30;
                             free = true;
+                            _connectorCost = null;
                         }
                     }
                     catch (EHApi.EHApiException e)
@@ -151,14 +161,7 @@ namespace ClockworkHighway.Android
         {
             var cvv = _cvv.Text;
 
-            if (_connectorCost == null)
-            {
-                var t = Toast.MakeText(Context, "No connector price available", ToastLength.Long);
-                t.Show();
-                return;
-            }
-
-            bool free = _connectorCost[0].freecost.Length > 0;
+            bool free = _connectorCost == null;
 
             if (!free && cvv.Length != 3)
             {

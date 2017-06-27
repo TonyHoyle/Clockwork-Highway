@@ -10,7 +10,7 @@ namespace TonyHoyle.EH
         public List<EHApi.Vehicle> Vehicles { get; private set; }
         public List<EHApi.Card> Cards { get; private set; }
         public string Username { get; private set; }
-        public string Password { get; private set; }
+        public EHApi.TokenData Token { get; private set; }
         public EHApi.AccountData Account { get; private set; }
         public int DefaultVehicleIndex { get; set; }
         public int DefaultCardIndex { get; set; }
@@ -49,23 +49,53 @@ namespace TonyHoyle.EH
             DefaultCardIndex = 0;
         }
 
-        public async Task<bool> Login(string username, string password)
+        public async Task<bool> LoginWithPassword(string username, string password, string deviceId)
         {
-            var account = await Api.loginAsync(username, password);
+            var token = await Api.tokenAsync(username, password, deviceId);
 
-            if(account == null)
+            Username = username;
+            Token = token;
+
+            if (token == null)
             {
                 IsLoggedIn = false;
                 return false;
             }
 
+            return await Login2(deviceId);
+        }
+
+		public async Task<bool> LoginWithToken(string username, string refreshToken, string deviceId)
+		{
+			var token = await Api.tokenAsync(refreshToken, deviceId);
+
+			Username = username;
+			Token = token;
+
+			if (token == null)
+			{
+				IsLoggedIn = false;
+				return false;
+			}
+
+			return await Login2(deviceId);
+		}
+		
+        private async Task<bool> Login2(string deviceId)
+        {
+            var account = await Api.userAsync(Username, Token.access_token, deviceId);
+
+			if (account == null)
+			{
+				IsLoggedIn = false;
+				return false;
+			}
+			
             Account = account;
-            Username = username;
-            Password = password;
             IsLoggedIn = true;
 
-            Vehicles = await Api.getUserVehicleListAsync(username, password);
-            Cards = await Api.getCardListAsync(username, password);
+            Vehicles = await Api.getUserVehicleListAsync(Username, Token.access_token);
+            Cards = await Api.getCardListAsync(Username, Token.access_token);
 
             return true;
         }
@@ -73,7 +103,7 @@ namespace TonyHoyle.EH
         public void Logout()
         {
             Username = "";
-            Password = "";
+            Token = null;
             Account = null;
             Vehicles = null;
             Cards = null;
