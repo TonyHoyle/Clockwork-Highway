@@ -12,8 +12,10 @@ namespace TonyHoyle.EH
     {
         private HttpClient _httpClient;
         private Dictionary<int, ConnectorDetails> _pumpCache = new Dictionary<int, ConnectorDetails>();
+        public EHLogin Login { get; set;  }
 
         private const string ehWeb = "https://www.ecotricity.co.uk/api/ezx/v1/";
+        private const string cAppId = "com.ecotricity.electrichighway";
 
         public class EHApiException : Exception
         {
@@ -53,38 +55,10 @@ namespace TonyHoyle.EH
             }
         }
 
-/*        private class EmptyStringIsZeroConverter<T> : JsonConverter where T:IComparable
-        {
-            public override bool CanConvert(Type objectType)
-            {
-                return (objectType == typeof(T));
-            }
-
-            public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-            {
-                JToken token = JToken.Load(reader);
-                if (token.Type == JTokenType.String)
-                {
-                    if (token.ToString() == "")
-                        return Convert.ChangeType(0, typeof(T));
-                }
-                return token.ToObject<T>();
-            }
-
-            public override bool CanWrite
-            {
-                get { return false; }
-            }
-
-            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-            {
-                throw new NotImplementedException();
-            }
-        } */
-
         public EHApi(HttpClient client)
         {
             _httpClient = client;
+            Login = new EHLogin(this);
         }
 
         public class Terms
@@ -484,28 +458,13 @@ namespace TonyHoyle.EH
             return Result;
         }
 
-/*        public async Task<AccountData> loginAsync(string username, string password)
-        {
-            string apiResult = await ApiCallAsync("login", new Dictionary<string, string>
-            {
-                { "electricHighway", "true" },
-                { "identifier", username },
-                { "password", password }
-            });
-            LoginResult Result = JsonConvert.DeserializeObject<LoginResult>(apiResult);
-            if (!Result.result)
-                return null;
-            else
-                return Result.data;
-        }*/
-
-        public async Task<TokenData> tokenAsync(string username, string password, string deviceId)
+        internal async Task<TokenData> tokenAsync(string username, string password, string deviceId)
         {
 			string apiResult = await ApiCallAsync("token", new Dictionary<string, string>
 			{
 				{ "password", password },
                 { "grant_type", "password" },
-                { "appId", "com.ecotricity.electrichighway" },
+                { "appId", cAppId },
                 { "client_secret", "1363c5f65ec09a2458788e75717a51403b5edd09ae5a40063a53960801305c97"},
                 { "deviceId", deviceId },
                 { "client_id", "2a66896a0ee4aff229fca61772308e2db24a690316a44bf892d510671ef7f834"},
@@ -515,7 +474,7 @@ namespace TonyHoyle.EH
             return Result;
 		}
 
-		public async Task<TokenData> tokenAsync(string refresh_token, string deviceId)
+		internal async Task<TokenData> tokenAsync(string refresh_token, string deviceId)
 		{
 			string apiResult = await ApiCallAsync("token", new Dictionary<string, string>
 			{
@@ -524,21 +483,21 @@ namespace TonyHoyle.EH
 				{ "grant_type", "refresh_token" },
 				{ "deviceId", deviceId },
 				{ "client_id", "2a66896a0ee4aff229fca61772308e2db24a690316a44bf892d510671ef7f834"},
-				{ "appId", "com.ecotricity.electrichighway" }
+				{ "appId", cAppId }
 			});
 			TokenData Result = JsonConvert.DeserializeObject<TokenData>(apiResult);
 			return Result;
 		}
 
-        public async Task<AccountData> userAsync(string username, string accessToken, string deviceId)
+        public async Task<AccountData> userAsync()
 		{
 			string apiResult = await ApiCallAsync("user", new Dictionary<string, string>
 					{
-                        { "access_token", accessToken},
-						{ "identifier", username },
+                        { "access_token", Login.Token.access_token},
+                        { "identifier", Login.Username },
 						{ "electricHighway", "true" },
-                        { "deviceId", deviceId },
-                        { "appId", "com.ecotricity.electrichighway" }
+                        { "deviceId", Login.DeviceId },
+                        { "appId", cAppId }
 					});
 			LoginResult Result = JsonConvert.DeserializeObject<LoginResult>(apiResult);
 			if (!Result.result)
@@ -547,25 +506,25 @@ namespace TonyHoyle.EH
 				return Result.data;
 		}
 
-		public async Task<List<Vehicle>> getUserVehicleListAsync(string username, string accessToken)
+		public async Task<List<Vehicle>> getUserVehicleListAsync()
         {
             string apiResult = await ApiCallAsync("getUserVehicleList", new Dictionary<string, string>
             {
-                { "identifier", username },
-                { "access_token", accessToken }
+                { "identifier", Login.Username },
+                { "access_token", Login.Token.access_token }
             });
             VehicleResult Result = JsonConvert.DeserializeObject<VehicleResult>(apiResult);
             return Result.result;
         }
 
-        public async Task<List<LocationDetails>> getLocationDetailsAsync(int locationId, Vehicle vehicle)
+        public async Task<List<LocationDetails>> getLocationDetailsAsync(int locationId)
         {
             string apiResult = await ApiCallAsync("getLocationDetails", new Dictionary<string, string>
             {
-                { "vehicleSpecification", vehicle.specification },
-                { "vehicleModel", vehicle.model },
+                { "vehicleSpecification", Login.Vehicle.specification },
+                { "vehicleModel", Login.Vehicle.model },
                 { "locationId", locationId.ToString() },
-                { "vehicleMake", vehicle.make }
+                { "vehicleMake", Login.Vehicle.make }
             });
             try
             {
@@ -579,13 +538,13 @@ namespace TonyHoyle.EH
             }
         }
         
-        public async Task<List<Pump>> getPumpListAsync(double latitude, double longitude, Vehicle vehicle)
+        public async Task<List<Pump>> getPumpListAsync(double latitude, double longitude)
         {
             string apiResult = await ApiCallAsync("getPumpList", new Dictionary<string, string>
             {
-                { "vehicleSpec", vehicle.specification },
-                { "vehicleMake", vehicle.make },
-                { "vehicleModel", vehicle.model },
+                { "vehicleSpec", Login.Vehicle.specification },
+                { "vehicleMake", Login.Vehicle.make },
+                { "vehicleModel", Login.Vehicle.model },
                 { "latitude", latitude.ToString() },
                 { "longitude", longitude.ToString() },
             });
@@ -599,19 +558,19 @@ namespace TonyHoyle.EH
             return _pumpCache.ContainsKey(pumpId);
         }
 
-        public async Task<ConnectorDetails> getPumpConnectorsAsync(string username, string accessToken, int pumpId, string deviceId, Vehicle vehicle, bool useCache = true)
+        public async Task<ConnectorDetails> getPumpConnectorsAsync(int pumpId, bool useCache = true)
         {
             if (useCache && _pumpCache.ContainsKey(pumpId))
                 return _pumpCache[pumpId];
 
             string apiResult = await ApiCallAsync("getPumpConnectors", new Dictionary<string, string>
             {
-                { "access_token", accessToken },
-                { "deviceId", deviceId },
-                { "vehicleId", vehicle.id },
-                { "vehicleMake", vehicle.make },
-                { "identifier", username },
-                { "vehicleModel", vehicle.model },
+                { "access_token", Login.Token.access_token },
+                { "deviceId", Login.DeviceId },
+                { "vehicleId", Login.Vehicle.id },
+                { "vehicleMake", Login.Vehicle.make },
+                { "identifier", Login.Username },
+                { "vehicleModel", Login.Vehicle.model },
                 { "pumpId", pumpId.ToString() }
             });
             try
@@ -629,15 +588,15 @@ namespace TonyHoyle.EH
             }
         }
 
-		public async Task<Quote> quoteAsync(string username, string accessToken, string deviceId, Vehicle vehicle)
+		public async Task<Quote> quoteAsync()
 		{
 			string apiResult = await ApiCallAsync("quote", new Dictionary<string, string>
 			{
-				{ "access_token", accessToken },
-				{ "identifier", username },
-				{ "vehicleId", vehicle.id },
-				{ "deviceId", deviceId },
-				{ "appId", "com.ecotricity.electrichighway" }
+                { "access_token", Login.Token.access_token },
+                { "identifier", Login.Username },
+                { "vehicleId", Login.Vehicle.id },
+                { "deviceId", Login.DeviceId },
+				{ "appId", cAppId }
 			});
 			try
 			{
@@ -651,23 +610,23 @@ namespace TonyHoyle.EH
 			}
 		}
 		
-        public async Task<List<Card>> getCardListAsync(string username, string accessToken)
+        public async Task<List<Card>> getCardListAsync()
         {
             string apiResult = await ApiCallAsync("getCardList", new Dictionary<string, string>
             {
-                { "access_token", accessToken },
-                { "identifier", username }
+                { "access_token", Login.Token.access_token },
+                { "identifier", Login.Username }
             });
             GetCardListResult Result = JsonConvert.DeserializeObject<GetCardListResult>(apiResult);
             return Result.result;
         }
 
-        public async Task<BoolResult> changePasswordAsync(string username, string oldPassword, string newPassword)
+        public async Task<BoolResult> changePasswordAsync(string oldPassword, string newPassword)
         {
             string apiResult = await ApiCallAsync("changePassword", new Dictionary<string, string>
             {
                 { "newPassword", newPassword },
-                { "identifier", username },
+                { "identifier", Login.Username },
                 { "password", oldPassword }
             });
             BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
@@ -743,13 +702,13 @@ namespace TonyHoyle.EH
             }
         }
 
-        public async Task<BoolResult> changeEmailAsync(string username, string accessToken, string email)
+        public async Task<BoolResult> changeEmailAsync(string email)
         {
             string apiResult = await ApiCallAsync("changeEmail", new Dictionary<string, string>
             {
                 { "newEmail", email },
-                { "identifier", username },
-                { "access_token", accessToken }
+                { "identifier", Login.Username },
+                { "access_token", Login.Token.access_token }
             });
             try
             {
@@ -763,17 +722,17 @@ namespace TonyHoyle.EH
             }
         }
 
-        public async Task<BoolResult> startChargeSessionAsync(string username, string accessToken, string deviceId, int pumpId, int connectorId, string cvv, string cardId, string sessionId)
+        public async Task<BoolResult> startChargeSessionAsync(int pumpId, int connectorId, string cvv, string sessionId)
         {
             string apiResult = await ApiCallAsync("startChargeSession", new Dictionary<string, string>
             {
-                { "access_token", accessToken },
-                { "deviceId", deviceId },
-                { "identifier", username },
+                { "access_token", Login.Token.access_token },
+                { "deviceId", Login.DeviceId },
+                { "identifier", Login.Username },
                 { "pumpConnector", connectorId.ToString() },
                 { "pumpId", pumpId.ToString() },
                 { "cv2", cvv },
-                { "cardId", cardId },
+                { "cardId", Login.Card.cardId },
                 { "sessionId", sessionId }
             });
             try
@@ -788,14 +747,14 @@ namespace TonyHoyle.EH
             }
         }
 
-        public async Task<BoolResult> stopChargeSessionAsync(string username, string accessToken, string deviceId, int pumpId, int connectorId, string sessionId)
+        public async Task<BoolResult> stopChargeSessionAsync(int pumpId, int connectorId, string sessionId)
         {
             string apiResult = await ApiCallAsync("stopChargeSession", new Dictionary<string, string>
             {
-                { "access_token", accessToken },
-                { "deviceId", deviceId },
+                { "access_token", Login.Token.access_token },
+                { "deviceId", Login.DeviceId },
                 { "sessionId", sessionId },
-                { "identifier", username },
+                { "identifier", Login.Username },
                 { "pumpConnector", connectorId.ToString() },
                 { "pumpId", pumpId.ToString() },
             });
@@ -811,14 +770,14 @@ namespace TonyHoyle.EH
             }
         }
 
-        public async Task<ChargeStatus> getChargeStatusAsync(string deviceId, string sessionId, int pumpId, int connectorId, Vehicle vehicle)
+        public async Task<ChargeStatus> getChargeStatusAsync(int pumpId, int connectorId, string sessionId)
         {
             string apiResult = await ApiCallAsync("getChargeStatus", new Dictionary<string, string>
             {
-                { "deviceId", deviceId },
-                { "vehicleMake", vehicle.make },
+                { "deviceId", Login.DeviceId },
+                { "vehicleMake", Login.Vehicle.make },
                 { "sessionId", sessionId },
-                { "vehicleModel", vehicle.model },
+                { "vehicleModel", Login.Vehicle.model },
                 { "pumpConnector", connectorId.ToString() },
                 { "pumpId", pumpId.ToString() }
             });
@@ -834,13 +793,13 @@ namespace TonyHoyle.EH
             }
         }
 
-        public async Task<ChargeStatus> getChargeStatusAsync(string identifier, string accessToken, string deviceId)
+        public async Task<ChargeStatus> getChargeStatusAsync()
         {
             string apiResult = await ApiCallAsync("getChargeStatus", new Dictionary<string, string>
             {
-                { "identifier", identifier },
-                { "access_token", accessToken },
-                { "deviceId", deviceId }
+                { "identifier", Login.Username },
+                { "access_token", Login.Token.access_token },
+                { "deviceId", Login.DeviceId }
             });
             try
             {
@@ -886,12 +845,12 @@ namespace TonyHoyle.EH
             }
         }
 
-        public async Task<ContractTransaction> getTransactionListAsync(string username, string accessToken)
+        public async Task<ContractTransaction> getTransactionListAsync()
         {
             string apiResult = await ApiCallAsync("getTransactionList", new Dictionary<string, string>
             {
-                { "identifier", username },
-                { "access_token", accessToken }
+                { "identifier", Login.Username },
+                { "access_token", Login.Token.access_token }
             });
             try
             {

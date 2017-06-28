@@ -40,20 +40,12 @@ namespace WinTest
             };
             var httpClient = new HttpClient(httpClientHandler);
 
-            EHLogin login = new EHLogin(httpClient);
-            EHApi eh = login.Api;
-
-            var Vehicle = new EHApi.Vehicle()
-            {
-                make = "Nissan",
-                model = "Leaf",
-            };
-			string deviceId = "00000000";
+            EHApi api = new EHApi(httpClient);
 
 			StreamWriter file = new StreamWriter("locations.csv");
             file.AutoFlush = true;
 
-            if (!login.LoginWithPassword("TonyHoyle", "", deviceId).Result)
+            if (!api.Login.LoginWithPassword("TonyHoyle", "", "00000000").Result)
                 return;
 
             for (int locationId = 1; locationId < 200; locationId++)
@@ -61,7 +53,7 @@ namespace WinTest
                 try
                 {
                     Debug.WriteLine("Trying " + locationId.ToString());
-                    var details = eh.getLocationDetailsAsync(locationId, Vehicle).Result;
+                    var details = api.getLocationDetailsAsync(locationId).Result;
                     if (details != null)
                     {
                         string status = "";

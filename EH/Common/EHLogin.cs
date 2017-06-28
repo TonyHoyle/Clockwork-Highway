@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace TonyHoyle.EH
@@ -12,9 +11,10 @@ namespace TonyHoyle.EH
         public string Username { get; private set; }
         public EHApi.TokenData Token { get; private set; }
         public EHApi.AccountData Account { get; private set; }
+        public string DeviceId { get; private set; }
         public int DefaultVehicleIndex { get; set; }
         public int DefaultCardIndex { get; set; }
-        public EHApi Api { get; private set; }
+        private EHApi _api;
 
         public EHApi.Vehicle Vehicle {
             get
@@ -41,20 +41,21 @@ namespace TonyHoyle.EH
             }
         }
 
-        public EHLogin(HttpClient client)
+        public EHLogin(EHApi api)
         {
-            Api = new EHApi(client);
+            _api = api;
             IsLoggedIn = false;
             DefaultVehicleIndex = 0;
             DefaultCardIndex = 0;
         }
 
-        public async Task<bool> LoginWithPassword(string username, string password, string deviceId)
+		public async Task<bool> LoginWithPassword(string username, string password, string deviceId)
         {
-            var token = await Api.tokenAsync(username, password, deviceId);
+            var token = await _api.tokenAsync(username, password, deviceId);
 
             Username = username;
             Token = token;
+            DeviceId = deviceId;
 
             if (token == null)
             {
@@ -62,15 +63,16 @@ namespace TonyHoyle.EH
                 return false;
             }
 
-            return await Login2(deviceId);
+            return await Login2();
         }
 
 		public async Task<bool> LoginWithToken(string username, string refreshToken, string deviceId)
 		{
-			var token = await Api.tokenAsync(refreshToken, deviceId);
+			var token = await _api.tokenAsync(refreshToken, deviceId);
 
 			Username = username;
 			Token = token;
+			DeviceId = deviceId;
 
 			if (token == null)
 			{
@@ -78,12 +80,12 @@ namespace TonyHoyle.EH
 				return false;
 			}
 
-			return await Login2(deviceId);
+			return await Login2();
 		}
 		
-        private async Task<bool> Login2(string deviceId)
+        private async Task<bool> Login2()
         {
-            var account = await Api.userAsync(Username, Token.access_token, deviceId);
+            var account = await _api.userAsync();
 
 			if (account == null)
 			{
@@ -94,8 +96,8 @@ namespace TonyHoyle.EH
             Account = account;
             IsLoggedIn = true;
 
-            Vehicles = await Api.getUserVehicleListAsync(Username, Token.access_token);
-            Cards = await Api.getCardListAsync(Username, Token.access_token);
+            Vehicles = await _api.getUserVehicleListAsync();
+            Cards = await _api.getCardListAsync();
 
             return true;
         }
