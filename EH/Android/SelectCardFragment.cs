@@ -15,12 +15,12 @@ namespace ClockworkHighway.Android
         {
             List<string> cardList = new List<string>();
 
-            foreach(var c in SharedData.login.Cards)
+            foreach(var c in SharedData.api.Login.Cards)
             {
                 cardList.Add(c.cardType + " " + c.lastDigits);
             }
 
-            _selectedCard = SharedData.login.DefaultCardIndex;
+            _selectedCard = SharedData.api.Login.DefaultCardIndex;
 
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity)
                 .SetTitle(Resource.String.selectCard)
@@ -38,10 +38,10 @@ namespace ClockworkHighway.Android
 
         private void SelectCard()
         {
-            SharedData.login.DefaultCardIndex = _selectedCard;
+            SharedData.api.Login.DefaultCardIndex = _selectedCard;
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Context).Edit();
-            prefs.PutInt("CardIndex", SharedData.login.DefaultCardIndex)
+            prefs.PutInt("CardIndex", SharedData.api.Login.DefaultCardIndex)
                 .Commit();
         }
     }

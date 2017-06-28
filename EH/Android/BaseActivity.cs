@@ -52,7 +52,7 @@ namespace ClockworkHighway.Android
             var headerView = navigationView.GetHeaderView(0);
             var headerText = headerView.FindViewById<TextView>(Resource.Id.drawerHeaderTitle);
 
-            headerText.Text = SharedData.login.Account.firstname + " " + SharedData.login.Account.lastname;
+            headerText.Text = SharedData.api.Login.Account.firstname + " " + SharedData.api.Login.Account.lastname;
 
             _drawerToggle = new global::Android.Support.V7.App.ActionBarDrawerToggle(this, _drawerLayout, Resource.String.open, Resource.String.close);
 
@@ -84,11 +84,12 @@ namespace ClockworkHighway.Android
 
         private void Logout()
         {
-            SharedData.login.Logout();
+            SharedData.api.Login.Logout();
 
             /*var prefs =*/ PreferenceManager.GetDefaultSharedPreferences(this)
                 .Edit()
                 .Remove("password")
+                .Remove("refresh_token")                             
                 .Commit();
 
             Intent intent = new Intent(this, typeof(MainActivity));
@@ -125,7 +126,7 @@ namespace ClockworkHighway.Android
         {
             try
             {
-                var status = await SharedData.login.Api.getChargeStatusAsync(SharedData.login.Username, SharedData.login.Password, SharedData.deviceId);
+                var status = await SharedData.api.getChargeStatusAsync();
 
                 if (status != null)
                 {

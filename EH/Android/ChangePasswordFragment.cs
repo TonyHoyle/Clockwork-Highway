@@ -25,7 +25,7 @@ namespace ClockworkHighway.Android
             _newPassword = view.FindViewById<TextInputEditText>(Resource.Id.newPassword);
             _newPassword2 = view.FindViewById<TextInputEditText>(Resource.Id.newPassword2);
 
-            username.Text = "Changing password for " + SharedData.login.Account.firstname + " " + SharedData.login.Account.lastname;
+            username.Text = "Changing password for " + SharedData.api.Login.Account.firstname + " " + SharedData.api.Login.Account.lastname;
 
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity)
                 .SetTitle(Resource.String.changePassword)
@@ -39,7 +39,7 @@ namespace ClockworkHighway.Android
 
         private async void ChangePassword(string oldPassword, string newPassword, string newPassword2)
         {
-            var eh = SharedData.login.Api;
+            var eh = SharedData.api;
 
             if(newPassword != newPassword2)
             {
@@ -49,7 +49,7 @@ namespace ClockworkHighway.Android
             }
             try
             {
-                var result = await eh.changePasswordAsync(SharedData.login.Username, oldPassword, newPassword);
+                var result = await eh.changePasswordAsync(oldPassword, newPassword);
                 if (result.result)
                 {
                     // Store the new password for next time we login

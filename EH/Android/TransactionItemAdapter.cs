@@ -57,8 +57,8 @@ namespace ClockworkHighway.Android
             tags.date.Text = DateTime.ParseExact(item.date, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture).ToLongDateString();
             tags.cost.Text = item.totalCost.ToString("C2");
 
-            if (SharedData.login.Api.pumpConnectorsAreCached(item.pumpId))
-                tags.pump.Text = SharedData.login.Api.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, item.pumpId, SharedData.deviceId, SharedData.login.Vehicle).Result.name;
+            if (SharedData.api.pumpConnectorsAreCached(item.pumpId))
+                tags.pump.Text = SharedData.api.getPumpConnectorsAsync(item.pumpId).Result.name;
             else
             {
                 tags.pump.Text = item.pumpId.ToString();
@@ -75,7 +75,7 @@ namespace ClockworkHighway.Android
             await _lock.WaitAsync();
             try
             {
-				/*var pumpDetails =*/ await SharedData.login.Api.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, pumpId, SharedData.deviceId, SharedData.login.Vehicle);
+				/*var pumpDetails =*/ await SharedData.api.getPumpConnectorsAsync(pumpId);
                 NotifyDataSetChanged(); // Do this to refresh the list properly, since items get re-used.  
             }
             catch(EHApi.EHApiException e)

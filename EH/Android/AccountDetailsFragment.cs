@@ -24,27 +24,27 @@ namespace ClockworkHighway.Android
             var details = new List<AccountDetailsLine>();
 
             AddDetails(details, Resource.String.name, " ",
-                SharedData.login.Account.firstname,
-                SharedData.login.Account.lastname);
+                SharedData.api.Login.Account.firstname,
+                SharedData.api.Login.Account.lastname);
             AddDetails(details, Resource.String.address, "\n",
-                SharedData.login.Account.accountDetails.street,
-                SharedData.login.Account.accountDetails.village,
-                SharedData.login.Account.accountDetails.city,
-                SharedData.login.Account.accountDetails.postcode);
+                SharedData.api.Login.Account.accountDetails.street,
+                SharedData.api.Login.Account.accountDetails.village,
+                SharedData.api.Login.Account.accountDetails.city,
+                SharedData.api.Login.Account.accountDetails.postcode);
             AddDetails(details, Resource.String.email, " ",
-                SharedData.login.Account.email);
+                SharedData.api.Login.Account.email);
             AddDetails(details, Resource.String.phone, " ",
-                SharedData.login.Account.phone);
-            if(SharedData.login.Vehicle != null)
+                SharedData.api.Login.Account.phone);
+            if(SharedData.api.Login.Vehicle != null)
                 AddDetails(details, Resource.String.car, " ",
-                    SharedData.login.Vehicle.registration.ToUpper() + " -",
-                    SharedData.login.Vehicle.make,
-                    SharedData.login.Vehicle.model,
-                    SharedData.login.Vehicle.specification);
-            if(SharedData.login.Card != null)
+                    SharedData.api.Login.Vehicle.registration.ToUpper() + " -",
+                    SharedData.api.Login.Vehicle.make,
+                    SharedData.api.Login.Vehicle.model,
+                    SharedData.api.Login.Vehicle.specification);
+            if(SharedData.api.Login.Card != null)
                 AddDetails(details, Resource.String.card, " ",
-                    SharedData.login.Card.cardType,
-                    SharedData.login.Card.lastDigits);
+                    SharedData.api.Login.Card.cardType,
+                    SharedData.api.Login.Card.lastDigits);
             accountList.Adapter = new AccountDetailsAdapter(Context, details);
             accountList.ItemClick += (sender, args) => { OnAccountDetailsClicked(((AccountDetailsAdapter)accountList.Adapter).GetItem(args.Position)); };
 

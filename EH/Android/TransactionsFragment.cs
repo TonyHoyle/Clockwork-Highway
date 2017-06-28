@@ -34,7 +34,7 @@ namespace ClockworkHighway.Android
         {
             try
             {
-                var transactions = await SharedData.login.Api.getTransactionListAsync(SharedData.login.Username, SharedData.login.Password);
+                var transactions = await SharedData.api.getTransactionListAsync();
 
                 progress.Visibility = global::Android.Views.ViewStates.Gone;
 

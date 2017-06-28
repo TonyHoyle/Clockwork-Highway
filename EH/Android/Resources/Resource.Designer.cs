@@ -2579,11 +2579,11 @@ namespace ClockworkHighway.Android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0b00ec
-			public const int about = 2131427564;
+			// aapt resource value: 0x7f0b00ed
+			public const int about = 2131427565;
 			
-			// aapt resource value: 0x7f0b00e9
-			public const int account = 2131427561;
+			// aapt resource value: 0x7f0b00ea
+			public const int account = 2131427562;
 			
 			// aapt resource value: 0x7f0b007f
 			public const int accountDetails = 2131427455;
@@ -2750,8 +2750,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0092
 			public const int content_frame = 2131427474;
 			
-			// aapt resource value: 0x7f0b00e4
-			public const int cost = 2131427556;
+			// aapt resource value: 0x7f0b00e5
+			public const int cost = 2131427557;
 			
 			// aapt resource value: 0x7f0b005f
 			public const int custom = 2131427423;
@@ -2765,8 +2765,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b001a
 			public const int dark = 2131427354;
 			
-			// aapt resource value: 0x7f0b00e1
-			public const int date = 2131427553;
+			// aapt resource value: 0x7f0b00e2
+			public const int date = 2131427554;
 			
 			// aapt resource value: 0x7f0b006c
 			public const int decor_content_parent = 2131427436;
@@ -2897,8 +2897,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0094
 			public const int largeLabel = 2131427476;
 			
-			// aapt resource value: 0x7f0b00ea
-			public const int lastCharge = 2131427562;
+			// aapt resource value: 0x7f0b00eb
+			public const int lastCharge = 2131427563;
 			
 			// aapt resource value: 0x7f0b003e
 			public const int left = 2131427390;
@@ -2939,8 +2939,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b00b0
 			public const int login = 2131427504;
 			
-			// aapt resource value: 0x7f0b00ef
-			public const int logout = 2131427567;
+			// aapt resource value: 0x7f0b00f0
+			public const int logout = 2131427568;
 			
 			// aapt resource value: 0x7f0b008f
 			public const int main_content = 2131427471;
@@ -2948,20 +2948,20 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b00a4
 			public const int map = 2131427492;
 			
-			// aapt resource value: 0x7f0b00e7
-			public const int masked = 2131427559;
+			// aapt resource value: 0x7f0b00e8
+			public const int masked = 2131427560;
 			
 			// aapt resource value: 0x7f0b00ba
 			public const int media_actions = 2131427514;
 			
-			// aapt resource value: 0x7f0b00e8
-			public const int menuGroup1 = 2131427560;
+			// aapt resource value: 0x7f0b00e9
+			public const int menuGroup1 = 2131427561;
 			
-			// aapt resource value: 0x7f0b00eb
-			public const int menuGroup2 = 2131427563;
+			// aapt resource value: 0x7f0b00ec
+			public const int menuGroup2 = 2131427564;
 			
-			// aapt resource value: 0x7f0b00ee
-			public const int menuGroup3 = 2131427566;
+			// aapt resource value: 0x7f0b00ef
+			public const int menuGroup3 = 2131427567;
 			
 			// aapt resource value: 0x7f0b008e
 			public const int messageStop = 2131427470;
@@ -3038,6 +3038,9 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b00df
 			public const int price = 2131427551;
 			
+			// aapt resource value: 0x7f0b00e0
+			public const int price2 = 2131427552;
+			
 			// aapt resource value: 0x7f0b008c
 			public const int progressBar = 2131427468;
 			
@@ -3047,8 +3050,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0007
 			public const int progress_horizontal = 2131427335;
 			
-			// aapt resource value: 0x7f0b00e3
-			public const int pump = 2131427555;
+			// aapt resource value: 0x7f0b00e4
+			public const int pump = 2131427556;
 			
 			// aapt resource value: 0x7f0b00d9
 			public const int pumpId = 2131427545;
@@ -3134,8 +3137,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b007c
 			public const int select_dialog_listview = 2131427452;
 			
-			// aapt resource value: 0x7f0b00e2
-			public const int session = 2131427554;
+			// aapt resource value: 0x7f0b00e3
+			public const int session = 2131427555;
 			
 			// aapt resource value: 0x7f0b0066
 			public const int shortcut = 2131427430;
@@ -3206,11 +3209,11 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b001d
 			public const int tabMode = 2131427357;
 			
-			// aapt resource value: 0x7f0b00ed
-			public const int terms = 2131427565;
+			// aapt resource value: 0x7f0b00ee
+			public const int terms = 2131427566;
 			
-			// aapt resource value: 0x7f0b00e0
-			public const int termsAndConditions = 2131427552;
+			// aapt resource value: 0x7f0b00e1
+			public const int termsAndConditions = 2131427553;
 			
 			// aapt resource value: 0x7f0b0013
 			public const int terrain = 2131427347;
@@ -3260,8 +3263,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0095
 			public const int touch_outside = 2131427477;
 			
-			// aapt resource value: 0x7f0b00e5
-			public const int transactions = 2131427557;
+			// aapt resource value: 0x7f0b00e6
+			public const int transactions = 2131427558;
 			
 			// aapt resource value: 0x7f0b000a
 			public const int transition_current_scene = 2131427338;
@@ -3287,8 +3290,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b000e
 			public const int view_offset_helper = 2131427342;
 			
-			// aapt resource value: 0x7f0b00e6
-			public const int visible = 2131427558;
+			// aapt resource value: 0x7f0b00e7
+			public const int visible = 2131427559;
 			
 			// aapt resource value: 0x7f0b0018
 			public const int wide = 2131427352;

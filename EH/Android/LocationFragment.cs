@@ -39,8 +39,8 @@ namespace ClockworkHighway.Android
 
             list.EmptyView = progress;
 
-            var eh = SharedData.login.Api;
-            var location = await eh.getLocationDetailsAsync(locationId, SharedData.login.Vehicle);
+            var eh = SharedData.api;
+            var location = await eh.getLocationDetailsAsync(locationId);
             list.Adapter = new LocationAdapter(Context, location);
 
             list.ItemClick += (sender, args) => { PumpClicked(((LocationAdapter)list.Adapter).GetItem(args.Position)); } ;

@@ -183,11 +183,11 @@ namespace ClockworkHighway.Android
 
             view.Adapter = null;
 
-            var eh = SharedData.login.Api;
+            var eh = SharedData.api;
 
             try
             {
-                var pumps = await eh.getPumpListAsync(latitude, longitude, SharedData.login.Vehicle);
+                var pumps = await eh.getPumpListAsync(latitude, longitude);
                 view.Adapter = new PumpListAdapter(Context, pumps);
             }
             catch (EHApi.EHApiException e)
@@ -260,7 +260,7 @@ namespace ClockworkHighway.Android
         {
             try
             {
-                var status = await SharedData.login.Api.getChargeStatusAsync(SharedData.login.Username, SharedData.login.Password, SharedData.deviceId);
+                var status = await SharedData.api.getChargeStatusAsync();
 
                 if (status!=null && status.started != null && status.started != "" && !status.completed && status.status != "Retry")
                 {

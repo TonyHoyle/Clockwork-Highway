@@ -42,26 +42,26 @@ namespace ClockworkHighway.Android
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
             var username = prefs.GetString("username", "");
-            var password = prefs.GetString("password", "");
+            var refresh_token = prefs.GetString("refresh_token", "");
+            var password = prefs.GetString("password", ""); // Shouldn't exist, except for upgrade case
             var usernamePrompt = View.FindViewById<TextInputEditText>(Resource.Id.username);
             var passwordPrompt = View.FindViewById<TextInputEditText>(Resource.Id.password);
             usernamePrompt.Text = username;
-            if (password != "")
-                passwordPrompt.Text = "******";
+            if (password != "" || refresh_token != "")
+                passwordPrompt.Text = "**********";
             else
                 passwordPrompt.Text = "";
 
-            SharedData.login = new EHLogin(SharedData.httpClient);
-            SharedData.deviceId = Settings.Secure.GetString(Context.ContentResolver, Settings.Secure.AndroidId);
+            SharedData.api = new EHApi(SharedData.httpClient);
             SharedData.googleApi = new GoogleApi(SharedData.httpClient, Context.GetString(Resource.String.google_maps_key));
-            SharedData.settings = await SharedData.login.Api.getSettingsAsync();
+            SharedData.settings = await SharedData.api.getSettingsAsync();
 
             passwordPrompt.EditorAction += (obj, e) => { if (e.ActionId == ImeAction.Done) OnLoginClick(obj, e); };
 
-            SharedData.login.DefaultCardIndex = prefs.GetInt("CardIndex", 0);
-            SharedData.login.DefaultVehicleIndex = prefs.GetInt("VehicleIndex", 0);
+            SharedData.api.Login.DefaultCardIndex = prefs.GetInt("CardIndex", 0);
+            SharedData.api.Login.DefaultVehicleIndex = prefs.GetInt("VehicleIndex", 0);
 
-            DoLogin(username, password);
+			DoLogin(username, password, refresh_token);
         }
 
         private void OnUsernameClick(object sender, System.EventArgs e)
@@ -79,7 +79,7 @@ namespace ClockworkHighway.Android
             var username = View.FindViewById<TextInputEditText>(Resource.Id.username);
             var password = View.FindViewById<TextInputEditText>(Resource.Id.password);
 
-            DoLogin(username.Text, password.Text);
+            DoLogin(username.Text, password.Text, "");
         }
 
         public void ShowProgress(bool visible, string message = "", bool isError = false)
@@ -96,29 +96,39 @@ namespace ClockworkHighway.Android
             button.Visibility = visible ? global::Android.Views.ViewStates.Gone : global::Android.Views.ViewStates.Visible;
         }
 
-        public async void DoLogin(string username, string password)
+        public async void DoLogin(string username, string password, string refresh_token)
         {
+			string deviceId = Settings.Secure.GetString(Context.ContentResolver, Settings.Secure.AndroidId);
+
             try
             {
-                SharedData.login.Logout();
+                SharedData.api.Login.Logout();
 
-                if (username == "" || password == "")
+                if (username == "" || (password == "" && refresh_token == ""))
                 {
                     ShowProgress(false);
                     return;
                 }
 
                 ShowProgress(true, "Logging in..");
-                if (!await SharedData.login.Login(username, password))
+                bool loggedIn = false;
+                if (refresh_token != "")
+                    loggedIn = await SharedData.api.Login.LoginWithToken(username, refresh_token, deviceId);
+
+                if (!loggedIn && password != "")
+                    loggedIn = await SharedData.api.Login.LoginWithPassword(username, password, deviceId);
+
+                if(!loggedIn)
                 {
                     ShowProgress(false, "Unknown username or password", true);
                 }
-                if (SharedData.login.IsLoggedIn)
+                else
                 {
                     var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
                     var editor = prefs.Edit();
                     editor.PutString("username", username);
-                    editor.PutString("password", password);
+                    editor.Remove("password");
+                    editor.PutString("refresh_token", SharedData.api.Login.Token.refresh_token);
                     editor.Apply();
 
                     Intent intent = new Intent(Context, typeof(SearchActivity));

@@ -20,7 +20,7 @@ namespace ClockworkHighway.Android
             var username = view.FindViewById<TextView>(Resource.Id.username);
             _newEmail = view.FindViewById<TextInputEditText>(Resource.Id.email);
 
-            username.Text = "Changing email for " + SharedData.login.Account.firstname + " " + SharedData.login.Account.lastname;
+            username.Text = "Changing email for " + SharedData.api.Login.Account.firstname + " " + SharedData.api.Login.Account.lastname;
 
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity)
                 .SetTitle(Resource.String.changeEmail)
@@ -34,11 +34,11 @@ namespace ClockworkHighway.Android
 
         private async void ChangeEmail(string newEmail)
         {
-            var eh = SharedData.login.Api;
+            var eh = SharedData.api;
 
             try
             {
-                var result = await eh.changeEmailAsync(SharedData.login.Username, SharedData.login.Password, newEmail);
+                var result = await eh.changeEmailAsync(newEmail);
                 if (result.result)
                 {
                     Dismiss();

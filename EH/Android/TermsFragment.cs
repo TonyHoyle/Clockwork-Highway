@@ -16,29 +16,12 @@ namespace ClockworkHighway.Android
             var terms = view.FindViewById<TextView>(Resource.Id.termsAndConditions);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity)
-                .SetTitle(Resource.String.termsLong)
+                .SetTitle(SharedData.settings.terms.title)
                 .SetView(view)
                 .SetPositiveButton(Resource.String.ok, (sender, args) => { });
             var dlg = builder.Create();
-            loadTerms(dlg, terms);
+            terms.Text = SharedData.settings.terms.terms;
             return dlg;
-        }
-
-        private async void loadTerms(AlertDialog dlg, TextView text)
-        {
-            try
-            {
-                text.Text = "Loading terms..";
-
-                EHApi.Terms terms = await SharedData.login.Api.getTermsAsync();
-
-                if (terms != null)
-                    text.Text = terms.terms;
-            }
-            catch(EHApi.EHApiException e)
-            {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-            }
         }
     }
 }

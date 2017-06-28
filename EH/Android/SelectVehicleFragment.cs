@@ -15,12 +15,12 @@ namespace ClockworkHighway.Android
         {
             List<string> vehicleList = new List<string>();
 
-            foreach(var v in SharedData.login.Vehicles)
+            foreach(var v in SharedData.api.Login.Vehicles)
             {
                 vehicleList.Add(v.registration.ToUpper() + " - " + v.make+ " " + v.model + " " + " " + v.specification);
             }
 
-            _selectedVehicle = SharedData.login.DefaultVehicleIndex;
+            _selectedVehicle = SharedData.api.Login.DefaultVehicleIndex;
 
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity)
                 .SetTitle(Resource.String.selectVehicle)
@@ -38,10 +38,10 @@ namespace ClockworkHighway.Android
 
         private void SelectVehicle()
         {
-            SharedData.login.DefaultVehicleIndex = _selectedVehicle;
+            SharedData.api.Login.DefaultVehicleIndex = _selectedVehicle;
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Context).Edit();
-            prefs.PutInt("VehicleIndex", SharedData.login.DefaultVehicleIndex)
+            prefs.PutInt("VehicleIndex", SharedData.api.Login.DefaultVehicleIndex)
                 .Commit();
         }
     }

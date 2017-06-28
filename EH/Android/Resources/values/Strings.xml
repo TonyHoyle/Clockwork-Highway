@@ -63,7 +63,7 @@
   <string name="tokenNotReady">Click on the link within the email you have been sent before pressing continue</string>
   <string name="enterNewPassword">Enter the new password and again for confirmation</string>
   <string name="stopCharge">Stop charge?</string>
-  <string name="areYouSureStop">Are you sure you want to stop the charge early?  Ecotricity will still charge you the full 30 minutes.</string>
+  <string name="areYouSureStop">Are you sure you want to stop the charge?</string>
   <string name="areYouSureStop2">Charging has already stopped.  Do you want to override this and attempt to send a stop signal anyway?</string>
   <string name="powerSupplied">{0}kW</string>
   <string name="chargingMinutes">{0} minutes</string>

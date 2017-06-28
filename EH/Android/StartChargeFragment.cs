@@ -17,7 +17,7 @@ namespace ClockworkHighway.Android
         private string _cardId;
         private int _pumpId;
         private TextView _cvv;
-        private List<EHApi.ConnectorCost> _connectorCost;
+        private EHApi.Quote _quote;
 
         public override global::Android.App.Dialog OnCreateDialog(Bundle savedInstanceState)
         {
@@ -43,14 +43,14 @@ namespace ClockworkHighway.Android
 
             _cvv = view.FindViewById<TextView>(Resource.Id.cvv);
 
-            foreach (var c in SharedData.login.Cards)
+            foreach (var c in SharedData.api.Login.Cards)
             {
                 cards.Add(c.cardType + " " + c.lastDigits);
             }
 
             cardList.Adapter = new ArrayAdapter<string>(Context, global::Android.Resource.Layout.SimpleSpinnerDropDownItem, cards.ToArray());
-            cardList.SetSelection(SharedData.login.DefaultCardIndex);
-            cardList.ItemSelected += (obj, e) => { _cardId = SharedData.login.Cards[e.Position].cardId; };
+            cardList.SetSelection(SharedData.api.Login.DefaultCardIndex);
+            cardList.ItemSelected += (obj, e) => { _cardId = SharedData.api.Login.Cards[e.Position].cardId; };
 
             var compatibleConnectors = new List<EHApi.Connector>();
 
@@ -75,93 +75,82 @@ namespace ClockworkHighway.Android
                 connectorList.Visibility = ViewStates.Gone;
                 connectorPrompt.Visibility = ViewStates.Gone;
             }
-            if(compatibleConnectors.Count > 0)
+            if (compatibleConnectors.Count > 0)
                 _connectorId = compatibleConnectors[0].connectorId;
             else
                 _connectorId = 0;
-            if (SharedData.login.Card != null)
-                _cardId = SharedData.login.Card.cardId;
+            if (SharedData.api.Login.Card != null)
+                _cardId = SharedData.api.Login.Card.cardId;
             else
                 _cardId = "0";
             _pumpId = location.pumpId;
 
             pumpId.Text = location.pumpId.ToString();
             locationName.Text = location.name;
-            decimal pp;
-            int pm;
-            bool free;
-
-            // This is all because async is a bloody virus.. there's no way of calling the API on a non-void function.
-            using (var h = new Handler(Looper.MainLooper))
-                h.Post(async () =>
-                {
-                    try
-                    {
-                        var eh = SharedData.login.Api;
-                        var connectorDetails = await eh.getPumpConnectorsAsync(SharedData.login.Username, SharedData.login.Password, Convert.ToInt32(location.pumpId), SharedData.deviceId, SharedData.login.Vehicle, false);
-                        if (connectorDetails != null)
-                        {
-                            pm = Convert.ToInt32(connectorDetails.connector[0].sessionDuration);
-                            if (connectorDetails.connectorCost == null)
-                            {
-                                free = true;
-                                pp = 0;
-                                _connectorCost = null;
-                            }
-                            else 
-                            { 
-	                            free = connectorDetails.connectorCost[0].freecost.Length > 0;
-								pp = connectorDetails.connectorCost[0].baseCost + connectorDetails.connectorCost[0].discountEcoGrp;
-								_connectorCost = connectorDetails.connectorCost;
-                            }
-                        }
-                        else
-                        {
-                            pp = 0;
-                            pm = 30;
-                            free = true;
-                            _connectorCost = null;
-                        }
-                    }
-                    catch (EHApi.EHApiException e)
-                    {
-                        System.Diagnostics.Debug.WriteLine(e.Message);
-                        pp = 5;
-                        pm = 30;
-                        free = false;
-                    }
-
-                    if (!free)
-                    {
-                        payment.Visibility = ViewStates.Visible;
-                        progressBar.Visibility = ViewStates.Gone;
-                        price.Text = "Ecotricity will charge £" + pp.ToString() + " per " + pm.ToString() + " minute charge session.  All transactions are strictly between Ecotricity and the Car Owner.";
-                    }
-                    else
-                    {
-                        payment.Visibility = ViewStates.Gone;
-                        progressBar.Visibility = ViewStates.Gone;
-                        price.Text = "This pump is free for up to " + pm.ToString() + " minutes";
-                    }
-                });
-
 
             price.Text = "";
-  
+
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity)
                 .SetTitle(Resource.String.startCharge)
                 .SetView(view)
                 .SetPositiveButton(Resource.String.ok, (sender, args) => { })
                 .SetNegativeButton(Resource.String.cancel, (sender, args) => { });
 
+            new Handler(Looper.MainLooper).Post(() => InitDialog(view));
+                                          
             return builder.Create();
         }
+
+        async void InitDialog(View view)
+        {
+			var payment = view.FindViewById<LinearLayout>(Resource.Id.payment);
+			var progressBar = view.FindViewById<ProgressBar>(Resource.Id.progressBar);
+			var price = view.FindViewById<TextView>(Resource.Id.price);
+			var price2 = view.FindViewById<TextView>(Resource.Id.price2);
+
+			try
+            {
+                _quote = await SharedData.api.quoteAsync(_pumpId, _connectorId);
+            }
+            catch (EHApi.EHApiException e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+                _quote = null;
+            }
+
+            if (_quote != null)
+            {
+                if (_quote.@fixed == 0 && _quote.variable.value == 0)
+                    payment.Visibility = ViewStates.Gone;
+                else
+                    payment.Visibility = ViewStates.Visible;
+                progressBar.Visibility = ViewStates.Gone;
+                string text = "", text2 = "";
+                foreach (var s in _quote.sessionPricing)
+                {
+                    text = text + s.title + '\n';
+                    foreach(var d in s.pricingData)
+                    {
+						text2 = text2 + d.title + ' ' + d.value + '\n';
+					}
+                }
+
+                price.Text = text;
+                price2.Text = text2;
+            }
+            else
+            {
+                payment.Visibility = ViewStates.Gone;
+                progressBar.Visibility = ViewStates.Gone;
+                price.Text = "This pump is free for up to 45 minutes";
+            }
+         }
 
         private async void DoCharge()
         {
             var cvv = _cvv.Text;
 
-            bool free = _connectorCost == null;
+            bool free = _quote.@fixed == 0 && _quote.variable.value == 0;
 
             if (!free && cvv.Length != 3)
             {
@@ -169,17 +158,8 @@ namespace ClockworkHighway.Android
                 return;
             }
 
-            var eh = SharedData.login.Api;
-            string sessionId = null;
-
-            foreach(var c in _connectorCost)
-            {
-                if(c.connectorId == _connectorId)
-                {
-                    sessionId = c.sessionId;
-                    break;
-                }
-            }
+            var eh = SharedData.api;
+            string sessionId = _quote.sessionId;
 
             if (sessionId == null)
             {
@@ -189,7 +169,7 @@ namespace ClockworkHighway.Android
             }
 
             var progressDialog = global::Android.App.ProgressDialog.Show(Context, Context.GetString(Resource.String.startCharge), Context.GetString(Resource.String.requestingCharge));
-            var result = await eh.startChargeSessionAsync(SharedData.login.Username, SharedData.login.Password, SharedData.deviceId, _pumpId, _connectorId, free?"":cvv, free?"0":_cardId, sessionId);
+            var result = await eh.startChargeSessionAsync(_pumpId, _connectorId, free?"":cvv, free?"0":_cardId, sessionId);
             progressDialog.Dismiss();
             if (result.result)
             {

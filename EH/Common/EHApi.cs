@@ -376,13 +376,13 @@ namespace TonyHoyle.EH
 		public class Variable
 		{
 			public string unitOfMeasurement { get; set; }
-			public string value { get; set; }
+			public decimal value { get; set; }
 		}
 
 		public class Quote
 		{
 			public List<SessionPricing> sessionPricing { get; set; }
-			public string @fixed { get; set; }
+			public decimal @fixed { get; set; }
 			public Variable variable { get; set; }
 			public string sessionId { get; set; }
 			public string sessionDuration { get; set; }
@@ -588,9 +588,9 @@ namespace TonyHoyle.EH
             }
         }
 
-		public async Task<Quote> quoteAsync()
+		public async Task<Quote> quoteAsync(int pumpid, int connectorId)
 		{
-			string apiResult = await ApiCallAsync("quote", new Dictionary<string, string>
+            string apiResult = await ApiCallAsync("pump/"+pumpid.ToString()+"/connector/"+connectorId.ToString()+"/quote", new Dictionary<string, string>
 			{
                 { "access_token", Login.Token.access_token },
                 { "identifier", Login.Username },
@@ -722,7 +722,7 @@ namespace TonyHoyle.EH
             }
         }
 
-        public async Task<BoolResult> startChargeSessionAsync(int pumpId, int connectorId, string cvv, string sessionId)
+        public async Task<BoolResult> startChargeSessionAsync(int pumpId, int connectorId, string cvv, string cardId, string sessionId)
         {
             string apiResult = await ApiCallAsync("startChargeSession", new Dictionary<string, string>
             {
@@ -732,7 +732,7 @@ namespace TonyHoyle.EH
                 { "pumpConnector", connectorId.ToString() },
                 { "pumpId", pumpId.ToString() },
                 { "cv2", cvv },
-                { "cardId", Login.Card.cardId },
+                { "cardId", cardId },
                 { "sessionId", sessionId }
             });
             try

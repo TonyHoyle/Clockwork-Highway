@@ -29,6 +29,7 @@ namespace ClockworkHighway.Android
         private Handler _handler = new Handler();
         private TextView _messageStop;
         private bool _completed;
+        private bool _started;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -56,13 +57,14 @@ namespace ClockworkHighway.Android
             _chargeStop.LongClick += OnTerminateCharge;
 
             _completed = false;
+            _started = false;
 
             UpdateDisplay(true);
         }
 
         private void OnStopCharge(object sender, EventArgs e)
         {
-            if (_completed)
+            if (_completed || !_started)
             {
                 _handler.RemoveCallbacks(OnTimer);
                 Activity.Finish();
@@ -93,7 +95,7 @@ namespace ClockworkHighway.Android
 
         private async void OnStopChargeYes()
         {
-            EHApi.BoolResult res = await SharedData.login.Api.stopChargeSessionAsync(SharedData.login.Username, SharedData.login.Password, SharedData.deviceId, _pumpId, _connectorId, _sessionId);
+            EHApi.BoolResult res = await SharedData.api.stopChargeSessionAsync(_pumpId, _connectorId, _sessionId);
             if (!res.result)
             {
                 var t = Toast.MakeText(Context, res.message!=null?res.message:"Unable to stop charge", ToastLength.Long);
@@ -116,7 +118,7 @@ namespace ClockworkHighway.Android
 				// nuts and points to something really broken within xamarin, but there's no way to get any
 				// kind of trace to work out what might be wrong (since it's async, therefore no call stack..
 				// don't get me started..)
-				var status = await SharedData.login.Api.getChargeStatusAsync(SharedData.deviceId, _sessionId, _pumpId, _connectorId, SharedData.login.Vehicle);
+				var status = await SharedData.api.getChargeStatusAsync(_pumpId, _connectorId, _sessionId);
 
 				System.Diagnostics.Debug.WriteLine("UpdateDisplay status=" + (status == null ? "N" : "Y") + " Activity=" + (Activity == null ? "N" : "Y"));
 				if (status == null)
@@ -126,6 +128,7 @@ namespace ClockworkHighway.Android
 				if (Activity == null)
 				{
 					_completed = status.completed;
+                    _started = status.started != null;
 					return;
 				}
 
@@ -172,9 +175,10 @@ namespace ClockworkHighway.Android
 					}
 
 					_completed = status.completed;
+                    _started = status.started != null;
 				});
 			}
-			catch (NullReferenceException e)
+			catch (NullReferenceException)
 			{
 				Console.WriteLine("Trapped xamarin async bug!");
 			}
