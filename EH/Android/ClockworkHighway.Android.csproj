@@ -189,6 +189,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchActivity.cs" />
+    <Compile Include="PriceListAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\main.xml">
@@ -250,6 +251,7 @@
     <AndroidResource Include="Resources\layout\charging.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\priceline.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\search.xml">

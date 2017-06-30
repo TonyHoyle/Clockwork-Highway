@@ -863,5 +863,25 @@ namespace TonyHoyle.EH
                 return null;
             }
         }
-    }
+
+		public async Task<bool> archiveSessionAsync(string sessionId)
+		{
+			string apiResult = await ApiCallAsync("archiveSession", new Dictionary<string, string>
+			{
+                { "deviceId", Login.DeviceId },
+                { "sessionId", sessionId },
+                { "appId", cAppId }
+			});
+			try
+			{
+				BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+				return Result.result;
+			}
+			catch (JsonSerializationException e)
+			{
+				Debug.WriteLine(e.Message);
+                return false;
+			}
+		}
+	}
 }

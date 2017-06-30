@@ -34,7 +34,6 @@ namespace ClockworkHighway.Android
             var connectorList = view.FindViewById<ListView>(Resource.Id.connectorList);
             var locationName = view.FindViewById<TextView>(Resource.Id.locationName);
             var pumpId = view.FindViewById<TextView>(Resource.Id.pumpId);
-            var price = view.FindViewById<TextView>(Resource.Id.price);
             var payment = view.FindViewById<LinearLayout>(Resource.Id.payment);
             var progressBar = view.FindViewById<ProgressBar>(Resource.Id.progressBar);
 
@@ -88,8 +87,6 @@ namespace ClockworkHighway.Android
             pumpId.Text = location.pumpId.ToString();
             locationName.Text = location.name;
 
-            price.Text = "";
-
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity)
                 .SetTitle(Resource.String.startCharge)
                 .SetView(view)
@@ -105,8 +102,7 @@ namespace ClockworkHighway.Android
         {
 			var payment = view.FindViewById<LinearLayout>(Resource.Id.payment);
 			var progressBar = view.FindViewById<ProgressBar>(Resource.Id.progressBar);
-			var price = view.FindViewById<TextView>(Resource.Id.price);
-			var price2 = view.FindViewById<TextView>(Resource.Id.price2);
+			var priceList = view.FindViewById<LinearLayout>(Resource.Id.priceList);
 
 			try
             {
@@ -125,24 +121,22 @@ namespace ClockworkHighway.Android
                 else
                     payment.Visibility = ViewStates.Visible;
                 progressBar.Visibility = ViewStates.Gone;
-                string text = "", text2 = "";
-                foreach (var s in _quote.sessionPricing)
-                {
-                    text = text + s.title + '\n';
-                    foreach(var d in s.pricingData)
-                    {
-						text2 = text2 + d.title + ' ' + d.value + '\n';
-					}
-                }
 
-                price.Text = text;
-                price2.Text = text2;
+                var adapter = new PriceListAdapter(Context, _quote.sessionPricing);
+                for (int i = 0; i < adapter.Count; i++)
+                {
+                    View item = adapter.GetView(i, null, null);
+                    var parms = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+                    priceList.LayoutParameters = parms;
+                    priceList.AddView(item);
+                }
+                priceList.Invalidate();
             }
             else
             {
                 payment.Visibility = ViewStates.Gone;
                 progressBar.Visibility = ViewStates.Gone;
-                price.Text = "This pump is free for up to 45 minutes";
+                // Shouldn't happen
             }
          }
 
