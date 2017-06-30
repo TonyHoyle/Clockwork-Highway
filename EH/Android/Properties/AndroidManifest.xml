@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="uk.me.hoyle.clockworkhighway" android:versionCode="150" android:versionName="1.50" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="16" />
+	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="25" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<application android:label="Clockwork Highway" android:theme="@style/ClockworkTheme" android:resizeableActivity="true">
+	<application android:label="Clockwork Highway" android:theme="@style/ClockworkTheme" android:resizeableActivity="true" android:icon="@mipmap/ic_launcher">
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 		<meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_maps_key" />
 	</application>
