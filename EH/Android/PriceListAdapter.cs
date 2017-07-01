@@ -43,7 +43,7 @@ namespace ClockworkHighway.Android
             string text = "";
             foreach(var s in item.pricingData)
             {
-                text = s.title + " " + s.value + '\n';
+                text = text + s.title + " " + s.value + '\n';
             }
             text = text.Remove(text.Length - 1);
             tags.text.Text = text;

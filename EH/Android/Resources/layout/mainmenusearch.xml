@@ -11,44 +11,59 @@
      applies *one* layout_scrollFlags option to all views,
      which means either the entire toolbar+edit scrolls, or
      none of it does.  -->
-  <android.support.design.widget.CoordinatorLayout
-      android:id="@+id/main_content"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:fitsSystemWindows="true">
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimaryDark">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        android:fitsSystemWindows="true">
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimaryDark" />
-        <AutoCompleteTextView
+            android:background="?attr/colorPrimaryDark">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/qrcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="4dp"
+                    android:paddingBottom="2dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_qrcode_black_18dp" />
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="flagNoExtractUi|actionDone"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="16dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:inputType="text"
+                    android:background="#ffffff"
+                    android:elevation="4dp"
+                    android:selectAllOnFocus="true"
+                    android:hint="@string/searchHint"
+                    android:drawableRight="@drawable/location"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    android:id="@+id/editLocation" />
+            </LinearLayout>
+        </android.support.design.widget.AppBarLayout>
+        <FrameLayout
+            android:id="@+id/content_frame"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:imeOptions="flagNoExtractUi|actionDone"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:inputType="text"
-            android:background="#ffffff"
-            android:elevation="4dp"
-            android:selectAllOnFocus="true"
-            android:hint="@string/searchHint"
-            android:drawableRight="@drawable/location"
-            app:layout_scrollFlags="scroll|enterAlways"
-            android:id="@+id/editLocation" />
-    </android.support.design.widget.AppBarLayout>
-      <FrameLayout
-          android:id="@+id/content_frame"
-          app:layout_behavior="@string/appbar_scrolling_view_behavior"            
-          android:layout_width="match_parent"
-          android:layout_height="match_parent" />
+            android:layout_height="match_parent" />
     </android.support.design.widget.CoordinatorLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/navigationView"

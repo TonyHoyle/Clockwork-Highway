@@ -46,8 +46,15 @@ namespace ClockworkHighway.Android
                    _lastAddress = JsonConvert.DeserializeObject<FoundAddress>(savedInstanceState.GetString("lastAddress"));
             }
 
-            // This is a child of the coordinator layout in the toolbar
-            var text = Activity.FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
+
+
+			var qrcode = Activity.FindViewById<ImageButton>(Resource.Id.qrcode);
+            if (!Context.PackageManager.HasSystemFeature(PackageManager.FeatureCamera))
+                qrcode.Visibility = ViewStates.Gone;
+            qrcode.Click += (sender, e) => { OnQrCodeClicked(); };
+
+			// This is a child of the coordinator layout in the toolbar
+			var text = Activity.FindViewById<AutoCompleteTextView>(Resource.Id.editLocation);
             var scr = View.FindViewById<RelativeLayout>(Resource.Id.scroller);
 
             text.Threshold = 1;
@@ -276,7 +283,41 @@ namespace ClockworkHighway.Android
                 System.Diagnostics.Debug.WriteLine(e.Message);
             }
         }
-    }
 
+        private void OnQrCodeClicked()
+        {
+			Intent i = new Intent(Context, typeof(BarcodeActivity));
+            i.AddFlags(ActivityFlags.NoHistory);
+			StartActivityForResult(i,0);
+		}
+
+        public override async void OnActivityResult(int requestCode, int resultCode, Intent data)
+        {
+            if (requestCode == 0 && data != null && data.HasExtra("pumpId"))
+            {
+                var pumpId = data.GetStringExtra("pumpId");
+
+                var location = new EHApi.LocationDetails();
+
+                if (pumpId != null)
+                {
+                    var pump = await SharedData.api.getPumpConnectorsAsync(Convert.ToInt32(pumpId));
+
+                    if(pump != null)
+                    {
+	                    location.connector = pump.connector;
+	                    location.name = pump.name;
+	                    location.pumpId = pump.pumpId;
+
+	                    var frag = new StartChargeFragment();
+	                    frag.Arguments = new Bundle();
+	                    frag.Arguments.PutString("location", Newtonsoft.Json.JsonConvert.SerializeObject(location));
+	                    frag.Show(FragmentManager, "StartChargeFragment");
+                    }
+                }
+            }
+            base.OnActivityResult(requestCode, resultCode, data);
+        }
+    }
 }
 
