@@ -108,5 +108,12 @@ namespace ClockworkHighway.Android
                 mCameraSource.Start(mCameraView.Holder);
             }
 		}
+
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
+
+            Finish();
+        }
 	}
 }

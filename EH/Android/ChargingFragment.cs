@@ -24,6 +24,7 @@ namespace ClockworkHighway.Android
         private TextView _chargeStatus;
         private TextView _chargeTime;
         private TextView _chargePower;
+        private TextView _chargeCost;
         private ProgressBar _progressBar;
         private Button _chargeStop;
         private Handler _handler = new Handler();
@@ -47,6 +48,7 @@ namespace ClockworkHighway.Android
             _chargeStatus = View.FindViewById<TextView>(Resource.Id.chargeStatus);
             _chargeTime = View.FindViewById<TextView>(Resource.Id.chargeTime);
             _chargePower = View.FindViewById<TextView>(Resource.Id.chargePower);
+            _chargeCost = View.FindViewById<TextView>(Resource.Id.chargeCost);
             _progressBar = View.FindViewById<ProgressBar>(Resource.Id.progressBar);
             _chargeStop = View.FindViewById<Button>(Resource.Id.chargeStop);
             _messageStop = View.FindViewById<TextView>(Resource.Id.messageStop);
@@ -135,9 +137,10 @@ namespace ClockworkHighway.Android
 				Activity.RunOnUiThread(() =>
 				{
 					_chargeStatus.Text = status.message;
-					_chargePower.Text = String.Format(Context.GetString(Resource.String.powerSupplied), ((double)status.energyConsumption) / 1000);
+					_chargePower.Text = String.Format(Context.GetString(Resource.String.powerSupplied), status.energyConsumption);
+					_chargeCost.Text = String.Format(Context.GetString(Resource.String.powerCost), status.cost);
 					long mins;
-					TimeSpan diff;
+					TimeSpan diff;  
 					DateTime started;
 
 					if (status.status == "Retry")
@@ -158,8 +161,8 @@ namespace ClockworkHighway.Android
 
 					mins = (long)diff.TotalMinutes;
 					_chargeTime.Text = String.Format(Context.GetString(Resource.String.chargingMinutes), mins);
-					_progressBar.Max = 30;
-					_progressBar.Progress = (int)Math.Min(30, mins);
+					_progressBar.Max = 45;
+					_progressBar.Progress = (int)Math.Min(45, mins);
 
 					if (status.completed)
 					{

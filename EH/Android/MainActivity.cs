@@ -22,9 +22,7 @@ namespace ClockworkHighway.Android
                 var fragment = new MainFragment();
                 SupportFragmentManager.BeginTransaction().Add(global::Android.Resource.Id.Content, fragment).Commit();
             }
-
         }
-    }
-
+   	}
 }
 

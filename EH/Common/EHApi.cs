@@ -285,9 +285,9 @@ namespace TonyHoyle.EH
             public string status { get; set; }
             public string message { get; set; }
             public bool completed { get; set; }
-            public string cost { get; set; }
+            public float cost { get; set; }
             public string sessionId { get; set; }
-            public int energyConsumption { get; set; }
+            public float energyConsumption { get; set; }
             public string started { get; set; }
             public string finished { get; set; }
             public int pumpId { get; set; }

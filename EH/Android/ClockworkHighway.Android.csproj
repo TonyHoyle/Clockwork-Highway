@@ -43,6 +43,7 @@
 <RunCodeAnalysis>true</RunCodeAnalysis>  
     <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <EnableProguard>false</EnableProguard>
 </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType></DebugType>
@@ -60,6 +61,7 @@
     <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
     <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <EnableProguard>true</EnableProguard>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -464,6 +466,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_directions_car_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProguardConfiguration Include="proguard.cfg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

@@ -18,35 +18,50 @@
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/chargeTimePrompt"
-        android:gravity="center"
-        android:text="Charge time" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/chargeTime"
-        android:textSize="24sp"
-        android:gravity="center"
-        android:textColor="@color/primary_dark"
-        android:text="10 minutes" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-        android:id="@+id/chargePowerPrompt"
-        android:text="Power drawn" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:gravity="center"
-        android:textColor="@color/primary_dark"
-        android:id="@+id/chargePower"
-        android:text="1Kw" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chargeTimePrompt"
+            android:gravity="center"
+            android:text="Charge time" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chargeTime"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textColor="@color/primary_dark"
+            android:text="10 minutes" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:id="@+id/chargePowerPrompt"
+            android:text="Power drawn" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:gravity="center"
+            android:textColor="@color/primary_dark"
+            android:id="@+id/chargePower"
+            android:text="1Kw" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:id="@+id/chargeCostPrompt"
+            android:text="Cost" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:gravity="center"
+            android:textColor="@color/primary_dark"
+            android:id="@+id/chargeCost"
+            android:text="£0.99" />
     </LinearLayout>
     <ProgressBar
         android:layout_width="320dp"

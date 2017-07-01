@@ -66,10 +66,12 @@
   <string name="areYouSureStop">Are you sure you want to stop the charge?</string>
   <string name="areYouSureStop2">Charging has already stopped.  Do you want to override this and attempt to send a stop signal anyway?</string>
   <string name="powerSupplied">{0}kW</string>
+  <string name="powerCost">£{0}</string>
   <string name="chargingMinutes">{0} minutes</string>
   <string name="chargeFinished">Charge has finished</string>
   <string name="lastCharge">Last charge session</string>
   <string name="tidy">Please return the connector to the pump, remembering to keep cables tidy</string>
   <string name="searchHint">Search...</string>
   <string name="chargeFinishedNotification">Charging has finished.  Please return to your car.</string>
+  <string name="privacy"><a href="http://www.hoyle.me.uk/privacy.html">Privacy Statement</a></string>
 </resources>
