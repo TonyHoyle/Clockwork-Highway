@@ -65,7 +65,7 @@
   <string name="stopCharge">Stop charge?</string>
   <string name="areYouSureStop">Are you sure you want to stop the charge?</string>
   <string name="areYouSureStop2">Charging has already stopped.  Do you want to override this and attempt to send a stop signal anyway?</string>
-  <string name="powerSupplied">{0}kW</string>
+  <string name="powerSupplied">{0}kWh</string>
   <string name="powerCost">£{0}</string>
   <string name="chargingMinutes">{0} minutes</string>
   <string name="chargeFinished">Charge has finished</string>
