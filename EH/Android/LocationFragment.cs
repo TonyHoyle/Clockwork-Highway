@@ -6,6 +6,7 @@ using Android.Gms.Maps.Model;
 using Android.Views;
 using Android.Support.V7.App;
 using TonyHoyle.EH;
+using Android.Util;
 
 namespace ClockworkHighway.Android
 {
@@ -40,10 +41,21 @@ namespace ClockworkHighway.Android
             list.EmptyView = progress;
 
             var eh = SharedData.api;
-            var location = await eh.getLocationDetailsAsync(locationId);
-            list.Adapter = new LocationAdapter(Context, location);
+            try
+            {
+                var location = await eh.getLocationDetailsAsync(locationId);
 
-            list.ItemClick += (sender, args) => { PumpClicked(((LocationAdapter)list.Adapter).GetItem(args.Position)); } ;
+                list.Adapter = new LocationAdapter(Context, location);
+
+                list.ItemClick += (sender, args) => { PumpClicked(((LocationAdapter)list.Adapter).GetItem(args.Position)); };
+            }
+            catch(EHApi.EHApiException e)
+            {
+                Log.Debug(SharedData.APP, "Error getting location data: " + e.Message);
+                Toast.MakeText(Activity.ApplicationContext, "Error communicating with Electric Highway Servers", ToastLength.Short).Show();
+				Activity.Finish();
+				return;
+			}
         }
 
         private void PumpClicked(EHApi.LocationDetails location)

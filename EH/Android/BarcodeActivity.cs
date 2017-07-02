@@ -50,7 +50,7 @@ namespace ClockworkHighway.Android
                                                      .Build();
             if(!mBarcodeDetector.IsOperational)
             {
-                Toast.MakeText(this, "Barcode detector is not functional", ToastLength.Long);
+                Toast.MakeText(Application, "Barcode detector is not functional", ToastLength.Long).Show();
                 Finish();
             }
 

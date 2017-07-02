@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="4dp"
         android:text="@string/copyright3" />
     <TextView
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="4dp"
         android:text="@string/copyright4" />
     <TextView
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="4dp"
         android:id="@+id/privacy"
         android:text="@string/privacy" />

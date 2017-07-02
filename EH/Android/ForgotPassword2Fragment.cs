@@ -4,6 +4,7 @@ using Android.Support.V7.App;
 using TonyHoyle.EH;
 using Android.Content;
 using Android.Widget;
+using Android.Util;
 
 namespace ClockworkHighway.Android
 {
@@ -34,9 +35,9 @@ namespace ClockworkHighway.Android
             {
                 var hashkey2 = await eh.getPasswordTokenAsync("android", HashKey);
 
-                if(hashkey2 == null || !hashkey2.success)
+                if(!hashkey2.success)
                 {
-                    var toast = Toast.MakeText(Context, Resource.String.tokenNotReady, ToastLength.Long);
+                    var toast = Toast.MakeText(Context.ApplicationContext, Resource.String.tokenNotReady, ToastLength.Long);
                     toast.Show();
                     return;
                 }
@@ -49,7 +50,7 @@ namespace ClockworkHighway.Android
             }
             catch (EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine("Failed to do forget password: " + e.Message);
+                Log.Debug(SharedData.APP, "Failed to do forget password: " + e.Message);
             }
         }
 

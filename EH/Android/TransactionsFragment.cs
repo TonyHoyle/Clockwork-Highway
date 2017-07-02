@@ -5,6 +5,7 @@ using Android.Widget;
 using TonyHoyle.EH;
 using System.Linq;
 using Android.Views;
+using Android.Util;
 
 namespace ClockworkHighway.Android
 {
@@ -48,7 +49,7 @@ namespace ClockworkHighway.Android
             }
             catch(EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                Log.Debug(SharedData.APP, e.Message);
             }
         }
     }

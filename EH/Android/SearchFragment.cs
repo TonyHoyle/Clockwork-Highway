@@ -15,6 +15,7 @@ using Android.Support.V4.App;
 using TonyHoyle.EH;
 using Newtonsoft.Json;
 using Android.Support.V4.View;
+using Android.Util;
 
 namespace ClockworkHighway.Android
 {
@@ -130,7 +131,7 @@ namespace ClockworkHighway.Android
                 {
                     var addresses = await SharedData.googleApi.lookupLocationAsync(location.Latitude, location.Longitude);
 
-                    if (addresses.Count > 0)
+                    if ((addresses != null) && (addresses.Count > 0))
                     {
                         var addr = new FoundAddress(addresses[0]);
                         SetToAddress(addr);
@@ -138,7 +139,7 @@ namespace ClockworkHighway.Android
                 }
                 catch(GoogleApi.GoogleApiException e)
                 {
-                    System.Diagnostics.Debug.WriteLine(e.Message);
+                    Log.Debug(SharedData.APP, e.Message);
                 }
             }
         }
@@ -168,12 +169,12 @@ namespace ClockworkHighway.Android
                 try
                 {
                     var addr = await SharedData.googleApi.lookupPlaceIdAsync(address.PlaceId);
-                    if (addr.Count >= 0)
+                    if ((addr != null) && (addr.Count >= 0))
                         address.Location = addr[0].geometry.location;
                 }
                 catch(GoogleApi.GoogleApiException e)
                 {
-                    System.Diagnostics.Debug.WriteLine(e.Message);
+                    Log.Debug(SharedData.APP, e.Message);
                 }
             }
 
@@ -195,12 +196,13 @@ namespace ClockworkHighway.Android
             try
             {
                 var pumps = await eh.getPumpListAsync(latitude, longitude);
-                view.Adapter = new PumpListAdapter(Context, pumps);
+				view.Adapter = new PumpListAdapter(Context, pumps);
             }
             catch (EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine("Couldn't get pump list: "+e.Message);
-            }
+                Log.Debug(SharedData.APP, "Couldn't get pump list: "+e.Message);
+                Toast.MakeText(Activity.ApplicationContext, "Error communicating with Electric Highway Servers", ToastLength.Short).Show();
+			}
             view.EmptyView = null;
         }
 
@@ -269,7 +271,7 @@ namespace ClockworkHighway.Android
             {
                 var status = await SharedData.api.getChargeStatusAsync();
 
-                if (status!=null && status.started != null && status.started != "" && !status.completed && status.status != "Retry")
+                if (status.started != null && status.started != "" && !status.completed && status.status != "Retry")
                 {
                     Intent i = new Intent(Context, typeof(ChargingActivity));
                     i.PutExtra("sessionId", status.sessionId);
@@ -280,7 +282,7 @@ namespace ClockworkHighway.Android
             }
             catch(EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                Log.Debug(SharedData.APP, e.Message);
             }
         }
 

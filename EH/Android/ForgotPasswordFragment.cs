@@ -6,6 +6,7 @@ using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Content;
 using Android.Widget;
+using Android.Util;
 
 namespace ClockworkHighway.Android
 {
@@ -47,7 +48,7 @@ namespace ClockworkHighway.Android
             }
             catch (EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine("Failed to do forget password: " + e.Message);
+                Log.Debug(SharedData.APP, "Failed to do forget password: " + e.Message);
             }
         }
 

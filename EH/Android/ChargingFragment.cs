@@ -12,6 +12,7 @@ using NotificationCompat = Android.Support.V7.App.NotificationCompat;
 using PendingIntent = Android.App.PendingIntent;
 using PendingIntentFlags = Android.App.PendingIntentFlags;
 using NotificationManager = Android.App.NotificationManager;
+using Android.Util;
 
 namespace ClockworkHighway.Android
 {
@@ -97,12 +98,18 @@ namespace ClockworkHighway.Android
 
         private async void OnStopChargeYes()
         {
-            EHApi.BoolResult res = await SharedData.api.stopChargeSessionAsync(_pumpId, _connectorId, _sessionId);
-            if (!res.result)
+            try
             {
-                var t = Toast.MakeText(Context, res.message!=null?res.message:"Unable to stop charge", ToastLength.Long);
-                t.Show();
+                EHApi.BoolResult res = await SharedData.api.stopChargeSessionAsync(_pumpId, _connectorId, _sessionId);
+                if (!res.result)
+                {
+                    Toast.MakeText(Context.ApplicationContext, res.message != null ? res.message : "Unable to stop charge", ToastLength.Short).Show();
+                }
             }
+            catch(EHApi.EHApiException e)
+            {
+                Toast.MakeText(Context.ApplicationContext, e.Message, ToastLength.Short).Show();
+			}
         }
 
         private void OnTimer()
@@ -116,15 +123,7 @@ namespace ClockworkHighway.Android
         {
 			try
 			{
-				// We randonly get a null pointer exception on a *database* operation here.. this is clearly
-				// nuts and points to something really broken within xamarin, but there's no way to get any
-				// kind of trace to work out what might be wrong (since it's async, therefore no call stack..
-				// don't get me started..)
 				var status = await SharedData.api.getChargeStatusAsync(_pumpId, _connectorId, _sessionId);
-
-				System.Diagnostics.Debug.WriteLine("UpdateDisplay status=" + (status == null ? "N" : "Y") + " Activity=" + (Activity == null ? "N" : "Y"));
-				if (status == null)
-					return;
 
 				/* We are sometimes called with a null activity */
 				if (Activity == null)
@@ -181,9 +180,9 @@ namespace ClockworkHighway.Android
                     _started = status.started != null;
 				});
 			}
-			catch (NullReferenceException)
+            catch (EHApi.EHApiException e)
 			{
-				Console.WriteLine("Trapped xamarin async bug!");
+				Log.Debug(SharedData.APP, "Failed to update display: " + e.Message);
 			}
         }
 

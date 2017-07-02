@@ -4,6 +4,7 @@ using Android.Support.V7.App;
 using TonyHoyle.EH;
 using Android.Support.Design.Widget;
 using Android.Views;
+using Android.Util;
 
 namespace ClockworkHighway.Android
 {
@@ -33,7 +34,7 @@ namespace ClockworkHighway.Android
             }
             catch (EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine("Failed to do forget username: " + e.Message);
+                Log.Debug(SharedData.APP, "Failed to do forget username: " + e.Message);
             }
         }
     }

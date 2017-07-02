@@ -12,6 +12,8 @@ using Android.Views.InputMethods;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net;
+using Android.Util;
+using Android.Support.V7.App;
 
 namespace ClockworkHighway.Android
 {
@@ -54,7 +56,21 @@ namespace ClockworkHighway.Android
 
             SharedData.api = new EHApi(SharedData.httpClient);
             SharedData.googleApi = new GoogleApi(SharedData.httpClient, Context.GetString(Resource.String.google_maps_key));
-            SharedData.settings = await SharedData.api.getSettingsAsync();
+
+            try
+            {
+                SharedData.settings = await SharedData.api.getSettingsAsync();
+            }
+            catch (EHApi.EHApiException e)
+            {
+                Log.Debug(SharedData.APP, "Unable to get settings - " + e.Message);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Context);
+                builder.SetTitle("Unable to connect")
+                       .SetMessage("Unable to communicate with Electric Highway servers.  Check that you are connected to the internet and try again later.")
+                       .SetPositiveButton("OK", (sender, ev) => { Activity.Finish(); })
+                       .Show();
+                return;
+            }
 
             passwordPrompt.EditorAction += (obj, e) => { if (e.ActionId == ImeAction.Done) OnLoginClick(obj, e); };
 
@@ -139,7 +155,7 @@ namespace ClockworkHighway.Android
             }
             catch (EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                Log.Debug(SharedData.APP, e.Message);
                 ShowProgress(false, e.Message, true);
             }
         }

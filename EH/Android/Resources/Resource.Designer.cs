@@ -26,6 +26,136 @@ namespace ClockworkHighway.Android
 		
 		public static void UpdateIdValues()
 		{
+			global::HockeyApp.Resource.Color.hockeyapp_background_header = global::ClockworkHighway.Android.Resource.Color.hockeyapp_background_header;
+			global::HockeyApp.Resource.Color.hockeyapp_background_light = global::ClockworkHighway.Android.Resource.Color.hockeyapp_background_light;
+			global::HockeyApp.Resource.Color.hockeyapp_background_white = global::ClockworkHighway.Android.Resource.Color.hockeyapp_background_white;
+			global::HockeyApp.Resource.Color.hockeyapp_button_background = global::ClockworkHighway.Android.Resource.Color.hockeyapp_button_background;
+			global::HockeyApp.Resource.Color.hockeyapp_button_background_pressed = global::ClockworkHighway.Android.Resource.Color.hockeyapp_button_background_pressed;
+			global::HockeyApp.Resource.Color.hockeyapp_button_background_selected = global::ClockworkHighway.Android.Resource.Color.hockeyapp_button_background_selected;
+			global::HockeyApp.Resource.Color.hockeyapp_text_black = global::ClockworkHighway.Android.Resource.Color.hockeyapp_text_black;
+			global::HockeyApp.Resource.Color.hockeyapp_text_light = global::ClockworkHighway.Android.Resource.Color.hockeyapp_text_light;
+			global::HockeyApp.Resource.Color.hockeyapp_text_normal = global::ClockworkHighway.Android.Resource.Color.hockeyapp_text_normal;
+			global::HockeyApp.Resource.Color.hockeyapp_text_white = global::ClockworkHighway.Android.Resource.Color.hockeyapp_text_white;
+			global::HockeyApp.Resource.Drawable.hockeyapp_btn_background = global::ClockworkHighway.Android.Resource.Drawable.hockeyapp_btn_background;
+			global::HockeyApp.Resource.Id.button_add_response = global::ClockworkHighway.Android.Resource.Id.button_add_response;
+			global::HockeyApp.Resource.Id.button_attachment = global::ClockworkHighway.Android.Resource.Id.button_attachment;
+			global::HockeyApp.Resource.Id.button_login = global::ClockworkHighway.Android.Resource.Id.button_login;
+			global::HockeyApp.Resource.Id.button_refresh = global::ClockworkHighway.Android.Resource.Id.button_refresh;
+			global::HockeyApp.Resource.Id.button_send = global::ClockworkHighway.Android.Resource.Id.button_send;
+			global::HockeyApp.Resource.Id.button_update = global::ClockworkHighway.Android.Resource.Id.button_update;
+			global::HockeyApp.Resource.Id.input_email = global::ClockworkHighway.Android.Resource.Id.input_email;
+			global::HockeyApp.Resource.Id.input_message = global::ClockworkHighway.Android.Resource.Id.input_message;
+			global::HockeyApp.Resource.Id.input_name = global::ClockworkHighway.Android.Resource.Id.input_name;
+			global::HockeyApp.Resource.Id.input_password = global::ClockworkHighway.Android.Resource.Id.input_password;
+			global::HockeyApp.Resource.Id.input_subject = global::ClockworkHighway.Android.Resource.Id.input_subject;
+			global::HockeyApp.Resource.Id.label_author = global::ClockworkHighway.Android.Resource.Id.label_author;
+			global::HockeyApp.Resource.Id.label_date = global::ClockworkHighway.Android.Resource.Id.label_date;
+			global::HockeyApp.Resource.Id.label_last_updated = global::ClockworkHighway.Android.Resource.Id.label_last_updated;
+			global::HockeyApp.Resource.Id.label_message = global::ClockworkHighway.Android.Resource.Id.label_message;
+			global::HockeyApp.Resource.Id.label_text = global::ClockworkHighway.Android.Resource.Id.label_text;
+			global::HockeyApp.Resource.Id.label_title = global::ClockworkHighway.Android.Resource.Id.label_title;
+			global::HockeyApp.Resource.Id.label_version = global::ClockworkHighway.Android.Resource.Id.label_version;
+			global::HockeyApp.Resource.Id.list_attachments = global::ClockworkHighway.Android.Resource.Id.list_attachments;
+			global::HockeyApp.Resource.Id.list_feedback_messages = global::ClockworkHighway.Android.Resource.Id.list_feedback_messages;
+			global::HockeyApp.Resource.Id.text_headline = global::ClockworkHighway.Android.Resource.Id.text_headline;
+			global::HockeyApp.Resource.Id.view_header = global::ClockworkHighway.Android.Resource.Id.view_header;
+			global::HockeyApp.Resource.Id.web_update_details = global::ClockworkHighway.Android.Resource.Id.web_update_details;
+			global::HockeyApp.Resource.Id.wrapper_attachments = global::ClockworkHighway.Android.Resource.Id.wrapper_attachments;
+			global::HockeyApp.Resource.Id.wrapper_feedback = global::ClockworkHighway.Android.Resource.Id.wrapper_feedback;
+			global::HockeyApp.Resource.Id.wrapper_feedback_scroll = global::ClockworkHighway.Android.Resource.Id.wrapper_feedback_scroll;
+			global::HockeyApp.Resource.Id.wrapper_messages = global::ClockworkHighway.Android.Resource.Id.wrapper_messages;
+			global::HockeyApp.Resource.Id.wrapper_messages_buttons = global::ClockworkHighway.Android.Resource.Id.wrapper_messages_buttons;
+			global::HockeyApp.Resource.Layout.hockeyapp_activity_expiry_info = global::ClockworkHighway.Android.Resource.Layout.hockeyapp_activity_expiry_info;
+			global::HockeyApp.Resource.Layout.hockeyapp_activity_feedback = global::ClockworkHighway.Android.Resource.Layout.hockeyapp_activity_feedback;
+			global::HockeyApp.Resource.Layout.hockeyapp_activity_login = global::ClockworkHighway.Android.Resource.Layout.hockeyapp_activity_login;
+			global::HockeyApp.Resource.Layout.hockeyapp_activity_update = global::ClockworkHighway.Android.Resource.Layout.hockeyapp_activity_update;
+			global::HockeyApp.Resource.Layout.hockeyapp_fragment_update = global::ClockworkHighway.Android.Resource.Layout.hockeyapp_fragment_update;
+			global::HockeyApp.Resource.Layout.hockeyapp_view_feedback_message = global::ClockworkHighway.Android.Resource.Layout.hockeyapp_view_feedback_message;
+			global::HockeyApp.Resource.String.hockeyapp_crash_dialog_app_name_fallback = global::ClockworkHighway.Android.Resource.String.hockeyapp_crash_dialog_app_name_fallback;
+			global::HockeyApp.Resource.String.hockeyapp_crash_dialog_message = global::ClockworkHighway.Android.Resource.String.hockeyapp_crash_dialog_message;
+			global::HockeyApp.Resource.String.hockeyapp_crash_dialog_negative_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_crash_dialog_negative_button;
+			global::HockeyApp.Resource.String.hockeyapp_crash_dialog_neutral_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_crash_dialog_neutral_button;
+			global::HockeyApp.Resource.String.hockeyapp_crash_dialog_positive_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_crash_dialog_positive_button;
+			global::HockeyApp.Resource.String.hockeyapp_crash_dialog_title = global::ClockworkHighway.Android.Resource.String.hockeyapp_crash_dialog_title;
+			global::HockeyApp.Resource.String.hockeyapp_dialog_error_message = global::ClockworkHighway.Android.Resource.String.hockeyapp_dialog_error_message;
+			global::HockeyApp.Resource.String.hockeyapp_dialog_error_title = global::ClockworkHighway.Android.Resource.String.hockeyapp_dialog_error_title;
+			global::HockeyApp.Resource.String.hockeyapp_dialog_negative_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_dialog_negative_button;
+			global::HockeyApp.Resource.String.hockeyapp_dialog_positive_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_dialog_positive_button;
+			global::HockeyApp.Resource.String.hockeyapp_download_failed_dialog_message = global::ClockworkHighway.Android.Resource.String.hockeyapp_download_failed_dialog_message;
+			global::HockeyApp.Resource.String.hockeyapp_download_failed_dialog_negative_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_download_failed_dialog_negative_button;
+			global::HockeyApp.Resource.String.hockeyapp_download_failed_dialog_positive_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_download_failed_dialog_positive_button;
+			global::HockeyApp.Resource.String.hockeyapp_download_failed_dialog_title = global::ClockworkHighway.Android.Resource.String.hockeyapp_download_failed_dialog_title;
+			global::HockeyApp.Resource.String.hockeyapp_error_no_network_message = global::ClockworkHighway.Android.Resource.String.hockeyapp_error_no_network_message;
+			global::HockeyApp.Resource.String.hockeyapp_expiry_info_text = global::ClockworkHighway.Android.Resource.String.hockeyapp_expiry_info_text;
+			global::HockeyApp.Resource.String.hockeyapp_expiry_info_title = global::ClockworkHighway.Android.Resource.String.hockeyapp_expiry_info_title;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_attach_file = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_attach_file;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_attach_picture = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_attach_picture;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_attachment_added = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_attachment_added;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_attachment_button_text = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_attachment_button_text;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_attachment_error = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_attachment_error;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_attachment_loading = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_attachment_loading;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_attachment_remove_description = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_attachment_remove_description;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_attachment_removed = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_attachment_removed;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_email_hint = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_email_hint;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_email_hint_required = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_email_hint_required;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_failed_text = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_failed_text;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_failed_title = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_failed_title;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_fetching_feedback_text = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_fetching_feedback_text;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_generic_error = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_generic_error;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_last_updated_text = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_last_updated_text;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_max_attachments_allowed = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_max_attachments_allowed;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_message_hint = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_message_hint;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_message_hint_required = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_message_hint_required;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_name_hint = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_name_hint;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_name_hint_required = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_name_hint_required;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_refresh_button_text = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_refresh_button_text;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_response_button_text = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_response_button_text;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_select_file = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_select_file;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_select_picture = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_select_picture;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_send_button_text = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_send_button_text;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_send_generic_error = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_send_generic_error;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_send_network_error = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_send_network_error;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_sending_feedback_text = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_sending_feedback_text;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_sent_toast = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_sent_toast;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_subject_hint = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_subject_hint;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_subject_hint_required = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_subject_hint_required;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_title = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_title;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_validate_email_empty = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_validate_email_empty;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_validate_email_error = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_validate_email_error;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_validate_name_error = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_validate_name_error;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_validate_subject_error = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_validate_subject_error;
+			global::HockeyApp.Resource.String.hockeyapp_feedback_validate_text_error = global::ClockworkHighway.Android.Resource.String.hockeyapp_feedback_validate_text_error;
+			global::HockeyApp.Resource.String.hockeyapp_login_email_hint = global::ClockworkHighway.Android.Resource.String.hockeyapp_login_email_hint;
+			global::HockeyApp.Resource.String.hockeyapp_login_email_hint_required = global::ClockworkHighway.Android.Resource.String.hockeyapp_login_email_hint_required;
+			global::HockeyApp.Resource.String.hockeyapp_login_headline_text = global::ClockworkHighway.Android.Resource.String.hockeyapp_login_headline_text;
+			global::HockeyApp.Resource.String.hockeyapp_login_headline_text_email_only = global::ClockworkHighway.Android.Resource.String.hockeyapp_login_headline_text_email_only;
+			global::HockeyApp.Resource.String.hockeyapp_login_login_button_text = global::ClockworkHighway.Android.Resource.String.hockeyapp_login_login_button_text;
+			global::HockeyApp.Resource.String.hockeyapp_login_missing_credentials_toast = global::ClockworkHighway.Android.Resource.String.hockeyapp_login_missing_credentials_toast;
+			global::HockeyApp.Resource.String.hockeyapp_login_password_hint = global::ClockworkHighway.Android.Resource.String.hockeyapp_login_password_hint;
+			global::HockeyApp.Resource.String.hockeyapp_login_password_hint_required = global::ClockworkHighway.Android.Resource.String.hockeyapp_login_password_hint_required;
+			global::HockeyApp.Resource.String.hockeyapp_paint_dialog_message = global::ClockworkHighway.Android.Resource.String.hockeyapp_paint_dialog_message;
+			global::HockeyApp.Resource.String.hockeyapp_paint_dialog_negative_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_paint_dialog_negative_button;
+			global::HockeyApp.Resource.String.hockeyapp_paint_dialog_neutral_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_paint_dialog_neutral_button;
+			global::HockeyApp.Resource.String.hockeyapp_paint_dialog_positive_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_paint_dialog_positive_button;
+			global::HockeyApp.Resource.String.hockeyapp_paint_indicator_toast = global::ClockworkHighway.Android.Resource.String.hockeyapp_paint_indicator_toast;
+			global::HockeyApp.Resource.String.hockeyapp_paint_menu_clear = global::ClockworkHighway.Android.Resource.String.hockeyapp_paint_menu_clear;
+			global::HockeyApp.Resource.String.hockeyapp_paint_menu_save = global::ClockworkHighway.Android.Resource.String.hockeyapp_paint_menu_save;
+			global::HockeyApp.Resource.String.hockeyapp_paint_menu_undo = global::ClockworkHighway.Android.Resource.String.hockeyapp_paint_menu_undo;
+			global::HockeyApp.Resource.String.hockeyapp_permission_dialog_negative_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_permission_dialog_negative_button;
+			global::HockeyApp.Resource.String.hockeyapp_permission_dialog_positive_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_permission_dialog_positive_button;
+			global::HockeyApp.Resource.String.hockeyapp_permission_update_message = global::ClockworkHighway.Android.Resource.String.hockeyapp_permission_update_message;
+			global::HockeyApp.Resource.String.hockeyapp_permission_update_title = global::ClockworkHighway.Android.Resource.String.hockeyapp_permission_update_title;
+			global::HockeyApp.Resource.String.hockeyapp_update_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_update_button;
+			global::HockeyApp.Resource.String.hockeyapp_update_dialog_message = global::ClockworkHighway.Android.Resource.String.hockeyapp_update_dialog_message;
+			global::HockeyApp.Resource.String.hockeyapp_update_dialog_negative_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_update_dialog_negative_button;
+			global::HockeyApp.Resource.String.hockeyapp_update_dialog_positive_button = global::ClockworkHighway.Android.Resource.String.hockeyapp_update_dialog_positive_button;
+			global::HockeyApp.Resource.String.hockeyapp_update_dialog_title = global::ClockworkHighway.Android.Resource.String.hockeyapp_update_dialog_title;
+			global::HockeyApp.Resource.String.hockeyapp_update_mandatory_toast = global::ClockworkHighway.Android.Resource.String.hockeyapp_update_mandatory_toast;
+			global::HockeyApp.Resource.String.hockeyapp_update_version_details_label = global::ClockworkHighway.Android.Resource.String.hockeyapp_update_version_details_label;
+			global::HockeyApp.Resource.String.library_name = global::ClockworkHighway.Android.Resource.String.library_name;
+			global::HockeyApp.Resource.Style.HockeyApp_ButtonStyle = global::ClockworkHighway.Android.Resource.Style.HockeyApp_ButtonStyle;
+			global::HockeyApp.Resource.Style.HockeyApp_EditTextStyle = global::ClockworkHighway.Android.Resource.Style.HockeyApp_EditTextStyle;
+			global::HockeyApp.Resource.Style.HockeyApp_SingleLineInputStyle = global::ClockworkHighway.Android.Resource.Style.HockeyApp_SingleLineInputStyle;
 		}
 		
 		public partial class Animation
@@ -1340,44 +1470,44 @@ namespace ClockworkHighway.Android
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f090056
-			public const int abc_background_cache_hint_selector_material_dark = 2131296342;
+			// aapt resource value: 0x7f090060
+			public const int abc_background_cache_hint_selector_material_dark = 2131296352;
 			
-			// aapt resource value: 0x7f090057
-			public const int abc_background_cache_hint_selector_material_light = 2131296343;
+			// aapt resource value: 0x7f090061
+			public const int abc_background_cache_hint_selector_material_light = 2131296353;
 			
-			// aapt resource value: 0x7f090058
-			public const int abc_btn_colored_borderless_text_material = 2131296344;
+			// aapt resource value: 0x7f090062
+			public const int abc_btn_colored_borderless_text_material = 2131296354;
 			
-			// aapt resource value: 0x7f090059
-			public const int abc_btn_colored_text_material = 2131296345;
+			// aapt resource value: 0x7f090063
+			public const int abc_btn_colored_text_material = 2131296355;
 			
-			// aapt resource value: 0x7f09005a
-			public const int abc_color_highlight_material = 2131296346;
+			// aapt resource value: 0x7f090064
+			public const int abc_color_highlight_material = 2131296356;
 			
-			// aapt resource value: 0x7f09005b
-			public const int abc_hint_foreground_material_dark = 2131296347;
+			// aapt resource value: 0x7f090065
+			public const int abc_hint_foreground_material_dark = 2131296357;
 			
-			// aapt resource value: 0x7f09005c
-			public const int abc_hint_foreground_material_light = 2131296348;
+			// aapt resource value: 0x7f090066
+			public const int abc_hint_foreground_material_light = 2131296358;
 			
 			// aapt resource value: 0x7f090009
 			public const int abc_input_method_navigation_guard = 2131296265;
 			
-			// aapt resource value: 0x7f09005d
-			public const int abc_primary_text_disable_only_material_dark = 2131296349;
+			// aapt resource value: 0x7f090067
+			public const int abc_primary_text_disable_only_material_dark = 2131296359;
 			
-			// aapt resource value: 0x7f09005e
-			public const int abc_primary_text_disable_only_material_light = 2131296350;
+			// aapt resource value: 0x7f090068
+			public const int abc_primary_text_disable_only_material_light = 2131296360;
 			
-			// aapt resource value: 0x7f09005f
-			public const int abc_primary_text_material_dark = 2131296351;
+			// aapt resource value: 0x7f090069
+			public const int abc_primary_text_material_dark = 2131296361;
 			
-			// aapt resource value: 0x7f090060
-			public const int abc_primary_text_material_light = 2131296352;
+			// aapt resource value: 0x7f09006a
+			public const int abc_primary_text_material_light = 2131296362;
 			
-			// aapt resource value: 0x7f090061
-			public const int abc_search_url_text = 2131296353;
+			// aapt resource value: 0x7f09006b
+			public const int abc_search_url_text = 2131296363;
 			
 			// aapt resource value: 0x7f09000a
 			public const int abc_search_url_text_normal = 2131296266;
@@ -1388,35 +1518,35 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f09000c
 			public const int abc_search_url_text_selected = 2131296268;
 			
-			// aapt resource value: 0x7f090062
-			public const int abc_secondary_text_material_dark = 2131296354;
+			// aapt resource value: 0x7f09006c
+			public const int abc_secondary_text_material_dark = 2131296364;
 			
-			// aapt resource value: 0x7f090063
-			public const int abc_secondary_text_material_light = 2131296355;
+			// aapt resource value: 0x7f09006d
+			public const int abc_secondary_text_material_light = 2131296365;
 			
-			// aapt resource value: 0x7f090064
-			public const int abc_tint_btn_checkable = 2131296356;
+			// aapt resource value: 0x7f09006e
+			public const int abc_tint_btn_checkable = 2131296366;
 			
-			// aapt resource value: 0x7f090065
-			public const int abc_tint_default = 2131296357;
+			// aapt resource value: 0x7f09006f
+			public const int abc_tint_default = 2131296367;
 			
-			// aapt resource value: 0x7f090066
-			public const int abc_tint_edittext = 2131296358;
+			// aapt resource value: 0x7f090070
+			public const int abc_tint_edittext = 2131296368;
 			
-			// aapt resource value: 0x7f090067
-			public const int abc_tint_seek_thumb = 2131296359;
+			// aapt resource value: 0x7f090071
+			public const int abc_tint_seek_thumb = 2131296369;
 			
-			// aapt resource value: 0x7f090068
-			public const int abc_tint_spinner = 2131296360;
+			// aapt resource value: 0x7f090072
+			public const int abc_tint_spinner = 2131296370;
 			
-			// aapt resource value: 0x7f090069
-			public const int abc_tint_switch_thumb = 2131296361;
+			// aapt resource value: 0x7f090073
+			public const int abc_tint_switch_thumb = 2131296371;
 			
-			// aapt resource value: 0x7f09006a
-			public const int abc_tint_switch_track = 2131296362;
+			// aapt resource value: 0x7f090074
+			public const int abc_tint_switch_track = 2131296372;
 			
-			// aapt resource value: 0x7f090051
-			public const int accent = 2131296337;
+			// aapt resource value: 0x7f09005b
+			public const int accent = 2131296347;
 			
 			// aapt resource value: 0x7f09000d
 			public const int accent_material_dark = 2131296269;
@@ -1460,8 +1590,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f09001a
 			public const int button_material_light = 2131296282;
 			
-			// aapt resource value: 0x7f09006b
-			public const int common_google_signin_btn_text_dark = 2131296363;
+			// aapt resource value: 0x7f090075
+			public const int common_google_signin_btn_text_dark = 2131296373;
 			
 			// aapt resource value: 0x7f090000
 			public const int common_google_signin_btn_text_dark_default = 2131296256;
@@ -1475,8 +1605,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f090003
 			public const int common_google_signin_btn_text_dark_pressed = 2131296259;
 			
-			// aapt resource value: 0x7f09006c
-			public const int common_google_signin_btn_text_light = 2131296364;
+			// aapt resource value: 0x7f090076
+			public const int common_google_signin_btn_text_light = 2131296374;
 			
 			// aapt resource value: 0x7f090004
 			public const int common_google_signin_btn_text_light_default = 2131296260;
@@ -1490,14 +1620,14 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f090007
 			public const int common_google_signin_btn_text_light_pressed = 2131296263;
 			
-			// aapt resource value: 0x7f09006d
-			public const int common_google_signin_btn_tint = 2131296365;
+			// aapt resource value: 0x7f090077
+			public const int common_google_signin_btn_tint = 2131296375;
 			
 			// aapt resource value: 0x7f090043
 			public const int design_bottom_navigation_shadow_color = 2131296323;
 			
-			// aapt resource value: 0x7f09006e
-			public const int design_error = 2131296366;
+			// aapt resource value: 0x7f090078
+			public const int design_error = 2131296376;
 			
 			// aapt resource value: 0x7f090044
 			public const int design_fab_shadow_end_color = 2131296324;
@@ -1529,8 +1659,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f09004d
 			public const int design_textinput_error_color_light = 2131296333;
 			
-			// aapt resource value: 0x7f09006f
-			public const int design_tint_password_toggle = 2131296367;
+			// aapt resource value: 0x7f090079
+			public const int design_tint_password_toggle = 2131296377;
 			
 			// aapt resource value: 0x7f09001b
 			public const int dim_foreground_disabled_material_dark = 2131296283;
@@ -1544,8 +1674,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f09001e
 			public const int dim_foreground_material_light = 2131296286;
 			
-			// aapt resource value: 0x7f090055
-			public const int divider = 2131296341;
+			// aapt resource value: 0x7f09005f
+			public const int divider = 2131296351;
 			
 			// aapt resource value: 0x7f09001f
 			public const int foreground_material_dark = 2131296287;
@@ -1559,8 +1689,38 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f090022
 			public const int highlighted_text_material_light = 2131296290;
 			
+			// aapt resource value: 0x7f09004e
+			public const int hockeyapp_background_header = 2131296334;
+			
+			// aapt resource value: 0x7f09004f
+			public const int hockeyapp_background_light = 2131296335;
+			
+			// aapt resource value: 0x7f090050
+			public const int hockeyapp_background_white = 2131296336;
+			
+			// aapt resource value: 0x7f090051
+			public const int hockeyapp_button_background = 2131296337;
+			
+			// aapt resource value: 0x7f090052
+			public const int hockeyapp_button_background_pressed = 2131296338;
+			
+			// aapt resource value: 0x7f090053
+			public const int hockeyapp_button_background_selected = 2131296339;
+			
 			// aapt resource value: 0x7f090054
-			public const int icons = 2131296340;
+			public const int hockeyapp_text_black = 2131296340;
+			
+			// aapt resource value: 0x7f090055
+			public const int hockeyapp_text_light = 2131296341;
+			
+			// aapt resource value: 0x7f090056
+			public const int hockeyapp_text_normal = 2131296342;
+			
+			// aapt resource value: 0x7f090057
+			public const int hockeyapp_text_white = 2131296343;
+			
+			// aapt resource value: 0x7f09005e
+			public const int icons = 2131296350;
 			
 			// aapt resource value: 0x7f090023
 			public const int material_blue_grey_800 = 2131296291;
@@ -1607,11 +1767,11 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f090030
 			public const int notification_material_background_media_default_color = 2131296304;
 			
-			// aapt resource value: 0x7f09004e
-			public const int primary = 2131296334;
+			// aapt resource value: 0x7f090058
+			public const int primary = 2131296344;
 			
-			// aapt resource value: 0x7f09004f
-			public const int primary_dark = 2131296335;
+			// aapt resource value: 0x7f090059
+			public const int primary_dark = 2131296345;
 			
 			// aapt resource value: 0x7f090031
 			public const int primary_dark_material_dark = 2131296305;
@@ -1619,8 +1779,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f090032
 			public const int primary_dark_material_light = 2131296306;
 			
-			// aapt resource value: 0x7f090050
-			public const int primary_light = 2131296336;
+			// aapt resource value: 0x7f09005a
+			public const int primary_light = 2131296346;
 			
 			// aapt resource value: 0x7f090033
 			public const int primary_material_dark = 2131296307;
@@ -1628,8 +1788,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f090034
 			public const int primary_material_light = 2131296308;
 			
-			// aapt resource value: 0x7f090052
-			public const int primary_text = 2131296338;
+			// aapt resource value: 0x7f09005c
+			public const int primary_text = 2131296348;
 			
 			// aapt resource value: 0x7f090035
 			public const int primary_text_default_material_dark = 2131296309;
@@ -1649,8 +1809,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f09003a
 			public const int ripple_material_light = 2131296314;
 			
-			// aapt resource value: 0x7f090053
-			public const int secondary_text = 2131296339;
+			// aapt resource value: 0x7f09005d
+			public const int secondary_text = 2131296349;
 			
 			// aapt resource value: 0x7f09003b
 			public const int secondary_text_default_material_dark = 2131296315;
@@ -1670,11 +1830,11 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f090040
 			public const int switch_thumb_disabled_material_light = 2131296320;
 			
-			// aapt resource value: 0x7f090070
-			public const int switch_thumb_material_dark = 2131296368;
+			// aapt resource value: 0x7f09007a
+			public const int switch_thumb_material_dark = 2131296378;
 			
-			// aapt resource value: 0x7f090071
-			public const int switch_thumb_material_light = 2131296369;
+			// aapt resource value: 0x7f09007b
+			public const int switch_thumb_material_light = 2131296379;
 			
 			// aapt resource value: 0x7f090041
 			public const int switch_thumb_normal_material_dark = 2131296321;
@@ -2389,26 +2549,26 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f02008a
-			public const int avd_hide_password_1 = 2130837642;
-			
 			// aapt resource value: 0x7f02008b
-			public const int avd_hide_password_2 = 2130837643;
+			public const int avd_hide_password_1 = 2130837643;
 			
 			// aapt resource value: 0x7f02008c
-			public const int avd_hide_password_3 = 2130837644;
+			public const int avd_hide_password_2 = 2130837644;
+			
+			// aapt resource value: 0x7f02008d
+			public const int avd_hide_password_3 = 2130837645;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f02008d
-			public const int avd_show_password_1 = 2130837645;
-			
 			// aapt resource value: 0x7f02008e
-			public const int avd_show_password_2 = 2130837646;
+			public const int avd_show_password_1 = 2130837646;
 			
 			// aapt resource value: 0x7f02008f
-			public const int avd_show_password_3 = 2130837647;
+			public const int avd_show_password_2 = 2130837647;
+			
+			// aapt resource value: 0x7f020090
+			public const int avd_show_password_3 = 2130837648;
 			
 			// aapt resource value: 0x7f020055
 			public const int circular = 2130837589;
@@ -2498,76 +2658,79 @@ namespace ClockworkHighway.Android
 			public const int googleg_standard_color_18 = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int ic_about = 2130837618;
+			public const int hockeyapp_btn_background = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int ic_account = 2130837619;
+			public const int ic_about = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int ic_charge = 2130837620;
+			public const int ic_account = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int ic_directions_car_white_24dp = 2130837621;
+			public const int ic_charge = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int ic_logout = 2130837622;
+			public const int ic_directions_car_white_24dp = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int ic_qrcode_black_18dp = 2130837623;
+			public const int ic_logout = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int ic_settings = 2130837624;
+			public const int ic_qrcode_black_18dp = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int ic_terms = 2130837625;
+			public const int ic_settings = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int ic_transactions = 2130837626;
+			public const int ic_terms = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int location = 2130837627;
+			public const int ic_transactions = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int navigation_empty_icon = 2130837628;
+			public const int location = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int notification_action_background = 2130837629;
+			public const int navigation_empty_icon = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int notification_bg = 2130837630;
+			public const int notification_action_background = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int notification_bg_low = 2130837631;
+			public const int notification_bg = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int notification_bg_low_normal = 2130837632;
+			public const int notification_bg_low = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int notification_bg_low_pressed = 2130837633;
+			public const int notification_bg_low_normal = 2130837633;
 			
 			// aapt resource value: 0x7f020082
-			public const int notification_bg_normal = 2130837634;
+			public const int notification_bg_low_pressed = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int notification_bg_normal_pressed = 2130837635;
+			public const int notification_bg_normal = 2130837635;
 			
 			// aapt resource value: 0x7f020084
-			public const int notification_icon_background = 2130837636;
-			
-			// aapt resource value: 0x7f020088
-			public const int notification_template_icon_bg = 2130837640;
-			
-			// aapt resource value: 0x7f020089
-			public const int notification_template_icon_low_bg = 2130837641;
+			public const int notification_bg_normal_pressed = 2130837636;
 			
 			// aapt resource value: 0x7f020085
-			public const int notification_tile_bg = 2130837637;
+			public const int notification_icon_background = 2130837637;
+			
+			// aapt resource value: 0x7f020089
+			public const int notification_template_icon_bg = 2130837641;
+			
+			// aapt resource value: 0x7f02008a
+			public const int notification_template_icon_low_bg = 2130837642;
 			
 			// aapt resource value: 0x7f020086
-			public const int notify_panel_notification_icon_bg = 2130837638;
+			public const int notification_tile_bg = 2130837638;
 			
 			// aapt resource value: 0x7f020087
-			public const int oldcar = 2130837639;
+			public const int notify_panel_notification_icon_bg = 2130837639;
+			
+			// aapt resource value: 0x7f020088
+			public const int oldcar = 2130837640;
 			
 			static Drawable()
 			{
@@ -2582,17 +2745,17 @@ namespace ClockworkHighway.Android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0b00f3
-			public const int about = 2131427571;
+			// aapt resource value: 0x7f0b010f
+			public const int about = 2131427599;
 			
-			// aapt resource value: 0x7f0b00f0
-			public const int account = 2131427568;
+			// aapt resource value: 0x7f0b010c
+			public const int account = 2131427596;
 			
 			// aapt resource value: 0x7f0b0080
 			public const int accountDetails = 2131427456;
 			
-			// aapt resource value: 0x7f0b00bc
-			public const int action0 = 2131427516;
+			// aapt resource value: 0x7f0b00d8
+			public const int action0 = 2131427544;
 			
 			// aapt resource value: 0x7f0b006e
 			public const int action_bar = 2131427438;
@@ -2615,17 +2778,17 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b004b
 			public const int action_bar_title = 2131427403;
 			
-			// aapt resource value: 0x7f0b00b9
-			public const int action_container = 2131427513;
+			// aapt resource value: 0x7f0b00d5
+			public const int action_container = 2131427541;
 			
 			// aapt resource value: 0x7f0b006f
 			public const int action_context_bar = 2131427439;
 			
-			// aapt resource value: 0x7f0b00c0
-			public const int action_divider = 2131427520;
+			// aapt resource value: 0x7f0b00dc
+			public const int action_divider = 2131427548;
 			
-			// aapt resource value: 0x7f0b00ba
-			public const int action_image = 2131427514;
+			// aapt resource value: 0x7f0b00d6
+			public const int action_image = 2131427542;
 			
 			// aapt resource value: 0x7f0b0003
 			public const int action_menu_divider = 2131427331;
@@ -2642,11 +2805,11 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b004d
 			public const int action_mode_close_button = 2131427405;
 			
-			// aapt resource value: 0x7f0b00bb
-			public const int action_text = 2131427515;
+			// aapt resource value: 0x7f0b00d7
+			public const int action_text = 2131427543;
 			
-			// aapt resource value: 0x7f0b00c9
-			public const int actions = 2131427529;
+			// aapt resource value: 0x7f0b00e5
+			public const int actions = 2131427557;
 			
 			// aapt resource value: 0x7f0b004e
 			public const int activity_chooser_view_content = 2131427406;
@@ -2675,8 +2838,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0019
 			public const int auto = 2131427353;
 			
-			// aapt resource value: 0x7f0b00db
-			public const int available = 2131427547;
+			// aapt resource value: 0x7f0b00f7
+			public const int available = 2131427575;
 			
 			// aapt resource value: 0x7f0b002b
 			public const int beginning = 2131427371;
@@ -2687,14 +2850,32 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0055
 			public const int buttonPanel = 2131427413;
 			
+			// aapt resource value: 0x7f0b00b5
+			public const int button_add_response = 2131427509;
+			
+			// aapt resource value: 0x7f0b00b0
+			public const int button_attachment = 2131427504;
+			
+			// aapt resource value: 0x7f0b00ba
+			public const int button_login = 2131427514;
+			
+			// aapt resource value: 0x7f0b00b6
+			public const int button_refresh = 2131427510;
+			
+			// aapt resource value: 0x7f0b00b1
+			public const int button_send = 2131427505;
+			
+			// aapt resource value: 0x7f0b00be
+			public const int button_update = 2131427518;
+			
 			// aapt resource value: 0x7f0b0083
 			public const int camera_view = 2131427459;
 			
-			// aapt resource value: 0x7f0b00bd
-			public const int cancel_action = 2131427517;
+			// aapt resource value: 0x7f0b00d9
+			public const int cancel_action = 2131427545;
 			
-			// aapt resource value: 0x7f0b00e5
-			public const int cardList = 2131427557;
+			// aapt resource value: 0x7f0b0101
+			public const int cardList = 2131427585;
 			
 			// aapt resource value: 0x7f0b003a
 			public const int center = 2131427386;
@@ -2735,8 +2916,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0065
 			public const int checkbox = 2131427429;
 			
-			// aapt resource value: 0x7f0b00c5
-			public const int chronometer = 2131427525;
+			// aapt resource value: 0x7f0b00e1
+			public const int chronometer = 2131427553;
 			
 			// aapt resource value: 0x7f0b0043
 			public const int clip_horizontal = 2131427395;
@@ -2747,14 +2928,14 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b002f
 			public const int collapseActionView = 2131427375;
 			
-			// aapt resource value: 0x7f0b00e2
-			public const int connectorList = 2131427554;
+			// aapt resource value: 0x7f0b00fe
+			public const int connectorList = 2131427582;
 			
-			// aapt resource value: 0x7f0b00e1
-			public const int connectorListText = 2131427553;
+			// aapt resource value: 0x7f0b00fd
+			public const int connectorListText = 2131427581;
 			
-			// aapt resource value: 0x7f0b00a9
-			public const int connectors = 2131427497;
+			// aapt resource value: 0x7f0b00c5
+			public const int connectors = 2131427525;
 			
 			// aapt resource value: 0x7f0b0058
 			public const int contentPanel = 2131427416;
@@ -2762,8 +2943,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0096
 			public const int content_frame = 2131427478;
 			
-			// aapt resource value: 0x7f0b00eb
-			public const int cost = 2131427563;
+			// aapt resource value: 0x7f0b0107
+			public const int cost = 2131427591;
 			
 			// aapt resource value: 0x7f0b005f
 			public const int custom = 2131427423;
@@ -2771,14 +2952,14 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b005e
 			public const int customPanel = 2131427422;
 			
-			// aapt resource value: 0x7f0b00e6
-			public const int cvv = 2131427558;
+			// aapt resource value: 0x7f0b0102
+			public const int cvv = 2131427586;
 			
 			// aapt resource value: 0x7f0b001a
 			public const int dark = 2131427354;
 			
-			// aapt resource value: 0x7f0b00e8
-			public const int date = 2131427560;
+			// aapt resource value: 0x7f0b0104
+			public const int date = 2131427588;
 			
 			// aapt resource value: 0x7f0b006c
 			public const int decor_content_parent = 2131427436;
@@ -2786,8 +2967,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0051
 			public const int default_activity_button = 2131427409;
 			
-			// aapt resource value: 0x7f0b00d7
-			public const int description = 2131427543;
+			// aapt resource value: 0x7f0b00f3
+			public const int description = 2131427571;
 			
 			// aapt resource value: 0x7f0b009a
 			public const int design_bottom_sheet = 2131427482;
@@ -2807,17 +2988,17 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b001e
 			public const int disableHome = 2131427358;
 			
-			// aapt resource value: 0x7f0b00da
-			public const int distance = 2131427546;
+			// aapt resource value: 0x7f0b00f6
+			public const int distance = 2131427574;
 			
 			// aapt resource value: 0x7f0b00a7
 			public const int drawerHeaderTitle = 2131427495;
 			
-			// aapt resource value: 0x7f0b00b5
-			public const int drawerLayout = 2131427509;
+			// aapt resource value: 0x7f0b00d1
+			public const int drawerLayout = 2131427537;
 			
-			// aapt resource value: 0x7f0b00b8
-			public const int editLocation = 2131427512;
+			// aapt resource value: 0x7f0b00d4
+			public const int editLocation = 2131427540;
 			
 			// aapt resource value: 0x7f0b0070
 			public const int edit_query = 2131427440;
@@ -2828,8 +3009,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b002c
 			public const int end = 2131427372;
 			
-			// aapt resource value: 0x7f0b00ce
-			public const int end_padder = 2131427534;
+			// aapt resource value: 0x7f0b00ea
+			public const int end_padder = 2131427562;
 			
 			// aapt resource value: 0x7f0b0035
 			public const int enterAlways = 2131427381;
@@ -2858,8 +3039,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0049
 			public const int @fixed = 2131427401;
 			
-			// aapt resource value: 0x7f0b00b1
-			public const int forgotPassword = 2131427505;
+			// aapt resource value: 0x7f0b00cd
+			public const int forgotPassword = 2131427533;
 			
 			// aapt resource value: 0x7f0b00a3
 			public const int forgotPasswordText = 2131427491;
@@ -2867,8 +3048,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b00a5
 			public const int forgotUserText = 2131427493;
 			
-			// aapt resource value: 0x7f0b00af
-			public const int forgotUsername = 2131427503;
+			// aapt resource value: 0x7f0b00cb
+			public const int forgotUsername = 2131427531;
 			
 			// aapt resource value: 0x7f0b0005
 			public const int home = 2131427333;
@@ -2882,11 +3063,11 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0053
 			public const int icon = 2131427411;
 			
-			// aapt resource value: 0x7f0b00cf
-			public const int icon_frame = 2131427535;
+			// aapt resource value: 0x7f0b00eb
+			public const int icon_frame = 2131427563;
 			
-			// aapt resource value: 0x7f0b00ca
-			public const int icon_group = 2131427530;
+			// aapt resource value: 0x7f0b00e6
+			public const int icon_group = 2131427558;
 			
 			// aapt resource value: 0x7f0b0016
 			public const int icon_only = 2131427350;
@@ -2900,17 +3081,53 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b007d
 			public const int imageClockwork = 2131427453;
 			
-			// aapt resource value: 0x7f0b00c6
-			public const int info = 2131427526;
+			// aapt resource value: 0x7f0b00e2
+			public const int info = 2131427554;
+			
+			// aapt resource value: 0x7f0b00ac
+			public const int input_email = 2131427500;
+			
+			// aapt resource value: 0x7f0b00ae
+			public const int input_message = 2131427502;
+			
+			// aapt resource value: 0x7f0b00ab
+			public const int input_name = 2131427499;
+			
+			// aapt resource value: 0x7f0b00b9
+			public const int input_password = 2131427513;
+			
+			// aapt resource value: 0x7f0b00ad
+			public const int input_subject = 2131427501;
 			
 			// aapt resource value: 0x7f0b0000
 			public const int item_touch_helper_previous_elevation = 2131427328;
 			
+			// aapt resource value: 0x7f0b00c0
+			public const int label_author = 2131427520;
+			
+			// aapt resource value: 0x7f0b00c1
+			public const int label_date = 2131427521;
+			
+			// aapt resource value: 0x7f0b00b3
+			public const int label_last_updated = 2131427507;
+			
+			// aapt resource value: 0x7f0b00a8
+			public const int label_message = 2131427496;
+			
+			// aapt resource value: 0x7f0b00c2
+			public const int label_text = 2131427522;
+			
+			// aapt resource value: 0x7f0b00bc
+			public const int label_title = 2131427516;
+			
+			// aapt resource value: 0x7f0b00bd
+			public const int label_version = 2131427517;
+			
 			// aapt resource value: 0x7f0b0098
 			public const int largeLabel = 2131427480;
 			
-			// aapt resource value: 0x7f0b00f1
-			public const int lastCharge = 2131427569;
+			// aapt resource value: 0x7f0b010d
+			public const int lastCharge = 2131427597;
 			
 			// aapt resource value: 0x7f0b003e
 			public const int left = 2131427390;
@@ -2918,62 +3135,68 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b001b
 			public const int light = 2131427355;
 			
-			// aapt resource value: 0x7f0b00cb
-			public const int line1 = 2131427531;
+			// aapt resource value: 0x7f0b00e7
+			public const int line1 = 2131427559;
 			
-			// aapt resource value: 0x7f0b00cd
-			public const int line3 = 2131427533;
+			// aapt resource value: 0x7f0b00e9
+			public const int line3 = 2131427561;
 			
-			// aapt resource value: 0x7f0b00d1
-			public const int list = 2131427537;
+			// aapt resource value: 0x7f0b00ed
+			public const int list = 2131427565;
 			
 			// aapt resource value: 0x7f0b001c
 			public const int listMode = 2131427356;
 			
-			// aapt resource value: 0x7f0b00de
-			public const int listPumps = 2131427550;
+			// aapt resource value: 0x7f0b00fa
+			public const int listPumps = 2131427578;
+			
+			// aapt resource value: 0x7f0b00c3
+			public const int list_attachments = 2131427523;
+			
+			// aapt resource value: 0x7f0b00b7
+			public const int list_feedback_messages = 2131427511;
 			
 			// aapt resource value: 0x7f0b0052
 			public const int list_item = 2131427410;
 			
-			// aapt resource value: 0x7f0b00b3
-			public const int loadingProgress = 2131427507;
+			// aapt resource value: 0x7f0b00cf
+			public const int loadingProgress = 2131427535;
 			
-			// aapt resource value: 0x7f0b00b2
-			public const int loadingText = 2131427506;
+			// aapt resource value: 0x7f0b00ce
+			public const int loadingText = 2131427534;
 			
-			// aapt resource value: 0x7f0b00d8
-			public const int location = 2131427544;
+			// aapt resource value: 0x7f0b00f4
+			public const int location = 2131427572;
 			
-			// aapt resource value: 0x7f0b00df
-			public const int locationName = 2131427551;
+			// aapt resource value: 0x7f0b00fb
+			public const int locationName = 2131427579;
 			
-			// aapt resource value: 0x7f0b00b4
-			public const int login = 2131427508;
+			// aapt resource value: 0x7f0b00d0
+			public const int login = 2131427536;
 			
-			// aapt resource value: 0x7f0b00f6
-			public const int logout = 2131427574;
+			// aapt resource value: 0x7f0b0112
+			public const int logout = 2131427602;
 			
 			// aapt resource value: 0x7f0b0093
 			public const int main_content = 2131427475;
 			
-			// aapt resource value: 0x7f0b00a8
-			public const int map = 2131427496;
+			// aapt resource value: 0x7f0b00c4
+			public const int map = 2131427524;
 			
-			// aapt resource value: 0x7f0b00ee
-			public const int masked = 2131427566;
+			// aapt resource value: 0x7f0b010a
+			public const int masked = 2131427594;
 			
-			// aapt resource value: 0x7f0b00bf
-			public const int media_actions = 2131427519;
+			// aapt resource value: 0x7f0b00db
+			public const int media_actions = 2131427547;
 			
-			// aapt resource value: 0x7f0b00ef
-			public const int menuGroup1 = 2131427567;
+			// aapt resource value: 0x7f0b010b
+			public const int menuGroup1 = 2131427595;
 			
-			// aapt resource value: 0x7f0b00f2
-			public const int menuGroup2 = 2131427570;
+			// aapt resource value: 0x7f0b010e
+			public const int menuGroup2 = 2131427598;
 			
-			// aapt resource value: 0x7f0b00f5
-			public const int menuGroup3 = 2131427573;
+			// aapt resource value: 0x7f0b0111
+			public const int menuGroup3 = 2131427601;
 			
 			// aapt resource value: 0x7f0b0092
 			public const int messageStop = 2131427474;
@@ -2984,17 +3207,17 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0048
 			public const int mini = 2131427400;
 			
-			// aapt resource value: 0x7f0b00d9
-			public const int model = 2131427545;
+			// aapt resource value: 0x7f0b00f5
+			public const int model = 2131427573;
 			
 			// aapt resource value: 0x7f0b0025
 			public const int multiply = 2131427365;
 			
-			// aapt resource value: 0x7f0b00ac
-			public const int name = 2131427500;
+			// aapt resource value: 0x7f0b00c8
+			public const int name = 2131427528;
 			
-			// aapt resource value: 0x7f0b00b6
-			public const int navigationView = 2131427510;
+			// aapt resource value: 0x7f0b00d2
+			public const int navigationView = 2131427538;
 			
 			// aapt resource value: 0x7f0b009d
 			public const int navigation_header_container = 2131427485;
@@ -3014,14 +3237,14 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0011
 			public const int normal = 2131427345;
 			
-			// aapt resource value: 0x7f0b00c8
-			public const int notification_background = 2131427528;
+			// aapt resource value: 0x7f0b00e4
+			public const int notification_background = 2131427556;
 			
-			// aapt resource value: 0x7f0b00c2
-			public const int notification_main_column = 2131427522;
+			// aapt resource value: 0x7f0b00de
+			public const int notification_main_column = 2131427550;
 			
-			// aapt resource value: 0x7f0b00c1
-			public const int notification_main_column_container = 2131427521;
+			// aapt resource value: 0x7f0b00dd
+			public const int notification_main_column_container = 2131427549;
 			
 			// aapt resource value: 0x7f0b0086
 			public const int oldPassword = 2131427462;
@@ -3035,26 +3258,26 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0057
 			public const int parentPanel = 2131427415;
 			
-			// aapt resource value: 0x7f0b00b0
-			public const int password = 2131427504;
+			// aapt resource value: 0x7f0b00cc
+			public const int password = 2131427532;
 			
 			// aapt resource value: 0x7f0b00a4
 			public const int password3prompt = 2131427492;
 			
-			// aapt resource value: 0x7f0b00e4
-			public const int payment = 2131427556;
+			// aapt resource value: 0x7f0b0100
+			public const int payment = 2131427584;
 			
 			// aapt resource value: 0x7f0b0042
 			public const int pin = 2131427394;
 			
-			// aapt resource value: 0x7f0b00e3
-			public const int priceList = 2131427555;
+			// aapt resource value: 0x7f0b00ff
+			public const int priceList = 2131427583;
 			
-			// aapt resource value: 0x7f0b00d6
-			public const int priceText = 2131427542;
+			// aapt resource value: 0x7f0b00f2
+			public const int priceText = 2131427570;
 			
-			// aapt resource value: 0x7f0b00d5
-			public const int priceTitle = 2131427541;
+			// aapt resource value: 0x7f0b00f1
+			public const int priceTitle = 2131427569;
 			
 			// aapt resource value: 0x7f0b007f
 			public const int privacy = 2131427455;
@@ -3068,20 +3291,20 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0007
 			public const int progress_horizontal = 2131427335;
 			
-			// aapt resource value: 0x7f0b00ea
-			public const int pump = 2131427562;
+			// aapt resource value: 0x7f0b0106
+			public const int pump = 2131427590;
 			
-			// aapt resource value: 0x7f0b00e0
-			public const int pumpId = 2131427552;
+			// aapt resource value: 0x7f0b00fc
+			public const int pumpId = 2131427580;
 			
-			// aapt resource value: 0x7f0b00aa
-			public const int pumpid = 2131427498;
+			// aapt resource value: 0x7f0b00c6
+			public const int pumpid = 2131427526;
 			
-			// aapt resource value: 0x7f0b00ab
-			public const int pumplist = 2131427499;
+			// aapt resource value: 0x7f0b00c7
+			public const int pumplist = 2131427527;
 			
-			// aapt resource value: 0x7f0b00b7
-			public const int qrcode = 2131427511;
+			// aapt resource value: 0x7f0b00d3
+			public const int qrcode = 2131427539;
 			
 			// aapt resource value: 0x7f0b0067
 			public const int radio = 2131427431;
@@ -3089,11 +3312,11 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b003f
 			public const int right = 2131427391;
 			
-			// aapt resource value: 0x7f0b00c7
-			public const int right_icon = 2131427527;
+			// aapt resource value: 0x7f0b00e3
+			public const int right_icon = 2131427555;
 			
-			// aapt resource value: 0x7f0b00c3
-			public const int right_side = 2131427523;
+			// aapt resource value: 0x7f0b00df
+			public const int right_side = 2131427551;
 			
 			// aapt resource value: 0x7f0b0012
 			public const int satellite = 2131427346;
@@ -3116,8 +3339,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b004a
 			public const int scrollable = 2131427402;
 			
-			// aapt resource value: 0x7f0b00dd
-			public const int scroller = 2131427549;
+			// aapt resource value: 0x7f0b00f9
+			public const int scroller = 2131427577;
 			
 			// aapt resource value: 0x7f0b0072
 			public const int search_badge = 2131427442;
@@ -3149,17 +3372,17 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b007b
 			public const int search_voice_btn = 2131427451;
 			
-			// aapt resource value: 0x7f0b00d2
-			public const int seekbar = 2131427538;
+			// aapt resource value: 0x7f0b00ee
+			public const int seekbar = 2131427566;
 			
-			// aapt resource value: 0x7f0b00d3
-			public const int seekbar_value = 2131427539;
+			// aapt resource value: 0x7f0b00ef
+			public const int seekbar_value = 2131427567;
 			
 			// aapt resource value: 0x7f0b007c
 			public const int select_dialog_listview = 2131427452;
 			
-			// aapt resource value: 0x7f0b00e9
-			public const int session = 2131427561;
+			// aapt resource value: 0x7f0b0105
+			public const int session = 2131427589;
 			
 			// aapt resource value: 0x7f0b0066
 			public const int shortcut = 2131427430;
@@ -3188,8 +3411,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0056
 			public const int spacer = 2131427414;
 			
-			// aapt resource value: 0x7f0b00d0
-			public const int spinner = 2131427536;
+			// aapt resource value: 0x7f0b00ec
+			public const int spinner = 2131427564;
 			
 			// aapt resource value: 0x7f0b0008
 			public const int split_action_bar = 2131427336;
@@ -3209,11 +3432,11 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0040
 			public const int start = 2131427392;
 			
-			// aapt resource value: 0x7f0b00ad
-			public const int status = 2131427501;
+			// aapt resource value: 0x7f0b00c9
+			public const int status = 2131427529;
 			
-			// aapt resource value: 0x7f0b00be
-			public const int status_bar_latest_event_content = 2131427518;
+			// aapt resource value: 0x7f0b00da
+			public const int status_bar_latest_event_content = 2131427546;
 			
 			// aapt resource value: 0x7f0b0068
 			public const int submenuarrow = 2131427432;
@@ -3221,20 +3444,20 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0079
 			public const int submit_area = 2131427449;
 			
-			// aapt resource value: 0x7f0b00dc
-			public const int swipeonly = 2131427548;
+			// aapt resource value: 0x7f0b00f8
+			public const int swipeonly = 2131427576;
 			
-			// aapt resource value: 0x7f0b00d4
-			public const int switchWidget = 2131427540;
+			// aapt resource value: 0x7f0b00f0
+			public const int switchWidget = 2131427568;
 			
 			// aapt resource value: 0x7f0b001d
 			public const int tabMode = 2131427357;
 			
-			// aapt resource value: 0x7f0b00f4
-			public const int terms = 2131427572;
+			// aapt resource value: 0x7f0b0110
+			public const int terms = 2131427600;
 			
-			// aapt resource value: 0x7f0b00e7
-			public const int termsAndConditions = 2131427559;
+			// aapt resource value: 0x7f0b0103
+			public const int termsAndConditions = 2131427587;
 			
 			// aapt resource value: 0x7f0b0013
 			public const int terrain = 2131427347;
@@ -3242,14 +3465,17 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0082
 			public const int text = 2131427458;
 			
-			// aapt resource value: 0x7f0b00cc
-			public const int text2 = 2131427532;
+			// aapt resource value: 0x7f0b00e8
+			public const int text2 = 2131427560;
 			
 			// aapt resource value: 0x7f0b005c
 			public const int textSpacerNoButtons = 2131427420;
 			
 			// aapt resource value: 0x7f0b005b
 			public const int textSpacerNoTitle = 2131427419;
+			
+			// aapt resource value: 0x7f0b00b8
+			public const int text_headline = 2131427512;
 			
 			// aapt resource value: 0x7f0b00a2
 			public const int text_input_password_toggle = 2131427490;
@@ -3260,8 +3486,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b000d
 			public const int textinput_error = 2131427341;
 			
-			// aapt resource value: 0x7f0b00c4
-			public const int time = 2131427524;
+			// aapt resource value: 0x7f0b00e0
+			public const int time = 2131427552;
 			
 			// aapt resource value: 0x7f0b0054
 			public const int title = 2131427412;
@@ -3284,8 +3510,8 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0099
 			public const int touch_outside = 2131427481;
 			
-			// aapt resource value: 0x7f0b00ec
-			public const int transactions = 2131427564;
+			// aapt resource value: 0x7f0b0108
+			public const int transactions = 2131427592;
 			
 			// aapt resource value: 0x7f0b000a
 			public const int transition_current_scene = 2131427338;
@@ -3302,17 +3528,23 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0b0084
 			public const int username = 2131427460;
 			
-			// aapt resource value: 0x7f0b00ae
-			public const int usernamePrompt = 2131427502;
+			// aapt resource value: 0x7f0b00ca
+			public const int usernamePrompt = 2131427530;
 			
 			// aapt resource value: 0x7f0b007e
 			public const int version = 2131427454;
 			
+			// aapt resource value: 0x7f0b00bb
+			public const int view_header = 2131427515;
+			
 			// aapt resource value: 0x7f0b000e
 			public const int view_offset_helper = 2131427342;
 			
-			// aapt resource value: 0x7f0b00ed
-			public const int visible = 2131427565;
+			// aapt resource value: 0x7f0b0109
+			public const int visible = 2131427593;
+			
+			// aapt resource value: 0x7f0b00bf
+			public const int web_update_details = 2131427519;
 			
 			// aapt resource value: 0x7f0b0018
 			public const int wide = 2131427352;
@@ -3322,6 +3554,21 @@ namespace ClockworkHighway.Android
 			
 			// aapt resource value: 0x7f0b002a
 			public const int wrap_content = 2131427370;
+			
+			// aapt resource value: 0x7f0b00af
+			public const int wrapper_attachments = 2131427503;
+			
+			// aapt resource value: 0x7f0b00aa
+			public const int wrapper_feedback = 2131427498;
+			
+			// aapt resource value: 0x7f0b00a9
+			public const int wrapper_feedback_scroll = 2131427497;
+			
+			// aapt resource value: 0x7f0b00b2
+			public const int wrapper_messages = 2131427506;
+			
+			// aapt resource value: 0x7f0b00b4
+			public const int wrapper_messages_buttons = 2131427508;
 			
 			static Id()
 			{
@@ -3542,130 +3789,148 @@ namespace ClockworkHighway.Android
 			public const int header = 2130968629;
 			
 			// aapt resource value: 0x7f040036
-			public const int location = 2130968630;
+			public const int hockeyapp_activity_expiry_info = 2130968630;
 			
 			// aapt resource value: 0x7f040037
-			public const int locationline = 2130968631;
+			public const int hockeyapp_activity_feedback = 2130968631;
 			
 			// aapt resource value: 0x7f040038
-			public const int locationpumpline = 2130968632;
+			public const int hockeyapp_activity_login = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int main = 2130968633;
+			public const int hockeyapp_activity_update = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int mainmenu = 2130968634;
+			public const int hockeyapp_fragment_update = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int mainmenusearch = 2130968635;
+			public const int hockeyapp_view_feedback_message = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int notification_action = 2130968636;
+			public const int location = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int notification_action_tombstone = 2130968637;
+			public const int locationline = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int notification_media_action = 2130968638;
+			public const int locationpumpline = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int notification_media_cancel_action = 2130968639;
+			public const int main = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int notification_template_big_media = 2130968640;
+			public const int mainmenu = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int notification_template_big_media_custom = 2130968641;
+			public const int mainmenusearch = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int notification_template_big_media_narrow = 2130968642;
+			public const int notification_action = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int notification_template_big_media_narrow_custom = 2130968643;
+			public const int notification_action_tombstone = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int notification_template_custom_big = 2130968644;
+			public const int notification_media_action = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int notification_template_icon_group = 2130968645;
+			public const int notification_media_cancel_action = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int notification_template_lines_media = 2130968646;
+			public const int notification_template_big_media = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int notification_template_media = 2130968647;
+			public const int notification_template_big_media_custom = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int notification_template_media_custom = 2130968648;
+			public const int notification_template_big_media_narrow = 2130968648;
 			
 			// aapt resource value: 0x7f040049
-			public const int notification_template_part_chronometer = 2130968649;
+			public const int notification_template_big_media_narrow_custom = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int notification_template_part_time = 2130968650;
+			public const int notification_template_custom_big = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int preference = 2130968651;
+			public const int notification_template_icon_group = 2130968651;
 			
 			// aapt resource value: 0x7f04004c
-			public const int preference_category = 2130968652;
+			public const int notification_template_lines_media = 2130968652;
 			
 			// aapt resource value: 0x7f04004d
-			public const int preference_dialog_edittext = 2130968653;
+			public const int notification_template_media = 2130968653;
 			
 			// aapt resource value: 0x7f04004e
-			public const int preference_dropdown = 2130968654;
+			public const int notification_template_media_custom = 2130968654;
 			
 			// aapt resource value: 0x7f04004f
-			public const int preference_information = 2130968655;
+			public const int notification_template_part_chronometer = 2130968655;
 			
 			// aapt resource value: 0x7f040050
-			public const int preference_list_fragment = 2130968656;
+			public const int notification_template_part_time = 2130968656;
 			
 			// aapt resource value: 0x7f040051
-			public const int preference_recyclerview = 2130968657;
+			public const int preference = 2130968657;
 			
 			// aapt resource value: 0x7f040052
-			public const int preference_widget_checkbox = 2130968658;
+			public const int preference_category = 2130968658;
 			
 			// aapt resource value: 0x7f040053
-			public const int preference_widget_seekbar = 2130968659;
+			public const int preference_dialog_edittext = 2130968659;
 			
 			// aapt resource value: 0x7f040054
-			public const int preference_widget_switch_compat = 2130968660;
+			public const int preference_dropdown = 2130968660;
 			
 			// aapt resource value: 0x7f040055
-			public const int priceline = 2130968661;
+			public const int preference_information = 2130968661;
 			
 			// aapt resource value: 0x7f040056
-			public const int pumpline = 2130968662;
+			public const int preference_list_fragment = 2130968662;
 			
 			// aapt resource value: 0x7f040057
-			public const int search = 2130968663;
+			public const int preference_recyclerview = 2130968663;
 			
 			// aapt resource value: 0x7f040058
-			public const int select_dialog_item_material = 2130968664;
+			public const int preference_widget_checkbox = 2130968664;
 			
 			// aapt resource value: 0x7f040059
-			public const int select_dialog_multichoice_material = 2130968665;
+			public const int preference_widget_seekbar = 2130968665;
 			
 			// aapt resource value: 0x7f04005a
-			public const int select_dialog_singlechoice_material = 2130968666;
+			public const int preference_widget_switch_compat = 2130968666;
 			
 			// aapt resource value: 0x7f04005b
-			public const int startcharge = 2130968667;
+			public const int priceline = 2130968667;
 			
 			// aapt resource value: 0x7f04005c
-			public const int support_simple_spinner_dropdown_item = 2130968668;
+			public const int pumpline = 2130968668;
 			
 			// aapt resource value: 0x7f04005d
-			public const int termsandconditions = 2130968669;
+			public const int search = 2130968669;
 			
 			// aapt resource value: 0x7f04005e
-			public const int transactionline = 2130968670;
+			public const int select_dialog_item_material = 2130968670;
 			
 			// aapt resource value: 0x7f04005f
-			public const int transactions = 2130968671;
+			public const int select_dialog_multichoice_material = 2130968671;
+			
+			// aapt resource value: 0x7f040060
+			public const int select_dialog_singlechoice_material = 2130968672;
+			
+			// aapt resource value: 0x7f040061
+			public const int startcharge = 2130968673;
+			
+			// aapt resource value: 0x7f040062
+			public const int support_simple_spinner_dropdown_item = 2130968674;
+			
+			// aapt resource value: 0x7f040063
+			public const int termsandconditions = 2130968675;
+			
+			// aapt resource value: 0x7f040064
+			public const int transactionline = 2130968676;
+			
+			// aapt resource value: 0x7f040065
+			public const int transactions = 2130968677;
 			
 			static Layout()
 			{
@@ -3712,8 +3977,8 @@ namespace ClockworkHighway.Android
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f08003c
-			public const int ApplicationName = 2131230780;
+			// aapt resource value: 0x7f08008e
+			public const int ApplicationName = 2131230862;
 			
 			// aapt resource value: 0x7f080013
 			public const int abc_action_bar_home_description = 2131230739;
@@ -3808,65 +4073,65 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f080025
 			public const int abc_toolbar_collapse_description = 2131230757;
 			
-			// aapt resource value: 0x7f08005a
-			public const int about = 2131230810;
+			// aapt resource value: 0x7f0800ac
+			public const int about = 2131230892;
 			
-			// aapt resource value: 0x7f08005d
-			public const int account = 2131230813;
+			// aapt resource value: 0x7f0800af
+			public const int account = 2131230895;
 			
-			// aapt resource value: 0x7f080062
-			public const int address = 2131230818;
+			// aapt resource value: 0x7f0800b4
+			public const int address = 2131230900;
 			
 			// aapt resource value: 0x7f080034
 			public const int appbar_scrolling_view_behavior = 2131230772;
 			
-			// aapt resource value: 0x7f08007b
-			public const int areYouSureStop = 2131230843;
+			// aapt resource value: 0x7f0800cd
+			public const int areYouSureStop = 2131230925;
 			
-			// aapt resource value: 0x7f08007c
-			public const int areYouSureStop2 = 2131230844;
+			// aapt resource value: 0x7f0800ce
+			public const int areYouSureStop2 = 2131230926;
 			
-			// aapt resource value: 0x7f080045
-			public const int available = 2131230789;
+			// aapt resource value: 0x7f080097
+			public const int available = 2131230871;
 			
-			// aapt resource value: 0x7f08006c
-			public const int badpassword = 2131230828;
+			// aapt resource value: 0x7f0800be
+			public const int badpassword = 2131230910;
 			
 			// aapt resource value: 0x7f080035
 			public const int bottom_sheet_behavior = 2131230773;
 			
-			// aapt resource value: 0x7f080042
-			public const int cancel = 2131230786;
+			// aapt resource value: 0x7f080094
+			public const int cancel = 2131230868;
 			
-			// aapt resource value: 0x7f080063
-			public const int car = 2131230819;
+			// aapt resource value: 0x7f0800b5
+			public const int car = 2131230901;
 			
-			// aapt resource value: 0x7f080064
-			public const int card = 2131230820;
+			// aapt resource value: 0x7f0800b6
+			public const int card = 2131230902;
 			
-			// aapt resource value: 0x7f080068
-			public const int changeEmail = 2131230824;
+			// aapt resource value: 0x7f0800ba
+			public const int changeEmail = 2131230906;
 			
-			// aapt resource value: 0x7f080067
-			public const int changePassword = 2131230823;
+			// aapt resource value: 0x7f0800b9
+			public const int changePassword = 2131230905;
 			
 			// aapt resource value: 0x7f080036
 			public const int character_counter_pattern = 2131230774;
 			
-			// aapt resource value: 0x7f080080
-			public const int chargeFinished = 2131230848;
+			// aapt resource value: 0x7f0800d2
+			public const int chargeFinished = 2131230930;
 			
-			// aapt resource value: 0x7f080084
-			public const int chargeFinishedNotification = 2131230852;
+			// aapt resource value: 0x7f0800d6
+			public const int chargeFinishedNotification = 2131230934;
 			
-			// aapt resource value: 0x7f08004b
-			public const int charging = 2131230795;
+			// aapt resource value: 0x7f08009d
+			public const int charging = 2131230877;
 			
-			// aapt resource value: 0x7f08007f
-			public const int chargingMinutes = 2131230847;
+			// aapt resource value: 0x7f0800d1
+			public const int chargingMinutes = 2131230929;
 			
-			// aapt resource value: 0x7f080059
-			public const int close = 2131230809;
+			// aapt resource value: 0x7f0800ab
+			public const int close = 2131230891;
 			
 			// aapt resource value: 0x7f080001
 			public const int common_google_play_services_enable_button = 2131230721;
@@ -3919,107 +4184,353 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f080010
 			public const int common_signin_button_text_long = 2131230736;
 			
-			// aapt resource value: 0x7f08005f
-			public const int continu = 2131230815;
+			// aapt resource value: 0x7f0800b1
+			public const int continu = 2131230897;
 			
-			// aapt resource value: 0x7f080071
-			public const int copyright1 = 2131230833;
+			// aapt resource value: 0x7f0800c3
+			public const int copyright1 = 2131230915;
 			
-			// aapt resource value: 0x7f080072
-			public const int copyright2 = 2131230834;
+			// aapt resource value: 0x7f0800c4
+			public const int copyright2 = 2131230916;
 			
-			// aapt resource value: 0x7f080073
-			public const int copyright3 = 2131230835;
+			// aapt resource value: 0x7f0800c5
+			public const int copyright3 = 2131230917;
 			
-			// aapt resource value: 0x7f080074
-			public const int copyright4 = 2131230836;
+			// aapt resource value: 0x7f0800c6
+			public const int copyright4 = 2131230918;
 			
-			// aapt resource value: 0x7f08005b
-			public const int cvv = 2131230811;
+			// aapt resource value: 0x7f0800ad
+			public const int cvv = 2131230893;
 			
-			// aapt resource value: 0x7f08004f
-			public const int date = 2131230799;
+			// aapt resource value: 0x7f0800a1
+			public const int date = 2131230881;
 			
-			// aapt resource value: 0x7f080065
-			public const int email = 2131230821;
+			// aapt resource value: 0x7f0800b7
+			public const int email = 2131230903;
 			
-			// aapt resource value: 0x7f080079
-			public const int enterNewPassword = 2131230841;
+			// aapt resource value: 0x7f0800cb
+			public const int enterNewPassword = 2131230923;
 			
-			// aapt resource value: 0x7f080050
-			public const int entercvv = 2131230800;
+			// aapt resource value: 0x7f0800a2
+			public const int entercvv = 2131230882;
 			
-			// aapt resource value: 0x7f080051
-			public const int forgotPassword = 2131230801;
+			// aapt resource value: 0x7f0800a3
+			public const int forgotPassword = 2131230883;
 			
-			// aapt resource value: 0x7f080076
-			public const int forgotPassword1 = 2131230838;
+			// aapt resource value: 0x7f0800c8
+			public const int forgotPassword1 = 2131230920;
 			
-			// aapt resource value: 0x7f080077
-			public const int forgotPassword2 = 2131230839;
+			// aapt resource value: 0x7f0800c9
+			public const int forgotPassword2 = 2131230921;
 			
-			// aapt resource value: 0x7f080054
-			public const int forgotPasswordTitle = 2131230804;
+			// aapt resource value: 0x7f0800a6
+			public const int forgotPasswordTitle = 2131230886;
 			
-			// aapt resource value: 0x7f080075
-			public const int forgotUser = 2131230837;
+			// aapt resource value: 0x7f0800c7
+			public const int forgotUser = 2131230919;
 			
-			// aapt resource value: 0x7f080052
-			public const int forgotUsername = 2131230802;
+			// aapt resource value: 0x7f0800a4
+			public const int forgotUsername = 2131230884;
 			
-			// aapt resource value: 0x7f080053
-			public const int forgotUsernameTitle = 2131230803;
+			// aapt resource value: 0x7f0800a5
+			public const int forgotUsernameTitle = 2131230885;
+			
+			// aapt resource value: 0x7f08008f
+			public const int google_maps_key = 2131230863;
 			
 			// aapt resource value: 0x7f08003d
-			public const int google_maps_key = 2131230781;
+			public const int hockeyapp_crash_dialog_app_name_fallback = 2131230781;
 			
-			// aapt resource value: 0x7f08006e
-			public const int invalidEmail = 2131230830;
-			
-			// aapt resource value: 0x7f080081
-			public const int lastCharge = 2131230849;
-			
-			// aapt resource value: 0x7f080044
-			public const int loading = 2131230788;
-			
-			// aapt resource value: 0x7f080040
-			public const int login = 2131230784;
-			
-			// aapt resource value: 0x7f080057
-			public const int logout = 2131230807;
-			
-			// aapt resource value: 0x7f080061
-			public const int name = 2131230817;
-			
-			// aapt resource value: 0x7f08006a
-			public const int newPassword = 2131230826;
-			
-			// aapt resource value: 0x7f08006b
-			public const int newPassword2 = 2131230827;
-			
-			// aapt resource value: 0x7f080043
-			public const int nothing = 2131230787;
-			
-			// aapt resource value: 0x7f08005e
-			public const int ok = 2131230814;
-			
-			// aapt resource value: 0x7f080069
-			public const int oldPassword = 2131230825;
-			
-			// aapt resource value: 0x7f080047
-			public const int onpump = 2131230791;
-			
-			// aapt resource value: 0x7f080058
-			public const int open = 2131230808;
+			// aapt resource value: 0x7f08003e
+			public const int hockeyapp_crash_dialog_message = 2131230782;
 			
 			// aapt resource value: 0x7f08003f
-			public const int password = 2131230783;
+			public const int hockeyapp_crash_dialog_negative_button = 2131230783;
+			
+			// aapt resource value: 0x7f080040
+			public const int hockeyapp_crash_dialog_neutral_button = 2131230784;
+			
+			// aapt resource value: 0x7f080041
+			public const int hockeyapp_crash_dialog_positive_button = 2131230785;
+			
+			// aapt resource value: 0x7f080042
+			public const int hockeyapp_crash_dialog_title = 2131230786;
+			
+			// aapt resource value: 0x7f080043
+			public const int hockeyapp_dialog_error_message = 2131230787;
+			
+			// aapt resource value: 0x7f080044
+			public const int hockeyapp_dialog_error_title = 2131230788;
+			
+			// aapt resource value: 0x7f080045
+			public const int hockeyapp_dialog_negative_button = 2131230789;
+			
+			// aapt resource value: 0x7f080046
+			public const int hockeyapp_dialog_positive_button = 2131230790;
+			
+			// aapt resource value: 0x7f080047
+			public const int hockeyapp_download_failed_dialog_message = 2131230791;
+			
+			// aapt resource value: 0x7f080048
+			public const int hockeyapp_download_failed_dialog_negative_button = 2131230792;
+			
+			// aapt resource value: 0x7f080049
+			public const int hockeyapp_download_failed_dialog_positive_button = 2131230793;
+			
+			// aapt resource value: 0x7f08004a
+			public const int hockeyapp_download_failed_dialog_title = 2131230794;
+			
+			// aapt resource value: 0x7f08004b
+			public const int hockeyapp_error_no_network_message = 2131230795;
+			
+			// aapt resource value: 0x7f08004c
+			public const int hockeyapp_expiry_info_text = 2131230796;
+			
+			// aapt resource value: 0x7f08004d
+			public const int hockeyapp_expiry_info_title = 2131230797;
+			
+			// aapt resource value: 0x7f08004e
+			public const int hockeyapp_feedback_attach_file = 2131230798;
+			
+			// aapt resource value: 0x7f08004f
+			public const int hockeyapp_feedback_attach_picture = 2131230799;
+			
+			// aapt resource value: 0x7f080050
+			public const int hockeyapp_feedback_attachment_added = 2131230800;
+			
+			// aapt resource value: 0x7f080051
+			public const int hockeyapp_feedback_attachment_button_text = 2131230801;
+			
+			// aapt resource value: 0x7f080052
+			public const int hockeyapp_feedback_attachment_error = 2131230802;
+			
+			// aapt resource value: 0x7f080053
+			public const int hockeyapp_feedback_attachment_loading = 2131230803;
+			
+			// aapt resource value: 0x7f080054
+			public const int hockeyapp_feedback_attachment_remove_description = 2131230804;
+			
+			// aapt resource value: 0x7f080055
+			public const int hockeyapp_feedback_attachment_removed = 2131230805;
+			
+			// aapt resource value: 0x7f080056
+			public const int hockeyapp_feedback_email_hint = 2131230806;
+			
+			// aapt resource value: 0x7f080057
+			public const int hockeyapp_feedback_email_hint_required = 2131230807;
+			
+			// aapt resource value: 0x7f080058
+			public const int hockeyapp_feedback_failed_text = 2131230808;
+			
+			// aapt resource value: 0x7f080059
+			public const int hockeyapp_feedback_failed_title = 2131230809;
+			
+			// aapt resource value: 0x7f08005a
+			public const int hockeyapp_feedback_fetching_feedback_text = 2131230810;
+			
+			// aapt resource value: 0x7f08005b
+			public const int hockeyapp_feedback_generic_error = 2131230811;
+			
+			// aapt resource value: 0x7f08005c
+			public const int hockeyapp_feedback_last_updated_text = 2131230812;
+			
+			// aapt resource value: 0x7f08005d
+			public const int hockeyapp_feedback_max_attachments_allowed = 2131230813;
+			
+			// aapt resource value: 0x7f08005e
+			public const int hockeyapp_feedback_message_hint = 2131230814;
+			
+			// aapt resource value: 0x7f08005f
+			public const int hockeyapp_feedback_message_hint_required = 2131230815;
+			
+			// aapt resource value: 0x7f080060
+			public const int hockeyapp_feedback_name_hint = 2131230816;
+			
+			// aapt resource value: 0x7f080061
+			public const int hockeyapp_feedback_name_hint_required = 2131230817;
+			
+			// aapt resource value: 0x7f080062
+			public const int hockeyapp_feedback_refresh_button_text = 2131230818;
+			
+			// aapt resource value: 0x7f080063
+			public const int hockeyapp_feedback_response_button_text = 2131230819;
+			
+			// aapt resource value: 0x7f080064
+			public const int hockeyapp_feedback_select_file = 2131230820;
+			
+			// aapt resource value: 0x7f080065
+			public const int hockeyapp_feedback_select_picture = 2131230821;
+			
+			// aapt resource value: 0x7f080066
+			public const int hockeyapp_feedback_send_button_text = 2131230822;
+			
+			// aapt resource value: 0x7f080067
+			public const int hockeyapp_feedback_send_generic_error = 2131230823;
+			
+			// aapt resource value: 0x7f080068
+			public const int hockeyapp_feedback_send_network_error = 2131230824;
+			
+			// aapt resource value: 0x7f080069
+			public const int hockeyapp_feedback_sending_feedback_text = 2131230825;
+			
+			// aapt resource value: 0x7f08006a
+			public const int hockeyapp_feedback_sent_toast = 2131230826;
+			
+			// aapt resource value: 0x7f08006b
+			public const int hockeyapp_feedback_subject_hint = 2131230827;
+			
+			// aapt resource value: 0x7f08006c
+			public const int hockeyapp_feedback_subject_hint_required = 2131230828;
+			
+			// aapt resource value: 0x7f08006d
+			public const int hockeyapp_feedback_title = 2131230829;
+			
+			// aapt resource value: 0x7f08006e
+			public const int hockeyapp_feedback_validate_email_empty = 2131230830;
+			
+			// aapt resource value: 0x7f08006f
+			public const int hockeyapp_feedback_validate_email_error = 2131230831;
+			
+			// aapt resource value: 0x7f080070
+			public const int hockeyapp_feedback_validate_name_error = 2131230832;
+			
+			// aapt resource value: 0x7f080071
+			public const int hockeyapp_feedback_validate_subject_error = 2131230833;
+			
+			// aapt resource value: 0x7f080072
+			public const int hockeyapp_feedback_validate_text_error = 2131230834;
+			
+			// aapt resource value: 0x7f080073
+			public const int hockeyapp_login_email_hint = 2131230835;
+			
+			// aapt resource value: 0x7f080074
+			public const int hockeyapp_login_email_hint_required = 2131230836;
+			
+			// aapt resource value: 0x7f080075
+			public const int hockeyapp_login_headline_text = 2131230837;
+			
+			// aapt resource value: 0x7f080076
+			public const int hockeyapp_login_headline_text_email_only = 2131230838;
+			
+			// aapt resource value: 0x7f080077
+			public const int hockeyapp_login_login_button_text = 2131230839;
+			
+			// aapt resource value: 0x7f080078
+			public const int hockeyapp_login_missing_credentials_toast = 2131230840;
+			
+			// aapt resource value: 0x7f080079
+			public const int hockeyapp_login_password_hint = 2131230841;
+			
+			// aapt resource value: 0x7f08007a
+			public const int hockeyapp_login_password_hint_required = 2131230842;
+			
+			// aapt resource value: 0x7f08007b
+			public const int hockeyapp_paint_dialog_message = 2131230843;
+			
+			// aapt resource value: 0x7f08007c
+			public const int hockeyapp_paint_dialog_negative_button = 2131230844;
+			
+			// aapt resource value: 0x7f08007d
+			public const int hockeyapp_paint_dialog_neutral_button = 2131230845;
+			
+			// aapt resource value: 0x7f08007e
+			public const int hockeyapp_paint_dialog_positive_button = 2131230846;
+			
+			// aapt resource value: 0x7f08007f
+			public const int hockeyapp_paint_indicator_toast = 2131230847;
+			
+			// aapt resource value: 0x7f080080
+			public const int hockeyapp_paint_menu_clear = 2131230848;
+			
+			// aapt resource value: 0x7f080081
+			public const int hockeyapp_paint_menu_save = 2131230849;
+			
+			// aapt resource value: 0x7f080082
+			public const int hockeyapp_paint_menu_undo = 2131230850;
+			
+			// aapt resource value: 0x7f080083
+			public const int hockeyapp_permission_dialog_negative_button = 2131230851;
+			
+			// aapt resource value: 0x7f080084
+			public const int hockeyapp_permission_dialog_positive_button = 2131230852;
+			
+			// aapt resource value: 0x7f080085
+			public const int hockeyapp_permission_update_message = 2131230853;
+			
+			// aapt resource value: 0x7f080086
+			public const int hockeyapp_permission_update_title = 2131230854;
+			
+			// aapt resource value: 0x7f080087
+			public const int hockeyapp_update_button = 2131230855;
+			
+			// aapt resource value: 0x7f080088
+			public const int hockeyapp_update_dialog_message = 2131230856;
+			
+			// aapt resource value: 0x7f080089
+			public const int hockeyapp_update_dialog_negative_button = 2131230857;
+			
+			// aapt resource value: 0x7f08008a
+			public const int hockeyapp_update_dialog_positive_button = 2131230858;
+			
+			// aapt resource value: 0x7f08008b
+			public const int hockeyapp_update_dialog_title = 2131230859;
+			
+			// aapt resource value: 0x7f08008c
+			public const int hockeyapp_update_mandatory_toast = 2131230860;
+			
+			// aapt resource value: 0x7f08008d
+			public const int hockeyapp_update_version_details_label = 2131230861;
+			
+			// aapt resource value: 0x7f0800c0
+			public const int invalidEmail = 2131230912;
+			
+			// aapt resource value: 0x7f0800d3
+			public const int lastCharge = 2131230931;
+			
+			// aapt resource value: 0x7f08003c
+			public const int library_name = 2131230780;
+			
+			// aapt resource value: 0x7f080096
+			public const int loading = 2131230870;
+			
+			// aapt resource value: 0x7f080092
+			public const int login = 2131230866;
+			
+			// aapt resource value: 0x7f0800a9
+			public const int logout = 2131230889;
+			
+			// aapt resource value: 0x7f0800b3
+			public const int name = 2131230899;
+			
+			// aapt resource value: 0x7f0800bc
+			public const int newPassword = 2131230908;
+			
+			// aapt resource value: 0x7f0800bd
+			public const int newPassword2 = 2131230909;
+			
+			// aapt resource value: 0x7f080095
+			public const int nothing = 2131230869;
+			
+			// aapt resource value: 0x7f0800b0
+			public const int ok = 2131230896;
+			
+			// aapt resource value: 0x7f0800bb
+			public const int oldPassword = 2131230907;
+			
+			// aapt resource value: 0x7f080099
+			public const int onpump = 2131230873;
+			
+			// aapt resource value: 0x7f0800aa
+			public const int open = 2131230890;
+			
+			// aapt resource value: 0x7f080091
+			public const int password = 2131230865;
 			
 			// aapt resource value: 0x7f080037
 			public const int password_toggle_content_description = 2131230775;
 			
-			// aapt resource value: 0x7f08006d
-			public const int passwordsnomatch = 2131230829;
+			// aapt resource value: 0x7f0800bf
+			public const int passwordsnomatch = 2131230911;
 			
 			// aapt resource value: 0x7f080038
 			public const int path_password_eye = 2131230776;
@@ -4033,80 +4544,80 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f08003b
 			public const int path_password_strike_through = 2131230779;
 			
-			// aapt resource value: 0x7f080049
-			public const int paymentdetails = 2131230793;
+			// aapt resource value: 0x7f08009b
+			public const int paymentdetails = 2131230875;
 			
-			// aapt resource value: 0x7f080066
-			public const int phone = 2131230822;
+			// aapt resource value: 0x7f0800b8
+			public const int phone = 2131230904;
 			
-			// aapt resource value: 0x7f08007e
-			public const int powerCost = 2131230846;
+			// aapt resource value: 0x7f0800d0
+			public const int powerCost = 2131230928;
 			
-			// aapt resource value: 0x7f08007d
-			public const int powerSupplied = 2131230845;
+			// aapt resource value: 0x7f0800cf
+			public const int powerSupplied = 2131230927;
 			
-			// aapt resource value: 0x7f08005c
-			public const int preferences = 2131230812;
+			// aapt resource value: 0x7f0800ae
+			public const int preferences = 2131230894;
 			
-			// aapt resource value: 0x7f080085
-			public const int privacy = 2131230853;
+			// aapt resource value: 0x7f0800d7
+			public const int privacy = 2131230935;
 			
-			// aapt resource value: 0x7f080056
-			public const int requestingCharge = 2131230806;
+			// aapt resource value: 0x7f0800a8
+			public const int requestingCharge = 2131230888;
 			
-			// aapt resource value: 0x7f080083
-			public const int searchHint = 2131230851;
+			// aapt resource value: 0x7f0800d5
+			public const int searchHint = 2131230933;
 			
 			// aapt resource value: 0x7f080026
 			public const int search_menu_title = 2131230758;
 			
-			// aapt resource value: 0x7f080041
-			public const int select = 2131230785;
+			// aapt resource value: 0x7f080093
+			public const int select = 2131230867;
 			
-			// aapt resource value: 0x7f080070
-			public const int selectCard = 2131230832;
+			// aapt resource value: 0x7f0800c2
+			public const int selectCard = 2131230914;
 			
-			// aapt resource value: 0x7f08006f
-			public const int selectVehicle = 2131230831;
+			// aapt resource value: 0x7f0800c1
+			public const int selectVehicle = 2131230913;
 			
-			// aapt resource value: 0x7f08004e
-			public const int session = 2131230798;
+			// aapt resource value: 0x7f0800a0
+			public const int session = 2131230880;
 			
-			// aapt resource value: 0x7f080055
-			public const int startCharge = 2131230805;
+			// aapt resource value: 0x7f0800a7
+			public const int startCharge = 2131230887;
 			
-			// aapt resource value: 0x7f08004a
-			public const int startchargeat = 2131230794;
+			// aapt resource value: 0x7f08009c
+			public const int startchargeat = 2131230876;
 			
 			// aapt resource value: 0x7f080027
 			public const int status_bar_notification_info_overflow = 2131230759;
 			
-			// aapt resource value: 0x7f08007a
-			public const int stopCharge = 2131230842;
+			// aapt resource value: 0x7f0800cc
+			public const int stopCharge = 2131230924;
 			
-			// aapt resource value: 0x7f080046
-			public const int swipeonly = 2131230790;
+			// aapt resource value: 0x7f080098
+			public const int swipeonly = 2131230872;
 			
-			// aapt resource value: 0x7f08004c
-			public const int terms = 2131230796;
+			// aapt resource value: 0x7f08009e
+			public const int terms = 2131230878;
 			
-			// aapt resource value: 0x7f08004d
-			public const int termsLong = 2131230797;
+			// aapt resource value: 0x7f08009f
+			public const int termsLong = 2131230879;
 			
-			// aapt resource value: 0x7f080082
-			public const int tidy = 2131230850;
+			// aapt resource value: 0x7f0800d4
+			public const int tidy = 2131230932;
 			
-			// aapt resource value: 0x7f080078
-			public const int tokenNotReady = 2131230840;
+			// aapt resource value: 0x7f0800ca
+			public const int tokenNotReady = 2131230922;
 			
-			// aapt resource value: 0x7f080060
-			public const int transactions = 2131230816;
+			// aapt resource value: 0x7f0800b2
+			public const int transactions = 2131230898;
 			
-			// aapt resource value: 0x7f08003e
-			public const int username = 2131230782;
+			// aapt resource value: 0x7f080090
+			public const int username = 2131230864;
 			
-			// aapt resource value: 0x7f080048
-			public const int usingconnector = 2131230792;
+			// aapt resource value: 0x7f08009a
+			public const int usingconnector = 2131230874;
 			
 			// aapt resource value: 0x7f080011
 			public const int v7_preference_off = 2131230737;
@@ -4604,11 +5115,20 @@ namespace ClockworkHighway.Android
 			// aapt resource value: 0x7f0c0170
 			public const int Base_Widget_Design_TabLayout = 2131493232;
 			
+			// aapt resource value: 0x7f0c018a
+			public const int ClockworkTheme = 2131493258;
+			
+			// aapt resource value: 0x7f0c018b
+			public const int ClockworkTheme_Base = 2131493259;
+			
 			// aapt resource value: 0x7f0c0187
-			public const int ClockworkTheme = 2131493255;
+			public const int HockeyApp_ButtonStyle = 2131493255;
 			
 			// aapt resource value: 0x7f0c0188
-			public const int ClockworkTheme_Base = 2131493256;
+			public const int HockeyApp_EditTextStyle = 2131493256;
+			
+			// aapt resource value: 0x7f0c0189
+			public const int HockeyApp_SingleLineInputStyle = 2131493257;
 			
 			// aapt resource value: 0x7f0c002b
 			public const int Platform_AppCompat = 2131492907;

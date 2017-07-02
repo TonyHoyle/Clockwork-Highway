@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Android.Widget;
 using System;
 using Android.Content;
+using Android.Util;
 
 namespace ClockworkHighway.Android
 {
@@ -110,8 +111,11 @@ namespace ClockworkHighway.Android
             }
             catch (EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                _quote = null;
+                Log.Debug(SharedData.APP, "Unable to quote: "+e.Message);
+				Toast.MakeText(Context.ApplicationContext, "Unable to communicate with Electric Highway Servers", ToastLength.Short).Show();
+				Dismiss();
+
+				_quote = null;
             }
 
             if (_quote != null)
@@ -144,6 +148,9 @@ namespace ClockworkHighway.Android
         {
             var cvv = _cvv.Text;
 
+            if (_quote == null)
+                return;
+
             bool free = _quote.@fixed == 0 && _quote.variable.value == 0;
 
             if (!free && cvv.Length != 3)
@@ -157,34 +164,42 @@ namespace ClockworkHighway.Android
 
             if (sessionId == null)
             {
-                var t = Toast.MakeText(Context, "No session id", ToastLength.Long);
+                var t = Toast.MakeText(Context.ApplicationContext, "No session id", ToastLength.Long);
                 t.Show();
                 return;
             }
 
             var progressDialog = global::Android.App.ProgressDialog.Show(Context, Context.GetString(Resource.String.startCharge), Context.GetString(Resource.String.requestingCharge));
-            var result = await eh.startChargeSessionAsync(_pumpId, _connectorId, free?"":cvv, free?"0":_cardId, sessionId);
-            progressDialog.Dismiss();
-            if (result.result)
+            try
             {
-                Intent i = new Intent(Context, typeof(ChargingActivity));
-                i.PutExtra("sessionId", sessionId);
-                i.PutExtra("pumpId", _pumpId);
-                i.PutExtra("connectorId", _connectorId);
-                StartActivity(i);
-                Dismiss();
-            }
-            else
-            {
-                string text;
-
-                if (string.IsNullOrEmpty(result.message))
-                    text = "Unable to initiate charge";
+                var result = await eh.startChargeSessionAsync(_pumpId, _connectorId, free ? "" : cvv, free ? "0" : _cardId, sessionId);
+                progressDialog.Dismiss();
+                if (result.result)
+                {
+                    Intent i = new Intent(Context, typeof(ChargingActivity));
+                    i.PutExtra("sessionId", sessionId);
+                    i.PutExtra("pumpId", _pumpId);
+                    i.PutExtra("connectorId", _connectorId);
+                    StartActivity(i);
+                    Dismiss();
+                }
                 else
-                    text = result.message;
+                {
+                    string text;
 
-                var t = Toast.MakeText(Context, text, ToastLength.Long);
-                t.Show();
+                    if (string.IsNullOrEmpty(result.message))
+                        text = "Unable to initiate charge";
+                    else
+                        text = result.message;
+
+                    var t = Toast.MakeText(Context.ApplicationContext, text, ToastLength.Short);
+                    t.Show();
+                }
+            }
+            catch (EHApi.EHApiException e)
+            {
+                Log.Debug(SharedData.APP, "Unable to initiate charge: " + e.Message);
+                Toast.MakeText(Context.ApplicationContext, "Unable to initiate charge", ToastLength.Short).Show();
             }
         }
 

@@ -16,7 +16,7 @@ namespace ClockworkHighway.Android
             var terms = view.FindViewById<TextView>(Resource.Id.termsAndConditions);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity)
-                .SetTitle(SharedData.settings.terms.title)
+//                .SetTitle(SharedData.settings.terms.title)
                 .SetView(view)
                 .SetPositiveButton(Resource.String.ok, (sender, args) => { });
             var dlg = builder.Create();

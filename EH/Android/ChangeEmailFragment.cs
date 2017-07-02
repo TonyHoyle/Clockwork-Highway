@@ -5,6 +5,7 @@ using Android.Widget;
 using Android.Support.Design.Widget;
 using TonyHoyle.EH;
 using Android.Content;
+using Android.Util;
 
 namespace ClockworkHighway.Android
 {
@@ -53,7 +54,7 @@ namespace ClockworkHighway.Android
             }
             catch (EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine("Couldn't change email: " + e.Message);
+                Log.Debug(SharedData.APP, "Couldn't change email: " + e.Message);
             }
         }
 

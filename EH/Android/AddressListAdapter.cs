@@ -3,6 +3,7 @@ using Android.Content;
 using Android.Widget;
 using Android.Views;
 using TonyHoyle.EH;
+using Android.Util;
 
 namespace ClockworkHighway.Android
 {
@@ -65,7 +66,7 @@ namespace ClockworkHighway.Android
             }
             catch(GoogleApi.GoogleApiException e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                Log.Debug(SharedData.APP, e.Message);
             }
             return result;
         }

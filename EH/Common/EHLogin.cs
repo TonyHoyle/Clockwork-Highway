@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace TonyHoyle.EH
@@ -51,48 +52,48 @@ namespace TonyHoyle.EH
 
 		public async Task<bool> LoginWithPassword(string username, string password, string deviceId)
         {
-            var token = await _api.tokenAsync(username, password, deviceId);
-
-            Username = username;
-            Token = token;
-            DeviceId = deviceId;
-
-            if (token == null)
+            try
             {
+                var token = await _api.tokenAsync(username, password, deviceId);
+
+                Username = username;
+                Token = token;
+                DeviceId = deviceId;
+
+                return await Login2();
+            }
+            catch(EHApi.EHApiException e)
+            {
+                Debug.WriteLine("EH Exception: " + e.Message);
                 IsLoggedIn = false;
                 return false;
             }
-
-            return await Login2();
         }
 
 		public async Task<bool> LoginWithToken(string username, string refreshToken, string deviceId)
 		{
-			var token = await _api.tokenAsync(refreshToken, deviceId);
+            try
+            {
+                var token = await _api.tokenAsync(refreshToken, deviceId);
 
-			Username = username;
-			Token = token;
-			DeviceId = deviceId;
+                Username = username;
+                Token = token;
+                DeviceId = deviceId;
 
-			if (token == null)
-			{
+				return await Login2();
+			}
+            catch(EHApi.EHApiException e)
+            {
+				Debug.WriteLine("EH Exception: " + e.Message);
 				IsLoggedIn = false;
 				return false;
 			}
-
-			return await Login2();
 		}
 		
         private async Task<bool> Login2()
         {
             var account = await _api.userAsync();
-
-			if (account == null)
-			{
-				IsLoggedIn = false;
-				return false;
-			}
-			
+            			
             Account = account;
             IsLoggedIn = true;
 

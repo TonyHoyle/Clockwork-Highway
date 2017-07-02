@@ -6,6 +6,7 @@ using Android.Support.Design.Widget;
 using TonyHoyle.EH;
 using Android.Content;
 using Android.Support.V7.Preferences;
+using Android.Util;
 
 namespace ClockworkHighway.Android
 {
@@ -71,7 +72,7 @@ namespace ClockworkHighway.Android
             }
             catch (EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine("Couldn't change password: " + e.Message);
+                Log.Debug(SharedData.APP, "Couldn't change password: " + e.Message);
             }
         }
 

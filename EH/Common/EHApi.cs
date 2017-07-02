@@ -12,6 +12,11 @@ namespace TonyHoyle.EH
     {
         private HttpClient _httpClient;
         private Dictionary<int, ConnectorDetails> _pumpCache = new Dictionary<int, ConnectorDetails>();
+		private JsonSerializerSettings _jsonSettings = new JsonSerializerSettings() 
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+	                };
         public EHLogin Login { get; set;  }
 
         private const string ehWeb = "https://www.ecotricity.co.uk/api/ezx/v1/";
@@ -398,22 +403,41 @@ namespace TonyHoyle.EH
         private async Task<string> ApiCallAsync(string command, Dictionary<string, string> args, bool post = true)
         {
             HttpRequestMessage request;
+            HttpResponseMessage response;
+            string responseString;
 
             request = new HttpRequestMessage(post?HttpMethod.Post:HttpMethod.Get, ehWeb + command);
 
             if (args != null)
                 request.Content = new FormUrlEncodedContent(args);
 
-            // Under jelly bean SendAsync can throw a NetworkOnMainThreadException, so
-            // we have to do wrap it in a task 
-            var response = await Task.Run(() => _httpClient.SendAsync(request));
+            Debug.WriteLine(request.RequestUri.ToString());
+			Debug.WriteLine(await request.Content.ReadAsStringAsync());
+
+			try
+            {
+                // Under jelly bean SendAsync can throw a NetworkOnMainThreadException, so
+                // we have to do wrap it in a task 
+                response = await Task.Run(() => _httpClient.SendAsync(request));
+            }
+            catch(Exception e)
+            {
+				throw new EHApiException("Unable to call " + command + " - " + e.ToString());
+			}
 
             if (!response.IsSuccessStatusCode)
                 throw new EHApiException("Unable to call "+command+" - "+response.ReasonPhrase);
+            
+			try
+			{
+				responseString = await response.Content.ReadAsStringAsync();
+			}
+			catch (Exception e)
+			{
+				throw new EHApiException("Unable to call " + command + " - " + e.ToString());
+			}
 
-            string responseString = await response.Content.ReadAsStringAsync();
-
-            Debug.WriteLine(responseString);
+			Debug.WriteLine(responseString);
             return responseString;
         }
 
@@ -423,7 +447,7 @@ namespace TonyHoyle.EH
             {
                 { "email", email }
             });
-            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
             return Result;
         }
 
@@ -433,7 +457,7 @@ namespace TonyHoyle.EH
             {
                 { "name", name }
             });
-            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
             return Result;
         }
 
@@ -443,7 +467,7 @@ namespace TonyHoyle.EH
             {
                 { "postcode", postcode }
             });
-            AddressResult Result = JsonConvert.DeserializeObject<AddressResult>(apiResult);
+            AddressResult Result = JsonConvert.DeserializeObject<AddressResult>(apiResult, _jsonSettings);
             return Result.result;
         }
 
@@ -454,7 +478,7 @@ namespace TonyHoyle.EH
                 { "email", email },
                 { "username", username }
             });
-            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
             return Result;
         }
 
@@ -470,7 +494,7 @@ namespace TonyHoyle.EH
                 { "client_id", "2a66896a0ee4aff229fca61772308e2db24a690316a44bf892d510671ef7f834"},
                 { "username", username}
 			});
-			TokenData Result = JsonConvert.DeserializeObject<TokenData>(apiResult);
+			TokenData Result = JsonConvert.DeserializeObject<TokenData>(apiResult, _jsonSettings);
             return Result;
 		}
 
@@ -485,7 +509,7 @@ namespace TonyHoyle.EH
 				{ "client_id", "2a66896a0ee4aff229fca61772308e2db24a690316a44bf892d510671ef7f834"},
 				{ "appId", cAppId }
 			});
-			TokenData Result = JsonConvert.DeserializeObject<TokenData>(apiResult);
+			TokenData Result = JsonConvert.DeserializeObject<TokenData>(apiResult, _jsonSettings);
 			return Result;
 		}
 
@@ -499,7 +523,7 @@ namespace TonyHoyle.EH
                         { "deviceId", Login.DeviceId },
                         { "appId", cAppId }
 					});
-			LoginResult Result = JsonConvert.DeserializeObject<LoginResult>(apiResult);
+			LoginResult Result = JsonConvert.DeserializeObject<LoginResult>(apiResult, _jsonSettings);
 			if (!Result.result)
 				return null;
 			else
@@ -513,7 +537,7 @@ namespace TonyHoyle.EH
                 { "identifier", Login.Username },
                 { "access_token", Login.Token.access_token }
             });
-            VehicleResult Result = JsonConvert.DeserializeObject<VehicleResult>(apiResult);
+            VehicleResult Result = JsonConvert.DeserializeObject<VehicleResult>(apiResult, _jsonSettings);
             return Result.result;
         }
 
@@ -528,13 +552,12 @@ namespace TonyHoyle.EH
             });
             try
             {
-                LocationDetailsResult Result = JsonConvert.DeserializeObject<LocationDetailsResult>(apiResult);
+                LocationDetailsResult Result = JsonConvert.DeserializeObject<LocationDetailsResult>(apiResult, _jsonSettings);
                 return Result.result.pump;
             }
             catch (JsonSerializationException e)
             {
-                Debug.WriteLine(e.Message);
-                return null;
+                throw new EHApiException("Json serialisation error " + e.Message);
             }
         }
         
@@ -548,7 +571,7 @@ namespace TonyHoyle.EH
                 { "latitude", latitude.ToString() },
                 { "longitude", longitude.ToString() },
             });
-            PumpListResult Result = JsonConvert.DeserializeObject<PumpListResult>(apiResult);
+            PumpListResult Result = JsonConvert.DeserializeObject<PumpListResult>(apiResult, _jsonSettings);
             return Result.result;
         }
 
@@ -575,7 +598,7 @@ namespace TonyHoyle.EH
             });
             try
             {
-                PumpConnectorsResult Result = JsonConvert.DeserializeObject<PumpConnectorsResult>(apiResult);
+                PumpConnectorsResult Result = JsonConvert.DeserializeObject<PumpConnectorsResult>(apiResult, _jsonSettings);
 
                 _pumpCache.Remove(pumpId);
                 _pumpCache.Add(pumpId, Result.result);
@@ -583,9 +606,8 @@ namespace TonyHoyle.EH
             }
             catch (JsonSerializationException e)
             {
-                Debug.WriteLine(e.Message);
-                return null;
-            }
+				throw new EHApiException("Json serialisation error " + e.Message);
+			}
         }
 
 		public async Task<Quote> quoteAsync(int pumpid, int connectorId)
@@ -600,13 +622,12 @@ namespace TonyHoyle.EH
 			});
 			try
 			{
-				QuoteResult Result = JsonConvert.DeserializeObject<QuoteResult>(apiResult);
+				QuoteResult Result = JsonConvert.DeserializeObject<QuoteResult>(apiResult, _jsonSettings);
 				return Result.result;
 			}
 			catch (JsonSerializationException e)
 			{
-				Debug.WriteLine(e.Message);
-				return null;
+				throw new EHApiException("Json serialisation error " + e.Message);
 			}
 		}
 		
@@ -617,7 +638,7 @@ namespace TonyHoyle.EH
                 { "access_token", Login.Token.access_token },
                 { "identifier", Login.Username }
             });
-            GetCardListResult Result = JsonConvert.DeserializeObject<GetCardListResult>(apiResult);
+            GetCardListResult Result = JsonConvert.DeserializeObject<GetCardListResult>(apiResult, _jsonSettings);
             return Result.result;
         }
 
@@ -629,7 +650,7 @@ namespace TonyHoyle.EH
                 { "identifier", Login.Username },
                 { "password", oldPassword }
             });
-            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
             return Result;
         }
 
@@ -639,7 +660,7 @@ namespace TonyHoyle.EH
             {
                 { "email", email }
             });
-            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
             return Result;
         }
 
@@ -651,14 +672,13 @@ namespace TonyHoyle.EH
             });
             try
             {
-                ForgottenPasswordResult Result = JsonConvert.DeserializeObject<ForgottenPasswordResult>(apiResult);
+                ForgottenPasswordResult Result = JsonConvert.DeserializeObject<ForgottenPasswordResult>(apiResult, _jsonSettings);
                 return Result.result;
             }
             catch (JsonSerializationException e)
             {
-                Debug.WriteLine(e.Message);
-                return null;
-            }
+				throw new EHApiException("Json serialisation error " + e.Message);
+			}
         }
 
         public async Task<PasswordToken> getPasswordTokenAsync(string platform, string hashkey)
@@ -670,14 +690,13 @@ namespace TonyHoyle.EH
             });
             try
             {
-                GetPasswordTokenResult Result = JsonConvert.DeserializeObject<GetPasswordTokenResult>(apiResult);
+                GetPasswordTokenResult Result = JsonConvert.DeserializeObject<GetPasswordTokenResult>(apiResult, _jsonSettings);
                 return Result.result;
             }
             catch (JsonSerializationException e)
             {
-                Debug.WriteLine(e.Message);
-                return null;
-            }
+				throw new EHApiException("Json serialisation error " + e.Message);
+			}
         }
 
         public async Task<BoolResult> usePasswordTokenAsync(string platform, string hashkey1, string hashkey2, string password)
@@ -692,14 +711,13 @@ namespace TonyHoyle.EH
             });
             try
             {
-                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
                 return Result;
             }
             catch (JsonSerializationException e)
             {
-                Debug.WriteLine(e.Message);
-                return new BoolResult() { result = false, message = e.Message };
-            }
+				throw new EHApiException("Json serialisation error " + e.Message);
+			}
         }
 
         public async Task<BoolResult> changeEmailAsync(string email)
@@ -712,14 +730,13 @@ namespace TonyHoyle.EH
             });
             try
             {
-                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
                 return Result;
             }
             catch (JsonSerializationException e)
             {
-                Debug.WriteLine(e.Message);
-                return new BoolResult() { result = false, message = e.Message };
-            }
+				throw new EHApiException("Json serialisation error " + e.Message);
+			}
         }
 
         public async Task<BoolResult> startChargeSessionAsync(int pumpId, int connectorId, string cvv, string cardId, string sessionId)
@@ -737,14 +754,13 @@ namespace TonyHoyle.EH
             });
             try
             {
-                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
                 return Result;
             }
             catch (JsonSerializationException e)
             {
-                Debug.WriteLine(e.Message);
-                return new BoolResult() { result = false, message = e.Message };
-            }
+				throw new EHApiException("Json serialisation error " + e.Message);
+			}
         }
 
         public async Task<BoolResult> stopChargeSessionAsync(int pumpId, int connectorId, string sessionId)
@@ -760,14 +776,13 @@ namespace TonyHoyle.EH
             });
             try
             {
-                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
                 return Result;
             }
             catch (JsonSerializationException e)
             {
-                Debug.WriteLine(e.Message);
-                return new BoolResult() { result = false, message = e.Message };
-            }
+				throw new EHApiException("Json serialisation error " + e.Message);
+			}
         }
 
         public async Task<ChargeStatus> getChargeStatusAsync(int pumpId, int connectorId, string sessionId)
@@ -783,14 +798,13 @@ namespace TonyHoyle.EH
             });
             try
             {
-                GetChargeStatusResult Result = JsonConvert.DeserializeObject<GetChargeStatusResult>(apiResult);
+                GetChargeStatusResult Result = JsonConvert.DeserializeObject<GetChargeStatusResult>(apiResult, _jsonSettings);
                 return Result.result;
             }
             catch (JsonSerializationException e)
             {
-                Debug.WriteLine(e.Message);
-				return null;
-            }
+				throw new EHApiException("Json serialisation error " + e.Message);
+			}
         }
 
         public async Task<ChargeStatus> getChargeStatusAsync()
@@ -803,14 +817,13 @@ namespace TonyHoyle.EH
             });
             try
             {
-                GetChargeStatusResult Result = JsonConvert.DeserializeObject<GetChargeStatusResult>(apiResult);
+                GetChargeStatusResult Result = JsonConvert.DeserializeObject<GetChargeStatusResult>(apiResult, _jsonSettings);
                 return Result.result;
             }
             catch (JsonSerializationException e)
             {
-                Debug.WriteLine(e.Message);
-                return null;
-            }
+				throw new EHApiException("Json serialisation error " + e.Message);
+			}
         }
 
         public async Task<Settings> getSettingsAsync()
@@ -820,14 +833,13 @@ namespace TonyHoyle.EH
             });
             try
             {
-                Settings Result = JsonConvert.DeserializeObject<Settings>(apiResult);
+                Settings Result = JsonConvert.DeserializeObject<Settings>(apiResult, _jsonSettings);
                 return Result;
             }
             catch (JsonSerializationException e)
             {
-                Debug.WriteLine(e.Message);
-                return null;
-            }
+				throw new EHApiException("Json serialisation error " + e.Message);
+			}
         }
 
         public async Task<Terms> getTermsAsync()
@@ -835,14 +847,13 @@ namespace TonyHoyle.EH
             string apiResult = await ApiCallAsync("terms?eh=true", null, false);
             try
             {
-                Terms Result = JsonConvert.DeserializeObject<Terms>(apiResult);
+                Terms Result = JsonConvert.DeserializeObject<Terms>(apiResult, _jsonSettings);
                 return Result;
             }
             catch (JsonSerializationException e)
             {
-                Debug.WriteLine(e.Message);
-                return null;
-            }
+				throw new EHApiException("Json serialisation error " + e.Message);
+			}
         }
 
         public async Task<ContractTransaction> getTransactionListAsync()
@@ -854,14 +865,13 @@ namespace TonyHoyle.EH
             });
             try
             {
-                GetTransactionListResult Result = JsonConvert.DeserializeObject<GetTransactionListResult>(apiResult);
+                GetTransactionListResult Result = JsonConvert.DeserializeObject<GetTransactionListResult>(apiResult, _jsonSettings);
                 return Result.result.transaction;
             }
             catch (JsonSerializationException e)
             {
-                Debug.WriteLine(e.Message);
-                return null;
-            }
+				throw new EHApiException("Json serialisation error " + e.Message);
+			}
         }
 
 		public async Task<bool> archiveSessionAsync(string sessionId)
@@ -874,13 +884,12 @@ namespace TonyHoyle.EH
 			});
 			try
 			{
-				BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult);
+				BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
 				return Result.result;
 			}
 			catch (JsonSerializationException e)
 			{
-				Debug.WriteLine(e.Message);
-                return false;
+				throw new EHApiException("Json serialisation error " + e.Message);
 			}
 		}
 	}

@@ -6,6 +6,7 @@ using Android.Support.Design.Widget;
 using Android.Widget;
 using Android.Content;
 using Android.Support.V7.Preferences;
+using Android.Util;
 
 namespace ClockworkHighway.Android
 {
@@ -69,13 +70,13 @@ namespace ClockworkHighway.Android
                     else
                         text = result.message;
 
-                    var t = Toast.MakeText(Context, text, ToastLength.Long);
+                    var t = Toast.MakeText(Context.ApplicationContext, text, ToastLength.Long);
                     t.Show();
                 }
             }
             catch (EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine("Couldn't change password: " + e.Message);
+                Log.Debug(SharedData.APP, "Couldn't change password: " + e.Message);
             }
         }
 

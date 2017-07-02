@@ -8,6 +8,7 @@ using Android.Support.V7.Preferences;
 using Android.Content;
 using Android.Widget;
 using TonyHoyle.EH;
+using Android.Util;
 
 namespace ClockworkHighway.Android
 {
@@ -128,18 +129,15 @@ namespace ClockworkHighway.Android
             {
                 var status = await SharedData.api.getChargeStatusAsync();
 
-                if (status != null)
-                {
-                    Intent i = new Intent(this, typeof(ChargingActivity));
-                    i.PutExtra("sessionId", status.sessionId);
-                    i.PutExtra("pumpId", status.pumpId);
-                    i.PutExtra("connectorId", status.pumpConnector);
-                    StartActivity(i);
-                }
+                Intent i = new Intent(this, typeof(ChargingActivity));
+                i.PutExtra("sessionId", status.sessionId);
+                i.PutExtra("pumpId", status.pumpId);
+                i.PutExtra("connectorId", status.pumpConnector);
+                StartActivity(i);
             }
             catch (EHApi.EHApiException e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                Log.Debug(SharedData.APP, e.Message);
             }
         }
 
