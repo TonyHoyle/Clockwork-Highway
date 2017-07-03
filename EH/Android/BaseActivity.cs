@@ -9,9 +9,11 @@ using Android.Content;
 using Android.Widget;
 using TonyHoyle.EH;
 using Android.Util;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ClockworkHighway.Android
 {
+    [SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly")]
     public class BaseActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
         private global::Android.Support.V7.App.ActionBarDrawerToggle _drawerToggle;

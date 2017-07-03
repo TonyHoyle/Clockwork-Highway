@@ -7,9 +7,11 @@ using Android.Views;
 using Android.Support.V7.App;
 using TonyHoyle.EH;
 using Android.Util;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ClockworkHighway.Android
 {
+    [SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly")]
     public class LocationFragment : Fragment, IOnMapReadyCallback
     {
         private double _locationLat;

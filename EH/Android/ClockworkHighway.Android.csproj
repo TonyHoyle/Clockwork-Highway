@@ -21,7 +21,8 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AndroidTlsProvider></AndroidTlsProvider>
+    <AndroidTlsProvider>
+    </AndroidTlsProvider>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
@@ -40,14 +41,15 @@
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <Debugger>Xamarin</Debugger>
     <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
-<RunCodeAnalysis>true</RunCodeAnalysis>  
+    <RunCodeAnalysis>true</RunCodeAnalysis>
     <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <EnableProguard>false</EnableProguard>
     <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
-</PropertyGroup>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType></DebugType>
+    <DebugType>
+    </DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -78,15 +80,6 @@
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks.Extensions">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Nito.AsyncEx.Concurrent">
-      <HintPath>..\packages\Nito.AsyncEx.4.0.1\lib\MonoAndroid\Nito.AsyncEx.Concurrent.dll</HintPath>
-    </Reference>
-    <Reference Include="Nito.AsyncEx">
-      <HintPath>..\packages\Nito.AsyncEx.4.0.1\lib\MonoAndroid\Nito.AsyncEx.dll</HintPath>
-    </Reference>
-    <Reference Include="Nito.AsyncEx.Enlightenment">
-      <HintPath>..\packages\Nito.AsyncEx.4.0.1\lib\MonoAndroid\Nito.AsyncEx.Enlightenment.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression" />
     <Reference Include="Newtonsoft.Json">

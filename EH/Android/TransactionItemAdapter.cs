@@ -4,8 +4,8 @@ using Android.Content;
 using Android.Views;
 using Android.Widget;
 using TonyHoyle.EH;
-using Nito.AsyncEx;
 using Android.Util;
+using System.Threading;
 
 namespace ClockworkHighway.Android
 {
@@ -69,7 +69,7 @@ namespace ClockworkHighway.Android
             return view;
         }
 
-        private readonly AsyncSemaphore _lock = new AsyncSemaphore(1);
+        private readonly SemaphoreSlim _lock = new SemaphoreSlim(1);
 
         private async void loadPumpName(int pumpId)
         {

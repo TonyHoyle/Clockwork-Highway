@@ -20,7 +20,9 @@ namespace TonyHoyle.EH
         public EHApi.Vehicle Vehicle {
             get
             {
-                if (DefaultVehicleIndex >= 0 && DefaultVehicleIndex < Vehicles.Count)
+                if (Vehicles == null)
+                    return new EHApi.Vehicle();
+                else if (DefaultVehicleIndex >= 0 && DefaultVehicleIndex < Vehicles.Count)
                     return Vehicles[DefaultVehicleIndex];
                 else if (Vehicles.Count > 0)
                     return Vehicles[0];
@@ -33,7 +35,9 @@ namespace TonyHoyle.EH
         {
             get
             {
-                if (DefaultCardIndex >= 0 && DefaultCardIndex < Cards.Count)
+                if (Cards == null)
+                    return null;
+                else if (DefaultCardIndex >= 0 && DefaultCardIndex < Cards.Count)
                     return Cards[DefaultCardIndex];
                 else if (Cards.Count > 0)
                     return Cards[0];

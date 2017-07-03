@@ -16,9 +16,11 @@ using TonyHoyle.EH;
 using Newtonsoft.Json;
 using Android.Support.V4.View;
 using Android.Util;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ClockworkHighway.Android
 {
+    [SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly")]
     public class SearchFragment : Fragment,
         GoogleApiClient.IConnectionCallbacks,
         GoogleApiClient.IOnConnectionFailedListener,

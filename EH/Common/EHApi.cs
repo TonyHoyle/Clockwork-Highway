@@ -113,11 +113,13 @@ namespace TonyHoyle.EH
             public string type { get; set; }
             public string firstName { get; set; }
             public string lastName { get; set; }
+            [JsonConverter(typeof(SingleOrArrayConverter<EmailAddress>))]
             public List<EmailAddress> emailAddresses { get; set; }
             public string street { get; set; }
             public string village { get; set; }
             public string city { get; set; }
             public string postcode { get; set; }
+            [JsonConverter(typeof(SingleOrArrayConverter<String>))]
             public List<String> telephoneNumbers { get; set; }
         }
 
@@ -157,6 +159,7 @@ namespace TonyHoyle.EH
 
         private class VehicleResult
         {
+            [JsonConverter(typeof(SingleOrArrayConverter<Vehicle>))]
             public List<Vehicle> result { get; set; }
         }
 
@@ -182,11 +185,13 @@ namespace TonyHoyle.EH
             public int pumpId { get; set; }
             public string lastHeartbeat { get; set; }
             public string pumpModel { get; set; }
+            [JsonConverter(typeof(SingleOrArrayConverter<Connector>))]
             public List<Connector> connector { get; set; }
         }
 
         private class LocationDetailsPump
         {
+            [JsonConverter(typeof(SingleOrArrayConverter<LocationDetails>))]
             public List<LocationDetails> pump { get; set; }
         }
 
@@ -203,6 +208,7 @@ namespace TonyHoyle.EH
             public string postcode { get; set; }
             public string location { get; set; }
             public int locationId { get; set; }
+            [JsonConverter(typeof(SingleOrArrayConverter<int>))]
             public List<int> pumpId { get; set; }
             public string pumpModel { get; set; }
             public bool available { get; set; }
@@ -212,6 +218,7 @@ namespace TonyHoyle.EH
 
         private class PumpListResult
         {
+            [JsonConverter(typeof(SingleOrArrayConverter<Pump>))]
             public List<Pump> result { get; set; }
         }
 
@@ -259,6 +266,7 @@ namespace TonyHoyle.EH
 
         private class GetCardListResult
         {
+            [JsonConverter(typeof(SingleOrArrayConverter<Card>))]
             public List<Card> result { get; set; }
         }
 
@@ -343,6 +351,7 @@ namespace TonyHoyle.EH
         public class ContractTransaction
         {
             public string contractAccountId { get; set; }
+            [JsonConverter(typeof(SingleOrArrayConverter<ContractAccount>))]
             public List<ContractAccount> contractAccount { get; set; }
         }
 
@@ -375,7 +384,8 @@ namespace TonyHoyle.EH
 		public class SessionPricing
 		{
 			public string title { get; set; }
-			public List<PricingData> pricingData { get; set; }
+            [JsonConverter(typeof(SingleOrArrayConverter<PricingData>))]
+            public List<PricingData> pricingData { get; set; }
 		}
 
 		public class Variable
@@ -386,7 +396,8 @@ namespace TonyHoyle.EH
 
 		public class Quote
 		{
-			public List<SessionPricing> sessionPricing { get; set; }
+            [JsonConverter(typeof(SingleOrArrayConverter<SessionPricing>))]
+            public List<SessionPricing> sessionPricing { get; set; }
 			public decimal @fixed { get; set; }
 			public Variable variable { get; set; }
 			public string sessionId { get; set; }
@@ -447,8 +458,15 @@ namespace TonyHoyle.EH
             {
                 { "email", email }
             });
-            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
-            return Result;
+            try
+            {
+                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
+                return Result;
+            }
+            catch (JsonSerializationException e)
+            {
+                throw new EHApiException("Json serialisation error " + e.Message);
+            }
         }
 
         public async Task<BoolResult> validateUsernameAsync(string name)
@@ -457,8 +475,15 @@ namespace TonyHoyle.EH
             {
                 { "name", name }
             });
-            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
-            return Result;
+            try
+            { 
+                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
+                return Result;
+            }
+            catch (JsonSerializationException e)
+            {
+                throw new EHApiException("Json serialisation error " + e.Message);
+            }
         }
 
         public async Task<List<Address>> getAddressesAsync(string postcode)
@@ -467,8 +492,15 @@ namespace TonyHoyle.EH
             {
                 { "postcode", postcode }
             });
-            AddressResult Result = JsonConvert.DeserializeObject<AddressResult>(apiResult, _jsonSettings);
-            return Result.result;
+            try
+            { 
+                AddressResult Result = JsonConvert.DeserializeObject<AddressResult>(apiResult, _jsonSettings);
+                return Result.result;
+            }
+            catch (JsonSerializationException e)
+            {
+                throw new EHApiException("Json serialisation error " + e.Message);
+            }
         }
 
         public async Task<BoolResult> verifyEmailAsync(string email, string username)
@@ -478,8 +510,15 @@ namespace TonyHoyle.EH
                 { "email", email },
                 { "username", username }
             });
-            BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
-            return Result;
+            try
+            { 
+                BoolResult Result = JsonConvert.DeserializeObject<BoolResult>(apiResult, _jsonSettings);
+                return Result;
+            }
+            catch (JsonSerializationException e)
+            {
+                throw new EHApiException("Json serialisation error " + e.Message);
+            }
         }
 
         internal async Task<TokenData> tokenAsync(string username, string password, string deviceId)
@@ -494,11 +533,18 @@ namespace TonyHoyle.EH
                 { "client_id", "2a66896a0ee4aff229fca61772308e2db24a690316a44bf892d510671ef7f834"},
                 { "username", username}
 			});
-			TokenData Result = JsonConvert.DeserializeObject<TokenData>(apiResult, _jsonSettings);
-            return Result;
-		}
+            try
+            { 
+			    TokenData Result = JsonConvert.DeserializeObject<TokenData>(apiResult, _jsonSettings);
+                return Result;
+            }
+            catch (JsonSerializationException e)
+            {
+                throw new EHApiException("Json serialisation error " + e.Message);
+            }
+        }
 
-		internal async Task<TokenData> tokenAsync(string refresh_token, string deviceId)
+        internal async Task<TokenData> tokenAsync(string refresh_token, string deviceId)
 		{
 			string apiResult = await ApiCallAsync("token", new Dictionary<string, string>
 			{
@@ -509,36 +555,57 @@ namespace TonyHoyle.EH
 				{ "client_id", "2a66896a0ee4aff229fca61772308e2db24a690316a44bf892d510671ef7f834"},
 				{ "appId", cAppId }
 			});
-			TokenData Result = JsonConvert.DeserializeObject<TokenData>(apiResult, _jsonSettings);
-			return Result;
-		}
+            try
+            {
+                TokenData Result = JsonConvert.DeserializeObject<TokenData>(apiResult, _jsonSettings);
+    			return Result;
+            }
+            catch (JsonSerializationException e)
+            {
+                throw new EHApiException("Json serialisation error " + e.Message);
+            }
+        }
 
         public async Task<AccountData> userAsync()
-		{
-			string apiResult = await ApiCallAsync("user", new Dictionary<string, string>
-					{
+        {
+            string apiResult = await ApiCallAsync("user", new Dictionary<string, string>
+                    {
                         { "access_token", Login.Token.access_token},
                         { "identifier", Login.Username },
-						{ "electricHighway", "true" },
+                        { "electricHighway", "true" },
                         { "deviceId", Login.DeviceId },
                         { "appId", cAppId }
-					});
-			LoginResult Result = JsonConvert.DeserializeObject<LoginResult>(apiResult, _jsonSettings);
-			if (!Result.result)
-				return null;
-			else
-				return Result.data;
-		}
+                    });
+            try
+            {
+                LoginResult Result = JsonConvert.DeserializeObject<LoginResult>(apiResult, _jsonSettings);
+                if (!Result.result)
+                    return null;
+                else
+                    return Result.data;
+            }
+            catch (JsonSerializationException e)
+            {
+                throw new EHApiException("Json serialisation error " + e.Message);
+            }
+        }
 
-		public async Task<List<Vehicle>> getUserVehicleListAsync()
+        public async Task<List<Vehicle>> getUserVehicleListAsync()
         {
             string apiResult = await ApiCallAsync("getUserVehicleList", new Dictionary<string, string>
             {
                 { "identifier", Login.Username },
                 { "access_token", Login.Token.access_token }
             });
-            VehicleResult Result = JsonConvert.DeserializeObject<VehicleResult>(apiResult, _jsonSettings);
-            return Result.result;
+            try
+            {
+                VehicleResult Result = JsonConvert.DeserializeObject<VehicleResult>(apiResult, _jsonSettings);
+                return Result.result;
+            }
+            catch (JsonSerializationException e)
+            {
+                throw new EHApiException("Json serialisation error " + e.Message);
+            }
         }
 
         public async Task<List<LocationDetails>> getLocationDetailsAsync(int locationId)
@@ -560,7 +627,7 @@ namespace TonyHoyle.EH
                 throw new EHApiException("Json serialisation error " + e.Message);
             }
         }
-        
+
         public async Task<List<Pump>> getPumpListAsync(double latitude, double longitude)
         {
             string apiResult = await ApiCallAsync("getPumpList", new Dictionary<string, string>
@@ -571,8 +638,15 @@ namespace TonyHoyle.EH
                 { "latitude", latitude.ToString() },
                 { "longitude", longitude.ToString() },
             });
-            PumpListResult Result = JsonConvert.DeserializeObject<PumpListResult>(apiResult, _jsonSettings);
-            return Result.result;
+            try
+            {
+                PumpListResult Result = JsonConvert.DeserializeObject<PumpListResult>(apiResult, _jsonSettings);
+                return Result.result;
+            }
+            catch (JsonSerializationException e)
+            {
+                throw new EHApiException("Json serialisation error " + e.Message);
+            }
         }
 
         // Because it's possible to want lots of information about connectors, we cache them to avoid hitting the server constantly

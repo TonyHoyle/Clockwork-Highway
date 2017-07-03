@@ -13,11 +13,13 @@ using Android.Support.V4.App;
 using Android.Widget;
 using TonyHoyle.EH;
 using Android.Content;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ClockworkHighway.Android
 {
 	[Activity(Label = "@string/ApplicationName")]
-	public class BarcodeActivity : AppCompatActivity, ISurfaceHolderCallback, Detector.IProcessor
+    [SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly")]
+    public class BarcodeActivity : AppCompatActivity, ISurfaceHolderCallback, Detector.IProcessor
 	{
         CameraSource mCameraSource;
         SurfaceView mCameraView;
