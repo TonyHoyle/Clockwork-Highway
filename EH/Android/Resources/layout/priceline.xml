@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    android:paddingTop="8dp">
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -12,19 +11,15 @@
         android:textStyle="bold"
         android:singleLine="false"
         android:scrollHorizontally="false"
-        android:maxLines="4"
-        android:lines="2"
-        android:paddingRight="4dp"
-        android:layout_weight="1"
+        android:maxLines="8"
         android:id="@+id/priceTitle" />
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="4dp"
         android:singleLine="false"
         android:scrollHorizontally="false"
-        android:maxLines="4"
+        android:maxLines="8"
         android:textSize="16dp"
-        android:layout_weight="1"
+        android:paddingTop="2dp"
         android:id="@+id/priceText" />
 </LinearLayout>

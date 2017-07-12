@@ -8,6 +8,7 @@ using Android.Support.V7.App;
 using TonyHoyle.EH;
 using Android.Util;
 using System.Diagnostics.CodeAnalysis;
+using Android.Content;
 
 namespace ClockworkHighway.Android
 {
@@ -62,10 +63,9 @@ namespace ClockworkHighway.Android
 
         private void PumpClicked(EHApi.LocationDetails location)
         {
-            var frag = new StartChargeFragment();
-            frag.Arguments = new Bundle();
-            frag.Arguments.PutString("location", Newtonsoft.Json.JsonConvert.SerializeObject(location));
-            frag.Show(FragmentManager, "StartChargeFragment");
+			Intent i = new Intent(Context, typeof(StartChargeActivity));
+			i.PutExtra("location", Newtonsoft.Json.JsonConvert.SerializeObject(location));
+			StartActivity(i);
         }
 
         public void OnMapReady(GoogleMap googleMap)

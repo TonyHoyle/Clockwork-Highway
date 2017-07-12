@@ -4,94 +4,113 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <fragment
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/map"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <LinearLayout
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
+        android:layout_height="match_parent">
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/startchargeat" />
-        <TextView
-            android:id="@+id/locationName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:textSize="24sp"
-            android:textColor="@color/primary_dark"
-            android:text="Trumpton Services" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/onpump" />
-        <TextView
-            android:id="@+id/pumpId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:textSize="24sp"
-            android:textColor="@color/primary_dark"
-            android:text="0001" />
-        <TextView
-            android:id="@+id/connectorListText"
-            android:layout_width="match_parent"
-            android:layout_marginTop="16dp"
-            android:layout_height="wrap_content"
-            android:text="@string/usingconnector" />
-        <ListView
-            android:id="@+id/connectorList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:choiceMode="singleChoice"
-            tools:listitem="@android:layout/simple_list_item_single_choice" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/paymentdetails" />
-        <LinearLayout
-            android:id="@+id/priceList"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ProgressBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.AppCompat.ProgressBar"
-                android:indeterminate="true"
-                android:id="@+id/progressBar" />
+            android:layout_height="match_parent">
             <LinearLayout
-                android:id="@+id/payment"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <Spinner
-                    android:id="@+id/cardList"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/startchargeat" />
+                    <TextView
+                        android:id="@+id/locationName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:textSize="24sp"
+                        android:textColor="@color/primary_dark"
+                        android:text="Trumpton Services" />
+                    <TextView
+                        android:id="@+id/connectorListText"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/usingconnector" />
+                    <ListView
+                        android:id="@+id/connectorList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:choiceMode="singleChoice"
+                        tools:listitem="@android:layout/simple_list_item_single_choice" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/priceList"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/Widget.AppCompat.ProgressBar"
+                            android:indeterminate="true"
+                            android:id="@+id/progressBar" />
+                        <LinearLayout
+                            android:id="@+id/payment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android_layout_marginTop="8dp"
+                            android:orientation="horizontal">
+                            <Spinner
+                                android:id="@+id/cardList"
+                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:spinnerMode="dropdown" />
+                            <TextView
+                                android:layout_weight="2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:minEms="3"
+                                android:text="@string/cvv" />
+                            <EditText
+                                android:id="@+id/cvv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:layout_weight="2"
+                                android:minEms="3"
+                                android:maxLength="3" />
+                        </LinearLayout>
+                    </FrameLayout>
+                </LinearLayout>
+                <Button
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown" />
-                <TextView
-                    android:layout_weight="2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minEms="3"
-                    android:text="@string/cvv" />
-                <EditText
-                    android:id="@+id/cvv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:layout_weight="2"
-                    android:minEms="3"
-                    android:maxLength="3" />
+                    android:layout_marginLeft="64dp"
+                    android:layout_marginRight="64dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/startCharge"
+                    android:text="@string/startCharge" />
             </LinearLayout>
-        </FrameLayout>
+        </ScrollView>
     </LinearLayout>
 </LinearLayout>

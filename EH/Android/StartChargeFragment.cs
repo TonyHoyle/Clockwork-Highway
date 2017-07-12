@@ -9,94 +9,104 @@ using Android.Widget;
 using System;
 using Android.Content;
 using Android.Util;
+using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
 
 namespace ClockworkHighway.Android
 {
-    public class StartChargeFragment : DialogFragment
+    public class StartChargeFragment : Fragment, IOnMapReadyCallback
     {
         private int _connectorId;
         private string _cardId;
         private int _pumpId;
         private TextView _cvv;
         private EHApi.Quote _quote;
+        private string _locationName;
+        private double _locationLat, _locationLon;
 
-        public override global::Android.App.Dialog OnCreateDialog(Bundle savedInstanceState)
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Calling GetLayoutInflator for the dialog here causes a recursive loop as DialogFragment.GetLayoutInflator
-            // contains a call to OnCreateDialog (which seems bogus but unfixed in latest android).
-            var view = Activity.LayoutInflater.Inflate(Resource.Layout.startcharge, null);
+            var view = inflater.Inflate(Resource.Layout.startcharge, container, false);
 
-            var location = JsonConvert.DeserializeObject<EHApi.LocationDetails>(Arguments.GetString("location"));
-            var connectors = new List<string>();
-            var cards = new List<string>();
+			var location = JsonConvert.DeserializeObject<EHApi.LocationDetails>(Arguments.GetString("location"));
+			var connectors = new List<string>();
+			var cards = new List<string>();
 
-            var cardList = view.FindViewById<Spinner>(Resource.Id.cardList);
-            var connectorPrompt = view.FindViewById<TextView>(Resource.Id.connectorListText);
-            var connectorList = view.FindViewById<ListView>(Resource.Id.connectorList);
-            var locationName = view.FindViewById<TextView>(Resource.Id.locationName);
-            var pumpId = view.FindViewById<TextView>(Resource.Id.pumpId);
-            var payment = view.FindViewById<LinearLayout>(Resource.Id.payment);
-            var progressBar = view.FindViewById<ProgressBar>(Resource.Id.progressBar);
+			var cardList = view.FindViewById<Spinner>(Resource.Id.cardList);
+			var connectorPrompt = view.FindViewById<TextView>(Resource.Id.connectorListText);
+			var connectorList = view.FindViewById<ListView>(Resource.Id.connectorList);
+			var locationName = view.FindViewById<TextView>(Resource.Id.locationName);
+			var payment = view.FindViewById<LinearLayout>(Resource.Id.payment);
+			var progressBar = view.FindViewById<ProgressBar>(Resource.Id.progressBar);
+			var chargeButton = view.FindViewById<Button>(Resource.Id.startCharge);
+
+			_locationName = location.name;
+            _locationLat = location.latitude;
+            _locationLon = location.longitude;
+
+			chargeButton.Click += (sender, args) => { DoCharge(); };
+
+			var mapFragment = (SupportMapFragment)ChildFragmentManager.FindFragmentById(Resource.Id.map);
+			mapFragment.GetMapAsync(this);
 
             payment.Visibility = ViewStates.Gone;
-            progressBar.Visibility = ViewStates.Visible;
+			progressBar.Visibility = ViewStates.Visible;
 
-            _cvv = view.FindViewById<TextView>(Resource.Id.cvv);
+			_cvv = view.FindViewById<TextView>(Resource.Id.cvv);
 
-            foreach (var c in SharedData.api.Login.Cards)
-            {
-                cards.Add(c.cardType + " " + c.lastDigits);
-            }
+			foreach (var c in SharedData.api.Login.Cards)
+			{
+				cards.Add(c.cardType + " " + c.lastDigits);
+			}
 
-            cardList.Adapter = new ArrayAdapter<string>(Context, global::Android.Resource.Layout.SimpleSpinnerDropDownItem, cards.ToArray());
-            cardList.SetSelection(SharedData.api.Login.DefaultCardIndex);
-            cardList.ItemSelected += (obj, e) => { _cardId = SharedData.api.Login.Cards[e.Position].cardId; };
+			cardList.Adapter = new ArrayAdapter<string>(Context, global::Android.Resource.Layout.SimpleSpinnerDropDownItem, cards.ToArray());
+			cardList.SetSelection(SharedData.api.Login.DefaultCardIndex);
+			cardList.ItemSelected += (obj, e) => { _cardId = SharedData.api.Login.Cards[e.Position].cardId; };
 
-            var compatibleConnectors = new List<EHApi.Connector>();
+			var compatibleConnectors = new List<EHApi.Connector>();
 
-            foreach (var c in location.connector)
-            {
-                if (c.compatible.Length > 0)
-                {
-                    connectors.Add(c.name);
-                    compatibleConnectors.Add(c);
-                }
-            }
+			foreach (var c in location.connector)
+			{
+				if (c.compatible.Length > 0)
+				{
+					connectors.Add(c.name);
+					compatibleConnectors.Add(c);
+				}
+			}
 
-            if (compatibleConnectors.Count == 0)
-                compatibleConnectors.AddRange(location.connector);
+			if (compatibleConnectors.Count == 0)
+				compatibleConnectors.AddRange(location.connector);
 
-            connectorList.Adapter = new ArrayAdapter<string>(Context, global::Android.Resource.Layout.SimpleListItemSingleChoice, connectors.ToArray());
-            connectorList.SetItemChecked(0, true);
-            connectorList.ItemSelected += (obj, e) => { _connectorId = compatibleConnectors[e.Position].connectorId; };
+			connectorList.Adapter = new ArrayAdapter<string>(Context, global::Android.Resource.Layout.SimpleListItemSingleChoice, connectors.ToArray());
+			connectorList.SetItemChecked(0, true);
+			connectorList.ItemSelected += (obj, e) => { _connectorId = compatibleConnectors[e.Position].connectorId; };
 
-            if (connectors.Count < 2)
-            {
-                connectorList.Visibility = ViewStates.Gone;
-                connectorPrompt.Visibility = ViewStates.Gone;
-            }
-            if (compatibleConnectors.Count > 0)
-                _connectorId = compatibleConnectors[0].connectorId;
-            else
-                _connectorId = 0;
-            if (SharedData.api.Login.Card != null)
-                _cardId = SharedData.api.Login.Card.cardId;
-            else
-                _cardId = "0";
-            _pumpId = location.pumpId;
+			if (connectors.Count < 2)
+			{
+				connectorList.Visibility = ViewStates.Gone;
+				connectorPrompt.Visibility = ViewStates.Gone;
+			}
+			if (compatibleConnectors.Count > 0)
+				_connectorId = compatibleConnectors[0].connectorId;
+			else
+				_connectorId = 0;
+			if (SharedData.api.Login.Card != null)
+				_cardId = SharedData.api.Login.Card.cardId;
+			else
+				_cardId = "0";
+			_pumpId = location.pumpId;
 
-            pumpId.Text = location.pumpId.ToString();
-            locationName.Text = location.name;
+            locationName.Text = location.name + " (Pump "+location.pumpId.ToString()+")";
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(Activity)
-                .SetTitle(Resource.String.startCharge)
-                .SetView(view)
-                .SetPositiveButton(Resource.String.ok, (sender, args) => { })
-                .SetNegativeButton(Resource.String.cancel, (sender, args) => { });
+			AlertDialog.Builder builder = new AlertDialog.Builder(Activity)
+				.SetTitle(Resource.String.startCharge)
+				.SetView(view)
+				.SetPositiveButton(Resource.String.ok, (sender, args) => { })
+				.SetNegativeButton(Resource.String.cancel, (sender, args) => { });
 
-            new Handler(Looper.MainLooper).Post(() => InitDialog(view));
-                                          
-            return builder.Create();
+			new Handler(Looper.MainLooper).Post(() => InitDialog(view));
+			
+            return view;
         }
 
         async void InitDialog(View view)
@@ -113,7 +123,7 @@ namespace ClockworkHighway.Android
             {
                 Log.Debug(SharedData.APP, "Unable to quote: "+e.Message);
 				Toast.MakeText(Context.ApplicationContext, "Unable to communicate with Electric Highway Servers", ToastLength.Short).Show();
-				Dismiss();
+                Activity.Finish();
 
 				_quote = null;
             }
@@ -181,7 +191,7 @@ namespace ClockworkHighway.Android
                     i.PutExtra("pumpId", _pumpId);
                     i.PutExtra("connectorId", _connectorId);
                     StartActivity(i);
-                    Dismiss();
+                    Activity.Finish();
                 }
                 else
                 {
@@ -206,13 +216,21 @@ namespace ClockworkHighway.Android
         public override void OnStart()
         {
             base.OnStart();
-
-            AlertDialog dlg = (AlertDialog)Dialog;
-            if (dlg != null)
-            {
-                Button positivePutton = dlg.GetButton((int)DialogButtonType.Positive);
-                positivePutton.Click += (sender, args) => { DoCharge(); };
-            }
         }
+
+        public void OnMapReady(GoogleMap googleMap)
+        {
+			var camera = new CameraPosition.Builder()
+						.Target(new LatLng(_locationLat, _locationLon))
+						.Zoom(15)
+						.Build();
+			var marker = new MarkerOptions()
+						.SetPosition(new LatLng(_locationLat, _locationLon))
+						.SetTitle(_locationName);
+
+			googleMap.MoveCamera(CameraUpdateFactory.NewCameraPosition(camera));
+			googleMap.AddMarker(marker);
+			// Finding route is a pain involving web calls to google directions API
+		}
     }
 }

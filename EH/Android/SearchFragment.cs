@@ -313,10 +313,9 @@ namespace ClockworkHighway.Android
 	                    location.name = pump.name;
 	                    location.pumpId = pump.pumpId;
 
-	                    var frag = new StartChargeFragment();
-	                    frag.Arguments = new Bundle();
-	                    frag.Arguments.PutString("location", Newtonsoft.Json.JsonConvert.SerializeObject(location));
-	                    frag.Show(FragmentManager, "StartChargeFragment");
+                        Intent i = new Intent(Context, typeof(StartChargeActivity));
+	                    i.PutExtra("location", Newtonsoft.Json.JsonConvert.SerializeObject(location));
+                        StartActivity(i);
                     }
                 }
             }

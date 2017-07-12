@@ -13,7 +13,7 @@
   <string name="swipeonly">Swipe card only</string>
   <string name="onpump">On pump number</string>
   <string name="usingconnector">Using connector</string>
-  <string name="paymentdetails">Payment details</string>
+  <string name="startcharge">Start Charge</string>
   <string name="startchargeat">Start charge at</string>
   <string name="charging">Charging</string>
   <string name="terms">Ecotricity T&amp;C</string>

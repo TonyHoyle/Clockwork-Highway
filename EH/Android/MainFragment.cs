@@ -42,7 +42,7 @@ namespace ClockworkHighway.Android
             SharedData.httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("ClockworkHighway", Activity.PackageManager.GetPackageInfo(Activity.PackageName, 0).VersionName));
             SharedData.httpClient.DefaultRequestHeaders.Add("Connection", "Keep-Alive");
 
-            var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
+            var prefs = PreferenceManager.GetDefaultSharedPreferences(Context.ApplicationContext);
             var username = prefs.GetString("username", "");
             var refresh_token = prefs.GetString("refresh_token", "");
             var password = prefs.GetString("password", ""); // Shouldn't exist, except for upgrade case
@@ -136,16 +136,23 @@ namespace ClockworkHighway.Android
 
                 if(!loggedIn)
                 {
-                    ShowProgress(false, "Unknown username or password", true);
+                    if (password != "")
+                        ShowProgress(false, "Unknown username or password", true);
+                    else 
+                    {
+						ShowProgress(false);
+						var passwordPrompt = View.FindViewById<TextInputEditText>(Resource.Id.password);
+                        passwordPrompt.Text = "";
+					}
                 }
                 else
                 {
-                    var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
-                    var editor = prefs.Edit();
-                    editor.PutString("username", username);
-                    editor.Remove("password");
-                    editor.PutString("refresh_token", SharedData.api.Login.Token.refresh_token);
-                    editor.Apply();
+                    var prefs = PreferenceManager.GetDefaultSharedPreferences(Context.ApplicationContext);
+                    prefs.Edit()
+                        .PutString("username", username)
+                        .Remove("password")
+                        .PutString("refresh_token", SharedData.api.Login.Token.refresh_token)
+                        .Apply();
 
                     Intent intent = new Intent(Context, typeof(SearchActivity));
                     intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.TaskOnHome);
