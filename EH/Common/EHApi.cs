@@ -580,7 +580,7 @@ namespace TonyHoyle.EH
             {
                 LoginResult Result = JsonConvert.DeserializeObject<LoginResult>(apiResult, _jsonSettings);
                 if (!Result.result)
-                    return null;
+                    throw new EHApiException(Result.message ?? "User call failed");
                 else
                     return Result.data;
             }

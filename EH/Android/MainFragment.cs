@@ -136,6 +136,13 @@ namespace ClockworkHighway.Android
 
                 if(!loggedIn)
                 {
+                    var prefs = PreferenceManager.GetDefaultSharedPreferences(Context.ApplicationContext);
+                    
+                    prefs.Edit()
+                        .Remove("password")
+                        .Remove("refresh_token")
+                        .Apply();
+
                     if (password != "")
                         ShowProgress(false, "Unknown username or password", true);
                     else 

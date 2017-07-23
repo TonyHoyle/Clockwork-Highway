@@ -54,42 +54,43 @@ namespace TonyHoyle.EH
         {
             try
             {
+                IsLoggedIn = false;
                 var token = await _api.tokenAsync(username, password, deviceId);
 
                 Username = username;
                 Token = token;
                 DeviceId = deviceId;
-
-                return await Login2();
             }
             catch(EHApi.EHApiException e)
             {
                 Debug.WriteLine("EH Exception: " + e.Message);
-                IsLoggedIn = false;
                 return false;
             }
+
+            return await Login2();
         }
 
-		public async Task<bool> LoginWithToken(string username, string refreshToken, string deviceId)
+        public async Task<bool> LoginWithToken(string username, string refreshToken, string deviceId)
 		{
             try
             {
+                IsLoggedIn = false;
                 var token = await _api.tokenAsync(refreshToken, deviceId);
 
                 Username = username;
                 Token = token;
                 DeviceId = deviceId;
 
-				return await Login2();
 			}
             catch(EHApi.EHApiException e)
             {
 				Debug.WriteLine("EH Exception: " + e.Message);
-				IsLoggedIn = false;
 				return false;
 			}
-		}
-		
+
+            return await Login2();
+        }
+
         private async Task<bool> Login2()
         {
             var account = await _api.userAsync();

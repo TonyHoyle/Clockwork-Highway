@@ -59,8 +59,7 @@ namespace ClockworkHighway.Android
 
             _drawerToggle = new global::Android.Support.V7.App.ActionBarDrawerToggle(this, _drawerLayout, Resource.String.open, Resource.String.close);
 
-            _drawerLayout.AddDrawerListener(_drawerToggle);
-
+            _drawerLayout.AddDrawerListener(_drawerToggle);         
 
             if (bundle == null)
             {

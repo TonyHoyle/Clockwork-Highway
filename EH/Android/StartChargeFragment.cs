@@ -11,9 +11,11 @@ using Android.Content;
 using Android.Util;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ClockworkHighway.Android
 {
+    [SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly")]
     public class StartChargeFragment : Fragment, IOnMapReadyCallback
     {
         private int _connectorId;
