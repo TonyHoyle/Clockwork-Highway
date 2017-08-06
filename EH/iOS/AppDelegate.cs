@@ -10,22 +10,19 @@ namespace ClockworkHighway.iOS
     {
         // class-level declarations
 
-        public override UIWindow Window
-        {
-            get;
-            set;
-        }
+        public override UIWindow Window { get; set; }
+        public UIStoryboard Storyboard { get; private set; }
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             // create a new window instance based on the screen size
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
+		    Storyboard = UIStoryboard.FromName("ClockworkHighway", null);
 
-            // If you have defined a root view controller, set it here:
-            // Window.RootViewController = myViewController;
+		    Window.RootViewController = Storyboard.InstantiateInitialViewController();
 
-            // make the window visible
-            Window.MakeKeyAndVisible();
+			// make the window visible
+			Window.MakeKeyAndVisible();
 
             return true;
         }
