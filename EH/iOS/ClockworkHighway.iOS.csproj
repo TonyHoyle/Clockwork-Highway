@@ -86,19 +86,10 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <None Include="GettingStarted.Xamarin" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
-    <InterfaceDefinition Include="Resources\ClockworkHighway.storyboard" />
-    <Compile Include="ChargeViewController.cs" />
-    <Compile Include="ChargeViewController.designer.cs">
-      <DependentUpon>ChargeViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SettingsViewController.cs" />
-    <Compile Include="SettingsViewController.designer.cs">
-      <DependentUpon>SettingsViewController.cs</DependentUpon>
-    </Compile>
+    <Compile Include="MainScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HockeySDK, Version=1.0.6387.33442, Culture=neutral, processorArchitecture=MSIL">
@@ -129,6 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="windfarm.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
