@@ -28,7 +28,10 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
+	<key>CFBundleName</key>
+	<string>ClockworkHighway.iOS</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The application would like to know where you are</string>
 </dict>
 </plist>

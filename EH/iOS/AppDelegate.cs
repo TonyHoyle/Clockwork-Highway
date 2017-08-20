@@ -12,7 +12,8 @@ namespace ClockworkHighway.iOS
         {
             window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            var controller = new MainScreen();
+            var storyboard = UIStoryboard.FromName("Storyboard", null);
+            var controller = storyboard.InstantiateInitialViewController();
             window.RootViewController = controller;
             window.MakeKeyAndVisible();
             return true;
