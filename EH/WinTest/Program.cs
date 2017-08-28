@@ -45,7 +45,7 @@ namespace WinTest
 			StreamWriter file = new StreamWriter("locations.csv");
             file.AutoFlush = true;
 
-            if (!api.Login.LoginWithPassword("TonyHoyle", "", "00000000").Result)
+            if (!api.Login.LoginWithPassword("TonyHoyleTest", "aardvark99", "00000000").Result)
                 return;
 
             for (int locationId = 1; locationId < 200; locationId++)

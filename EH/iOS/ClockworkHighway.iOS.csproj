@@ -101,6 +101,9 @@
     <Compile Include="MainController.designer.cs">
       <DependentUpon>MainController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shared.cs" />
+    <Compile Include="PumpListSource.cs" />
+    <Compile Include="Toaster.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HockeySDK, Version=1.0.6387.33442, Culture=neutral, processorArchitecture=MSIL">
